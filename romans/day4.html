@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 4 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day4-am">2:1–5</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 4 天</span>2026-10-23（周五） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+        <article class="entry" id="day4-am">
+          <div class="entry-head">
+            <span class="entry-day">第 4 天 · 晨 — 2026-10-23（周五）</span>
+            <h3 class="entry-title">论断者无可推诿：神照真理审判 <span class="ref">· 罗马书 2:1–5</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>你这论断人的，无论你是谁，也无可推诿。你在什么事上论断人，就在什么事上定自己的罪，因你这论断人的，自己所行却和别人一样。<span class="vn">2</span>我们知道这样行的人，神必照真理审判他。<span class="vn">3</span>你这人哪，你论断行这样事的人，自己所行的却和别人一样，你以为能逃脱神的审判吗？<span class="vn">4</span>还是你藐视他丰富的恩慈、宽容、忍耐，不晓得他的恩慈是领你悔改呢？<span class="vn">5</span>你竟任着你刚硬不悔改的心，为自己积蓄忿怒，以致神震怒，显他公义审判的日子来到。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>2:1 开头的 <span class="gk">Διὸ</span>（「故此」）是全书最重要的转折连词之一——它把 1:18–32 的全部重量转回到读者身上。1:18–32 是保罗对「外邦人的不虔不义」的起诉书，结尾的恶行清单（1:29–31）特意以「体面之罪」（违背父母、无亲情、不怜悯）收尾，正是为让自以为义的读者自己走进陷阱；1:32 的判语「行这样事的人是当死的」先让读者点头称是，2:1 保罗就把同一句判语转了回来：「你这论断人的……自己所行却和别人一样。」穆理称 1:18–32 整体为一个「修辞陷阱」，2:1 就是陷阱合拢的瞬间。</p>
+          <p>从全书结构看，1:18–3:20 是「全人皆罪」的大段：1:18–32 定外邦人的罪，2:1–29 定犹太人（有律法者）的罪，3:9–20 收束为「都在罪恶之下」。2:1–16 针对的是「论断人的」——对话体（diatribe）中的假想对话者，2:17 才点名「你称为犹太人」。因此 2:1–5 是一个完整的小单元：论断者的自我定罪（v1、v3）→ 神照真理审判的原则（v2）→ 恩慈的目的被误读（v4）→ 刚硬的心积蓄忿怒（v5）。注意论证的时间线在升级：从「你定自己的罪」（现在），到「神审判他」（原则），再到「积蓄忿怒……日子来到」（将来）——审判从当下一直拉向末世。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>故此</strong>（<span class="gk">Διὸ</span>，第 1 节）：「因此、所以」——承接 1:18–32 全段的结论连词，标志论证对象从「他们」（外邦人）转向「你」（论断者）。</li>
+            <li><strong>无可推诿</strong>（<span class="gk">ἀναπολόγητος</span>）：「没有辩护词的」——与 1:20 的复数 <span class="gk">ἀναπολογήτους</span>（「叫人无可推诿」）是同一个词。1:20 说外邦人对着创造启示无可推诿；2:1 说论断者对着自己亲口发出的判语无可推诿——辩护词是被自己的嘴堵住的。</li>
+            <li><strong>论断人的</strong>（<span class="gk">ὁ κρίνων</span>）：现在时分词，「那持续论断的人」——不是偶尔评价一次，而是以论断为惯常姿态的人。</li>
+            <li><strong>定自己的罪</strong>（<span class="gk">σεαυτὸν κατακρίνεις</span>）：<span class="gk">κατακρίνω</span> 是「下判语、定罪」，比 <span class="gk">κρίνω</span>（论断、判断）更重一级——你用来「论断」别人的标准，成了「定」你自己罪的判词。</li>
+            <li><strong>照真理</strong>（<span class="gk">κατὰ ἀλήθειαν</span>，第 2 节）：「按照真实、按照事情的本来面目」——这是神审判的标尺，与下文 v5 的 <span class="gk">κατὰ τὴν σκληρότητά σου</span>（「照你的刚硬」）形成首尾对照。</li>
+            <li><strong>你以为</strong>（<span class="gk">λογίζῃ</span>，第 3 节）：中间语态，「你心里盘算、你推算」——保罗点破论断者内心的小算盘：别人逃不掉，偏偏我能。</li>
+            <li><strong>逃脱</strong>（<span class="gk">ἐκφεύξῃ</span>）：将来时，「能逃得掉」——与 v5「日子来到」的将来性呼应，审判是未来的、确定的。</li>
+            <li><strong>藐视</strong>（<span class="gk">καταφρονεῖς</span>，第 4 节）：「轻看、看不起」——现在时，持续的态度。被藐视的不是神的忿怒，而是神的恩慈——这是本节最刺眼的反转。</li>
+            <li><strong>丰富的恩慈、宽容、忍耐</strong>（<span class="gk">πλοῦτος…χρηστότης…ἀνοχή…μακροθυμία</span>）：<span class="gk">πλοῦτος</span>（财富）是保罗写恩典的常用量词（参 9:23、11:33、弗 1:7）；<span class="gk">χρηστότης</span> 是神本性的良善，<span class="gk">ἀνοχή</span> 字面「举起、忍住」指暂缓刑罚，<span class="gk">μακροθυμία</span> 字面「长怒」指发怒的引线很长。三词层层递进。</li>
+            <li><strong>领你悔改</strong>（<span class="gk">εἰς μετάνοιάν σε ἄγει</span>）：<span class="gk">ἄγει</span>（领）是现在时——神的恩慈此刻正在持续地把人往悔改里领；<span class="gk">εἰς</span> 表方向与目的。</li>
+            <li><strong>刚硬</strong>（<span class="gk">σκληρότης</span>，第 5 节）：「硬、顽固」——旧约法老心刚硬（出 7–14 章）用的就是这个词族，背后是出埃及的审判记忆。</li>
+            <li><strong>不悔改的</strong>（<span class="gk">ἀμετανόητος</span>）：否定前缀 <span class="gk">ἀ-</span> ＋ <span class="gk">μετάνοια</span>（悔改）——与 v4 的 <span class="gk">μετάνοια</span> 直接对立：神要领人进入的，人偏不进入。</li>
+            <li><strong>积蓄</strong>（<span class="gk">θησαυρίζεις</span>）：「储藏、囤积」——<span class="gk">θησαυρός</span>（宝库、财宝）的动词形式；人本该「积蓄财宝在天上」（太 6:20），刚硬的心却反向操作。</li>
+            <li><strong>公义审判</strong>（<span class="gk">δικαιοκρισία</span>）：新约仅此一处，<span class="gk">δίκαιος</span>（公义）＋ <span class="gk">κρίσις</span>（审判）的复合词——那日子的审判是「公义」的，到那日无人能喊冤。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v1 的双重锁定</strong>：呼格 <span class="gk">ὦ ἄνθρωπε</span>（「人哪」）＋ <span class="gk">πᾶς ὁ κρίνων</span>（「每一个论断的人」）——呼格拉近距离，「每一个」堵住例外：没有人能说「这不是说我」。</li>
+            <li><strong>v1 的反身结构</strong>：<span class="gk">ἐν ᾧ γὰρ κρίνεις τὸν ἕτερον, σεαυτὸν κατακρίνεις</span>（「在你论断别人的那件事上，你定自己的罪」）——<span class="gk">ἐν ᾧ</span>（「在其中」）把论断的内容与定罪的根据锁死在同一件事上；<span class="gk">σεαυτὸν</span>（你自己）前置强调：判语的落点是你自己。</li>
+            <li><strong>v2 的「我们知道」</strong>：<span class="gk">οἴδαμεν</span> 是第一人称复数——保罗把自己和读者都放进这个共识里，不是居高临下的宣告，而是「这是我们都承认的原则」，为 v3 的反问铺地基。</li>
+            <li><strong>v3 是期待否定回答的修辞问句</strong>：<span class="gk">λογίζῃ…ὅτι σὺ ἐκφεύξῃ</span>（「你以为你能逃脱吗？」）——<span class="gk">σὺ</span>（「你」）被单独拎出来强调：别人逃不掉，偏偏你能？逻辑的荒谬被问句照亮。</li>
+            <li><strong>v4 的 <span class="gk">ἢ</span>（「还是」）</strong>：提出更深一层的诊断——问题不只是「你逃不掉」，而是「你正在藐视神的恩慈」；<span class="gk">ἀγνοῶν</span>（「不晓得」）分词表原因：藐视的根子是无知。</li>
+            <li><strong>v2 与 v5 的 <span class="gk">κατὰ</span> 对照</strong>：v2 <span class="gk">κατὰ ἀλήθειαν</span>（照真理） vs v5 <span class="gk">κατὰ τὴν σκληρότητά σου</span>（照你的刚硬）——神审判的标尺是真理，人积蓄忿怒的标尺是自己的刚硬；两个 <span class="gk">κατὰ</span> 短语首尾呼应，v1–5 自成一个完整的修辞单元。</li>
+            <li><strong>v5 的与格与时间短语</strong>：<span class="gk">θησαυρίζεις σεαυτῷ ὀργήν</span> 中与格 <span class="gk">σεαυτῷ</span>（「为自己」）表利益——积蓄的受益人（受害人）是自己；<span class="gk">ἐν ἡμέρᾳ ὀργῆς</span>（「在忿怒的日子」）是时间短语：现在持续积蓄（现在时），到那日一次显明。</li>
+            <li><strong>v5 末句的并列</strong>：<span class="gk">ἡμέρᾳ ὀργῆς καὶ ἀποκαλύψεως δικαιοκρισίας</span>（「忿怒之日和公义审判显明之日」）——那日子既是忿怒的，也是「显明」（<span class="gk">ἀποκάλυψις</span>，揭开盖子）的：现在隐藏的审判，到那日被公开揭开。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>「论断人的」是谁？对话体的转向与陷阱的合拢</strong>：原文根据是 v1 的 <span class="gk">Διὸ</span> 与对话体（diatribe）的文体特征。穆理与穆尔的共识：这里的对话者是犹太人——2:17「你称为犹太人」点名，1:18–32 的外邦人罪单正是犹太人点头称是的材料。穆理的经典表述：1:18–32 是一个「修辞陷阱」，犹太读者对着外邦人的清单说「当死的」（1:32），2:1 保罗就把判语转了回来——你发出的每一句「当死的」，都是你自己案件的呈堂证供。穆尔补强文体证据：<span class="gk">ὦ ἄνθρωπε</span>（「人哪」）是希腊罗马道德论辩中对假想对话者的标准称呼（参 2:3、9:20），保罗借用此体裁不是在跟空气辩论，而是在对罗马教会中的犹太信徒（及一切自义的道德家）说话。与新视角派的对话：邓恩等人强调，这里的犹太人所依仗的是「盟约身份」——有割礼、有律法、有选民地位；穆尔回应：保罗攻击的正是这种「身份豁免权」心态，但他的论证不停留在「犹太人也犯罪」的社会学层面，而是指向普世的审判原则（v2，以及稍后的 v11「神不偏待人」）。分歧注明：少数解经家认为对话者是泛指的「道德家」（包括外邦道德家）；穆理与穆尔都认为上下文（2:17、2:12–16 论「律法」的段落）要求对话者是犹太人，但结论对一切自义者同样有效——身份不分，原则普世。</li>
+            <li><strong>「神必照真理审判」：审判的标尺（v2）</strong>：原文根据是 <span class="gk">κατὰ ἀλήθειαν</span>。穆理展开三层含义：(1) 按行为的真实，而非按人的自我标榜——论断者看别人用放大镜，看自己用哈哈镜，神的审判不用哈哈镜；(2) 按神启示的真理标准，而非按各文化的相对标准；(3) 按人实际的道德光景，而非按宗教身份（割礼、律法、选民名分）。穆尔特别对照约 7:24「不可按外貌断定是非，总要按公平断定是非」：人的论断是 <span class="gk">κατ᾿ ὄψιν</span>（按外貌），神的审判是 <span class="gk">κατὰ ἀλήθειαν</span>（按真理）——前者看标签，后者看实质。互文印证：撒上 16:7「耶和华不像人看人，人是看外貌，耶和华是看内心」；罗 2:11「因为神不偏待人」（本段稍后）；彼前 1:17「祂不偏待人，按各人行为审判」。两人共同指出 v2 的修辞功能：<span class="gk">οἴδαμεν</span>（「我们知道」）把对话者拉进共识——连论断者自己都承认「神照真理审判人」是公理，v3 的问句就建立在这块他亲手铺的地基上：你承认原则，却以为自己是例外。</li>
+            <li><strong>自我定罪的法庭逻辑（vv1、3）</strong>：「你在什么事上论断人，就在什么事上定自己的罪」——穆理剖析其中的法庭逻辑：论断者在定别人罪时，做了两件事——(1) 公开承认了道德标准（「这样行是错的」）；(2) 宣告了违犯标准的刑罚（「当死的」）。这两件事合在一起，构成一份由他亲笔签署的、对他自己的起诉书：因为「自己所行却和别人一样」（<span class="gk">τὰ αὐτὰ πράσσεις</span>）。穆理强调，这不是说论断者的每一桩行为都与被论断者逐项对应，而是说他落在 1:29–31 同一清单的范畴里——清单结尾的「体面之罪」（违背父母、无亲情、不怜悯）正是为堵住「我没杀人放火」的退路。穆尔从论证结构上指出 v3 的荒谬性：对话者的隐含推理是「我论断行这样事的人 → 我比他们高一等 → 我能逃脱审判」；保罗用 <span class="gk">λογίζῃ</span>（「你盘算」）点破这是小算盘，再用 <span class="gk">καὶ ποιῶν αὐτά</span>（「自己却行同样的事」）抽掉前提——前提既倒，结论（「能逃脱」）就是空中楼阁。分歧注明：有解经者把 <span class="gk">τὰ αὐτὰ</span> 弱化为「原则上同样有罪」（人人都有罪，所以人人自定其罪）；穆理与穆尔都坚持保罗的意思更具体：对话者确实在行清单上的事（至少在心的层面，参太 5:21–28），否则「无可推诿」（<span class="gk">ἀναπολόγητος</span>）就落了空——正因为他明知故犯，他的判语才格外定自己的罪。历代共识：太 7:1–5「先去掉自己眼中的梁木」正是同一原则的登山宝训版本。</li>
+            <li><strong>被藐视的恩慈：恩慈的目的与两种误读（v4）</strong>：原文根据是三词递进与 <span class="gk">εἰς μετάνοιάν σε ἄγει</span>。穆理细剖三个词：<span class="gk">χρηστότης</span>（恩慈）是神本性的良善向罪人的倾流；<span class="gk">ἀνοχή</span>（宽容）是神「举起手来、暂缓击打」——刑罚本该落下，神却按住；<span class="gk">μακροθυμία</span>（忍耐）是把这按住的手维持很久（参出 34:6「不轻易发怒」的七十士译本背景）。三词之上还有 <span class="gk">πλοῦτος</span>（丰富）——恩慈不是按滴管给的，是按海洋给的。关键在目的从句：<span class="gk">τὸ χρηστὸν τοῦ θεοῦ εἰς μετάνοιάν σε ἄγει</span>（「神的恩慈领你进入悔改」）——<span class="gk">ἄγει</span> 是现在时，恩慈此刻正在做工，方向是 <span class="gk">εἰς μετάνοιαν</span>（进入悔改）。穆理的神学发挥：恩慈有一个神圣的目的，误读这个目的就是 <span class="gk">καταφρονεῖν</span>（藐视）。两种经典误读：(1) 把延迟当默许——「神没立刻管，可见祂不介意」（传 8:11「因为断定罪名，不立刻施刑，所以世人满心作恶」正是此病）；(2) 把恩慈当纵容的许可证——「神是慈爱的，所以无所谓」。穆尔补充彼后 3:9、15 的互文：「主……乃是宽容你们，不愿有一人沉沦，乃愿人人都悔改」——延迟不是缺席，是给悔改留时间。与新视角派的对话：邓恩强调神的恩慈在犹太传统中首先是盟约性的（神对选民的信实）；穆尔回应：保罗在此讲的恩慈是普世性的悔改机会，2:4 的「你」（<span class="gk">σε</span>）是单数，直指对话者个人——恩慈不是民族的护身符，是个人的邀请函。分歧注明：<span class="gk">ἄγει</span>（「领」）是否意味着「保证」？穆理谨慎区分：恩慈「领向」悔改是真实的目的性引导，不是机械的必然——否则 v5 的「刚硬不悔改」就不可能发生；正是人可能拒绝，藐视才成为罪。</li>
+            <li><strong>积蓄忿怒：反向的财宝与那日子（v5）</strong>：原文根据是 <span class="gk">θησαυρίζεις σεαυτῷ ὀργήν</span> 与 <span class="gk">δικαιοκρισία</span>。穆理点出 <span class="gk">θησαυρίζω</span> 的反讽：这个词在新约他处几乎专用于「积蓄财宝」（太 6:19–20「不要为自己积攒财宝在地上……要积攒财宝在天上」；路 12:21；林前 16:2），保罗却让它带上 <span class="gk">ὀργήν</span>（忿怒）作宾语——刚硬的心在做一笔反向投资：别人存钱，他存忿怒；与格 <span class="gk">σεαυτῷ</span>（「为自己」）让反讽更彻底：受害人与受益人是同一个人。现在时 <span class="gk">θησαυρίζεις</span> 表明这不是将来才发生的事——每一次拒绝悔改，都是一次「存款」。穆尔特别指出 v2 与 v5 的 <span class="gk">κατὰ</span> 对照：神审判的标尺是 <span class="gk">κατὰ ἀλήθειαν</span>（照真理），人积蓄忿怒的标尺是 <span class="gk">κατὰ τὴν σκληρότητά σου</span>（照你的刚硬）——两个 <span class="gk">κατὰ</span> 首尾呼应，v1–5 自成一个完整的修辞单元。「忿怒之日」（<span class="gk">ἡμέρᾳ ὀργῆς</span>）的旧约背景是「耶和华的日子」（番 1:15「那日是忿怒的日子」；珥 2:11；玛 4:1）；而 <span class="gk">ἀποκαλύψεως δικαιοκρισίας</span>（「公义审判的显明」）——穆理强调 <span class="gk">ἀποκάλυψις</span>（揭开）意味着：那日的审判不是新发生的，是现在隐藏之审判的公开揭开；<span class="gk">δικαιοκρισία</span>（新约仅此一处）保证那审判是「公义」的——到那日，没有人能说「我冤」。互文：帖前 1:10「等候他儿子……救我们脱离将来忿怒」；启 6:17「他们忿怒的大日到了，谁能站得住呢？」两人共识：v5 是 1:18「神的忿怒……正在被显明」的末世完成——1:18 是忿怒在历史中的显明（任凭），2:5 是忿怒在末日的显明（审判）；已然与未然，同一忿怒。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>论断是一面镜子</strong>：v1 的逻辑有个扎心的推论——我们最容易论断的，往往正是自己也在犯的。论断之所以爽，是因为它制造「我比你强」的幻觉；保罗拆穿这个幻觉：你用来量别人的尺，正在量你自己。操练：下一次你想批评某人（心里批评也算）时，先停三秒问自己：「在这一件事上，我是否也在做同样的事？」如果答案是肯定的，先对付自己眼中的梁木（太 7:3–5）。</li>
+            <li><strong>别把恩慈读反了</strong>：v4 说，神对你的宽容有一个方向——领你悔改。但我们常常把方向读反：把「神还没管」读成「神不介意」（延迟当默许），或把「神是慈爱的」读成「所以无所谓」（恩慈当纵容）。两种读法都是 <span class="gk">καταφρονεῖν</span>（藐视）。检视：神最近在哪一件事上对你格外宽容（没立刻管教你）？你把它当成了默许，还是当成了悔改的邀请函？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>v5 说，刚硬不悔改的心是在「为自己积蓄忿怒」——每一次拒绝悔改，都像往一个账户里存了一笔钱，只是存进去的是忿怒。想一想：有没有一件你明知该悔改、却一直推迟的事？推迟的每一天，这个「账户」里又多了什么？而 v4 说，神的恩慈此刻正在「领你」往相反的方向走——今天，你要回应哪一边？</p>
+          </div>
+        </article>
+        <div class="daynav"><a href="day3.html">← 第 3 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一天待更新</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>

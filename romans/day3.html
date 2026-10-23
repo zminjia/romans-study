@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 3 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day3-am">1:24–27</a>
+        <a href="#day3-pm">1:28–32</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day4.html">第 4 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 3 天</span>2026-10-22（周四） 研读</h2>
+        <p class="sec-lead">当天晨、晚两篇，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+        <article class="entry" id="day3-am">
+          <div class="entry-head">
+            <span class="entry-day">第 3 天 · 晨 — 2026-10-22（周四）</span>
+            <h3 class="entry-title">神任凭他们：忿怒的今世形态 <span class="ref">· 罗马书 1:24–27</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">24</span>所以，神任凭他们逞着心里的情欲行污秽的事，以致彼此玷辱自己的身体。<span class="vn">25</span>他们将神的真实变为虚谎，去敬拜事奉受造之物，不敬奉那造物的主。主乃是可称颂的，直到永远。阿们！<span class="vn">26</span>因此，神任凭他们放纵可羞耻的情欲。他们的女人把顺性的用处变为逆性的用处。<span class="vn">27</span>男人也是如此，弃了女人顺性的用处，欲火攻心，彼此贪恋，男和男行可羞耻的事，就在自己身上受这妄为当得的报应。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>1:18–23 说明了忿怒的<strong>根据</strong>（人拥有关于神的真实知识却压制它、交换了荣耀），1:24–32 则给出忿怒的<strong>后果</strong>——忿怒在今世的运行形态。这正是 v18 中 ἀποκαλύπτεται（「正在被显明」）现在时的落点：末世的忿怒，在今世已有预尝。</p>
+          <p>本段是 1:24–32 的前半，由三次 παρέδωκεν（「任凭」／「交出」）构成结构脊柱，每次都由一个因果连词引出（διό v24；διὰ τοῦτο v26；καθώς v28），把「任凭」与前面的悖逆紧紧咬合。三次「任凭」呈下降结构：行为的污秽（v24）→ 情欲的颠倒（vv26–27）→ 心意的邪僻（v28–32），败坏由外而内，越走越深。</p>
+          <p>注意与昨晚（1:18–23）的衔接：v24 的 διό（「所以」）直接回答 vv21–23——人先在宗教上「交换」了荣耀，神就任凭他们在道德上承受交换的后果。罪行与审判由神的主动作为连成一体。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong><span class="gk">παρέδωκεν</span>（第 24、26、28 节「任凭」）</strong>：παραδίδωμι 的不定过去时主动语态直陈式三单，「交出、交付、任凭」。这正是犹大「卖」耶稣用的同一个动词（太 26:15），也是保罗在林前 5:5「把这样的人交给撒但」用的词。三次的主语都是 ὁ θεός（神）——明确的、位格性的、审判性的主体。不定过去时表<strong>决定性的作为</strong>，不是渐渐松手，而是司法性的交付。</li>
+            <li><strong><span class="gk">ἀκαθαρσία</span>（第 24 节「污秽」）</strong>：不洁、污秽，道德与身体层面的玷污。ἀτιμάζεσθαι（「玷辱」，现在时被动不定式）：身体「被羞辱」，ἐν αὐτοῖς（「彼此」）说明羞辱发生在人与人之间。</li>
+            <li><strong><span class="gk">μετήλλαξαν</span>（第 25 节「变为」）</strong>：μεταλλάσσω 的不定过去时主动，「交换、调换」——是 v23 ἤλλαξαν 的加强形式。「交换」母题第三次出现（v23、v25、v26 的 μετήλλαξαν），构成贯穿 1:18–32 的「交换结构」：神的荣耀 → 偶像；神的真实 → 虚谎；顺性的用处 → 逆性的用处。每一次交换都是向下的。</li>
+            <li><strong><span class="gk">ἐσεβάσθησαν καὶ ἐλάτρευσαν</span>（第 25 节「敬拜事奉」）</strong>：σεβάζομαι（敬畏、敬拜）＋ λατρεύω（事奉）。极具讽刺意味的是，λατρεύω 正是保罗在 1:9 形容自己福音职事用的词（「我在他儿子福音上，用心灵所<strong>事奉</strong>的神」）——本该献给神的祭司性事奉，如今献给了偶像。τῇ κτίσει παρὰ τὸν κτίσαντα（「受造之物…那造物的主」）：παρὰ＋宾格，「取代、代替」——受造之物被放在了创造主的位置上。</li>
+            <li><strong><span class="gk">πάθη ἀτιμίας</span>（第 26 节「可羞耻的情欲」）</strong>：πάθος（情欲）＋性质属格，「带着羞耻特质的情欲」。</li>
+            <li><strong><span class="gk">θήλειαι／ἄρσενες</span>（第 26–27 节「女人／男人」）</strong>：直白的生物学用词（雌性／雄性），而非 ἀνήρ／γυνή（男人／女人）——保罗刻意回到创 1:27 的创造秩序范畴。<strong>φύσις（第 26 节「顺性／逆性」的「性」）</strong>：「本性、自然」——这是全段最具争议的词（见解经第 3 点）。</li>
+            <li><strong><span class="gk">ἐξεκαύθησαν ἐν τῇ ὀρέξει</span>（第 27 节「欲火攻心」）</strong>：ἐκκαίω 的不定过去时被动，「被点燃、烧起来」——欲望如火，被点着了。ἀσχημοσύνην（「可羞耻的事」）：不体面、不成体统的行为。ἀντιμισθίαν…τῆς πλάνης（「妄为当得的报应」）：ἀντιμισθία（相称的报偿）＋ πλάνη（迷误、偏离）——「迷误所应得的相称报偿」。</li>
+            <li><strong><span class="gk">οὐκ ἐδοκίμασαν…εἰς ἀδόκιμον νοῦν</span>（第 28 节「故意不认识神…存邪僻的心」）</strong>：δοκιμ- 词根的双关——人「不屑」（ἐδοκίμασαν，认为不值得）把神存在知识里，神就任凭他们存「经不起检验的」（ἀδόκιμον）心。拒绝「认可」神的心，成了「不合格」的心。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li>三次「任凭」的宾语层层递进，都由 εἰς＋宾格表<strong>结果</strong>：εἰς ἀκαθαρσίαν（进入污秽，v24）→ εἰς πάθη ἀτιμίας（进入可羞耻的情欲，v26）→ εἰς ἀδόκιμον νοῦν（进入邪僻的心，v28）。败坏向内走：行为 → 情欲 → 心意。</li>
+            <li>因果连词把每次「任凭」与前面的悖逆锁定：διό（v24，回应 vv21–23 的不荣耀、不感谢）、διὰ τοῦτο（v26，回应 v25 的交换）、καθώς（v28，「正如」他们不屑认识神）。审判从不是任意的，每一次「任凭」都回答一次具体的「交换」。</li>
+            <li>v25 的 οἵτινες（「他们」）是性质关系代词——用后面的「交换」来<strong>定义</strong>这群人是谁，呼应 v18 的句法（人由其行为定义）。</li>
+            <li>v28 的 ἐδοκίμασαν／ἀδόκιμον 双关：同一词根反转打在悖逆者身上——不屑认可神的心意，成了不合格的心意。</li>
+            <li>三个 παρέδωκεν 皆为不定过去时：<strong>一次性的、决定性的司法行动</strong>，不是慢慢放任。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>「神任凭他们」：这就是忿怒本身在运行（vv24、26、28）</strong>：穆理的经典表述——这是忿怒的<strong>行动形态</strong>：神不是把恶意注入人心里，而是<strong>司法性的放弃</strong>：祂收回约束的手，把罪人交在其罪的后果中。吊诡正在此处——<strong>罪的刑罚就是更多的罪</strong>；罪既是罪行，也是刑罚。这就是为什么 1:24–32 是 v18「忿怒正在被显明」的现在时形态。穆尔赞同，并从语法上驳斥多德（C. H. Dodd）的非位格化解读（忿怒只是道德因果律）：παρέδωκεν 的主语是 ὁ θεός，三次都明写——忿怒始终是位格性的、主动的、司法性的。原文根据：不定过去时（决定性作为）＋三次重复的神圣主语。互文印证：诗 81:12「所以我任凭他们心里刚硬」；帖后 2:11「神就给他们一个生发错误的心」；徒 7:42。分歧注明：多德式的非位格解读被两位注释家一致拒绝——若忿怒只是自然过程，保罗无需三次点名神为行动者。</li>
+            <li><strong>三重下降：一次审判，三个层面</strong>：穆理把三次「任凭」读作<strong>一次审判的三个方面</strong>——生活的污秽（v24）、情欲的颠倒（vv26–27）、心意的邪僻（v28–31），由外而内：行为 → 情感 → 理智。次序本身就是神学：败坏越往里走越深，而人的荣耀——理性——最终成了审判的工具。穆尔接受这个结构，但提醒不要过度系统化；他的重点是<strong>全面性</strong>——没有一个官能得以幸免。</li>
+            <li><strong>vv26–27 与 φύσις 之争（必须点名，不可抹平）</strong>：（甲）穆理：φύσις 指<strong>神的创造秩序</strong>（创 1:27 的男与女；创 2:24）。保罗的论证是神学性的，不是现象学描述：同性行为颠覆了创造主的设计，这就是为什么 v26 的 μετήλλαξαν（「变为」）刻意呼应 vv23、25——<strong>性上的交换就是宗教上的交换在另一个层面的重演</strong>。保罗先提女性的颠倒（v26，古代文献中罕见），正显其全面性。（乙）修正派读法：保罗只见过剥削性的形式（娈童、庙妓）；φύσις 指个人性倾向，因此稳定的同性关系不在保罗视野内。穆尔在修订版 NICNT 中正面回应并拒绝此说：保罗的范畴是<strong>类别性</strong>的（θῆλυς／ἄρσην 作为受造类别；παρὰ φύσιν 作为对创造秩序的违反，以利 18:22、20:13 与创世记模式为背景），且本段逻辑要求这些行为本身就是「交换」，与拜偶像的交换平行。这个分歧在学界真实存在，在牧养上敏感；两派立场都建立在对 φύσις 的创造秩序解读上——这正是穆理与穆尔共同持守的。</li>
+            <li><strong>v28 的双关与邪僻的心</strong>：不屑把神存在 ἐπίγνωσις（充分的、承认性的知识）里的心，被交给了失去道德辨别力的心——ἀδόκιμον，「经不起检验的」。穆理：这是道德降服在理智层面的对应物；理性不会保持中立，它成了审判的工具。随后的恶行清单（vv29–32）正是从邪僻的心<strong>流出来</strong>的——注意清单的次序：它以「体面」的罪收尾（谗毁的、骄傲的、违背父母的），好叫没有读者能站在圈外看戏。</li>
+            <li><strong>v25 中间的颂赞</strong>：在最黑暗的清单中间，保罗突然迸出「主乃是可称颂的，直到永远。阿们」。穆理与穆尔：这是刻意的神学护栏——描述偶像崇拜的恐怖，绝不能暗示创造主有丝毫减损；祂永远可称颂。这也流露情感的重量：保罗写不下受造之物的崇拜而不去敬拜创造主（同样的颂赞反射见于 9:5、11:36）。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>最被忽略的忿怒教义</strong>：神的审判常常不是闪电，而是<strong>放弃</strong>。当一种重复的罪让良心越来越麻木，那麻木本身可能就是审判——「罪受罚于罪」。下一次你发现自己对某件事「已经没感觉了」，先别只当它是习惯，要问：这是不是神任凭的手？</li>
+            <li><strong>把挣扎往前追一步</strong>：按本段的逻辑，任何顽固挣扎的根子永远比症状早一步——不在「被任凭」的行为，而在「交换」：是什么受造的好处被放在了创造主的位置上？对付行为而不追问交换，是治标。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>v28 的双关说，不屑「认可」神的心成了「不合格」的心。你的生活里有没有一个领域，是你已经不再把神带进去思想的——工作、钱、感情、娱乐？那领域的判断力，后来变成了什么样子？</p>
+          </div>
+        </article>
+
+        <article class="entry" id="day3-pm">
+          <div class="entry-head">
+            <span class="entry-day">第 3 天 · 晚 — 2026-10-22（周四）</span>
+            <h3 class="entry-title">任凭的终点：邪僻的心与当死的判语 <span class="ref">· 罗马书 1:28–32</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">28</span>他们既然故意不认识神，神就任凭他们存邪僻的心，行那些不合理的事；<span class="vn">29</span>装满了各样不义、邪恶、贪婪、恶毒；满心是嫉妒、凶杀、争竞、诡诈、毒恨；<span class="vn">30</span>又是谗毁的、背后说人的、怨恨神的、侮慢人的、狂傲的、自夸的、捏造恶事的、违背父母的、<span class="vn">31</span>无知的、背约的、无亲情的、不怜悯人的。<span class="vn">32</span>他们虽知道神判定行这样事的人是当死的，然而他们不但自己去行，还喜欢别人去行。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>1:18–32 是保罗论证的「忿怒显明」大段：vv18–23 给出忿怒的<strong>根据</strong>（人拥有关于神的真实知识却压制它、交换了荣耀），vv24–32 给出忿怒的<strong>后果</strong>——忿怒在今世的运行形态。本段（vv28–32）是三次 <span class="gk">παρέδωκεν</span>（「任凭」）的<strong>第三次、也是收束性的一次</strong>。</p>
+          <p>注意承接关系：vv24–27 的任凭落在「行为的污秽」与「情欲的颠倒」上，是外在的、可描述的；v28 把审判推进到最里面——<strong>心意（<span class="gk">νοῦς</span>）本身</strong>。从「情欲」到「心意」，败坏完成了由外而内的全程。随后 vv29–31 的恶行清单，就是这颗「邪僻的心」结出来的果子；v32 则是全章的判决性收尾——人对神的判定并非无知，而是<strong>明知故犯，外加喝彩</strong>。</p>
+          <p>v32 与 1:18 形成首尾呼应：1:18 提出「神的忿怒…显明在一切不虔不义的人身上」，1:32 以「神判定行这样事的人是当死的」把忿怒落成具体的<strong>判语</strong>。而这句判语，正是 2:1 要拿起来转回读者自己的那把刀——「你这论断人的…你所行的」。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong><span class="gk">οὐκ ἐδοκίμασαν…εἰς ἀδόκιμον νοῦν</span>（第 28 节「故意不认识…邪僻的心」）</strong>：δοκιμ- 词根的双关，昨天已引入，今天往深处讲。<span class="gk">δοκιμάζω</span>（<span class="gk">ἐδοκίμασαν</span> 为不定过去时主动三复）本义是「试验、检验后认可」——金匠验金、君王验臣，都用这个词。人「不屑」（不认为值得）把神存留在 <span class="gk">ἐπίγνωσις</span>（充分的、承认性的真知识，参 v21 的 <span class="gk">ἔγνωσαν</span>）里；神的回应是把他们的 <span class="gk">νοῦς</span> 交出去，成了 <span class="gk">ἀδόκιμον</span>——「经检验不合格的、废品」。吊诡的是，<span class="gk">δοκιμάζω</span> 在保罗笔下另有正面用法：罗 12:2「察验（<span class="gk">δοκιμάζειν</span>）何为神的善良、纯全、可喜悦的旨意」——<strong>拒绝察验神旨意的心，成了经不起察验的心</strong>。不屑「认可」神的心意，成了「不合格」的心意。</li>
+            <li><strong><span class="gk">νοῦς</span>（第 28 节「心」）</strong>：在保罗的人观里，<span class="gk">νοῦς</span> 是人最高级的官能——道德理性的中枢（罗 7:23、25；12:2；林前 2:16）。审判落在 <span class="gk">νοῦς</span> 上，意味着败坏攻陷了指挥部：不是手脚先坏，是<strong>判断力先坏</strong>。</li>
+            <li><strong><span class="gk">τὰ μὴ καθήκοντα</span>（第 28 节「不合理的事」）</strong>：<span class="gk">καθήκω</span>，「是合宜的、是本分的」——斯多亚哲学用 <span class="gk">τὰ καθήκοντα</span> 指「合宜的行为、本分」。保罗刻意用这个宽泛的哲学词汇作清单的总标题：从邪僻的心里流出来的，就是一切「不合宜」之事，先给总纲，再列细目。</li>
+            <li><strong><span class="gk">πεπληρωμένους</span>（第 29 节「装满了」）</strong>：<span class="gk">πληρόω</span> 的完成时被动分词（阳性宾格复数，与 <span class="gk">αὐτούς</span> 呼应）。完成时表<strong>已经完成、后果长存</strong>的状态：容器被灌满了，再也装不下别的东西。紧接着 v29b 又用 <span class="gk">μεστοὺς</span>（「满」）＋属格（<span class="gk">μεστοὺς φθόνου φόνου…</span>）再说一遍「满」——双重的「满」，是修辞上有意的<strong>饱和书写</strong>：这颗心被恶灌到满溢，没有留给善的空间。</li>
+            <li><strong><span class="gk">θεοστυγεῖς</span>（第 30 节「怨恨神的」）</strong>：<span class="gk">θεός</span>＋<span class="gk">στυγέω</span>（恨）构成的复合词，「恨神者」——新约仅此一见。被夹在「谗毁的、背后说人的」和「侮慢人的」之间，位置极具神学意味：一切人际之恶的底色，是<strong>对神的恨</strong>。</li>
+            <li><strong><span class="gk">ἀσυνθέτους</span>（第 31 节「背约的」）</strong>：<span class="gk">ἀ-</span>（否定）＋<span class="gk">σύνθετος</span>（由 <span class="gk">συντίθημι</span>，「共同议定、立约」而来）——「立了约也不守的、不可信靠的」。v31 结尾四个 <span class="gk">ἀ-</span> 开头的否定形容词（<span class="gk">ἀσυνέτους</span> 无知的、<span class="gk">ἀσυνθέτους</span> 背约的、<span class="gk">ἀστόργους</span> 无亲情的、<span class="gk">ἀνελεήμονας</span> 不怜悯人的）像鼓点一样连击，是否定之否定的收束。</li>
+            <li><strong><span class="gk">τὸ δικαίωμα τοῦ θεοῦ</span>（第 32 节「神判定」）</strong>：<span class="gk">δικαίωμα</span>，「公义的法令、裁决」（罗 2:26；5:16、18；8:4「律法的义」）。不是模糊的道德感，是<strong>神颁布的判决</strong>。</li>
+            <li><strong><span class="gk">ἄξιοι θανάτου</span>（第 32 节「是当死的」）</strong>：<span class="gk">ἄξιος</span>＋属格，「配得…的」——法庭用语。保罗把死刑的量刑词用在道德论证里，分量极重。</li>
+            <li><strong><span class="gk">συνευδοκοῦσιν</span>（第 32 节「喜欢」）</strong>：<span class="gk">σύν</span>（共同）＋<span class="gk">εὐδοκέω</span>（喜悦、赞同），「与…一同喜悦、热情赞同」。新约另两处都极有分量：路 11:48 人「赞同」祖先杀先知的行为；徒 8:1 扫罗「赞同」杀害司提反。这不是被动的旁观，是<strong>主动的喝彩</strong>。与 1:25 以来的「交换」母题相接：人先在心里与神「交换」（<span class="gk">ἤλλαξαν</span>／<span class="gk">μετήλλαξαν</span>），如今在人前为这交换<strong>拉选票</strong>。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li>v28 的 <span class="gk">καθώς…παρέδωκεν</span> 是<strong>对应结构</strong>：「正如（<span class="gk">καθώς</span>）他们不屑把神存在知识里，神就（同样地）把他们交给了经不起检验的心」。人的作为与神的回应一一咬合——<strong>报应与罪行同构</strong>，这是本段的神义论语法。</li>
+            <li>三次「任凭」的宾语都是 <span class="gk">εἰς</span>＋宾格，表<strong>结果／目的地</strong>：<span class="gk">εἰς ἀκαθαρσίαν</span>（进入污秽，v24）→ <span class="gk">εἰς πάθη ἀτιμίας</span>（进入可羞耻的情欲，v26）→ <span class="gk">εἰς ἀδόκιμον νοῦν</span>（进入邪僻的心，v28）。本段是这个序列的终点：任凭的「目的地」不再是某种行为或情欲，而是<strong>心意本身</strong>。随后 <span class="gk">ποιεῖν τὰ μὴ καθήκοντα</span>（行那些不合理的事，不定式表目的／结果）把心意与行为锁死：邪僻的心<strong>必然</strong>出产不合宜的事。</li>
+            <li>v29 的 <span class="gk">πεπληρωμένους</span> 是表语分词，修饰 <span class="gk">αὐτούς</span>：完成时被动的「被装满」是 <span class="gk">παρέδωκεν</span> 的<strong>结果状态</strong>——神一任凭，人就成了被恶灌满的器皿。</li>
+            <li>v32 是全章最复杂的长句，拆解如下：<span class="gk">οἵτινες</span>（性质关系代词，「就是这样的人」——用后文定义这群人，呼应 v18、v25 的句法）＋ <span class="gk">τὸ δικαίωμα τοῦ θεοῦ ἐπιγνόντες</span>（「明明认识了神的公义法令」——不定过去时分词表<strong>确实的、一次性的认知</strong>，让步意味：「虽然明明知道」）＋ <span class="gk">ὅτι</span> 从句（法令的<strong>内容</strong>：行这样事的人是当死的）＋ <span class="gk">οὐ μόνον αὐτὰ ποιοῦσιν, ἀλλὰ καὶ συνευδοκοῦσιν τοῖς πράσσουσιν</span>（「不但自己去行，还赞同行的人」——现在时表<strong>习惯性</strong>行为）。句法的张力正在「明明知道」与「仍然去行、还要喝彩」之间：<strong>知识没有拦住罪，知识成了定罪的根据</strong>。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>第三次「任凭」的归宿：邪僻的心——理性成了审判的工具</strong>：原文根据是 v28 的 δοκιμ- 双关与 <span class="gk">νοῦς</span> 的人观分量。穆理的经典论述：<span class="gk">νοῦς</span> 是人最高贵的官能，是人认识神的器官；如今审判恰恰落在这个器官上——<strong>用来认识神的，成了认识不了神的</strong>。这不是神把恶意注入人心，而是司法性的对应：人拒绝「认可」（<span class="gk">ἐδοκίμασαν</span>）神，神就任凭人的心成为「不合格」（<span class="gk">ἀδόκιμον</span>）的。穆尔从结构上补强：三次任凭是「一次审判的三个层面」，而第三次是最深的一层——前两次任凭的是行为与情欲，第三次任凭的是<strong>产生行为与情欲的心</strong>；败坏至此，成了自我再生产的闭环。互文印证：帖后 2:11「神就给他们一个生发错误的心，叫他们信从虚谎」；诗 81:12「我就任凭他们心里刚硬」。分歧注明：多德（C. H. Dodd）的非位格化解读——忿怒只是道德宇宙中因果律的自动运行——被两人一致拒绝。穆尔的语法反驳：三次 <span class="gk">παρέδωκεν</span> 的主语都是明确的 <span class="gk">ὁ θεός</span>（v28 的 <span class="gk">ὁ θεὸς</span> 更是明写），<span class="gk">καθώς…παρέδωκεν</span> 的对应结构要求一位<strong>位格性的、主动的</strong>审判者；若只是自然过程，保罗无需三次点名神为行动者。穆理则从神学上指出：把忿怒非位格化，等于把 1:18 的 <span class="gk">ἀποκαλύπτεται</span>（「正在被显明」——被动语态暗示神圣行动者）也抽空了。</li>
+            <li><strong>恶行清单 vv29–31 的修辞与神学功能：没有人能站在圈外</strong>：保罗在此使用的是希腊罗马修辞学中的 <strong>vice list（恶行清单）</strong>传统——斯多亚派道德家、犹太智慧文学（如《所罗门智训》14:25–26）都用清单来描绘败坏。但保罗的清单不是道德家的点缀，而是有精密的神学设计。第一，清单以 <span class="gk">ἀδικίᾳ</span>（「不义」）开头——正是 1:18「人的不义」（<span class="gk">ἀδικίαν ἀνθρώπων</span>）的回响，形成<strong>首尾扣环</strong>：全段始于不义，清单亦始于不义。第二，清单的弧线从重罪走向「体面之罪」：开头是贪婪、凶杀（<span class="gk">φόνος</span>），结尾却是「谗毁的、背后说人的…违背父母的、无亲情的、不怜悯人的」——穆理一针见血：「这个清单是这样构造的，<strong>好叫没有读者能站在圈外看戏</strong>。」自以为义的道德家读到「凶杀」可以点头，读到「违背父母」「无怜悯」就无处可躲。第三，「满心」的完成时（<span class="gk">πεπληρωμένους</span>）表明这不是偶发之恶，而是<strong>饱和状态</strong>——穆尔指出，清单的全面性（对神：怨恨神的；对人：嫉妒、凶杀、诡诈；对己：贪婪、狂傲；对家：违背父母、无亲情）证明第三次任凭的彻底：没有一种关系得以幸免。分歧注明：自由派读法常把清单贬为「时代偏见的发泄」；穆理与穆尔共同坚持：清单的每一项都在旧约与犹太传统中有根（如利 19 章的圣洁法典），且其修辞目标直指 2:1——<strong>先让读者对清单点头，再把清单转回读者</strong>。</li>
+            <li><strong>v32a「知道神判定…行这样事的人是当死的」：外邦人真知道「罪当死」吗？</strong>：原文根据：<span class="gk">τὸ δικαίωμα τοῦ θεοῦ ἐπιγνόντες</span>——<span class="gk">ἐπιγνόντες</span>（<span class="gk">ἐπιγιγνώσκω</span> 的不定过去时分词）是<strong>确实的认知</strong>，与 v28 的 <span class="gk">ἐπίγνωσις</span> 同根，极具反讽：人拒绝把神存在 <span class="gk">ἐπίγνωσις</span> 里，却对神的 <span class="gk">δικαίωμα</span> 有 <span class="gk">ἐπίγνωσις</span>。穆理：这种「知道」是真实的道德知识，根植于创造秩序（1:19–20）与良心；其内容「行这样事的人是当死的」直接连于创 2:17——「你吃的日子<strong>必定死</strong>」：从起初，神就把「罪—死」的对应启示给了人。穆尔：同意知识是真实的，但强调其<strong>法理性质</strong>——<span class="gk">δικαίωμα</span> 是神的「公义法令」，这种知识与 2:14–15「律法写在心上」相通；保罗的论点是：外邦人对道德秩序的认知，足以使他们 <span class="gk">ἀναπολογήτους</span>（「无可推诿」，1:20），却不足以救他们。两人的共识：知识的程度足以定罪、不足以称义；细微分歧在于，穆理更强调此知识与创造启示（1:19–20）的连续性，穆尔更强调其与 2:14–15 良心律法的衔接。互文：创 2:17；罗 2:14–15；6:23「罪的工价乃是死」。分歧注明：普世主义倾向的读法试图淡化「当死的」，把它读作「灵性死亡」的隐喻；穆理与穆尔都坚持 <span class="gk">ἄξιοι θανάτου</span> 的<strong>司法—末世</strong>分量——这是神法庭上的量刑词，不是修辞夸张。</li>
+            <li><strong>v32b「还喜欢别人去行」：全章最黑的一笔</strong>：<span class="gk">συνευδοκέω</span> 不是被动的「容忍」，是热情的「喝彩」（参徒 8:1 扫罗赞同杀司提反）。穆理称之为<strong>罪的繁殖性、传教士性</strong>：罪不满足于自我毁灭，它要同伴、要观众、要为自己的选择拉选票——为别人的罪喝彩，是给自己的罪找辩护：当「大家都这样」，良心的谴责就轻了。这是罪最深的形态：<strong>不仅行恶，还要恶被承认为善</strong>。穆尔从结构上论证 v32 不是附注、而是 1:18–32 的<strong>高潮</strong>：(1) <span class="gk">οἵτινες</span> 把全章的「他们」收拢为一种人；(2) <span class="gk">οὐ μόνον…ἀλλὰ καί</span> 把「行」与「赞同」并列为同等可憎——审判的对象不只是行为，更是<strong>心对罪的态度</strong>；(3) 这一节直接为 2:1 铺路：「你这论断人的」——论断者正是那种「行这样事」又自以为站在清单之外的人，而 v32 早已把「站在圈外喝彩」也算进了罪里。分歧注明：有解读把 v32b 读作对「旁观者」的较轻谴责（行是重罪，赞同是轻罪）；穆理与穆尔都拒绝这种分级——在新约用法里 <span class="gk">συνευδοκέω</span> 始终是<strong>积极的共谋</strong>（路 11:48；徒 22:20），且保罗用 <span class="gk">οὐ μόνον…ἀλλὰ καί</span> 的并列结构，恰恰是要堵住「我只是看看」的退路。</li>
+            <li><strong>1:28–32 与 1:18 的框架呼应：陷阱正在合拢</strong>：1:18「神的忿怒…正在被显明」（<span class="gk">ἀποκαλύπτεται…ὀργὴ θεοῦ</span>），1:32「神的公义法令…行这样事的人是当死的」（<span class="gk">τὸ δικαίωμα τοῦ θεοῦ…ἄξιοι θανάτου</span>）——从「忿怒的显明」到「判语的宣告」，全段至此封口。而 v32 的判语有一个修辞使命：保罗让读者（尤其是犹太读者）先对着外邦人的清单点头说「当死的」，然后在 2:1 把同一句判语转回来——「你…行这样事」。穆理称 1:18–32 整体是一个<strong>修辞陷阱</strong>：v32 是陷阱合拢前的最后一环，读者称是的声音越大，2:1 的反转越无可逃遁。穆尔补充：这也解释了为什么清单以「体面之罪」收尾——陷阱的门，必须让自义的读者自己走进来。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>判断力是先坏的</strong>：v28 的次序是审判的神学——神任凭的不是先手脚，而是<strong>心意</strong>。应用到今天：当你发现自己在某个领域（工作中的灰色操作、消费习惯、娱乐内容、人际关系）「已经觉得没问题了」，先别急着为自己辩护，要问：这个「没问题」，是察验过神旨意的结果，还是我已经不再把神带进这个领域思想的结果？操练：每周选一件你「觉得理所当然」的事，用罗 12:2 的 <span class="gk">δοκιμάζειν</span>（察验）重新过一遍——正是 v28 那个词的正面用法。</li>
+            <li><strong>点赞神学：v32b 的现代形态</strong>：社交媒体上的点赞、转发、评论区喝彩，就是 <span class="gk">συνευδοκέω</span> 的当代版本。我们不只自己滑坡，还需要观众：为某种行为点赞，是在为自己的选择拉选票、替良心减刑。下一次手指悬在点赞键上时，问自己：我赞同的到底是什么？这个赞，是在为别人的罪鼓掌，还是在为自己的同类行为找同伴？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>v32 说，这些人「明明知道」行这样事是当死的，却「不但自己去行，还喜欢别人去行」——知识没有拦住罪，反而成了定罪的根据。在你的生命里，有没有一件你明知道不合神心意、却仍在做的事，甚至会在朋友面前替它辩护、拉人下水？那个「为它辩护、为它找同伴」的冲动，暴露了你心里什么？</p>
+          </div>
+        </article>
+        <div class="daynav"><a href="day2.html">← 第 2 天</a><a href="index.html#daily">全部天数</a><a href="day4.html">第 4 天 →</a></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>

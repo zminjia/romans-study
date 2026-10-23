@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 2 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day2-am">1:16–17</a>
+        <a href="#day2-pm">1:18–23</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 2 天</span>2026-10-21（周三） 研读</h2>
+        <p class="sec-lead">当天晨、晚两篇，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+        <article class="entry" id="day2-am">
+          <div class="entry-head">
+            <span class="entry-day">第 2 天 · 晨 — 2026-10-21（周三）</span>
+            <h3 class="entry-title">全书主题宣告：福音本是神的大能 <span class="ref">· 罗马书 1:16–17</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">16</span>我不以福音为耻；这福音本是神的大能，要救一切相信的，先是犹太人，后是希利尼人。<span class="vn">17</span>因为神的义正在这福音上显明出来；这义是本于信，以致于信。如经上所记：「义人必因信得生。」</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>这是全书的主题宣告。1:1–15 是引言，1:16–17 亮出主题，从 1:18 起开始正面论证：1:18–3:20 论证全人类都需要在福音中显明的义，3:21–5:21 正面阐述这义如何临到，6–8 章讲这义带来的新生命，9–11 章处理这义与以色列的关系，12–15 章是这义在生活中的实践。可以说整卷罗马书都是对这 2 节经文的展开。v16 开头的 γὰρ（「因为」）紧承 v15「我情愿传福音」——保罗解释自己为何如此热切：因为他不以福音为耻。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>以……为耻</strong>（<span class="gk">ἐπαισχύνομαι, epaischynomai</span>, v16）：现在时中间语态，「对……感到羞耻」</li>
+            <li><strong>大能</strong>（<span class="gk">δύναμις, dynamis</span>）：能力、大能</li>
+            <li><strong>拯救</strong>（<span class="gk">σωτηρία, sōtēria</span>）：救恩</li>
+            <li><strong>一切相信的</strong>（<span class="gk">παντὶ τῷ πιστεύοντι</span>）：现在时分词，「一切正在相信的人」</li>
+            <li><strong>神的义</strong>（<span class="gk">δικαιοσύνη θεοῦ, dikaiosynē theou</span>, v17）：全书最关键的短语</li>
+            <li><strong>显明</strong>（<span class="gk">ἀποκαλύπτεται, apokalyptetai</span>）：现在时被动，「正在被显明出来」</li>
+            <li><strong>经上所记</strong>（<span class="gk">γέγραπται, gegraptai</span>）：完成时被动，「已经记着并持续有效」</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>三层 γὰρ 层层深入</strong>：v16 的 γὰρ 回应 v15（为何热切传福音？因为不以福音为耻）→ δύναμις γὰρ θεοῦ ἐστιν（为何不以福音为耻？因为它是神的大能）→ v17 δικαιοσύνη γὰρ θεοῦ（福音何以是神的大能？因为神的义正在其中显明）。三个「因为」构成严密的逻辑链。</li>
+            <li><strong><span class="gk">εἰς σωτηρίαν</span></strong>：εἰς＋宾格表目的，大能的指向是「拯救」。</li>
+            <li><strong><span class="gk">Ἰουδαίῳ τε πρῶτον καὶ Ἕλληνι</span></strong>：τε……καί 并列结构；πρῶτον（「首先」）是救恩历史的次序，不是价值等级。</li>
+            <li><strong><span class="gk">ἐκ πίστεως εἰς πίστιν</span></strong>（「本于信，以致于信」）：ἐκ（源头）→ εἰς（归宿），「从信到信」——信心贯穿救恩的始终。</li>
+            <li><strong><span class="gk">καθὼς γέγραπται</span></strong>：完成时，「正如经上所记着的」，引用哈巴谷书 2:4（七十士译本）。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>「不以福音为耻」</strong>：处境上，福音的内容是一位被钉十字架的弥赛亚（林前 1:23「为犹太人是绊脚石，为外邦人是愚拙」），且这信息要在罗马帝国首都、世界权力的中心宣讲——按荣辱文化，保罗大有「以福音为耻」的理由。穆理指出，这是修辞性否定（以弱表强），意为「以福音为荣、为夸口」（参 15:17）；提后 1:8、12、16 中「不要以给主作见证为耻」是同一心志。穆尔补充：这不是保罗的心理自白，而是神学宣告——福音的本质（神的大能、神的义）决定了它不可能是羞耻的；人以为的羞耻，恰恰是神的智慧（林前 1:25）。</li>
+            <li><strong>「这福音本是神的大能」</strong>：δύναμις θεοῦ——福音不是「关于神大能的信息」，福音本身就是神大能的临在与运行，与 1:4「以大能显明是神的儿子」呼应：使基督从死里复活的大能，如今在福音的宣讲中运行。穆理强调福音的「功效性」：神的话不徒然返回（赛 55:11），果效不取决于传讲者的口才、策略，而取决于神自己的能力，这对传道者是极大的释放。穆尔留意两点：ἐστιν 是现在时——福音「是」（而非曾经是）神的大能；πιστεύοντι 是现在时分词——大能临到「一切正在相信的人」，信心是这大能临到的唯一管道，没有民族、文化、智愚之别（呼应 v14–15 的穷尽式对举）。又：神的大能恰恰彰显在十字架的「软弱」里（林前 1:18），1:16 已为全书定下「大能藏在软弱中」的基调。</li>
+            <li><strong>「先是犹太人，后是希利尼人」</strong>：语法上，πρῶτον（「首先」）是次序词，τε……καί 把犹太人与希利尼人放在同一个「要救一切相信的」范围之内——对象平等，次序历史性。穆理与穆尔都指出：这是救恩历史的优先——神的救赎按盟约历史展开，弥赛亚从以色列而出（约 4:22「救恩是从犹太人出来的」），保罗自己的事奉也循此次序（徒 13:46）。穆理更指出：优先也是责任与审判的优先——2:9–10 审判与荣耀都「先是犹太人，后是希利尼人」，而 1:18–3:20 紧接着就拆毁一切民族优越感（3:9「犹太人和希利尼人都在罪恶之下」）。穆尔在对话新视角派（赖特等强调盟约延续）时回应：保罗关心的不是犹太人的功德优势，而是福音临到的救恩历史次序；这个「先」字最终会在 9–11 章开花结果——神没有废弃祂的子民（11:1）。</li>
+            <li><strong>「神的义」（δικαιοσύνη θεοῦ）</strong>：这是罗马书神学的枢纽，解经史上有三层理解：（1）神的属性——神自己的义。穆理强调这一层是根基：神在救恩中显明祂自己是公义、信实的（3:25–26），救恩不是神牺牲公义迁就罪人，而是十字架上公义与恩典同时彰显。（2）神所赐的地位——神把义的地位赐给信的人（「算为义」，参 4 章亚伯拉罕「信算为义」）。这是路德所说的「被动的义」（iustitia passiva），人单单领受。穆尔与新视角派对话后仍坚持这一法庭式理解不可放弃。（3）神对盟约的信实——赖特主张此短语主要指神信守对亚伯拉罕的应许。穆尔的综合立场：三层不必互斥，但重心在第（2）层，且以第（1）层为根基——因为神自己是义的、信实的，祂才能把义赐给信的人。穆理进深：ἀποκαλύπτεται（现在时，「正在显明」）与 ἐκ πίστεως εἰς πίστιν 相配——神的义的领受方式全然是「信」，不靠律法行为，也不靠宗教经验，这正是保罗紧接着引用哈 2:4 的原因。分歧注脚：天主教（脱利腾）主张义是「注入」的、称义含内在更新；改教传统主张义是「归算」的；东正教强调在基督里的生命联合。三家都承认此短语是全书枢纽，分歧在「义如何临到人」的机制。</li>
+            <li><strong>「本于信，以致于信」（ἐκ πίστεως εἰς πίστιν）</strong>：历来有几种理解：（a）信心的不断增长——「从信到信」，信徒信心日渐成熟；（b）从神的信实到人的信心——神先信实，人以信回应；（c）从旧约的信到新约的信——救恩历史中信心的延续；（d）强调的全然性——「从始至终都是信」，ἐκ……εἰς…… 的结构表示全程无一例外（参林后 3:18「从荣耀到荣耀」的类似结构）。穆理与穆尔都倾向（d）：这是一个强调句，宣告救恩的领受从头到尾彻头彻尾本乎信，排除一切律法行为的掺杂——正是 3:21、28 要论证的。这也是全书的方法论宣言：神的义如何显明？在福音里。如何领受？只有信。</li>
+            <li><strong>「义人必因信得生」（哈 2:4）</strong>：原始语境：哈巴谷书 2:4 写于迦勒底人入侵的威胁之下——「迦勒底人自高自大，心不正直；惟义人因信得生」，在国破家亡的危机中，先知宣告义人靠信靠神存活。文本差异：马所拉文本作「因他的信实」（בֶּאֱמוּנָתוֹ），七十士译本作「义人必因信得生」；保罗引用时聚焦于「因信」本身。穆理指出：保罗不是断章取义，而是抓住哈巴谷原则的神学核心——每个时代，义人得生的唯一途径都是信靠神。穆尔补充：这个引文是 1:17 的圣经根据（καθὼς γέγραπται），表明「因信称义」不是保罗的发明，而是先知传统的核心；新约另有两处引用（加 3:11 强调称义；来 10:38 强调坚忍）。「得生」（ζήσεται，未来时）既指今世属灵的生命，也指向末世复活的生命，与本章复活主题遥相呼应。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li>保罗在帝国首都宣告「不以福音为耻」。在今天以成功、理性为荣的文化里，我们是否曾因福音「拿不出手」而沉默？</li>
+            <li>「福音本是神的大能」——果效不取决于我们的口才和策略，而在于福音本身。这如何释放你传福音时的焦虑？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>v17 说神的义「正在这福音上显明出来」（现在时）——神的义不是尘封的历史，而是今天仍在显明。这对「每天读经」这件事本身有什么提醒？</p>
+          </div>
+        </article>
+
+        <article class="entry" id="day2-pm">
+          <div class="entry-head">
+            <span class="entry-day">第 2 天 · 晚 — 2026-10-21（周三）</span>
+            <h3 class="entry-title">神的忿怒与人压制真理 <span class="ref">· 罗马书 1:18–23</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">18</span>原来，神的忿怒，从天上显明在一切不虔不义的人身上，就是那些行不义阻挡真理的人。<span class="vn">19</span>神的事情，人所能知道的，原显明在心里，因神已经给他们显明。<span class="vn">20</span>自从造天地以来，神的永能和神性是明明可知的，虽是眼不能见，但藉着所造之物就可以晓得，叫人无可推诿。<span class="vn">21</span>因为，他们虽然知道神，却不当作神荣耀他，也不感谢他。他们的思念变为虚妄，无知的心就昏暗了。<span class="vn">22</span>自称为聪明，反成了愚拙，<span class="vn">23</span>将不能朽坏之神的荣耀变为偶像，仿佛必朽坏的人和飞禽、走兽、昆虫的形像。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>1:18 是全书论证的转折点：1:16–17 宣告了主题——「福音本是神的大能…神的义正在这福音上显明」；1:18 以 γὰρ（「因为」）紧承其后，摆出福音之所以必要的另一面——「神的忿怒…显明」。v17 与 v18 构成刻意的平行：同一动词 ἀποκαλύπτεται（「显明」）、同一主语位置（神的义／神的忿怒），却指向两个方向——福音里显明的是拯救的义，天上显明的是审判的怒。没有 v18 的忿怒，v17 的福音就失去紧迫性；这正是保罗「不以福音为耻」的深层理由：除了福音，人类头上悬着的只有忿怒。</p>
+          <p>在全书结构中，1:18 是 1:18–3:20 大论证（「普世之罪」）的总纲句。其中 1:18–23 说明忿怒的<strong>根据</strong>（人拥有关于神的真实知识却压制它），1:24–32 说明忿怒的<strong>后果</strong>（神「任凭」他们，三次 παρέδωκεν）。18–23 节讲的是罪行，24–32 节讲的是审判，二者由神的主动作为连成一体。</p>
+          <p>本段的首要所指是外邦世界（与 2:1–16 对「自义的论断者」即犹太读者的指控形成对照），但其原则是普世的，为 3:23「世人都犯了罪」铺路。背景上，保罗面对的是罗马帝国首都多元宗教的现实：皇帝崇拜、希腊诸神、埃及动物崇拜并存；他的论证承接了犹太智慧文学批判偶像的传统（智慧篇 13–15 章），以及旧约先知对「交换荣耀」的指控（耶 2:11；诗 106:20）。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong><span class="gk">ἀποκαλύπτεται</span>（第 18 节「显明」）</strong>：现在时被动语态，直陈式三单。「正在被显明」——与 v17 的 δικαιοσύνη…ἀποκαλύπτεται（神的义…显明）用的是同一个动词、同一时态，平行是刻意的：两种「显明」同时向世界展开。穆尔指出，保罗的忿怒观有末世指向（2:5「积蓄忿怒」；帖前 1:10「将来忿怒」），但现在时表明审判已有预尝——24 节起的「任凭」就是忿怒在今世的运行形态。</li>
+            <li><strong><span class="gk">ὀργὴ θεοῦ</span>（第 18 节「神的忿怒」）</strong>：ὀργή 指义怒、震怒。关键在于：这是神<strong>位格性的、圣洁的</strong>反应，还是罪之自然后果的非位格过程？多德（C. H. Dodd）曾主张后者——忿怒不过是「种瓜得瓜」的宇宙道德机制；穆理与穆尔都拒绝这种化约：忿怒是神主动的、公义的对罪的反对（参诗 7:11「神是公义的审判者，也是天天向恶人发怒的神」；约 3:36「神的震怒常在他身上」）。注意「从天上」（ἀπ᾽ οὐρανοῦ）：忿怒的源头是天上的宝座，不是地上的因果链。</li>
+            <li><strong><span class="gk">ἀσέβειαν καὶ ἀδικίαν</span>（第 18 节「不虔不义」）</strong>：ἀσέβεια 是「不虔」——对神的不敬、缺了敬畏；ἀδικία 是「不义」——对人的不公、行为的亏缺。次序有讲究：先对神、后对人；穆理指出，对神的不虔是根，对人的不义是果，这与 v21–23（先不荣耀神）→ v24–32（后道德崩坏）的结构完全一致。</li>
+            <li><strong><span class="gk">τῶν τὴν ἀλήθειαν ἐν ἀδικίᾳ κατεχόντων</span>（第 18 节「行不义阻挡真理的人」）</strong>：κατέχω 的现在时主动分词，「压住、拦阻、扣留」。真理不是「不知道」，而是被<strong>主动地、持续地</strong>压住——分词是现在时，压制是进行中的动作。ἐν ἀδικίᾳ（「在不义中／藉着不义」）是工具格：压制的手段是道德性的（不义的生活），不是智力上的无能。这是保罗定罪逻辑的心脏：问题不在头脑，在意志。</li>
+            <li><strong><span class="gk">τὸ γνωστὸν τοῦ θεοῦ</span>（第 19 节「神的事情，人所能知道的」）</strong>：中性形容词作名词，「关于神、人所能知道的事」——是「可知的」，不是「全部的」。φανερόν ἐστιν ἐν αὐτοῖς（「原显明在心里」）：ἐν αὐτοῖς 可解作「在他们里面」（内在的植入，穆理主此说，呼应加尔文所谓 sensus divinitatis——神在人心中放的「神圣感」）或「在他们中间」（启示临到他们，穆尔认为两种读法皆可）；ὁ θεὸς…ἐφανέρωσεν（「神已经给他们显明」，不定过去时主动）强调这是神决定性的作为，不是人自己摸索出来的。</li>
+            <li><strong><span class="gk">ἀΐδιος δύναμις καὶ θειότης</span>（第 20 节「永能和神性」）</strong>：ἀΐδιος（「永远的」，新约仅此处与犹 6 出现）指亘古常存；θειότης（「神性」）须与 θεότης（「神格」，西 2:9）区分：θειότης 指神的属性、神圣特质，θεότης 指神的本质。穆尔指出保罗用词精确——自然启示所显明的是神的「神性特质」，不是神格的奥秘，这正是自然启示的边界。τοῖς ποιήμασιν νοούμενα（「藉着所造之物…晓得」）：νοούμενα 是分词，「被心智领会」——受造物不自动灌输知识，人须用心智作推断；这既肯定启示的真实，也堵住「万物有灵」的泛神论。εἰς τὸ εἶναι αὐτοὺς ἀναπολογήτους（「叫人无可推诿」）：ἀναπολόγητος = 「无可辩护的」；不定式表<strong>目的</strong>——自然启示的目的不是救人，而是定罪：堵住一切借口。</li>
+            <li><strong><span class="gk">γνόντες…οὐχ ὡς θεὸν ἐδόξασαν ἢ ηὐχαρίστησαν</span>（第 21 节「虽然知道神，却不当作神荣耀他，也不感谢他」）</strong>：γνόντες 是不定过去时分词，作让步解——「<strong>虽然</strong>知道了」。保罗强调他们拥有的是<strong>真实的认知</strong>，不是一无所知，因此 culpability（有罪性）成立。两项基本义务：ἐδόξασαν（「荣耀」，承认神配得的尊荣）与 ηὐχαρίστησαν（「感谢」，承认一切好处出于神）。ἐματαιώθησαν（「变为虚妄」，被动）与 ἐσκοτίσθη（「昏暗了」，被动）：被动语态是「神圣被动」——虚妄与昏暗背后有神审判性的作为，已预示 24、26、28 节三次的 παρέδωκεν（「任凭」）。</li>
+            <li><strong><span class="gk">ἤλλαξαν</span>（第 23 节「变」）</strong>：不定过去时主动，「交换、调换」。这是全段的钥匙词，在 v25（μετήλλαξαν「将神的真实变为虚谎」）、v26 重复出现，构成「交换结构」。ἀφθάρτου（「不能朽坏的」）与 φθαρτοῦ（「必朽坏的」）是刻意的对仗：人用不朽之神的荣耀，换了必朽之物的形像——一笔亏到极点的交易。名单「人、飞禽、走兽、昆虫」是降序排列，与创 1 章人受托管理万物的秩序正好倒置：本该治理万物的人，反去拜万物之像。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li>v17–v18 的平行结构：同一动词 ἀποκαλύπτεται 挂在两个并列的主语下（δικαιοσύνη θεοῦ／ὀργὴ θεοῦ），来源状语却对立（ἐν αὐτῷ「在这福音上」／ἀπ᾽ οὐρανοῦ「从天上」）。句法上的对称把神学上的张力推到极致：同一位神，同时显明拯救与审判。v18 开头的 γὰρ（「因为」）是因果连词——忿怒的显明是 16–17 节福音宣告的<strong>论证根据</strong>：福音之所以是「大能」，因为不信的人面对的是真实的忿怒。</li>
+            <li>v18 的 τῶν…κατεχόντων：属格复数名词化分词，与 ἀνθρώπων 同位——「一切不虔不义的人」这个群体，是<strong>由「压制真理」这个动作定义的</strong>。保罗不是先给人类贴标签再找罪状，而是用人的行为本身来定义人。ἐν ἀδικίᾳ 作工具格，说明压制的手段是道德性的：不是「想不通」，是「不愿服」。</li>
+            <li>v20 的悖论修辞：τὰ ἀόρατα…καθορᾶται（「眼不能见的…明明可知／被清楚看见」）——「看不见的被看见」，矛盾修辞是刻意的：神的本体眼不能见，神的作为却昭然在目。νοούμενα（分词）与 τοῖς ποιήμασιν（工具与格）配合，限定了认识的路径——经由受造物、藉着心智的领会；这既确立自然启示的客观性，也划出它的界限（推断，非面对面）。</li>
+            <li>v21–23 的语态转换：三 verbs 连用被动（ἐματαιώθησαν、ἐσκοτίσθη、v22 的 ἐμωράνθησαν「成了愚拙」），到 v23 突转为<strong>主动</strong>的 ἤλλαξαν（「他们交换了」）。句法同时托住两端：人的败坏背后有神审判性的任凭（被动），但交换偶像的责任全在人自己（主动）——神的主权与人的罪责在同一个句子里并存，不互相抵消。v22 更以一句完成反讽：φάσκοντες εἶναι σοφοὶ（「自称为聪明」，现在时分词表持续的自诩）对 ἐμωράνθησαν（「反成了愚拙」，不定过去时被动表已成的结局）——自诩还在进行，结局已经注定。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>忿怒的显明：福音为何是「大能」（v18）</strong>：「神的忿怒」性质之争是本节首要的分歧点。多德把 ὀργή 化约为非位格的道德因果律——恶行自食其果，无需一位发怒的神。穆理在 NICNT 中正面反驳：保罗的忿怒是神圣洁位格对罪的<strong>义怒</strong>，有明确的位格主体（参 2:5「神震怒，显他公义审判的日子」；3:5「神的忿怒」）；若忿怒只是自然过程，保罗就不需要说它「从天上显明」——天是宝座所在，不是因果链的起点。穆尔在与多德及当代学者的对话后同样肯定忿怒的位格性与主动性，并补充时间维度：保罗的忿怒观以末世审判为焦点（帖前 1:10「救我们脱离<strong>将来</strong>忿怒的耶稣」），但 v18 的现在时与 1:24–32 的「任凭」表明，末世的忿怒在今世已有预尝——神任凭人，正是忿怒的一种运行形态。原文根据：ἀποκαλύπτεται 的现在时不是「将来才显明」，而是「正在显明」。互文印证：约 3:36「不信子的人…神的震怒常在他身上」；弗 5:6「神的忿怒必临到那悖逆之子」。论证脉络：穆理强调 γὰρ 把 16–18 咬合成一个论证——保罗「不以福音为耻」，因为福音是神的大能；而福音之所以必须是「大能」，因为它要对抗的是真实悬置的忿怒。抽掉 v18，v16–17 就成了没有敌人的凯歌。历代共识：从奥古斯丁到改教家，忿怒都被理解为神公义属性的真实流露，而非修辞夸张——正因如此，代赎（3:25「挽回祭」）才是必要的。</li>
+            <li><strong>自然启示：真实到定罪，不充分到救人（vv19–20）</strong>：τὸ γνωστὸν τοῦ θεοῦ（「人所能知道的」）限定了范围——是「可知的」，不是「全部的」。穆理着力发挥 ἐν αὐτοῖς（「在心里」）：神把对自己的认知<strong>种在人里面</strong>（呼应加尔文《基督教要义》I.iii 的 sensus divinitatis），v20 的「藉着所造之物」则是外在的印证——内外交攻，人无处可躲。穆尔细辨 ἐν αὐτοῖς 亦可解作「在他们中间」（启示临到他们），但结论汇合：知识是真实临到的，不是人臆测的。关键分歧须澄清：这段能否用作「未闻福音者可藉自然启示得救」的依据？穆理与穆尔一致否定，理由在目的从句里：εἰς τὸ εἶναι αὐτοὺς ἀναπολογήτους——自然启示的<strong>目的</strong>是「叫人无可推诿」，是定罪性的，不是救赎性的。保罗的论证方向恰恰相反：正因为自然启示只够定罪、不够救人，福音才是唯一的出路（这正是 3:21「但如今，神的义在律法以外已经显明出来」的「如今」之所以宝贵）。穆尔以保罗在雅典的讲道互证：徒 17:26–28 同样诉诸创造与「我们也是他所生的」，但结论是「如今却吩咐各处的人都要悔改」（徒 17:30）——自然知识导向的是悔改的命令，不是得救的保证。至于 θειότης（神性）与 θεότης（神格，西 2:9）的区分，穆尔认为是保罗用词精确之处：所显明的是神的「神性特质」（永能），不是神格的奥秘——自然启示有其神所划定的边界。</li>
+            <li><strong>罪的根源：不是先败坏，而是先忘恩（v21）</strong>：穆理指出保罗对人类堕落的诊断极具穿透力：起点不是 v24–32 的道德崩坏（那些是<strong>结果</strong>），而是宗教性的失败——「不当作神荣耀他，也不感谢他」。ἐδόξασαν（荣耀）与 ηὐχαρίστησαν（感谢）是人对创造主的两项基本义务：承认他配得一切尊荣，承认一切好处都从他而来。人堕落的第一步不是无神论的论证，而是<strong>感恩的 withholding</strong>——知道，却不归荣耀；领受，却不谢恩。原文根据：γνόντες 是让步分词，「<strong>虽然</strong>知道」——保罗刻意强调他们拥有的是真实认知，culpability（有罪性）正在于此：不是无知，是知而不行。互文印证：耶 2:11「岂有一国换了他的神吗？其实这不是神！但我的百姓将他们的荣耀换了那无益的神」——先知早已用同一逻辑指控以色列；申 8:17–18 摩西警告富足后的忘恩（「恐怕你心里说：这货财是我力量…得来的」），正是 v21 的旧约预演。穆尔补充句法观察：「思念变为虚妄」（ἐματαιώθησαν）与「心昏暗了」（ἐσκοτίσθη）的<strong>被动语态</strong>已预示神审判性的作为——人的理智败坏不是纯粹的自然衰退，而是神「任凭」之手的起笔，与 v24、26、28 三次的 παρέδωκεν（「神任凭他们」）前后呼应。分歧注明：有解经者把「心昏暗」完全归因于人自身的刚硬，淡化被动的神圣主体；穆理坚持这是「神圣被动」（divine passive）——审判者已经在场，但这丝毫不减轻人的责任，因为 v23 的「交换」是人主动作的（见下）。</li>
+            <li><strong>「交换」：偶像崇拜的本质与讽刺（vv22–23）</strong>：v22 是保罗式的反讽，一句完成：φάσκοντες εἶναι σοφοὶ（持续自诩为智者）对 ἐμωράνθησαν（结局已是愚拙）——自诩还在进行，定谳已经下达。穆尔指出这与林前 1:20–21 同一主题：「神的愚拙总比人智慧」——人的智慧在拒绝荣耀神的那一刻就自我取消了资格。v23 的 ἤλλαξαν（「交换」）是全段钥匙词，在 v25（μετήλλαξαν）、v26 重复，构成贯穿 1:18–32 的「交换结构」：不朽之神的荣耀 → 必朽之物的形像；神的真实 → 虚谎；自然的用处 → 逆性的用处。每一次交换都是向下的。互文印证最为直接的是诗 106:20（七十士译本）：ἤλλαξαν τὴν δόξαν αὐτῶν ἐν ὁμοιώματι μόσχου ἐσθοντος χόρτον（「他们将荣耀的主换为吃草之牛的像」）——保罗几乎逐字呼应，表明他是在<strong>以色列拜金牛犊的叙事</strong>里理解外邦偶像崇拜的：历史在重演。创 1:26 的秩序也被倒置：人本是神的形像、受托管理飞禽走兽，如今反过来拜「人、飞禽、走兽、昆虫的形像」——治理者成了被治理者的崇拜者。穆理特别点出埃及动物崇拜的背景（参智慧篇 13–15 章的偶像批判）：罗马读者对「拜鳄鱼、拜甲虫」毫不陌生，保罗的名单（πετεινῶν…τετραπόδων…ἑρπετῶν）正是帝国首都街头可见的宗教现实。历代共识：偶像崇拜的本质不是「拜错了对象」的技术失误，而是<strong>把受造之物放在创造主的位置上</strong>——加尔文称人心是「偶像制造厂」（fabricator of idols），v23 正是这间工厂的总装线。</li>
+            <li><strong>本段的指涉与功能：外邦人，还是全人类？（分歧与综合）</strong>：穆理与穆尔都认定 1:18–32 的首要描绘对象是<strong>外邦世界</strong>：1:18–32 讲「不认识律法的外邦人」，2:1–16 转向「有律法的犹太人／自义的论断者」，3:9–20 再合流为「都在罪恶之下」。证据有二：v23 的偶像崇拜是外邦宗教的典型特征（犹太人被掳归回后已极少拜偶像）；2:1 的「你这论断人的」突然转折，只有以前段为外邦人才能成立。但二人同样强调其原则的<strong>普世性</strong>：2:1「你…也行了同样的事」正是把外邦人的罪状翻转为对犹太读者的指控——没有人能站在 1:18–32 之外看戏。新视角派（如 N. T. 赖特）提出另一种读法：1:18–32 是以色列故事（亚当堕落、被掳）的重述，外邦人只是叙事外衣。穆尔在修订版 NICNT 中正面回应：承认其中确有亚当叙事与以色列旷野拜偶像的回声（v23 对诗 106:20 的呼应就是明证），但坚持保罗的首要所指仍是外邦世界<strong>真实的罪况</strong>——若把本段化约为「以色列故事」，2:1–3:20「世人都犯了罪」的论证链条（3:23）将被掏空，福音的普世必要性也随之动摇。穆理从救赎历史进路补充：1:18–32 确实是人类在亚当里堕落的普世图景，但这图景的<strong>当下所指</strong>就是保罗时代的外邦世界——普遍真理必须有具体的历史肉身。综合结论：读本段时，既不要把它窄化为「那些拜偶像的古人」（与我无关），也不要把它泛化为抽象的人性论（失去保罗的论证锋芒）——它的锋芒正在于：连「拜牛拜鸟」这样看似遥远的罪，其根子（v21 的不荣耀、不感谢）都长在你我心里。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>感恩是第一道防线</strong>：保罗把人类堕落的起点定在「不感谢」——不是先杀人放火，而是停止把神当神荣耀、停止谢恩。堕落不是从悬崖跌落，而是从感恩的停止开始滑坡。你每天的感恩是走形式的「谢饭祷告」，还是抵挡「思念变为虚妄」的第一道防线？试着在接下来一周睡前数算：今天具体有哪三件事是神的手所给的？把「感谢」从仪式变回债务的偿还。</li>
+            <li><strong>检视你的「交换」</strong>：v23 的偶像不一定是木雕泥塑——凡是把受造之物（事业、健康、子女、自己的形象、甚至「被认可的感觉」）放在「不能朽坏之神的荣耀」位置上的，都是同一笔交换，只是货币不同。穆理提醒：偶像崇拜的本质是「把荣耀归给不配得的」。一个诚实的检测：你最近为什么事情最焦虑、最睡不着？那焦虑背后，是否藏着一个被你高举的受造之物？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>v20 说人「无可推诿」，v18 说人是「行不义阻挡真理的人」（κατέχω，现在时：持续地压住）——保罗的定罪逻辑建立在「人其实知道，却主动压住」之上。这对你传福音和为未信者祷告的态度有何挑战？（提示：福音的对象在保罗眼中不是「无知的可怜人」，而是「压住真理的人」——这如何改变你祷告的内容：是求神「让他们明白道理」，还是求神「攻破他们压制真理的意志」？）</p>
+          </div>
+        </article>
+        <div class="daynav"><a href="day1.html">← 第 1 天</a><a href="index.html#daily">全部天数</a><a href="day3.html">第 3 天 →</a></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
