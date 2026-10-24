@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 5 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day5-am">2:12–16</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 5 天</span>2026-10-24（周六） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+        <article class="entry" id="day5-am">
+          <div class="entry-head">
+            <span class="entry-day">第 5 天 · 晨 — 2026-10-24（周六）</span>
+            <h3 class="entry-title">律法内外，一同受审：良心是写在心上的律法 <span class="ref">· 罗马书 2:12–16</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">12</span>凡没有律法犯了罪的，也必不按律法灭亡；凡在律法以下犯了罪的，也必按律法受审判。<span class="vn">13</span>（原来在神面前，不是听律法的为义，乃是行律法的称义。<span class="vn">14</span>没有律法的外邦人若顺着本性行律法上的事，他们虽然没有律法，自己就是自己的律法。<span class="vn">15</span>这是显出律法的功用刻在他们心里，他们是非之心同作见证，并且他们的思念互相较量，或以为是，或以为非。）<span class="vn">16</span>就在神藉耶稣基督审判人隐秘事的日子，照着我的福音所言。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>v12 开头的 <span class="gk">γάρ</span>（「因为」）把本段扣在 v11「因为神不偏待人」上——v11 是格言，v12–16 是它的论证：审判的标准因人而异（按各人领受的启示），但结局同样严肃，无人能凭「无知」或「有律法」脱身。从全书论证链看，2:6–11 立定了审判的<strong>原则</strong>（照行为、不偏待），2:12–16 讲审判的<strong>标准</strong>（有律法的按律法受审判，无律法的按良心与自然法受审判），2:17–29 才点名犹太人。注意保罗的收网节奏：他先让犹太对话者对普世原则逐一点头——「外邦人没律法也受审判」阿们（v12）、「光听道不行道没用」阿们（v13，参雅 1:22–25 也是犹太基督徒的共识）——等他点完头，2:17 的网口就扎紧了：「你称为犹太人……」</p>
+          <p>和合本把 v13–15 放在括号里，提示这是插入的解释性段落：v13 解释 v12 的「按律法受审判」是什么意思，v14–15 解释「没有律法」的人凭什么受审判，v16 则把整段（v12–15）的时间锚定在「那日子」。v16 的「审判人隐秘事」与 v15 的「良心同作见证」首尾呼应：心里隐藏的事，连良心都录了音。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>没有律法</strong>（<span class="gk">ἀνόμως</span>，第 12 节）：副词，「在律法之外地」——与 <span class="gk">ἄνευ νόμου</span>（「没有律法」，介词短语）同义，指没有领受摩西律法的人。</li>
+            <li><strong>犯了罪</strong>（<span class="gk">ἥμαρτον</span>）：不定过去时，「犯了罪」——指向具体的犯罪事实，不是抽象的罪性。</li>
+            <li><strong>灭亡</strong>（<span class="gk">ἀπολοῦνται</span>）：将来时中间语态，「将灭亡」——注意保罗的措辞：没有律法的人结局不是「较轻发落」，而是 <span class="gk">ἀπολοῦνται</span>（灭亡），与有律法者的「受审判」同样是终极性的。</li>
+            <li><strong>受审判</strong>（<span class="gk">κριθῶσονται</span>）：将来时被动态，「将被审判」——<span class="gk">διὰ νόμου</span>（「藉着律法／按着律法」）说明审判的标尺：律法成了量刑的依据。</li>
+            <li><strong>听律法的</strong>（<span class="gk">ἀκροαταὶ νόμου</span>）／<strong>行律法的</strong>（<span class="gk">ποιηταὶ νόμου</span>，第 13 节）：<span class="gk">ἀκροατής</span> 是「旁听生」（犹太会堂里每周听律法宣读的人正是 <span class="gk">ἀκροαταί</span>）；<span class="gk">ποιητής</span> 是「实行者」。将来时被动态 <span class="gk">δικαιωθήσονται</span>（「将被称义」）——称义是神在末日法庭上的宣告。</li>
+            <li><strong>顺着本性</strong>（<span class="gk">φύσει</span>，第 14 节）：与格，「按本性、天然地」——指人生来就有的道德直觉，不是后天学的，也不是重生后才有的。</li>
+            <li><strong>那一类</strong>（<span class="gk">οἵτινες</span>）：定性关系代词，「那一类……的人」——带出这类人的特征：行律法上的事。</li>
+            <li><strong>自己就是自己的律法</strong>（<span class="gk">ἑαυτοῖς εἰσιν νόμος</span>）：与格 <span class="gk">ἑαυτοῖς</span>（「对自己而言」）＋ 系动词 ＋ 表语——没有外在的律法文本，良心就起了律法的功用。</li>
+            <li><strong>显出</strong>（<span class="gk">ἐνδείκνυνται</span>，第 15 节）：现在时中间语态，「显明、展示」——外邦人的善行是证据，证据指向一个事实。</li>
+            <li><strong>律法的功用刻在他们心里</strong>（<span class="gk">τὸ ἔργον τοῦ νόμου γραπτὸν ἐν ταῖς καρδίαις αὐτῶν</span>）：<span class="gk">γραπτόν</span> 是完成时分词，「已刻写、刻好了的」——刻的动作在过去，完成的状态延续到现在；刻的地方是 <span class="gk">ἐν ταῖς καρδίαις</span>（「在心里」）。注意刻的是 <span class="gk">τὸ ἔργον</span>（「功用、所作」），不是律法条文本身——良心刻的是律法的「要求」，不是律法的「条文」。</li>
+            <li><strong>是非之心</strong>（<span class="gk">συνείδησις</span>）：字面「共知、同知」——与自己一同知道；保罗书信中的标准「良心」用语。分词 <span class="gk">συμμαρτυρούσης</span>（「同作见证」）的 <span class="gk">συν-</span>（「一同」）是关键：良心不是独立的法官，而是与神的审判「一同作见证」的证人。</li>
+            <li><strong>思念</strong>（<span class="gk">λογισμῶν</span>）：「推论、辩论」——复数，指心里来回的思想交锋。</li>
+            <li><strong>互相较量，或以为是，或以为非</strong>（<span class="gk">μεταξὺ ἀλλήλων τῶν λογισμῶν κατηγορούντων ἢ καὶ ἀπολογουμένων</span>）：<span class="gk">κατηγορέω</span>（「控告」，原告的词）与 <span class="gk">ἀπολογέομαι</span>（「辩护」，被告律师的词）——心里开着一个法庭，原告被告齐了。</li>
+            <li><strong>隐秘事</strong>（<span class="gk">τὰ κρυπτὰ</span>，第 16 节）：「隐藏的事」——连良心深处、人前看不见的事。</li>
+            <li><strong>照着我的福音</strong>（<span class="gk">κατὰ τὸ εὐαγγέλιόν μου</span>）：「我的福音」是保罗的标志性说法（16:25；加 2:2；帖后 2:14；提后 2:8）——不是他发明的福音，而是他所领受、所传的福音（加 1:11–12）。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v12 的双轨平行</strong>：<span class="gk">ὅσοι…ὅσοι</span>（「凡……凡……」）开出两条轨道——<span class="gk">ἀνόμως…ἀπολοῦνται</span>（无法地犯罪 → 无法地灭亡）与 <span class="gk">ἐν νόμῳ…διὰ νόμου κριθῶσονται</span>（在律法下犯罪 → 按律法受审判）；副词与介词短语的呼应（<span class="gk">ἀνόμως</span> 回应 <span class="gk">ἄνευ νόμου</span>）把「标准」与「结局」锁死：按什么标准犯罪，按什么标准结局。</li>
+            <li><strong>v13 的 <span class="gk">οὐ…ἀλλὰ</span> 排比</strong>：<span class="gk">οὐχ οἱ ἀκροαταὶ νόμου δίκαιοι παρὰ τῷ θεῷ, ἀλλ᾽ οἱ ποιηταὶ νόμου δικαιωθήσονται</span>（「在神面前，不是听律法的为义，乃是行律法的称义」）——两个主语（听者／行者）、两个谓语（为义／被称义）精确对仗；<span class="gk">παρὰ τῷ θεῷ</span>（「在神面前」）是法庭场景：称义与否，看的是神面前的判决，不是会堂里的出勤率。</li>
+            <li><strong>v14 的 <span class="gk">ὅταν</span> ＋ 虚拟语气</strong>：<span class="gk">ὅταν…ποιῶσιν</span>（「每当……行」）——现在时虚拟语气表习惯性、重复发生的动作：外邦人「每当」顺着本性行出善来，就是一次证据。</li>
+            <li><strong>v15 的分词链</strong>：主要动词 <span class="gk">ἐνδείκνυνται</span>（「显出」）之后，跟着属格分词 <span class="gk">συμμαρτυρούσης τῆς συνειδήσεως</span>（「良心同作见证」）和 <span class="gk">κατηγορούντων ἢ καὶ ἀπολογουμένων</span>（「控告或辩护」）——分词表伴随情形：显明「律法刻在心里」这件事，是通过「良心作证」和「思念交锋」这两件事来显明的；<span class="gk">ἢ καί</span>（「或也」）表明控告与辩护两种可能都发生过。</li>
+            <li><strong>v16 的时间短语统摄全段</strong>：<span class="gk">ἐν ἡμέρᾳ</span>（「在那日子」）＋ 审判动作（神藉基督审判隐秘事）——v12–15 讲的「标准」（按律法／按良心），到 v16 落在「那日子」一次执行；<span class="gk">διὰ Ἰησοῦ Χριστοῦ</span>（「藉着耶稣基督」）说明执行审判的中保，<span class="gk">κατὰ τὸ εὐαγγέλιόν μου</span>（「照着我的福音」）说明这审判信息的来源与权威。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>两种人、两种标准、同样结局（v12）</strong>：原文根据是双轨平行与 <span class="gk">ἀπολοῦνται</span> 的措辞。穆理首先驳掉一个流行误读：「没有律法」不是「没有责任」——<span class="gk">ἥμαρτον</span>（「犯了罪」）说明他们确实犯了罪，结局 <span class="gk">ἀπολοῦνται</span>（「将灭亡」）说明结局同样是终极性的；保罗刻意不用「较轻发落」这类词，为的是堵住「无知者无罪」的借口。标准的差异（<span class="gk">ἀνόμως</span> vs <span class="gk">διὰ νόμου</span>）只关乎「按什么量刑」，不关乎「要不要量刑」——原则正是路 12:47–48「多给谁，就向谁多取」：启示越多，标准越严，但启示少不等于免审。穆尔点出修辞功能：犹太对话者听到「外邦人没律法也灭亡」会点头（阿们，1:18–32 已经定了外邦人的罪）；但他没意识到，v12 的另一条轨道正在为他自己铺路——「在律法以下犯了罪的，也必按律法受审判」：你引以为傲的律法，到那日是你的量刑依据，不是你的护身符。互文：约 9:41「你们若瞎了眼，就没有罪了；但如今你们说『我们能看见』，所以你们的罪还在」——自称有光的人，罪反被坐实。</li>
+            <li><strong>「不是听律法的为义，乃是行律法的称义」（v13）：原则与事实的张力</strong>：原文根据是 <span class="gk">οὐ…ἀλλὰ</span> 排比与 <span class="gk">δικαιωθήσονται</span>（将来时被动态）。这是全段最容易被误读的一节——它看起来像在讲「行为称义」。穆理的经典区分：v13 讲的是<strong>原则</strong>（行全律法的人在神面前算为义，这原则本身是真的，参利 18:5「人若遵行，就必因此活着」；加 3:12 引同一节），3:20 讲的是<strong>事实</strong>（「凡有血气的，没有一个因行律法能在神面前称义」）——原则真实，但无人达标；原则越真实，人的绝望越彻底。穆尔补强修辞解读：v13 在此处是论证策略——犹太对话者以「听律法」为义（会堂出勤、律法知识），保罗把标准从「听」提到「行」，不是为了开一条行为称义的路，而是为了堵死「我有律法」的退路：连你们自己承认的标准（雅 1:22–25「只是你们要行道，不要单单听道」也是犹太基督徒的共识）都要求「行」，而你们行了吗？分歧注明：天主教特伦托会议传统曾引此节支持「行为在称义中有真实角色」；改革宗传统坚持「原则／事实」区分；新视角派（邓恩）主张「行律法」特指「行犹太身份标记」（割礼、饮食、安息日）。穆尔回应：v13 的 <span class="gk">νόμος</span> 没有任何限定，v14–15 紧接着讲外邦人的普遍道德，上下文要求的是整全的律法，不是一组身份标记。历代共识：没有人能靠「听」称义——这一点，连对手都点头。</li>
+            <li><strong>没有律法的外邦人「顺着本性行律法上的事」（v14）：自然法的论证</strong>：原文根据是 <span class="gk">φύσει</span> 与 <span class="gk">ἑαυτοῖς εἰσιν νόμος</span>。穆理与穆尔的共识：这里的「外邦人」指<strong>一般未信的外邦人</strong>，不是外邦基督徒。穆理的论证有三：(1) 上下文是审判的标准（v12、v16），不是称义的路——保罗在证明「无律法者也有法可依、有罪可定」，不是在表扬外邦圣徒；(2) <span class="gk">φύσει</span>（「按本性」）指天然的人性，不是重生后的新性情；(3) v14 说他们「没有律法」，而基督徒正是「在基督的律法之下」（林前 9:21）。穆尔补充：<span class="gk">οἵτινες</span>（「那一类」）表明保罗讲的是一种可观察的普遍现象——外邦社会中确实有人行出与律法要求相合的事（孝敬父母、不杀人、不偷盗），这现象本身就是证据。分歧注明：克兰菲尔德（Cranfield）等少数解经家主张指外邦基督徒，证据是「律法刻在心里」呼应耶 31:33 的新约应许；穆理与穆尔都认为此说把审判语境读成了救恩语境，且 v16 的「审判日」框架不支持。历代共识：此段是「自然法」神学的核心经文之一（阿奎那《神学大全》中大量引用）——神把道德律的「功用」刻在普遍人性里，因此无人能以「没听过」为借口（与 1:19–20「神的事情……明明可知」前后呼应）。</li>
+            <li><strong>良心与内心法庭（v15）</strong>：原文根据是 <span class="gk">συμμαρτυρούσης</span> 的 <span class="gk">συν-</span> 与控告／辩护的双分词。穆理细剖三层：(1) 证据——外邦人的善行「显出」（<span class="gk">ἐνδείκνυνται</span>）一个事实：律法的「功用」（<span class="gk">τὸ ἔργον</span>，注意不是律法条文本身）刻在心里；(2) 证人——良心「同作见证」：<span class="gk">συν-</span>（「一同」）表明良心不是独立的终审法官，而是与神的审判一同作证的证人，它的声音是神审判的回声；(3) 法庭——「思念互相较量，或控告或辩护」：人心里天天开庭，原告（控告）被告（辩护）律师齐备，这内心的交锋本身证明人知道善恶标准。穆尔的关键限定：「或以为是，或以为非」——良心<strong>会出错</strong>，它不是无误的道德指南针（参林前 8:7「良心软弱」、提前 4:2「良心被热铁烙惯」）；但良心足以<strong>定罪</strong>：它证明人「知道」标准，知道而故犯，就是 1:32 与 2:1 的「无可推诿」。互文：传 7:22「你心里知道，自己也曾屡次咒诅别人」——良心的记忆，人人都有一本账。</li>
+            <li><strong>「神藉耶稣基督审判人隐秘事的日子，照着我的福音所言」（v16）</strong>：原文根据是 <span class="gk">διὰ Ἰησοῦ Χριστοῦ</span>、<span class="gk">τὰ κρυπτὰ</span> 与 <span class="gk">κατὰ τὸ εὐαγγέλιόν μου</span>。穆理展开三点：(1) <strong>审判的基督论维度</strong>——执行末日审判的是基督（约 5:22「父不审判什么人，乃将审判的事全交与子」；徒 17:31「按公义审判天下」的那一位就是神所立的人）；v15 的良心法庭是预演，v16 的基督法庭是正审。(2) <strong>「隐秘事」</strong>（<span class="gk">τὰ κρυπτὰ</span>）——审判不只看行为，还看动机、意念、人前看不见的一切（传 12:14「神必审问……一切的隐情」；林前 4:5「他要照出暗中的隐情，显明人心的意念」）；v15 良心录下的每一笔账，到 v16 都要对账。(3) <strong>「照着我的福音」</strong>——福音不只是「好消息」，也包含「审判」的宣告；保罗称「我的福音」不是个人发明，而是强调这信息的来源是启示（加 1:11–12）、权威不容打折。穆尔点出首尾呼应：v16 的「那日子」正是 v5「神震怒、显他公义审判的日子」——2:1–16 整段（论断者→审判原则→审判标准）至此收束，下一节（2:17）保罗终于点名：「你称为犹太人……」。分歧与共识：对此节历代没有实质分歧；它的锋利在于提醒——传福音若只讲恩典不讲审判，就不是「照着保罗的福音」传的。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>无知不是护身符，亮光大责任也大</strong>：v12 拆掉两种借口——「我没听过」（无律法者同样灭亡）与「我听得多」（有律法者按律法受审判，标准更严）。原则是路 12:48「多给谁，就向谁多取」。检视：我们最常用的借口是哪一种？是「这我不懂」的装无知，还是「我懂、我听过、我在教会」的属灵资历？两种在 v12 面前都站不住。</li>
+            <li><strong>良心是闹钟，不是法官——但别把它调成静音</strong>：v15 说良心会「控告」也会「辩护」，它是个尽责的闹钟，但不是终审法官（它会出错，也会被「烙惯」——提前 4:2）。健康的回应不是每次都听它的（它可能控告过度），也不是把它按掉（弗 4:19「良心丧尽」的可怕正在于此），而是让它把你带到神面前：控告时，认罪悔改；辩护时，省察辩护的理由站不站得住。操练：今晚睡前花五分钟，回想今天良心响过的那一次——它说了什么？你当时怎么回应的？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>v14–15 说，连没有律法的人，心里也有「刻着的律法」和「互相较量的思念」——想一想你最近一次良心不安：当时心里「控告」的声音和「辩护」的声音各说了什么？最后你听了哪一边？如果 v16 的那日子今天来到，那些「隐秘的事」被摆在基督面前，你现在最想处理的是哪一件？</p>
+          </div>
+        </article>
+        <div class="daynav"><a href="day4.html">← 第 4 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一天待更新</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
