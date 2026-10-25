@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 6 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day6-am">2:25–29</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 6 天</span>2026-10-25（周日） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+        <article class="entry" id="day6-am">
+          <div class="entry-head">
+            <span class="entry-day">第 6 天 · 晨 — 2026-10-25（周日）</span>
+            <h3 class="entry-title">真割礼是心里的：在乎灵，不在乎仪文 <span class="ref">· 罗马书 2:25–29</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">25</span>你若是行律法的，割礼固然于你有益；若是犯律法的，你的割礼就算不得割礼。<span class="vn">26</span>所以未受割礼的，若遵守律法的条例，他虽然未受割礼，岂不算是有割礼吗？<span class="vn">27</span>而且那本来未受割礼的，若能全守律法，岂不是要审判你这有仪文和割礼竟犯律法的人吗？<span class="vn">28</span>因为外面作犹太人的，不是真犹太人；外面肉身的割礼，也不是真割礼。<span class="vn">29</span>惟有里面作的，才是真犹太人；真割礼也是心里的，在乎灵，不在乎仪文。这人的称赞不是从人来的，乃是从神来的。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>本段是 2:17–29 的后半段，也是 2:1–29 整段论证的收束。2:17–24 处理了第一项特权——<strong>律法</strong>：有律法却不行律法；2:25–29 处理第二项特权——<strong>割礼</strong>：有割礼的记号却不行律法。两段的结构完全平行，结论也同一句：外在的身份标记不能代替内在的顺服。读完这一段，保罗的对话者已经无路可退，于是 3:1 自然要发问：「这样说来，犹太人有什么长处？」——保罗在 3:2 的回答不是「毫无长处」，而是「多得很」，特权没有被废掉，只是被重新定位。</p>
+          <p>割礼的背景要回到创 17 章：割礼是神与亚伯拉罕所立之约的<strong>记号</strong>（创 17:9–14），而且它是在亚伯拉罕因信称义（创 15:6）之后才设立的——记号跟在应许与信心之后，不是赚取约的手段。旧约本身也早就把割礼内在化了：申 10:16「要将心里的污秽除掉」（原文直译：你们要给心行割礼）、申 30:6「耶和华你神必将你心里……行割礼」、耶 4:4「你们要自行割礼，归耶和华，将心里的污秽除掉」、耶 9:25–26 更直言列国与以色列「心里都没有受割礼」。保罗在 2:29 不是发明一个新概念，而是把先知书早已埋下的线收束起来：真正的割礼从来指向心里。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>割礼</strong>（<span class="gk">περιτομή</span>，第 25、26、27、28 节）：由 <span class="gk">περί</span>（「周围」）＋ <span class="gk">τομή</span>（「切割」）组成，字面就是「切除周围」。在保罗笔下，它既指具体的礼仪，也常常转喻整个犹太身份（参 3:30、4:9–12、加 2:7–9）。</li>
+            <li><strong>未受割礼</strong>（<span class="gk">ἀκροβυστία</span>）：字面「包皮」，转喻「未受割礼的状态／外邦人」。注意第 25 节的翻转：这个词居然被用在「受过割礼却犯律法」的人身上——身份标签被彻底倒置。</li>
+            <li><strong>有益</strong>（<span class="gk">ὠφελεῖ</span>，第 25 节）：现在时，「有益处、有价值」。保罗没有否定割礼的价值——他说的是价值是<strong>有条件的</strong>。</li>
+            <li><strong>行律法</strong>（<span class="gk">νόμον πράσσῃς</span>）：现在时虚拟语气，「持续地实行、践行」。与 2:13 的 <span class="gk">ποιηταὶ νόμου</span>（「行律法的」）呼应：标准从来不是「知道」，而是「行」。</li>
+            <li><strong>犯律法</strong>（<span class="gk">παραβάτης νόμου</span>）：「越过界线的人、违犯者」。前缀 <span class="gk">παρα-</span>（「越过」）点出违犯的本质：不是不知道界线，而是越过了界线。</li>
+            <li><strong>算不得割礼</strong>（<span class="gk">ἡ περιτομή σου ἀκροβυστία γέγονεν</span>）：完成时 <span class="gk">γέγονεν</span>（「已经成为、变成了」）——不是「将来可能失效」，而是「已经变了质」：记号还在肉身上，身份却已经变了。</li>
+            <li><strong>律法的条例</strong>（<span class="gk">τὰ δικαιώματα τοῦ νόμου</span>，第 26 节）：复数，「律法的义的要求、条例」。不是律法的某一条边角，而是指律法所要求的义的内容。</li>
+            <li><strong>算为</strong>（<span class="gk">λογισθήσεται</span>，第 26 节）：将来时被动态，「将被算为、被记入」。这是称义语言的核心动词（<span class="gk">λογίζομαι</span>，参 4:3「亚伯拉罕信神，这就算为他的义」）——神「算」人的方式，不看记号，看实际。</li>
+            <li><strong>全守</strong>（<span class="gk">τελοῦσα</span>，第 27 节）：现在时分词，「成全、完成」。不是「大体遵守」，而是把律法「做到底」。</li>
+            <li><strong>审判</strong>（<span class="gk">κρινεῖ</span>，第 27 节）：将来时，「将要审判／定罪」。不是指外邦人坐在审判席上当法官（参太 12:41–42，尼尼微人与南方的女王「要起来定这世代的罪」——同样是见证式的审判），而是他们的顺服在末日成为对照的证据。</li>
+            <li><strong>外面／里面</strong>（<span class="gk">ἐν τῷ φανερῷ</span>／<span class="gk">ἐν τῷ κρυπτῷ</span>，第 28–29 节）：「在显明之处／在隐藏之处」。这组对照呼应 2:16 的「隐秘事」（<span class="gk">τὰ κρυπτά</span>）：神看的从来是隐藏处。</li>
+            <li><strong>肉身</strong>（<span class="gk">ἐν σαρκὶ</span>，第 28 节）：「在肉体上」。不是贬低身体，而是指出记号所在的层面：它只停留在肉身层面。</li>
+            <li><strong>仪文</strong>（<span class="gk">γράμμα</span>，第 27、29 节）：「字句、写成的文字」。与「灵」（<span class="gk">πνεῦμα</span>）对照：字句是写在外面的法典，灵是写在里面的工作（参 7:6「新约的灵意，不在乎字句」、林后 3:6「字句是叫人死，精意是叫人活」）。</li>
+            <li><strong>称赞</strong>（<span class="gk">ἔπαινος</span>，第 29 节）：「称赞、赞许」。这是全段收束的双关：「犹太人」（<span class="gk">Ἰουδαῖος</span>）的名字源于「犹大」（创 29:35 利亚生犹大时说「这回我要赞美耶和华」；创 49:8「犹大啊，你弟兄们必赞美你」）——真犹太人的「称赞」不是从弟兄（人）来的，而是从神来的。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v25 的条件对仗</strong>：<span class="gk">ἐὰν…πράσσῃς</span>（「你若行」）与 <span class="gk">ἐὰν…ᾖς</span>（「你若是犯」）——两个 <span class="gk">ἐὰν</span>（「若」）＋ 虚拟语气开出两种可能，割礼的价值随「行／犯」而翻转；完成时 <span class="gk">γέγονεν</span>（「已经成为」）把第二种可能的结局写成既成事实。</li>
+            <li><strong>v26 的反问与 <span class="gk">οὐχ</span></strong>：<span class="gk">οὐχ ἡ ἀκροβυστία αὐτοῦ εἰς περιτομὴν λογισθήσεται;</span>（「他的未受割礼，岂不算为割礼吗？」）——<span class="gk">οὐχ</span> 开头的反问期待肯定的回答：当然算。介词 <span class="gk">εἰς</span>（「成为、算作」）表明这不是「约等于」，而是神的账本上真的这样记。</li>
+            <li><strong>v27 的 <span class="gk">διὰ γράμματος καὶ περιτομῆς</span></strong>：「藉着仪文和割礼」还是「虽然有仪文和割礼」？<span class="gk">διὰ</span> ＋ 属格本是「藉着、通过」的意思，但在这里带有悖论色彩：仪文与割礼本该是帮助人守律法的工具，结果却成了「犯律法的人」的定罪背景——你有的越多，越没有借口。两种译法（工具格／让步义）都不改变这一点：拥有的特权加重了责任，而不是减轻了它。</li>
+            <li><strong>v28–29 的否定与肯定对仗</strong>：<span class="gk">οὐ…οὐδὲ</span>（「不是……也不是」）否定外面，<span class="gk">ἀλλ᾽</span>（「惟有」）肯定里面；<span class="gk">ἐν τῷ φανερῷ</span>（外面）与 <span class="gk">ἐν τῷ κρυπτῷ</span>（里面）、<span class="gk">ἐν σαρκὶ</span>（肉身）与 <span class="gk">καρδίας</span>（心）、<span class="gk">γράμματι</span>（仪文）与 <span class="gk">πνεύματι</span>（灵）——三组对照层层收紧，最后落在 <span class="gk">οὗ ὁ ἔπαινος οὐκ ἐξ ἀνθρώπων ἀλλ᾽ ἐκ τοῦ θεοῦ</span>（「这人的称赞不是从人来的，乃是从神来的」）：关系代词 <span class="gk">οὗ</span>（「这人的」）回指「里面作犹太人」的那一位，整段的法官从「人」换成了「神」。</li>
+            <li><strong>v29 的属格链</strong>：<span class="gk">περιτομὴ καρδίας</span>（「心里的割礼」）——属格 <span class="gk">καρδίας</span> 说明割礼的「部位」：不在肉身上，在心上。介词短语 <span class="gk">ἐν πνεύματι οὐ γράμματι</span>（「在乎灵，不在乎仪文」）说明割礼的「媒介」：不是靠写成的字句，而是靠灵的工作。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>割礼的价值是有条件的（v25）：记号不能代替实质</strong>：原文根据是 <span class="gk">ὠφελεῖ</span>（「有益」）的条件句与完成时 <span class="gk">γέγονεν</span>（「已经成为」）。穆理的论证从记号的本质出发：割礼是约的记号（sign），记号的价值在于它所指向的实质——与神立约的子民对约的顺服；记号若脱离实质，就不再是记号，而成了空壳。更尖锐的是，保罗用的不是「割礼失效了」这种中性说法，而是「你的割礼已经成了未受割礼」——在神的账本上，违犯律法的受割礼者与未受割礼者被记在同一栏。穆尔补强修辞层面：这是 2:17–29 中最彻底的一次身份倒置——对话者最引以为傲的标记（割礼），在同一个句子里被宣布为它的反面；而且完成时表明这不是警告，而是判决。互文：耶 9:25–26「凡未受割礼的……以色列全家也是心中未受割礼的」——先知早已这样说过；保罗不是在发明，而是在引用以色列自己的先知传统审判以色列。分歧注明：有读者问，割礼作为神亲自设立的约的记号，怎能「变成未受割礼」？穆理与穆尔的共同回答是区分「记号本身」与「记号在审判中的效力」：割礼作为历史性的约的记号没有被宣布为假货，但作为「在神面前称义的凭证」，它在违犯者手里已经失去了效力——正如 2:17–24 的律法：律法是真的，但它在违犯者手里成了定罪的依据。</li>
+            <li><strong>未受割礼者若守律法，算为有割礼（v26）：神算人的标准</strong>：原文根据是 <span class="gk">λογισθήσεται</span>（「将被算为」）与 <span class="gk">δικαιώματα</span>（「律法的义的要求」）。穆理强调这是条件句（<span class="gk">ἐὰν</span>，「若」）的原则性论证，不是宣告「外邦人靠行为已经全守了律法」——否则保罗在 3:9–20「没有一个行善的」与 3:20「凡有血气的，没有一个因行律法能在神面前称义」就会自相矛盾。v26 的作用是逻辑上的反向对称：既然「有割礼却犯律法」等于「未受割礼」，那么「未受割礼却守律法」就应当等于「有割礼」——神算人的天平两边必须一样准。穆尔同样不把此节读作「行为称义的例外通道」，但他更强调此节为 v29 的重新定义铺路：保罗在此处已经把「割礼」从肉身事件改写为「神算为割礼」的事件，v29 的「真割礼」只是把这个改写说到完成。分歧注明：v26 的「未受割礼者」到底指谁，学者有分歧——一派认为是纯粹的假设人物（用来证明原则），另一派认为是指在圣灵里守律法的外邦基督徒（参 8:4「使律法的义成就在我们这不随从肉体、只随从圣灵的人身上」）；穆理偏向前者，穆尔对后者持开放态度，但两人都坚持：无论指谁，此节都不构成一条「靠守律法称义」的路——因为全守律法（v27 的 <span class="gk">τελοῦσα</span>，「做到底」）的标准，无人能靠自己达到。历代共识：此节的「算为」语言与第 4 章亚伯拉罕的「算为义」同源，表明保罗的称义观从一开始就是「神算为」，不是「人挣得」。</li>
+            <li><strong>未受割礼者要审判你（v27）：顺服成为证据</strong>：原文根据是将来时 <span class="gk">κρινεῖ</span>（「将要审判」）与 <span class="gk">ἐκ φύσεως</span>（「本来、本性上」）。穆理细剖「审判」的含义：这不是说外邦人要在末日坐在审判宝座上（审判的主权属于神与基督，参 2:16），而是像太 12:41–42 的尼尼微人与南方的女王一样——他们的悔改与寻求，在末日「要起来定这世代的罪」：顺服本身就是证据，证据本身就是审判。穆尔点出 <span class="gk">ἐκ φύσεως</span>（「按本性」）与 2:14 的 <span class="gk">φύσει</span>（「顺着本性」）的呼应：2:14 讲没有律法的外邦人顺着本性行律法上的事，2:27 讲的就是同一类人——他们的存在本身，就是对「有仪文和割礼竟犯律法的人」的指控。穆理与穆尔都强调 <span class="gk">διὰ γράμματος καὶ περιτομῆς</span> 的悖论：仪文与割礼本该是优势，结果成了加重情节——「你有字句、有记号，却犯律法」比「你什么都没有却犯律法」更无可推诿（与 2:12「多给谁，就向谁多取」的标准一致）。互文：太 12:41–42、路 11:31–32 的「审判」模式，以及来 11:7 挪亚「定了那世代的罪」——圣经里一贯有「义人的存在本身就是对恶人的审判」这一主题。</li>
+            <li><strong>外面／里面：真犹太人的重新定义（v28–29a）</strong>：原文根据是 <span class="gk">φανερός</span>／<span class="gk">κρυπτός</span>（外面／里面）与 <span class="gk">περιτομὴ καρδίας</span>（「心里的割礼」）。穆理的论证分三步：(1) 保罗不是在否定「犹太人」这个身份，而是在区分「名义上的犹太人」与「实质上的犹太人」——正如 2:17 的「称为犹太人」（<span class="gk">ἐπονομάζῃ</span>，被称作）已经暗示了「被称作」与「真是」之间的缝隙；(2) 「真」的标准不在族裔血统、不在肉身记号，而在「里面」——心是否受了割礼；(3) 这一定义并没有废掉以色列的独特性（9:4–5 的特权清单、11 章的橄榄枝都还在后面），而是把「犹太人」这个名字的含金量从血统与礼仪转移到了顺服与内心。穆尔的侧重点略有不同：他认为 v28–29 的重新定义带有明显的新约视野——「心里的割礼」呼应结 36:26–27「我也要赐给你们一个新心……使你们顺从我的律例」，即神在新约里亲自做成的心的工作；但穆尔同样提醒，不要把这一节一口气读成「教会取代了以色列」：保罗在 9–11 章还要为以色列的命运大费篇幅，v29 的重点是「真犹太人的标准」，不是「犹太人的终局」。分歧与共识：新视角派（邓恩）强调此处的「犹太人」主要关乎「约民身份的边界标记」（割礼、饮食、安息日），保罗是在拆掉排他的身份墙；穆理与穆尔接受「身份标记」这一层，但坚持保罗的指控更深——不只是「排他」，更是「不行律法」本身（2:21–23、2:25 的违犯是真实的罪，不是身份政治）。历代共识：没有人能靠血统或礼仪在神面前站立——这一点，从施洗约翰「不要自己心里说：有亚伯拉罕为我们的祖宗」（太 3:9）到保罗这里，是一条贯穿圣经的线。</li>
+            <li><strong>在乎灵，不在乎仪文；称赞从神来（v29b）</strong>：原文根据是 <span class="gk">ἐν πνεύματι οὐ γράμματι</span>（「在乎灵，不在乎仪文」）与 <span class="gk">ἔπαινος</span>（「称赞」）的双关。关于 <span class="gk">πνεῦμα</span> 的所指，穆理与穆尔的侧重略有不同：穆理更强调「灵」所指的内在、属灵的实质——与「仪文」的外在、字面的形式对照，即神所要的割礼是内心的、属灵的，不是外表的、字句的；穆尔则更明确地把这读作圣灵在新约中的工作，因为保罗在别处用完全相同的对照讲圣灵（7:6「我们服事主，要按着心灵的新样，不按着仪文的旧样」；林后 3:6「字句是叫人死，精意是叫人活」；腓 3:3「真受割礼的，乃是……靠着神的灵敬拜」）——两种读法指向同一个结论：真割礼是神在人心里做成的，不是人靠外在仪文做成的。最后的 <span class="gk">ἔπαινος</span> 是全段最漂亮的收束：对话者在 2:17–20 的自画像里活在人的称赞里（教师、领路人、光），保罗把称赞的来源换成了神——真犹太人的名字（犹大＝赞美）只有在神称赞他时才算数。穆理点出与 2:16 的呼应：审判「隐秘事」的神，也是称赞「隐藏处」之人的神——人看不见的顺服，神看得见；人看不见的顺服，神也必称赞。互文：约 5:44「你们互相受荣耀，却不求从独一之神来的荣耀」、林前 4:5「那时，各人要从神那里得着称赞」——保罗的结尾不是一句口号，而是 2:1–29 整段法庭场景的最后一锤：法官不是人，是神。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>检查你的「割礼」：你靠什么记号站立？</strong>：2:25 的原则可以平移到今天：洗礼、教会会籍、服侍头衔、圣经知识、敬虔的家庭背景——这些本身都是好的（正如割礼本身是神设立的），但它们一旦被当作「在神面前站立的凭证」，就走上了 2:25 的路：记号还在，实质已经变了质。操练：写下你最容易在人前（或在自己心里）亮出来的属灵资历，然后诚实地问：若把这一项拿掉，我在神面前还剩下什么？那个剩下的，才是 2:29 说的「里面」的东西。</li>
+            <li><strong>看重隐藏处的顺服，因为神的称赞在那里</strong>：2:28–29 把价值判断从「外面」搬到了「里面」，从「人」搬到了「神」。这意味着：没有人看见的顺服（一次无人知晓的饶恕、一次没有观众的诚实、一次不为人知的舍己）不是白做的——它正是真割礼的所在，也是神要称赞的所在。反过来也成立：只有人看见才做的「顺服」，要警惕它到底是给神看的，还是给人看的。操练：今天刻意做一件只有神知道的好事，不告诉任何人。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>2:29 说，真犹太人的称赞「不是从人来的，乃是从神来的」——回想你最近一次渴望被人称赞（在教会、在家庭、在工作里）：那一次，你更在意的是人的掌声，还是神的称赞？如果神今天按 2:28–29 的标准来「算」你：你身上哪一个「外面的记号」最容易让你自满，又有哪一件「里面的顺服」是你希望神称赞的？</p>
+          </div>
+        </article>
+        <div class="daynav"><a href="day5.html">← 第 5 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一天待更新</span></div>
+
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
