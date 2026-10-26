@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 7 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day7-am">3:9–12</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 7 天</span>2026-10-26（周一） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+        <article class="entry" id="day7-am">
+          <div class="entry-head">
+            <span class="entry-day">第 7 天 · 晨 — 2026-10-26（周一）</span>
+            <h3 class="entry-title">都在罪恶之下：没有义人，连一个也没有 <span class="ref">· 罗马书 3:9–12</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">9</span>这却怎么样呢？我们比他们强吗？决不是的！因我们已经证明：犹太人和希利尼人都在罪恶之下。<span class="vn">10</span>就如经上所记：没有义人，连一个也没有。<span class="vn">11</span>没有明白的；没有寻求神的；<span class="vn">12</span>都是偏离正路，一同变为无用。没有行善的，连一个也没有。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>本段是全卷论证的一个转折点。1:18–32 定了外邦人的罪，2:1–29 定了犹太人的罪，3:1–8 堵住了三组异议（「特权还有什么用」「人的不信会不会废掉神的信实」「作恶可不可以成善」），现在保罗在 3:9 收网：<strong>犹太人与希利尼人都在罪恶之下</strong>。从这里到 3:20，保罗不再举新例证，而是把 1:18–3:8 的全部指控收束为一句总判决，并用一连串旧约引文（3:10–18，学者称之为「引文串」，catena）为这判决背书，最后在 3:19–20 点明律法的功用：叫人「无可推诿」，并「知罪」。今天晨篇读的是总判决与引文串的前半段（关于人心与行为的普遍判语）；晚篇将读引文串的后半段（口舌与脚踪）与 3:19–20 的结论。</p>
+          <p>还要注意 3:9 与 3:1 的呼应。3:1 问「犹太人有什么长处」，保罗答「凡事大有好处」——特权是真的；3:9 再问「我们比他们强吗」，保罗答「决不是的」——特权不能在审判中使人占优。两个答案同时成立，因为它们回答的是两个不同的问题：一个是救赎历史中的地位，一个是审判台前的站立。混淆这两者，就会要么否定以色列的拣选，要么以为拣选可以抵罪——保罗两个错误都不犯。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>这却怎么样呢</strong>（<span class="gk">Τί οὖν;</span>，第 9 节）：「那么，结论是什么？」——诘问文体（diatribe）的转折标记（参 3:1、3:5、4:1、6:1），表示前面的辩论告一段落，现在要下结论。</li>
+            <li><strong>我们比他们强吗</strong>（<span class="gk">προεχόμεθα</span>，第 9 节）：现在时中动／被动语态第一人称复数。这是一个罕见动词（新约仅此一见），字面与「在前、占先、胜过」有关。主流解法是「我们（犹太人）比他们更有优势吗／比他们强吗」，即在审判面前是否占优；另有少数解法把此词解为「我们是在为自己辩护吗」，但这与下文「决不是的」的回答衔接较弱（见「正统解经」第一点）。</li>
+            <li><strong>决不是的</strong>（<span class="gk">οὐ πάντως</span>，第 9 节）：「完全不是、绝不是」。副词 <span class="gk">πάντως</span>（「完全、无论如何」）与否定词连用，构成绝对否定——不是「不完全是」，而是「一点也不是」。</li>
+            <li><strong>已经证明</strong>（<span class="gk">προῃτιασάμεθα</span>，第 9 节）：完成时中动语态，「我们已经先前提出了指控」。动词 <span class="gk">προαιτιάομαι</span> 是法庭用语，「预先控告、正式起诉」；完成时表示这项指控已经提出，并且至今仍然有效——1:18–2:29 的全部论证就是这份起诉书。</li>
+            <li><strong>都在罪恶之下</strong>（<span class="gk">ὑφ᾽ ἁμαρτίαν εἶναι</span>，第 9 节）：介词 <span class="gk">ὑπό</span> ＋ 宾格，表示「在……权势之下、受……辖制」。注意 <span class="gk">ἁμαρτία</span>（「罪」）是单数：保罗说的不是「犯了许多件罪行」，而是「处在罪的权势之下」——罪在这里是一个有主权的势力（参 6:12–14、7:14 的「罪」同样作主语行动），人是它的臣民，不是它的旁观者。</li>
+            <li><strong>就如经上所记</strong>（<span class="gk">καθὼς γέγραπται</span>，第 10 节）：完成时被动态，「正如已经写下了的」。完成时强调经文的现存效力：写下来的判语今天仍然站立，不是过时的旧档案。</li>
+            <li><strong>义人</strong>（<span class="gk">δίκαιος</span>，第 10 节）：「义的、符合神标准的人」。在保罗的法庭语境里，这不是「大体上是个好人」，而是「在神的审判标准面前能站立得住的人」。</li>
+            <li><strong>明白的</strong>（<span class="gk">ὁ συνιῶν</span>，第 11 节）：现在时分词作名词用，「那明白的人、理解的人」。指的是对神、对真理的领悟能力——不是智力高低，而是对属灵真相的洞见。</li>
+            <li><strong>寻求神的</strong>（<span class="gk">ὁ ἐκζητῶν τὸν θεόν</span>，第 11 节）：现在时分词，前缀 <span class="gk">ἐκ-</span>（「出来、彻底」）加强了「寻求」的力度：「认真寻找、竭力寻求」。保罗否定的不是偶尔的好奇，而是这种彻底的、朝向神的寻求本身。</li>
+            <li><strong>偏离正路</strong>（<span class="gk">ἐξέκλιναν</span>，第 12 节）：不定过去时，「都转离了、偏离了」。前缀 <span class="gk">ἐκ-</span>（「出、离」）＋ <span class="gk">κλίνω</span>（「倾斜、转向」）：像从正路上拐了出去，方向错了。</li>
+            <li><strong>变为无用</strong>（<span class="gk">ἠχρεώθησαν</span>，第 12 节）：不定过去时被动态，「都变得无用了、变坏了」。词根与「有用」（<span class="gk">χρήσιμος</span>）相对：像变质的食物，失去了原有的功用。</li>
+            <li><strong>行善</strong>（<span class="gk">ποιῶν χρηστότητα</span>，第 12 节）：现在时分词＋宾语，「行出良善、做出善事」。名词 <span class="gk">χρηστότης</span>（「良善、仁慈」）在保罗笔下常指神的良善（2:4「他的恩慈」同词）：这里衡量的「善」，是以神的良善为尺度的善，不是人自定的善。</li>
+            <li><strong>连一个也没有</strong>（第 10 节 <span class="gk">οὐδὲ εἷς</span>；第 12 节 <span class="gk">οὐκ ἔστιν ἕως ἑνός</span>）：「甚至连一个都没有」——第 12 节的 <span class="gk">ἕως ἑνός</span>（「直到一个」）把否定推到极致：不是「几乎没有」，而是「连数到『一』都数不到」。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v9 的提问—回答—理由三段式</strong>：<span class="gk">Τί οὖν; προεχόμεθα; οὐ πάντως</span>（「这却怎么样呢？我们比他们强吗？决不是的！」）——两个短问句连珠，回答只有一个词组（「绝不是」），干净利落；随后 <span class="gk">γάρ</span>（「因」）引出理由：因为指控已经提出了。这不是新的论证，而是对 1:18–2:29 的回指——结论的重量来自前面整整两章半的证据，不是来自一句口号。</li>
+            <li><strong>v9 的「犹太人和希利尼人」</strong>：<span class="gk">Ἰουδαίους τε καὶ Ἕλληνας</span>（「犹太人与希利尼人」）——<span class="gk">τε…καί</span>（「既……又……」）把两组人并列为同一种处境的两个代表：没有第三组人可以例外，「犹太人＋希利尼人」就是「全人类」的保罗式说法（参 1:16、2:9–10 同样的并列）。</li>
+            <li><strong>v10–12 的引文串结构</strong>：<span class="gk">καθὼς γέγραπται ὅτι</span>（「就如经上所记：」）一次引出，随后是一串否定句：<span class="gk">οὐκ ἔστιν</span>（「没有」）出现了三次（第 10、11、12 节），<span class="gk">πάντες</span>（「都」）与 <span class="gk">ἅμα</span>（「一同」）再把否定从个人推向全体。这不是散文，是判词——短句、重复、绝对化，修辞本身就是审判的语气。</li>
+            <li><strong>v11–12 的分词作主语</strong>：<span class="gk">ὁ συνιῶν</span>（「明白的人」）、<span class="gk">ὁ ἐκζητῶν</span>（「寻求的人」）、<span class="gk">ὁ ποιῶν</span>（「行善的人」）——冠词＋现在时分词构成泛指的主语：「任何一个明白的人、任何一个寻求的人、任何一个行善的人」——否定这样的主语，就是否定整类人里有一个例外。</li>
+            <li><strong>v12 的不定过去时表状态</strong>：<span class="gk">ἐξέκλιναν</span>（「偏离了」）与 <span class="gk">ἠχρεώθησαν</span>（「变为无用了」）都是不定过去时，但这里不是在讲历史上某一次具体的偏离事件，而是用「已完成」的时态概括人类的既成状态：已经偏离、已经无用——现状就是判决。</li>
+            <li><strong>v11–12 的内在次序</strong>：明白（头脑）→ 寻求（心志）→ 偏离（方向）→ 无用（价值）→ 行善（行为）——从内到外，从认识到行动，一层层收紧：不是只有行为坏了，而是认识坏了、寻求坏了、方向坏了，连「善」本身都行不出来。保罗的普遍性指控是有解剖结构的，不是笼统的骂人。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>「我们比他们强吗」：特权不能在审判中兑换成优势（v9）</strong>：原文根据是 <span class="gk">προεχόμεθα</span> 与绝对否定 <span class="gk">οὐ πάντως</span>，以及 <span class="gk">γάρ</span> 引出的理由（指控已经提出）。穆理的论证抓住「我们」的主语：保罗在此处是站在犹太人一边说话（他自己就是犹太人，参 9:3、11:1），问题的意思是「我们犹太人在审判面前是否比外邦人占优」——答案「决不是的」不是情绪化的自贬，而是法庭逻辑：3:1–2 承认的特权（神的圣言交托他们）是救赎历史中的优先（priority），不是审判标准中的豁免（exemption）；优先的意思是「先听见福音」（1:16「先是犹太人」），不是「少受审判」。穆尔对 <span class="gk">προεχόμεθα</span> 的词义作了更细的梳理：这个罕见动词在当时的希腊文里确有「占先、胜过」的意思，也有少数证据支持「提出辩护」的意思；但他与穆理一致，认为上下文决定了前者——因为 3:1 刚刚问过「长处」，3:9 是同一个问题的审判版；而且回答「决不是的」若针对「我们在辩护吗」，语义上几乎不通。分歧注明：另有解经者把「我们」读作「我们基督徒」（保罗与罗马信徒），问题就变成「我们基督徒比犹太人强吗」——穆理与穆尔都排除此解，因为 3:9 的「我们」必须与「犹太人」同一边，否则「犹太人和希利尼人都在罪恶之下」这句理由就接不上问题。历代共识：拣选与特权从来不是审判的护身符——从旧约先知（摩 3:2「在地上万族中，我只认识你们；因此，我必追讨你们的一切罪孽」）到保罗，这条线是一贯的：认识得越多，责任越大，不是豁免越大。</li>
+            <li><strong>「都在罪恶之下」：罪不是清单，是权势（v9）</strong>：原文根据是单数 <span class="gk">ἁμαρτία</span> 与 <span class="gk">ὑπό</span> ＋ 宾格的辖制结构。穆理强调，保罗在这里完成了 1:18–2:29 的视角转换：前面两章列举的是「罪行」（不虔、不义、论断、违犯律法），3:9 把这些罪行收束为一个「权势」——人不是偶尔犯罪的自由人，而是「在罪之下」的臣民。这个单复数之别极为关键：若罪只是「一件件错事」，人还可以用「好事多于坏事」来平衡；若罪是「权势」，平衡的算术就失效了——臣民的身份本身就是问题。穆尔补上与后文的连接：3:9 的「在罪之下」是 5:12–21（罪藉亚当作王）与 6:12–23（罪作主 vs 恩典作主）、7:14–25（住在我里面的罪）的预告——保罗的罪论从一开始就是「权势论」，不是「行为清单论」。互文：约 8:34「所有犯罪的，就是罪的奴仆」——同一个「在……之下」的意象；加 3:22「圣经把众人都圈在罪里」——「圈在」与「在……之下」是同一幅图。分歧与共识：现代读者有时问，「在罪之下」是否否定了人的道德责任（「我是被辖制的，所以不怪我」）？穆理与穆尔的共同回答是否定的：保罗一面说人「在罪之下」，一面在 2:1–29 坚持人「无可推诿」——辖制是真实的，责任也是真实的；两者的张力保罗留到第 7 章才深入展开，3:9 只是先把两个事实并列摆出。</li>
+            <li><strong>引文串的权威：不是保罗在骂人，是经上已经这样判了（v10–12）</strong>：原文根据是 <span class="gk">καθὼς γέγραπται</span> 与引文的出处（诗 14:1–3／诗 53:1–3，七十士译本措辞）。穆理指出，保罗引用诗篇的方式值得注意：诗 14 篇开头讲的是「愚顽人心里说：没有神」，表面上似乎只针对「愚顽人」一类人；但诗篇本身在第 2 节已经把视角拉到普遍：「耶和华从天上垂看世人，要看有明白的没有，有寻求神的没有」——普遍性的种子本来就在诗篇里，保罗不是把一句针对少数人的话硬套到所有人头上，而是把诗篇自己的普遍视野展开来用。穆尔则从「引文串」（catena）的技巧补充：保罗在 3:10–18 把多处经文（诗篇、传道书、以赛亚书）编成一串，中间不加自己的评论，让经文自己说话——这种技巧在犹太解经传统里是「以经解经」的最高形式：当保罗要下全人类都有罪的判决时，他不依赖自己的修辞，而让以色列自己的圣经来作证。分歧注明：有现代学者质疑，诗 14 篇的「没有行善的」是否真能涵盖义人（如创 6:9 的挪亚、伯 1:1 的约伯都被称义人）？穆理与穆尔的回答一致：旧约称人为「义人」，是相对意义上的（在人的行为层面、在约的群体里被算为义），而保罗在这里的「义人」是绝对意义上的（在神完全的标准面前能站立得住）——相对的义存在，绝对的义不存在；两者的标准不同，所以不矛盾。这一点在 3:19–20（「凡有血气的，没有一个因行律法能在神面前称义」）会得到正式确认。</li>
+            <li><strong>没有寻求神的：普遍堕落的解剖结构（v11–12）</strong>：原文根据是 v11–12 的次序（明白 → 寻求 → 偏离 → 无用 → 行善）与现在时分词的持续含义。穆理把这段读作「全然堕落」（total depravity）的经典文本，但他立刻加上历代改革宗神学一直强调的限定：全然堕落不是「人坏到了极点」（人人都是最坏的），而是「堕落遍及了整个人」——头脑（没有明白的）、心志（没有寻求神的）、方向（都偏离了）、价值（变为无用）、行为（没有行善的），没有一个层面未被波及。穆尔在这一点上与穆理完全一致，但他更强调「没有寻求神的」与圣经别处「寻求神」语言的关系：圣经确实吩咐人「寻求神」（代下 15:2、诗 105:4、来 11:6「到神面前来的人，必须信有神，且信他赏赐那寻求他的人」），也记载了人寻求神的实例（如徒 17:27 雅典人「摸索」神）——这与 3:11 是否矛盾？穆尔的回答是：不矛盾，因为 3:11 讲的是「凭自己」的寻求（未被恩典触动的人性），而别处的寻求讲的是「蒙恩典催动」的寻求（神先寻找人，人才能寻求神，参约 6:44「若不是差我来的父吸引人，就没有能到我这里来的」）；穆理的表述更简洁：人若寻求神，那寻求本身就是神恩典工作的证据，不是人性的自然产物。互文：约 3:19–20「光来到世间，世人因自己的行为是恶的，不爱光，倒爱黑暗」——「不寻求」不是中立的无知，而是主动的回避；这与 1:18「阻挡真理」、1:21「心思变为虚妄」是同一条线。</li>
+            <li><strong>「没有行善的」与 2:6–11 是否矛盾：原则与事实的两层（v12）</strong>：原文根据是 <span class="gk">ποιῶν χρηστότητα</span>（「行出良善」）的标准（以神的良善为尺度）与 2:6–7（「恒心行善……就以永生报应他们」）的对照。有读者会问：保罗在 2:7 才说「恒心行善的」得永生，3:12 又说「没有行善的」——这不是自相矛盾吗？穆理的解答分两层：2:6–11 陈述的是审判的「原则」（神按行为报应——这是审判的标准，永远成立）；3:10–12 陈述的是按这标准衡量的「事实」（没有一个人达到了标准——这是人类的现状）。原则与事实不矛盾，正如「考试满分得奖」与「没有人考满分」可以同时成立。穆尔补强：2:13「不是听律法的为义，乃是行律法的称义」同样是原则陈述；保罗的论证策略正是先立原则（2 章），再用事实（3 章）证明原则之下无人能站立——这样，3:21「但如今，神的义在律法以外已经显明出来」才显得不是可有可无的补充，而是唯一的出路。历代共识：这段不是在否定「普遍恩典」下的相对善行（人间确实有仁慈、诚实、舍己，保罗在别处也承认外邦人「顺着本性行律法上的事」，2:14）——3:12 否定的是「能在神面前算为义的善」，即足以使人在审判中站立的善；相对的善存在，称义的善不存在。这个区分，是读懂 3:21 以后全部论证的钥匙。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>放下「我们比他们强」的天平</strong>：3:9 的问题在今天换了主语仍在问：「我们教会比他们教会强吗？」「我们这代信徒比那代强吗？」「我比那个跌倒的人强吗？」保罗的回答是「决不是的」——不是因为大家一样坏，而是因为大家「都在罪恶之下」：天平的两边若都在同一个权势之下，比较谁「更强」就失去了意义。操练：下一次你发现自己在心里给人（或给某个群体）打分、排名时，停下来问一句：我这杆秤，是放在「罪恶之下」的同一地面上的吗？若是，那就没有资格用它来抬高自己。</li>
+            <li><strong>若你今天在寻求神，认出那是恩典</strong>：3:11 说「没有寻求神的」——若你此刻正在读这段研读、正在思想神的话，这本身就不是你天然本性的产物，而是神已经在你里面动工的记号。不要把「我寻求神」当作自己的功劳（那会把 3:11 的否定又偷偷收回来），也不要因为「我寻求得不够热切」而绝望（寻求的热切程度从来不是标准，寻求的方向才是）。操练：为「你居然愿意寻求神」这件事本身，向神献上一次感谢——不是感谢自己，而是感谢那位先寻找你的神。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>3:12 的次序是：没有明白的 → 没有寻求神的 → 都偏离了 → 变为无用 → 没有行善的。对照你自己：你最容易在哪一环上为自己开脱——是「我明白道理」（所以我不算没有明白的）？是「我在寻求」（所以我不算没有寻求的）？还是「我做了不少好事」（所以我不算没有行善的）？按 3:9–12 的标准（以神的良善为尺度、在神面前能站立得住），这三句开脱哪一句真正站得住？若都站不住，那么 3:21 即将展开的「律法以外」的义，对你来说意味着什么？</p>
+          </div>
+        </article>
+
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
