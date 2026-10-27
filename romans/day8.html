@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 8 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day8-am">3:21–26</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 8 天</span>2026-10-27（周二） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+        <article class="entry" id="day8-am">
+          <div class="entry-head">
+            <span class="entry-day">第 8 天 · 晨 — 2026-10-27（周二）</span>
+            <h3 class="entry-title">但如今，神的义在律法以外已经显明出来 <span class="ref">· 罗马书 3:21–26</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">21</span>但如今，神的义在律法以外已经显明出来，有律法和先知为证：<span class="vn">22</span>就是神的义，因信耶稣基督加给一切相信的人，并没有分别。<span class="vn">23</span>因为世人都犯了罪，亏缺了神的荣耀；<span class="vn">24</span>如今却蒙神的恩典，因基督耶稣的救赎，就白白地称义。<span class="vn">25</span>神设立耶稣作挽回祭，是凭着耶稣的血，藉着人的信，要显明神的义；因为他用忍耐的心宽容人先时所犯的罪，<span class="vn">26</span>好在今时显明他的义，使人知道他自己为义，也称信耶稣的人为义。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>本篇是全卷最大的转折点。从 1:18 到 3:20，保罗用了整整两章半完成一件事：证明全人类都在罪恶之下、无可推诿、律法只能叫人知罪。读到 3:20，法庭的门似乎已经关上——没有一个人能因行律法在神面前称义。就在这里，保罗写下全卷最著名的两个字：「但如今」（<span class="gk">νυνὶ δὲ</span>）。3:21–26 是「因信称义」大段落（3:21–5:21）的纲领段：它先把称义的全部要素一次摆齐——神的义、律法以外、因信、白白的恩典、救赎、挽回祭、血、显明神的义——然后在 3:27–31 推出结论（人的夸口在哪里、律法被废掉还是坚固），在第 4 章用亚伯拉罕作先例，在第 5 章展开称义的福分与亚当／基督的对比。读懂 3:21–26，就等于拿到了 3:21–5:21 的总钥匙。</p>
+          <p>还要注意 3:21 与 1:17 的呼应。1:17 说「神的义正在这福音上显明出来」——那是主题宣告；3:21 说「神的义在律法以外已经显明出来」——那是主题展开。中间隔着的 1:18–3:20 不是离题，而是必要的铺垫：若不知道人已经全然定罪，就不会明白「律法以外」的义为什么是唯一的出路。保罗的论证次序从来不是「先讲好消息，再讲坏消息」，而是「先把坏消息讲到底，好消息才显得是好消息」。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>但如今</strong>（<span class="gk">νυνὶ δὲ</span>，第 21 节）：「如今」＋转折词「但」。在保罗笔下，「如今」常标志救赎历史新阶段的到来（参 6:22「但如今既从罪里得了释放」、7:6「现今就脱离了律法」）——不是「从前是这样，现在换个心情」，而是「基督事件已经发生，局面已经不同了」。</li>
+            <li><strong>已经显明出来</strong>（<span class="gk">πεφανέρωται</span>，第 21 节）：完成时被动态，「已经显明了，并且至今仍显明着」。完成时表示这显明是一件已经成就、效果持续的事——不是正在进行中的启示过程，而是已经揭开、摆在眼前的事实。</li>
+            <li><strong>在律法以外</strong>（<span class="gk">χωρὶς νόμου</span>，第 21 节）：介词 <span class="gk">χωρίς</span> ＋ 属格，「没有、离开、在……之外」。意思不是「违反律法」，而是「不以律法为管道、不以律法为根据」——义的显明绕过了律法这条路，却没有废掉律法（因为紧接着说「有律法和先知为证」）。</li>
+            <li><strong>为证</strong>（<span class="gk">μαρτυρουμένη</span>，第 21 节）：现在时被动态分词，「正被见证着」。律法和先知在这里的角色是「见证人」，不是「中介」——他们出庭作证：这义早在旧约里就有预告；他们不发放这义，只指认这义。</li>
+            <li><strong>神的义</strong>（<span class="gk">δικαιοσύνη θεοῦ</span>，第 21、22 节）：属格 <span class="gk">θεοῦ</span>（「神的」）有多种可能的含义——神自己的义（主观属格）、从神而来的义（来源属格）、神所赐的义（与信徒有关的义）。保罗在此处没有加限定词，正是这个「不加限定」使后世解经争论不休（见「正统解经」第二点）。</li>
+            <li><strong>因信耶稣基督</strong>（<span class="gk">διὰ πίστεως Ἰησοῦ Χριστοῦ</span>，第 22 节）：介词 <span class="gk">διά</span> ＋ 属格，「藉着、通过」。关键在 <span class="gk">Ἰησοῦ Χριστοῦ</span> 这个属格：是「人对耶稣基督的信」（客观属格），还是「耶稣基督的信实／忠信」（主观属格）？这是当代保罗研究最著名的争论之一（见「正统解经」第三点）。</li>
+            <li><strong>并没有分别</strong>（<span class="gk">οὐ γάρ ἐστιν διαστολή</span>，第 22 节）：「因为没有区分、没有差别」。名词 <span class="gk">διαστολή</span>（「区分、分别」）新约仅出现两次（此处与 10:12「犹太人和希利尼人并没有分别」）——保罗用一个罕见词强调：称义的门对犹太人与外邦人是同一扇，没有两套标准。</li>
+            <li><strong>世人都犯了罪</strong>（<span class="gk">πάντες γὰρ ἥμαρτον</span>，第 23 节）：不定过去时，「都犯了罪」。不定过去时在这里是概括用法：不是指某一次具体的犯罪事件，而是把全人类的犯罪概括为一个既成的事实——与 5:12 的亚当神学（罪藉一人入了世界）前后呼应。</li>
+            <li><strong>亏缺了</strong>（<span class="gk">ὑστεροῦνται</span>，第 23 节）：现在时中动语态，「正亏缺着、持续地不够」。时态很关键：亏缺不是过去一次的事件，而是持续的状态——人活在「够不上神荣耀」的处境里。动词 <span class="gk">ὑστερέω</span>（「缺乏、不及、落后」）描绘的是「达不到标准」的落差。</li>
+            <li><strong>白白地</strong>（<span class="gk">δωρεάν</span>，第 24 节）：副词，「无偿地、不花代价地」。与「工价」（<span class="gk">μισθός</span>，参 4:4「作工的得工价，不算恩典」）相对：称义不是挣来的工资，而是白给的礼物。</li>
+            <li><strong>救赎</strong>（<span class="gk">ἀπολύτρωσις</span>，第 24 节）：前缀 <span class="gk">ἀπο-</span>（「出、脱离」）＋ <span class="gk">λύτρωσις</span>（「赎价、赎回」）。意象来自奴隶市场：用赎价把奴隶买出来、得自由。称义是法庭意象，救赎是市场意象——保罗在同一节里并用两个隐喻，因为一个隐喻说不全十架。</li>
+            <li><strong>称义</strong>（<span class="gk">δικαιούμενοι</span>，第 24 节）：现在时被动态分词，「正被算为义」。被动态表明称义是神的作为；现在时表明这不是只关乎过去的一次事件，而是信徒持续处在其中的状态——「蒙恩典、因救赎、白白称义」是同一个动作的三个侧面。</li>
+            <li><strong>挽回祭</strong>（<span class="gk">ἱλαστήριον</span>，第 25 节）：名词，新约仅出现两次（此处与来 9:5）。在七十士译本里，这个词指约柜上的「施恩座」（出 25:17–22；利 16:14–15，大祭司在赎罪日把血洒在上面的地方）。它同时承载三层含义：施恩座（神与人相会之处）、挽回（平息忿怒）、除罪（除去罪污）——三层含义的取舍是解经的焦点（见「正统解经」第四点）。</li>
+            <li><strong>设立</strong>（<span class="gk">προέθετο</span>，第 25 节）：不定过去时中动语态，「预先设立、公开摆出来」。主语是神：挽回祭不是人献给神以求息怒的礼物，而是神自己设立、公开陈列的——方向完全反过来了。</li>
+            <li><strong>宽容</strong>（<span class="gk">πάρεσιν</span>，第 25 节）：「越过、暂且放过、暂缓执行」。新约仅此一见。注意它与「赦免」（<span class="gk">ἄφεσις</span>，「除去、赦免」）不同：宽容是「暂时不追究」，赦免是「彻底除去」——这个区别是理解 25–26 节逻辑的关键。</li>
+            <li><strong>先时所犯的罪</strong>（<span class="gk">τῶν προγεγονότων ἁμαρτημάτων</span>，第 25 节）：完成时分词，「先前已经发生的罪」——指基督以前历代的罪：神在旧约时代对罪的「忍耐」（参 2:4「他的恩慈、宽容、忍耐」），在当时并没有给出最终的交代。</li>
+            <li><strong>在今时</strong>（<span class="gk">ἐν τῷ νῦν καιρῷ</span>，第 26 节）：「在现今的时刻」。与第 21 节的 <span class="gk">νυνὶ</span>（「如今」）首尾呼应：过去的宽容（先时）与现在的显明（今时）构成一对——十架同时回答了过去与现在两个问题。</li>
+            <li><strong>自己为义，也称……为义</strong>（<span class="gk">δίκαιον καὶ δικαιοῦντα</span>，第 26 节）：形容词 <span class="gk">δίκαιον</span>（「公义的」）与现在时分词 <span class="gk">δικαιοῦντα</span>（「称人为义的」）出自同一词根，并列放在一起：神既是公义的审判者，又是称罪人为义的那一位——这就是 3:21–26 要解决的悖论。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v21 的语序强调</strong>：希腊文语序是 <span class="gk">Νυνὶ δὲ χωρὶς νόμου δικαιοσύνη θεοῦ πεφανέρωται</span>（「但如今，在律法以外，神的义已经显明出来」）——「在律法以外」放在主语「神的义」之前。语序前置就是强调：保罗先把「律法以外」这个否定条件摆在读者面前，再说出主语——义的显明方式（不靠律法）与义本身同样重要。</li>
+            <li><strong>v22 是 v21 的展开说明</strong>：第 22 节没有新的动词，它是第 21 节「神的义」的同位解释（epexegetical）：「就是神的义」——随后用两个介词短语界定这义：<span class="gk">διὰ πίστεως</span>（「因信」，途径）与 <span class="gk">εἰς πάντας τοὺς πιστεύοντας</span>（「加给一切相信的人」，范围）。途径与范围一对：信是唯一的途径，相信的人是唯一的范围——没有别的途径，也没有被排除的人群。</li>
+            <li><strong>v23 的 γάρ 支撑 v22 的「并没有分别」</strong>：第 23 节以 <span class="gk">γάρ</span>（「因为」）开头，说明「没有分别」的理由：因为「世人都犯了罪」。逻辑链条是：人人都在同一光景里（都犯了罪、都亏缺），所以神的义临到人人时也没有分别——普遍的罪对应普遍的恩典。</li>
+            <li><strong>v24 的分词结构</strong>：<span class="gk">δικαιούμενοι δωρεὰν τῇ αὐτοῦ χάριτι διὰ τῆς ἀπολυτρώσεως</span>（「蒙神的恩典，因基督耶稣的救赎，就白白地称义」）——现在时分词 <span class="gk">δικαιούμενοι</span>（「被称义」）是主句的伴随状态，三个修饰语并列：<span class="gk">δωρεάν</span>（「白白地」，代价）、<span class="gk">τῇ χάριτι</span>（「藉恩典」，方式）、<span class="gk">διὰ τῆς ἀπολυτρώσεως</span>（「藉救赎」，根基）。一个称义，三个角度：白白（不是挣的）、恩典（不是配的）、救赎（不是空口说的，基督付了代价）。</li>
+            <li><strong>v25 的三个介词短语</strong>：<span class="gk">ἐν τῷ αὐτοῦ αἵματι</span>（「凭着他的血」）、<span class="gk">διὰ τῆς πίστεως</span>（「藉着信」）、<span class="gk">εἰς ἔνδειξιν</span>（「为显明」）——血是挽回祭的根据，信是人领受的途径，显明是神设立的目的。三个短语缺一不可：没有血，挽回祭就没有代价；没有信，挽回祭就与人不相干；没有「显明」，十架就只是一件历史事件，而不是神自我启示的行动。</li>
+            <li><strong>v25–26 的两个目的从句</strong>：<span class="gk">εἰς ἔνδειξιν τῆς δικαιοσύνης αὐτοῦ</span>（「要显明神的义」，第 25 节）与 <span class="gk">εἰς τὸ εἶναι αὐτὸν δίκαιον καὶ δικαιοῦντα</span>（「好显明他自己为义，也称信耶稣的人为义」，第 26 节）——前者说明十架显明神的义「针对什么问题」（过去宽容先时的罪），后者说明「在今时」显明的结果（神自己为义＋称信者为义）。两个目的从句一前一后，构成完整的回答：过去的悬案与现在的判决，在同一座十架上结案。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>「但如今」：全卷的铰链，不是情绪的转折（v21）</strong>：原文根据是 <span class="gk">νυνὶ δὲ</span> 与完成时 <span class="gk">πεφανέρωται</span>（「已经显明」）。穆理的论证抓住「但如今」在全卷结构中的位置：它是 1:18–3:20（定罪）与 3:21–5:21（称义）之间的铰链——没有它，前半卷是死胡同，后半卷是无根之木。穆理特别强调，「但如今」不是「从前律法时代、如今恩典时代」的简单时代切换：因为同一节就说「有律法和先知为证」——这义在旧约里早有见证，基督事件不是推翻旧约，而是成就旧约。穆尔补上「如今」的末世论含义：在保罗的用法里，「如今」常指「末世已经闯入现今」——神在末日要做的事（审判与称义），已经在基督里提前发生了；所以 3:21 的「如今」与 1:17 的「正在显明」是同一件事的两种说法：主题宣告（1:17）与主题展开（3:21）。分歧注明：时代论进路倾向把「但如今」读作两个时代的硬分界（律法时代结束、恩典时代开始），改革宗救赎历史进路（穆理、穆尔）则强调连续性——律法和先知为这义作证，义的显明是应许的成就，不是计划的更换。历代共识：转折的根基在基督事件，不在人的转变——「如今」之所以不同，是因为基督已经来了、已经死了、已经复活了，不是因为人忽然变好了。</li>
+            <li><strong>「神的义」到底指什么：属性、作为与恩赐的三重含义（v21–22）</strong>：原文根据是属格 <span class="gk">θεοῦ</span> 的歧义与 3:21–26 的法庭语境（称义、挽回祭、显明义、审判）。穆理的论证分两步：第一，「神的义」首先是神自己的属性——神是公义的，祂的品格就是义的标准；第二，这属性在称义行动中「显明」并「加给」信的人——神的义既是祂自己的义，也是祂赐给人的义（人被算为义，义的来源仍在神）。穆理坚持，离开「神自己的义」谈「赐给人的义」，就会把称义变成一种与神的品格无关的法律拟制。穆尔则与当代新视角派（以 N. T. 赖特为代表）深入对话：新视角派强调「神的义」是「神守约的信实」——神向亚伯拉罕之约的信实，在基督里向万民成就，义的重点是「神信守承诺」，而不是「人如何上天堂」。穆尔承认这一面有经文根据（神的信实在 3:3–7 刚刚被强调过），但他坚持不能把「神的义」化约为「守约信实」：3:21–26 的语境是法庭（称义、挽回祭、忿怒的平息、过去罪案的了结），义的核心仍是法庭性的「算为义」——守约信实是背景，法庭宣告是前景。分歧传统注明：路德宗传统强调「外来的义」（<span class="gk">iustitia aliena</span>，基督的义算给信徒）、天主教传统强调「注入的义」（义进入人心、使人更新）、东正教传统侧重神化（theosis）视野——三者在 3:21–22 上都承认一个底线：义的来源在神不在人，「在律法以外」排除了人以行为自义的一切可能；争论在于义「如何」临到人（算为义还是注入人心），而不在于义「从谁」而来。</li>
+            <li><strong>「因信耶稣基督」：主观属格与客观属格之争（v22）</strong>：原文根据是 <span class="gk">διὰ πίστεως Ἰησοῦ Χριστοῦ</span> 的属格歧义，以及第 22 节下半「加给一切相信的人」（<span class="gk">εἰς πάντας τοὺς πιστεύοντας</span>）与第 25–26 节「藉着人的信」「称信耶稣的人为义」的平行。穆理持客观属格（「人对耶稣基督的信」）：理由有三——第一，第 22 节下半立即用「相信的人」解释了「信」的对象，保罗自己给出了答案；第二，第 25–26 节三次回到「人的信」「信耶稣的人」，若第 22 节的信是指基督的信实，上下文就会前后不一；第三，保罗别处论称义时，「信」恒指人对基督的信（参 3:28「人称义是因着信」、4:5「惟有不作工的，只信称罪人为义的神」）。穆尔同样持客观属格，但他比穆理更认真地对待主观属格派的论证：主观派指出，保罗在别处确实用 <span class="gk">πίστις</span> ＋ 属格表示基督自己的忠信（如加 2:16 的平行结构），而且从神学上看，救赎的根基确实是基督的忠信顺服（参 5:19「因一人的顺从，众人也成为义了」）。穆尔的回应是：即使承认基督的忠信是救赎的根基，3:22 的语境（与「相信的人」平行、与 25–26 节的「人的信」呼应）仍决定这里的信是指人的信——基督的忠信是 3:25「神设立挽回祭」所讲的事，人的信是 3:22「因信」所讲的事，两者都在 3:21–26 里，但不在同一个短语里。分歧注明：近年不少学者（包括部分新视角派学者）持主观属格，认为「基督的信实」更能突出救赎完全出于神；但无论取哪一解，「信」都不是功德——主观解下信是基督的忠信，客观解下信是空手领受——称义唯独藉信、不在乎行为的结论不受影响。历代共识：信心是领受的手，不是交换的价——手再空，也不能说手就是价。</li>
+            <li><strong>「挽回祭」与「宽容先时的罪」：十架如何同时显明神的义（v25–26）</strong>：原文根据是 <span class="gk">ἱλαστήριον</span> 的三层含义、<span class="gk">προέθετο</span>（「神设立」）的主语、<span class="gk">πάρεσις</span>（「宽容」）与 <span class="gk">ἄφεσις</span>（「赦免」）的区别，以及第 25–26 节的两个目的从句。穆理的论证抓住「挽回」（propitiation）一面：神的忿怒（1:18）在保罗神学里是真实的，不是比喻——罪惹动神的忿怒，忿怒必须被平息；挽回祭的意义正是「平息忿怒」。但穆理立刻强调方向：挽回祭是「神设立」的，不是人献上的——异教的献祭是人讨好神明，保罗的挽回祭是神自己设立、自己提供祭物（基督的血），神既是忿怒的主体，又是平息忿怒的设立者；这正是福音与一切宗教的根本区别。穆尔则认为 <span class="gk">ἱλαστήριον</span> 应同时包含挽回与除罪（expiation）两面：血既平息忿怒，又除去罪污；他引用七十士译本的用法（施恩座是神与人相会、血洒在其上的地方）说明，保罗选用这个词，就是要让读者同时想起赎罪日的全部画面（利 16 章）——大祭司、施恩座、血、赎罪，一次到位。关于「宽容先时的罪」，穆理与穆尔完全一致：神在旧约时代对罪的「忍耐」（2:4），是「越过」（<span class="gk">πάρεσις</span>），不是「赦免」（<span class="gk">ἄφεσις</span>）——旧约的献祭与忍耐是暂缓执行，不是结案；若没有十架，神的宽容会使祂的公义受质疑（「神怎么可以放过罪？」）。十架的回答是：神没有放过罪，祂在基督身上执行了审判——所以「在今时」，祂既是「自己为义」（没有枉法），又是「称信耶稣的人为义」（没有弃绝罪人）。互文：出 34:6–7「赦免罪孽……万不以有罪的为无罪」的张力，在十架上解开；赛 53 章受苦仆人的代赎；约壹 2:2、4:10 的 <span class="gk">ἱλασμός</span>（「挽回祭」）是同一词族的平行见证。分歧注明：自由派神学曾把「挽回」（平息忿怒）视为原始宗教残余，主张只保留「除罪」一面；穆理与穆尔都拒绝这种删减——删掉忿怒，十架就只剩下道德榜样，「神的义」也就不再需要「显明」了。</li>
+            <li><strong>「白白地称义」与「亏缺了神的荣耀」：两个隐喻与人的光景（v23–24）</strong>：原文根据是 <span class="gk">δικαιούμενοι</span>（法庭意象）与 <span class="gk">ἀπολύτρωσις</span>（市场意象）的并用、<span class="gk">δωρεάν</span>（「白白地」）与「工价」的对照，以及 <span class="gk">ὑστεροῦνται</span>（现在时，「持续亏缺」）的时态。穆理的论证是：称义是地位的改变（法庭一次宣告）、救赎是代价的付出（基督的血买回奴隶）、恩典是方式（白白，不是配得）——三者合起来，排除一切「工价」思维（4:4「作工的得工价，不算恩典，乃是该得的」）。若只讲称义不讲救赎，称义会显得像一句空话；若只讲救赎不讲称义，救赎会显得没有法庭后果；保罗两个隐喻并用，正是要说明十架既付了代价、又改了地位。穆尔则抓住「亏缺」的现在时：亏缺不是过去一次的事件，而是持续的状态——人活在「够不上神荣耀」的处境里；他进一步指出 3:23 与 1:23 的呼应：1:23 说人「将不能朽坏之神的荣耀变为偶像的形象」——人主动交换了荣耀；3:23 说人「亏缺了神的荣耀」——人如今处在缺乏荣耀的状态里；从「交换荣耀」到「亏缺荣耀」，是同一堕落的两面。互文：3:23 与 3:9（「都在罪恶之下」）、3:19（「普世的人都伏在神审判之下」）构成普世判决的三重奏；5:12 的亚当神学（罪藉一人入了世界）是 3:23「世人都犯了罪」的深层解释。分歧注明：有人把 3:23 读作「个人犯罪经历」的描述（「每个人都犯过罪」），穆理与穆尔都主张这里是普遍性陈述——<span class="gk">πάντες</span>（「都」）＋不定过去时 <span class="gk">ἥμαρτον</span> 的概括用法，与 3:9、3:19 的普世判决一致；个人经历是真实的，但保罗在这里讲的是全人类的法庭地位。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>停止用「律法以内」的方式称义自己</strong>：3:21 说义是在「律法以外」显明的——但人最顽固的习惯，就是在「以外」之外另立一条「以内」的路：用表现、服侍、灵修打卡、道德优越感，向神（或向自己）证明「我还可以」。这些事本身未必是坏事，但一旦被用作「称义的证据」，它们就从礼物变成了工价。操练：今天列出你最常用来自我称义的三件事（可能是「我比某人更委身」「我这周读了多少章」「我没有犯那个罪」），诚实地承认它们在审判台前不能作数，然后凭信心领受一句「白白地称义」——不是因为你做得够好，而是因为基督已经付了代价。</li>
+            <li><strong>把「但如今」说给正在定罪感里的人</strong>：若你（或你身边的人）正被过去的罪压着——「先时所犯的罪」——3:25–26 的回答不是「神宽容了，所以算了」（那是把 <span class="gk">πάρεσις</span> 当成 <span class="gk">ἄφεσις</span>），也不是「神不会放过你」（那是只讲忿怒、不讲挽回祭），而是「神在基督身上已经处理了，所以祂可以称你为义」。操练：为一件你一直不敢带到神面前的旧事祷告——不淡化它（它是罪），不夸大它（它已经被处理），承认它，并领受「他自己为义，也称信耶稣的人为义」。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>3:26 说神「自己为义，也称信耶稣的人为义」——在人的法庭上，法官若称有罪的人为义，自己就成了不义的法官。神是怎样做到既不枉法、又称罪人为义的？按 3:25 的三个要素逐一想：神设立（若挽回祭是人献上的，方向就反了）、凭着血（若没有代价，赦免就是枉法）、藉着信（若没有信，人就与挽回祭不相干）——哪一个要素若缺了，这个悖论就解不开？再对照你自己：面对自己的罪（或别人的罪）时，你是倾向于「神会放过」（只要宽容）还是倾向于「神不会放过我」（只要审判）？十架的回答如何同时纠正这两种倾向？</p>
+          </div>
+        </article>
+
+        <div class="daynav"><a href="day7.html">← 第 7 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
