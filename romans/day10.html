@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 10 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day10-am">4:13–17</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 10 天</span>2026-10-29（周四） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+        <article class="entry" id="day10-am">
+          <div class="entry-head">
+            <span class="entry-day">第 10 天 · 晨 — 2026-10-29（周四）</span>
+            <h3 class="entry-title">应许不是因律法，乃是因信而得的义 <span class="ref">· 罗马书 4:13–17</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">13</span>因为神应许亚伯拉罕和他后裔，必得承受世界，不是因律法，乃是因信而得的义。<span class="vn">14</span>若是属乎律法的人才得为后嗣，信就归于虚空，应许也就废弃了。<span class="vn">15</span>因为律法是惹动忿怒的；哪里没有律法，哪里就没有过犯。<span class="vn">16</span>所以人得为后嗣是本乎信，因此就属乎恩，叫应许定然归给一切后裔；不但归给那属乎律法的人，也归给那效法亚伯拉罕之信的人。<span class="vn">17</span>亚伯拉罕所信的，是那叫死人复活、使无变为有的神，他在主面前作我们世人的父。如经上所记：我已经立你作多国的父。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>本篇是第 4 章论证的第三步。晨篇（4:1–8）立住了先例：亚伯拉罕信神，这就算为他的义；晚篇（4:9–12）用时间顺序证明：称义先于割礼，割礼只是称义的记号与印证。可是，一个犹太读者还会追问：割礼不是条件，律法呢？亚伯拉罕的后裔，难道不是那些遵行律法的人吗？本篇就是保罗对这个追问的回答，而且回答的范围比割礼更大：问题不只是某一个仪式，而是整个「律法之路」与「应许之路」能不能并存。</p>
+          <p>注意本篇的论证起点不是抽象的神学，而是神给亚伯拉罕的应许本身。创世记里的应许一再出现：12:3「地上的万族都要因你得福」，13:14–15「凡你所看见的一切地，我都要赐给你和你的后裔」，17:8「我要将你现在寄居的地，就是迦南全地，赐给你和你的后裔永远为业」，22:17–18「你的后裔必得着仇敌的城门……地上万国都必因你的后裔得福」。保罗把这些应许收拢成一句话：亚伯拉罕和他后裔「必得承受世界」。从一块地到整个世界，从一族到万国——应许的规模本身就说明，它不可能靠一部只赐给一族的律法来实现。读本段时，要把这个「应许的规模」记在心里，它是后面「多国的父」的伏笔，也是今晚 4:18–25 亚伯拉罕信心榜样的舞台。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>应许</strong>（<span class="gk">ἐπαγγελία</span>，第 13、14、16 节）：名词，「宣告、应许」，在保罗书信里特指神主动立约的应许。本段三次出现，是全段的支柱词：第 13 节讲应许的内容（承受世界），第 14 节讲应许的命运（若靠律法，应许就废弃），第 16 节讲应许的归属（定然归给一切后裔）。</li>
+            <li><strong>承受世界</strong>（<span class="gk">κληρονόμον αὐτὸν εἶναι κόσμου</span>，第 13 节）：「作世界的后嗣」。「后嗣」是继承家业的儿子，不是雇工；「世界」（<span class="gk">κόσμος</span>）在这里不是指堕落的世界体系，而是指整个受造世界作为产业。应许的产业从迦南一地扩展到全世界，这是保罗对创世记应许的综合读法。</li>
+            <li><strong>属乎律法的人</strong>（<span class="gk">οἱ ἐκ νόμου</span>，第 14、16 节）：直译「出于律法的人」，指那些以律法为身份根基、靠律法站立的人。第 16 节的「属乎律法的人」与「效法亚伯拉罕之信的人」平行，说明保罗区分的不是犹太人与外邦人这两个族群，而是两条路：律法之路与信心之路。</li>
+            <li><strong>归于虚空／废弃</strong>（<span class="gk">κεκένωται / κατήργηται</span>，第 14 节）：两个完成时被动态：「信被倒空了」、「应许被废除了」。完成时表示既成、持续的结果：若后嗣靠律法，信不是暂时受损，而是被掏空；应许不是暂时搁置，而是被作废。两个词都是保罗爱用的「作废」语言（参 3:31「废掉律法」吗？断乎不是；6:6「灭绝罪身」）。</li>
+            <li><strong>惹动忿怒／过犯</strong>（<span class="gk">ὀργή / παράβασις</span>，第 15 节）：「律法是惹动忿怒的」——律法不是忿怒本身，而是把忿怒「做出来」（<span class="gk">κατεργάζεται</span>，成就、制成）的工具。「过犯」（<span class="gk">παράβασις</span>）特指「越过界线、违犯明文禁令」，与泛指的「罪」（<span class="gk">ἁμαρτία</span>）不同：没有明文律法的地方，罪仍然存在，但还不构成「过犯」——没有界线可越，就没有越界这回事。</li>
+            <li><strong>定然</strong>（<span class="gk">βεβαία</span>，第 16 节）：形容词，「坚固的、可靠的、站得住的」，古代也用于法律文书的「有效、不可撤销」。「叫应许定然」就是叫应许站得住脚、不会落空。第 16 节的逻辑链就系在这个词上：本乎信 → 属乎恩 → 应许定然。</li>
+            <li><strong>叫死人复活、使无变为有</strong>（<span class="gk">ζῳοποιοῦντος τοὺς νεκροὺς καὶ καλοῦντος τὰ μὴ ὄντα ὡς ὄντα</span>，第 17 节）：两个现在时分词，描绘神的本性：「使死人活过来的那位」与「呼叫不存在之物如同存在的那位」。前者指向复活的大能，后者指向创造的大能（创 1 章神说有就有；神一呼叫，不存在的东西就存在）。亚伯拉罕所信的，正是这样一位神——这为今晚 4:18–25「身体如同已死、撒拉的生育已经断绝」却仍相信的榜样埋下伏笔。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v13 的「不是……乃是……」</strong>：<span class="gk">οὐ … διὰ νόμου … ἀλλὰ διὰ δικαιοσύνης πίστεως</span>——应许临到亚伯拉罕，不是通过律法，而是通过「因信而得的义」。「因信而得的义」是属格结构：义的来源与形态都是信——义不是靠行为挣来的，而是借着信领受的。否定与肯定的对比句把两条路截然分开，没有中间路线。</li>
+            <li><strong>v14 的假设句与完成时</strong>：「若是属乎律法的人才得为后嗣」是条件句，先假设对方的立场成立，再推出两个灾难性后果：信被掏空、应许被作废。两个完成时被动态说明后果不是假设性的轻微损失，而是既成事实：律法之路一旦成为后嗣的条件，信心与应许就同时破产。</li>
+            <li><strong>v15 的因果链</strong>：「因为律法是惹动忿怒的」是第 14 节的理由：为什么律法之路会废弃应许？因为律法的作用不是赐生命，而是把罪显明为过犯、把过犯引向忿怒。第二句「哪里没有律法，哪里就没有过犯」是反向佐证：过犯的存在以律法为前提；律法一颁布，越界就有了名字，审判就有了依据。</li>
+            <li><strong>v16 的目的链</strong>：「所以人得为后嗣是本乎信，因此就属乎恩，叫应许定然归给一切后裔」——三个环节环环相扣：出于信（来源）→ 按照恩典（性质）→ 以致应许坚固（结果）。「叫」（<span class="gk">εἰς τὸ εἶναι</span>）是目的结构：神定规后嗣本乎信，目的就是要应许站得住；若后嗣本乎行为，应许就站不住，因为没有人能完全行出来。</li>
+            <li><strong>v17 的「在主面前」与经文引用</strong>：「他在主面前作我们世人的父」——「在主面前」（<span class="gk">κατέναντι</span>）是法庭与约的语言：亚伯拉罕的父职不是人间的血统认定，而是在神面前、在神的算定里成立的。接着引创 17:5「我已经立你作多国的父」——完成时「已经立」：在神的应许里，这件事已经定了，尽管当时亚伯拉罕还没有儿子以撒，更没有多国。应许的完成时，正是信心的根据。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>应许的规模决定道路：承受世界，不能靠只赐给一族的律法（v13）</strong>：原文根据是第 13 节「承受世界」与「不是因律法，乃是因信而得的义」的对比。穆理的论证抓住两个「不配」：第一，时间上的不配——应许赐给亚伯拉罕的时候，律法还没有颁布（律法在西奈，亚伯拉罕在四百多年前；加 3:17 说「那原先立的约」，律法不能废弃它）；第二，规模上的不配——应许的产业是「世界」，应许的后裔是「万国」，而律法是赐给以色列一族的；用一族的律法去实现万国的应许，器皿装不下内容。穆尔补上创世记的线索：创 12:3、22:18 的「万国都必因你的后裔得福」已经把应许的终点定在万国；保罗把「地」读成「世界」，不是随意的扩大，而是抓住了应许本身的普世方向——亚伯拉罕之约的终点，从来就不只是一块地。互文：加 3:16「所应许的原是向亚伯拉罕和他子孙说的……就是基督」，加 3:29「你们既属乎基督，就是亚伯拉罕的后裔，是照着应许承受产业的了」——后嗣的身份在基督里才完全显明；太 5:5「温柔的人必承受地土」是同一应许在新约的回声。分歧注明：「承受世界」是否指新天新地，学者有讨论：穆理倾向于把「世界」理解为整个受造界的产业，在末世新造里完全实现；穆尔则强调保罗在此首先讲的是应许的普世范围（万国、万民），末世的实现是其终点而非全部含义。两种读法都承认：应许的规模远超迦南一地。</li>
+            <li><strong>律法与应许为什么不能并存：律法惹动忿怒，行为之路必然落空（v14–15）</strong>：原文根据是第 14 节的两个完成时与第 15 节「律法是惹动忿怒的」。穆理的论证分两层：第一层是逻辑层——若后嗣的资格是「属乎律法」，信就成了多余的装饰：人若能靠行律法得产业，信什么呢？信谁呢？信心被掏空，应许也被作废，因为应许的本质是神白白的宣告，一旦变成「你行了，我才给」，它就不再是应许，而是合同。第二层是经验层——律法实际带来的不是生命，而是忿怒：律法把神的旨意写成明文，人一违犯就是「过犯」，过犯招致审判；所以律法之路的终点不是产业，而是忿怒（参 2:6–11 照行为报应的审判、3:20「凡有血气的没有一个因行律法能在神面前称义」）。穆尔则把这一点放进第一世纪的争论里：新视角派（如邓恩、赖特）提醒，保罗时代的争论不只是「个人如何靠行为得救」，更是「谁是神子民的边界标记」——律法（割礼、饮食、节期）把犹太人与外邦人分开；穆尔部分认同这个背景，但坚持穆理的底线：保罗在这里讲的不只是社会边界，更是救恩的因果——律法若成为得产业的条件，恩典就不再是恩典（参 11:6「既是出于恩典，就不在乎行为」）。分歧注明：第 15 节「哪里没有律法，哪里就没有过犯」常被误读为「没有律法就没有罪」；穆理与穆尔都澄清：保罗区分「罪」与「过犯」——没有律法，罪仍在（参 5:13「没有律法之先，罪已经在世上；但没有律法，罪也不算罪」），只是罪尚未以「违犯明文」的形式被算为过犯；律法的到来不是制造了罪，而是把罪定名为过犯、把审判的依据写成了明文。</li>
+            <li><strong>本乎信、属乎恩、定然：信心的逻辑就是应许稳固的逻辑（v16）</strong>：原文根据是第 16 节的目的链与「定然」（<span class="gk">βεβαία</span>）一词。穆理抓住「定然」作全段的钥匙：为什么后嗣必须本乎信？因为只有本乎信，应许才能「定然」——站得住、不会落空。若后嗣本乎行为，应许就系在人的表现上，而人的表现从不稳固，应许也就永远悬在半空；若后嗣本乎信、属乎恩，应许就系在神的信实上，神的信实从不摇动，应许也就定然归给一切后裔。穆尔进一步说明「一切后裔」的两面：「不但归给那属乎律法的人，也归给那效法亚伯拉罕之信的人」——前者是犹太信徒（他们有律法，但得产业仍是本乎信），后者是外邦信徒（他们没有律法，但走的正是亚伯拉罕未受割礼时信心的路）。所以第 16 节既是神学命题（信→恩→定然），也是合一宣言：两类人走同一条路、领同一份应许，谁也不比谁多一个条件。历代共识：从奥古斯丁到改教家，教会一直用本段抵挡一切把「附加条件」贴回应许的企图——无论是割礼、律法行为，还是任何时代的「信＋某某」，只要加上一个条件，应许就不再定然。</li>
+            <li><strong>多国的父与他所信的神：父职在神面前成立，信心锚定于复活与创造的主（v17）</strong>：原文根据是创 17:5 的引用与第 17 节两个现在时分词描绘的神。穆理的论证抓住「在主面前」：亚伯拉罕作「多国的父」，不是人类家谱学上的事实（当时他连以撒都没有），而是神在祂面前算定的事实——神说「我已经立你」，这件事在神的应许里已经完成，历史只是随后跟上。父职的根据不是血统的繁殖，而是神的宣告；这正是 4:11–12「两类人的父」的根基：因为父职来自神的宣告，神就能把外邦信徒也算进这个家。穆尔则抓住神的两个称号：神是「叫死人复活」的神，也是「使无变为有」的神——前者是复活的大能，后者是创造的大能；亚伯拉罕的信心不是相信一个抽象的「神会帮忙」，而是相信这位神的本性：祂能从死里生出生命，能从无中呼叫出有。这一点直接为今晚 4:18–25 作铺垫：亚伯拉罕的身体「如同已死」，撒拉的生育「已经断绝」——那正是「死人」与「无有」的处境，而他所信的神，恰恰是在这种处境里工作的神。分歧注明：对「使无变为有」（<span class="gk">καλοῦντος τὰ μὴ ὄντα ὡς ὄντα</span>）的理解有两种侧重：一种侧重创造（神说有就有，参创 1 章、来 11:3），一种侧重呼召与拣选（神呼叫不存在的为存在，参 9:25–26「那本来不是我子民的，我要称为我的子民」）；穆理与穆尔都认为两种侧重并不冲突——创造的大能与拣选的恩典，都是同一位神「从无中生有」的工作；亚伯拉罕的信心，正是锚定在这位神身上。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>检查你给应许加的附加条件</strong>：第 14 节说，若后嗣靠律法，信就归于虚空、应许也就废弃了。今天的版本可能是：「神的应许是真的，但是——我得先表现够好、祷告够多、服侍够久。」每一个「但是」都是一个附加条件，而每一个附加条件都在悄悄把应许从「定然」变成「悬而未决」。操练：写下一句你最常对自己说的「神爱我，但是……」，然后按第 16 节重算一遍——后嗣是本乎信、属乎恩，应许定然归给一切后裔；把「但是」划掉，留下应许本身。</li>
+            <li><strong>把「已死」与「无有」的地方，交给你所信的那位神</strong>：第 17 节说，亚伯拉罕所信的神，是叫死人复活、使无变为有的神。信心不是假装问题不存在，而是把真实存在的「已死」与「无有」带到这位神面前。操练：想一件你心里已经判了「死刑」的事——一段关系、一个习惯、一个久已搁置的盼望——不修饰、不美化，就按它的本来面目祷告：神啊，你是叫死人复活的神，这件事在你面前，我仍相信你能从无中生出有。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>第 16 节说，后嗣本乎信，「因此就属乎恩，叫应许定然归给一切后裔」。为什么「本乎行为」会让应许变得不「定然」？对照你自己的经历想一想：当你把神的应许系在自己的表现上时，你心里的确据是变多了，还是变少了？再对照第 17 节：亚伯拉罕的信心锚定在哪一位神身上——是锚定在自己的信心够不够大，还是锚定在那位「叫死人复活、使无变为有」的神的本性上？你的确据，今天锚定在哪里？</p>
+          </div>
+        </article>
+
+        <div class="daynav"><a href="day9.html">← 第 9 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
