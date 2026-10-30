@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 11 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day11-am">5:1–5</a>
+        
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 11 天</span>2026-10-30（周五） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+                <article class="entry" id="day11-am">
+          <div class="entry-head">
+            <span class="entry-day">第 11 天 · 晨 — 2026-10-30（周五）</span>
+            <h3 class="entry-title">我们既因信称义，就得与神相和 <span class="ref">· 罗马书 5:1–5</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>我们既因信称义，就藉着我们的主耶稣基督得与神相和。<span class="vn">2</span>我们又藉着他，因信得进入现在所站的这恩典中，并且欢欢喜喜盼望神的荣耀。<span class="vn">3</span>不但如此，就是在患难中也是欢欢喜喜的；因为知道患难生忍耐，<span class="vn">4</span>忍耐生老练，老练生盼望；<span class="vn">5</span>盼望不至于羞耻，因为所赐给我们的圣灵将神的爱浇灌在我们心里。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>本篇是第 5 章的开端，也是全卷论证的一个大转折点。第 4 章以亚伯拉罕的信心收束，又以一句福音纲要作结：「耶稣被交给人，是为我们的过犯；复活，是为叫我们称义」（4:25）。第 5 章第 1 节的「我们既……」就把这句纲要接过来，开始讲称义带来的福分：如果说 3:21–4:25 回答的是「人怎样称义」，5:1–11 回答的就是「称义的人如今处在怎样的光景里」。从结构上看，5:1–11 是「称义的福分」，5:12–21 则是「亚当与基督的对比」；本篇 5:1–5 是前一半的第一个链条：相和、站立、盼望，患难也不能打断这条链。</p>
+          <p>还要注意「我们」这个主语。从 4:23–24 起，保罗已经把亚伯拉罕的故事转到「我们这信神使我们的主耶稣从死里复活的人」身上；5:1 的「我们」就是这群人——犹太信徒与外邦信徒同在其中。称义的福分不是亚伯拉罕个人的专利，也不是某一类人的特权，而是所有因信称义之人的共同产业。读本段时，要把这个「我们」读成包括自己的「我们」：下面说的相和、恩典、盼望，每一样都是已经属于信徒的现状，而不是将来才可能争取到的奖赏。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>既因信称义</strong>（<span class="gk">δικαιωθέντες οὖν ἐκ πίστεως</span>，第 1 节）：「称义」是过去时被动态分词，指已经完成、由神施行的一次性宣告；「既」（<span class="gk">οὖν</span>，因此）是结论词——下面的一切福分，都建立在这个已经完成的称义之上。称义不是正在进行的过程，而是福分的根基。</li>
+            <li><strong>相和</strong>（<span class="gk">εἰρήνην ἔχομεν πρὸς τὸν θεόν</span>，第 1 节）：直译「我们与神有和平」。「和平」在这里首先是客观的、关系性的：敌对状态已经结束，而不是主观的心情平静（那是腓 4:7「神所赐出人意外的平安」所讲的另一种平安）。人从前是神的仇敌（5:10），如今因基督与神相和——和平是称义在关系层面的名字。</li>
+            <li><strong>进入／站立</strong>（<span class="gk">προσαγωγήν / ἑστήκαμεν</span>，第 2 节）：「进入」原意是「引见、引荐」——如同臣子被引见进王面前、外人被引进内室；「站立」是完成时，表示已经站稳、并持续站着的状态。信徒不是站在门外张望，而是已经被引进恩典里，并且站立其中。恩典在这里不是一种感觉，而是一个领域、一种生存空间。</li>
+            <li><strong>欢欢喜喜／夸口</strong>（<span class="gk">καυχώμεθα</span>，第 2、3 节）：这个动词在 3:27 出现过：「夸口在哪里呢？没有可夸的了」——靠行为的夸口被排除了；但在这里，同一个动词回来了，而且用了两次：第 2 节「盼望神的荣耀」而夸口，第 3 节「在患难中」也夸口。被排除的是以自己为夸口对象的夸口；被保留的，是以神的荣耀、甚至以患难为夸口对象的夸口。对象变了，夸口本身没有消失。</li>
+            <li><strong>患难／忍耐／老练／盼望</strong>（<span class="gk">θλῖψις / ὑπομονή / δοκιμή / ἐλπίς</span>，第 3–4 节）：「患难」原意是「压迫、挤压」，指外在的逼迫与生活的重压；「忍耐」不是咬牙硬撑，而是重压之下仍不退后地坚持；「老练」是经过试验而被证明的品格（与动词「试验、察验」同源）；「盼望」不是不确定的愿望，而是对神荣耀的确信与等候。四个词排成一条链：患难不是盼望的敌人，而是盼望的原料。</li>
+            <li><strong>不至于羞耻</strong>（<span class="gk">οὐ καταισχύνει</span>，第 5 节）：「羞耻」指在审判或公开场合中蒙羞、落空——所盼望的落了空，盼望者就羞愧。保罗说盼望「不至于」羞耻，是一个强烈的否定：这盼望到最后不会让人失望，不会在审判日被证明是一场空。</li>
+            <li><strong>浇灌</strong>（<span class="gk">ἐκκέχυται</span>，第 5 节）：完成时被动态，「已经被倾倒出来，并且仍在倾倒的状态中」。这个词常用于倾倒液体、倾注圣灵（参徒 2:17「我要将我的灵浇灌凡有血气的」）；爱不是一滴一滴量给信徒的，而是倾倒下来的。圣灵是倾倒的施行者，也是爱已经临到的证据。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v1 的因果分词与「藉着」</strong>：「既因信称义」是原因分词：称义是原因，相和是结果；「藉着我们的主耶稣基督」说明中保——相和不是神单方面宣布「算了」，而是藉着基督成就的。「我们的主」这个称呼把基督与信徒绑在一起：祂是「我们的」主，相和也是「我们的」产业。</li>
+            <li><strong>v1 的文本异文：「我们有」还是「让我们有」</strong>：第 1 节动词的抄本有两种读法：直陈式「我们有和平」（<span class="gk">ἔχομεν</span>）与虚拟式「让我们有和平」（<span class="gk">ἔχωμεν</span>）。两种读法只差一个元音的长短，抄写时极易混淆。语法上，直陈式是宣告一个事实，虚拟式是劝勉一个行动。多数现代校勘本与译本（包括和合本「得与神相和」）取直陈式：相和是已经拥有的福分，不是努力争取的目标。这一处异文提醒我们：保罗在这里首先是宣告，不是劝勉。</li>
+            <li><strong>v2 的两个「藉着」与完成时「站立」</strong>：第 1 节「藉着基督」得相和，第 2 节「藉着他」得进入——同一位基督，既是和平的成就者，也是进入恩典的引荐者。「现在所站的这恩典」用完成时「站立」：站立是已经完成的动作留下的状态，信徒今天就站在恩典里，不是站在试用期里。</li>
+            <li><strong>v3 的「不但如此，就是……也」与「生」的链条</strong>：「不但如此，就是在患难中也是欢欢喜喜的」是递进结构：盼望神的荣耀固然可夸，更令人意外的是，患难也可夸。接着三个「生」（<span class="gk">κατεργάζεται</span>，「做出来、产生」）排成因果链：患难做成忍耐，忍耐做成老练，老练做成盼望。注意主语：做成这些的不是患难本身的魔力，而是患难在信心里、在神手中的工作——链条的起点是患难，链条的终点却回到第 2 节的盼望，形成一个闭环。</li>
+            <li><strong>v5 的「因为」</strong>：「盼望不至于羞耻，因为……」——「因为」给出盼望不会落空的根据，而根据不是将来的表现，而是已经发生的倾倒：圣灵已经把神的爱浇灌在我们心里。盼望的确定性锚定在过去的恩赐上，不系在未来的变数上。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>相和是客观地位的转变：战争已经结束，不是心情变好了（v1）</strong>：原文根据是第 1 节「与神有和平」与第 10 节「作仇敌的时候……得以与神和好」的呼应。穆理的论证抓住「仇敌」与「和平」的对立：人在称义之前与神的关系不是中立的冷淡，而是敌对——罪使人与神为敌（参 1:18 神的忿怒、8:7「体贴肉体的就是与神为仇」）；称义带来的和平，首先是这敌对关系的终结：神不再以审判者的忿怒面对罪人，罪人也不再以逃避与反抗面对神。穆尔补上区分：这里的「和平」与腓 4:7 的「平安」不同——腓立比书讲的是信徒内心的安稳状态，罗马书 5:1 讲的是信徒与神之间客观关系的改变；内心的平安是这客观和平的果子，不能倒过来当作和平本身。分歧注明：有学者把 5:1 读作「让我们与神相和」的劝勉（取虚拟式读法），认为保罗在呼吁信徒去活出和平；穆理与穆尔都指出，即便取虚拟式，劝勉的根基仍是已经成就的和好——劝勉不是「去赚取和平」，而是「活出你已经拥有的和平」。两种读法在一点上一致：和平的根源是基督，不是人的努力。</li>
+            <li><strong>进入恩典并且站立：恩典是一个可以站立的领域，不是暂借的门票（v2）</strong>：原文根据是第 2 节「进入」与完成时「站立」。穆理抓住「站立」的完成时：信徒在恩典中的站立是稳固的、持续的，不是摇摇欲坠的试用——正如 8:38–39「无论是死，是生……都不能叫我们与神的爱隔绝」，站立的稳固来自恩典本身的稳固，不是来自站立者的平衡感。穆尔则展开「引见」一词的背景：在古代宫廷与圣殿的语言里，「引见」意味着一个本来没有资格进入的人，被有资格的人带进去；保罗用这个词，是在说：信徒进入神面前，不是凭自己的资格闯进去，而是藉着基督被引进来的（参弗 2:18「我们两下藉着他被一个圣灵所感，得以进到父面前」、3:12「放胆无惧，笃信不疑地来到神面前」）。历代共识：从奥古斯丁到改教家，教会一直用本节抵挡两种偏差——把恩典当作一次性门票、此后全靠自己站立的偏差，以及把站立当作毫无确据的悬空状态的偏差；恩典既是进入的门，也是站立的地。</li>
+            <li><strong>患难中的夸口：不是斯多葛式的硬撑，而是盼望闭环里的确信（v3–4）</strong>：原文根据是第 3 节的递进结构与三个「生」的链条。穆理的论证分两步：第一，患难之所以可夸，不是因为患难本身是好事，而是因为患难在神手中有定向的工作——它做成忍耐，忍耐做成被试验过的品格，品格做成盼望；患难不是盼望的反面，而是盼望的生产线。第二，这条链不是自动的化学反应：患难若没有信心与盼望作框架，只会做成苦毒与绝望；链条成立的前提，是信徒已经站在第 2 节的恩典里、盼望着第 2 节的荣耀。穆尔把这一点放进罗马教会的具体处境：罗马的信徒正面对逼迫与社会压力，保罗不是在给他们讲一套抽象的苦难哲学，而是在告诉他们：你们现在所受的压迫，正在神手里被做成盼望的原料——患难的意义，要从终点（荣耀）往回看，而不是从起点（痛苦）往前猜。分歧注明：对「老练」（<span class="gk">δοκιμή</span>）的理解有两种侧重：一种侧重「被试验后显明的品格」（人经过试验，品格被证明出来），一种侧重「试验本身带来的成熟」；穆理与穆尔都认为两者是一枚硬币的两面——试验既显明品格，也造就品格，而品格的终点都是盼望，不是自满。</li>
+            <li><strong>盼望不羞耻，因为爱已经浇灌：确据的根基是已经赐下的圣灵（v5）</strong>：原文根据是第 5 节的「因为」与完成时「浇灌」。穆理抓住因果方向：盼望不会羞耻，不是因为盼望者足够坚强，而是因为爱已经倾倒——神的爱是盼望的担保，而圣灵是这担保已经交付的证据。圣灵在这里的角色，类似 8:23 的「初结的果子」与林后 1:22 的「凭据」：神把圣灵赐下来，就是把将来的荣耀先给了信徒一部分作定金。穆尔进一步辨析「神的爱」的属格：这里首先是指「神对我们的爱」（神爱我们），而不是「我们对神的爱」——圣灵浇灌在我们心里的，是神爱我们的确据；我们对神的爱，是这确据生出的回应，不是确据本身。这一点至关重要：若把「神的爱」读成「我们爱神的程度」，确据就又系回了自己的表现；读成「神爱我们」，确据才稳固。互文：约壹 4:10「不是我们爱神，乃是神爱我们」、4:19「我们爱，因为神先爱我们」，正是同一方向。分歧注明：「不至于羞耻」的「羞耻」是指将来审判日的蒙羞，还是指今生盼望落空的失望？穆理倾向于末世性的理解（审判日不蒙羞，参 9:33、10:11 引赛 28:16「信靠他的人必不至于羞愧」），穆尔则认为两者都包含：今生的盼望不会落空，正因为末世的审判已经有了定论——盼望的终点是荣耀，羞耻的反面就是荣耀。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>把「和平」从心情换成地位</strong>：第 1 节说，与神相和是一个已经完成的客观事实。很多信徒把与神的关系系在当天的感觉上：感觉亲近，就以为相和；感觉枯干，就以为神又发怒了。操练：今天感觉不好时，回到第 1 节重读一遍——不是「我感觉相和」，而是「我已经相和」；和平不是心情的晴雨表，而是基督已经成就的停战协定。睡前可以问自己一句：今天我有没有把「感觉不好」误读成「关系破裂」？</li>
+            <li><strong>为一件正在受的患难，写出它的「链条」</strong>：第 3–4 节给了一个公式：患难 → 忍耐 → 老练 → 盼望。操练：选一件你正在承受的重压（工作、人际、身体、等候中的事），按这个公式写四行：这件患难正在逼我操练什么忍耐？这忍耐正在显明或造就我哪方面的品格？这品格怎样把我推向对神荣耀的盼望？写不出来没关系——链条的终点是盼望，不是完美的答案；写本身就是一次「在患难中夸口」的操练。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>第 2 节说，信徒「现在所站的」就是恩典；第 5 节说，盼望不羞耻，因为神的爱「已经」浇灌在我们心里。想一想：你今天站立的根据，更多是「恩典」——神已经做成的事，还是「表现」——你今天做得怎么样的事？再对照第 3 节：你有没有一件患难，是你一直只把它当作「要熬过去的坏事」，而没有问过它在神手里「正在做成什么」？如果这件患难正在做成忍耐与盼望，你看待它的眼光会有什么不同？</p>
+          </div>
+        </article>
+
+<div class="daynav"><a href="day10.html">← 第 10 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
