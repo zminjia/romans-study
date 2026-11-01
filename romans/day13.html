@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 13 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day13-am">6:1–7</a>
+        
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 13 天</span>2026-11-01（周日） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+                        <article class="entry" id="day13-am">
+          <div class="entry-head">
+            <span class="entry-day">第 13 天 · 晨 — 2026-11-01（周日）</span>
+            <h3 class="entry-title">向罪死了的人，岂可仍在罪中活着 <span class="ref">· 罗马书 6:1–7</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>这样，怎么说呢？我们可以仍在罪中，叫恩典显多吗？<span class="vn">2</span>断乎不可！我们在罪上死了的人，岂可仍在罪中活着呢？<span class="vn">3</span>岂不知我们这受洗归入基督耶稣的人，是受洗归入他的死吗？<span class="vn">4</span>所以我们藉着洗礼归入死，和他一同埋葬，原是叫我们一举一动有新生的样式，像基督藉着父的荣耀从死里复活一样。<span class="vn">5</span>我们若在他死的形状上与他联合，也要在他复活的形状上与他联合。<span class="vn">6</span>因为知道我们的旧人和他同钉十字架，使罪身灭绝，叫我们不再作罪的奴仆。<span class="vn">7</span>因为已死的人，是脱离了罪。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>第 6 章是全卷又一次大转折的起点。第 5 章的结尾说：「罪在哪里显多，恩典就更显多了」（5:20）。这句话一出口，一个尖锐的反问立刻就来了：如果恩典总是比罪更大，那么犯罪岂不是反而能「帮助」恩典显多吗？保罗没有回避这个反问，而是把它放在第 6 章的门口，正面回答。第 6 章要处理的，正是因信称义必然引出的伦理追问：称义的人与罪的关系，到底变了没有？如果称义只是法庭上的一纸判决，信徒的生活可以照旧吗？保罗的回答是：称义从来不是一张与生活脱节的判决书——因为称义的人已经「在罪上死了」，并且「与基督联合」，死与复活的形状已经刻进了他的生命。</p>
+          <p>在整卷结构里，第 6 章开启了「成圣与圣灵中的生命」这一大段（6:1–8:39）。第 3–5 章讲的是人「怎样被称为义」，第 6 章开始讲「被称为义的人，怎样活」。注意这个顺序：保罗不是先讲道德、再讲恩典，而是先把恩典讲到极致（5:20–21），再由恩典推出新生活。顺序一旦颠倒，福音就变了味——变成「靠好行为保住称义」，或者变成「反正恩典够用，行为无所谓」。第 6 章的全部论证，都是为了守住这个顺序：新生活不是称义的条件，而是称义的必然结果；不是人挣来的，而是「与基督联合」这个事实长出来的。</p>
+          <p>本篇是第 6 章第一段的「事实部分」。保罗还没有下命令（「不要容罪作王」「将肢体献给神」要到 6:12–13 才出现），他先讲事实：我们已经死了、已经埋葬了、已经联合了、旧人已经同钉十字架了。第 6 章的劝勉（命令）全部建立在这些已经完成的事情（事实）之上——这是罗马书伦理学的骨架：先是「你们已经是」，然后才是「所以你们当如此活」。读本篇时，要先把「已经」听进去，命令在今晚与接下来的篇目里才会展开。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>仍在罪中</strong>（<span class="gk">ἐπιμένωμεν τῇ ἁμαρτίᾳ</span>，第 1 节）：「仍在」是「停留、持续、赖着不走」的意思，用的是现在时虚拟语气，带 deliberative（商议）语气：「我们要继续留在罪里吗？」保罗问的不是「偶尔跌倒怎么办」，而是「把罪当作常住地、继续住在里面」——一种持续的生活状态。第 1 节的「叫恩典显多」里的「显多」与 5:20 的「更显多了」是同一个词根：反问者正是抓住 5:20 的话在发问。</li>
+            <li><strong>断乎不可</strong>（<span class="gk">μὴ γένοιτο</span>，第 2 节）：直译是「愿这事永不发生」——虚拟语气的强烈否定，是保罗在罗马书里最强烈的拒绝语（参 3:4、3:6、3:31、7:7、7:13、9:14、11:1、11:11）。这不是冷静的「不对」，而是带着道德惊骇的「绝无此事」：把恩典当作犯罪执照的想法，在保罗看来不是一个可以讨论的选项，而是对福音本身的亵渎。</li>
+            <li><strong>在罪上死了</strong>（<span class="gk">ἀπεθάνομεν τῇ ἁμαρτίᾳ</span>，第 2 节）：「死了」是过去时（不定过去时），指已经完成的一次性事件；「在罪上」的「在」是关系与格，表示「对于罪而言」——不是「罪死了」，而是「我们对于罪死了」。主语换了：死的主体是我们，死的对象关系是罪。一个人死了，罪就再也不能对他发号施令——不是因为罪不存在了，而是因为管辖关系断了。</li>
+            <li><strong>受洗归入</strong>（<span class="gk">ἐβαπτίσθημεν εἰς</span>，第 3 节）：「归入」的介词是「进入」（<span class="gk">εἰς</span>），不是「奉……的名」那种泛泛的归属，而是「进入到……里面去」。受洗「归入基督耶稣」与受洗「归入他的死」是同一件事的两面：进入基督，就是进入他的死。洗礼在这里首先讲的是「联合」——人藉着洗礼被放进基督里，因而也放进了基督的死里。</li>
+            <li><strong>一同埋葬</strong>（<span class="gk">συνετάφημεν</span>，第 4 节）：「同」字头的被动动词，「与他一同被埋葬」。埋葬不是多余的细节：埋葬是死亡的确认与封印——没有埋葬，死还可能被说成是「假死」；有了埋葬，死就是板上钉钉的事实。保罗特意提埋葬，是要强调：我们与基督的联合，是联合到「死透了」的地步。</li>
+            <li><strong>新生的样式</strong>（<span class="gk">καινότης ζωῆς</span>，第 4 节）：「新生」的「新」不是「时间上新的」（<span class="gk">νέος</span>），而是「性质上全新的」（<span class="gk">καινός</span>）——不是旧生活翻新，而是新造的生命样式。「一举一动」直译是「行走」——新生命不是一种内在感觉，而是一种「走路的方式」，是每天脚步的样式。</li>
+            <li><strong>联合</strong>（<span class="gk">σύμφυτοι</span>，第 5 节）：原意是「一同长在一起的」，像两棵树长成一棵、像嫁接的枝子与树干长在一起。保罗用的完成时「已经长在一起」表明：联合不是正在努力达成的目标，而是已经发生的事实。我们与基督的关系，不是「跟随一个榜样」，而是「长在一起的有机联合」。</li>
+            <li><strong>形状</strong>（<span class="gk">ὁμοίωμα</span>，第 5 节）：「形状、样式、相似」。保罗不说「在他死本身上」，而说「在他死的形状上」——这是一个有分寸的词：我们的死不是与基督的死在每一方面都相同（我们没有为世人赎罪），但在「死→复活」这个形状上，我们真实地分享了他的形状。形状相同，结局也相同：既分享死的形状，也必分享复活的形状。</li>
+            <li><strong>旧人</strong>（<span class="gk">ὁ παλαιὸς ἄνθρωπος</span>，第 6 节）：「旧」是「陈旧、属于旧世代的」——旧人就是「在亚当里的人」，是我们在基督以外、属于旧世代的那一个自己。注意：旧人不是指「身体」，也不是指「人性中某个坏的部分」，而是指「整个人在旧秩序里的身份」。旧人「同钉十字架」，意思是：那个旧身份已经在十字架上被处决了。</li>
+            <li><strong>罪身灭绝</strong>（<span class="gk">καταργηθῇ τὸ σῶμα τῆς ἁμαρτίας</span>，第 6 节）：「灭绝」的动词是「使之失效、废掉其权能、解除武装」——不是「把身体消灭掉」，而是「使罪的身体失去效力」。「罪身」不是「有罪的身体」（身体本身不是恶的），而是「被罪辖制、作罪工具的身体」。十字架废掉的，是罪对身体的统治权，不是身体本身。</li>
+            <li><strong>不再作罪的奴仆</strong>（<span class="gk">μηκέτι δουλεύειν τῇ ἁμαρτίᾳ</span>，第 6 节）：「奴仆」是「作奴隶服事」。奴隶的特征是：没有自己选择的权利，主人说什么就是什么。第 6 节的结论是身份的结论：既然旧人已死、罪身已废，我们就「不再」是罪的奴隶——「不再」这个词，划出了一条时间线：从前是，现在不是了。</li>
+            <li><strong>脱离了罪</strong>（<span class="gk">δεδικαίωται ἀπὸ τῆς ἁμαρτίας</span>，第 7 节）：原文动词是「被称义、被宣告为义」——与第 3–5 章的「称义」是同一个词！和合本译作「脱离了罪」，是按上下文意译：一个已经死了的人，罪对他的指控已经失效，他在法庭上已经被宣告无罪、与罪脱离了关系。第 7 节用的是完成时：这个「被称义／得释放」的状态，是已经完成、并且持续有效的。死，不只是「断了关系」，更是「结了案」。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v1–2 的两连问：反问者问，保罗用更强的反问驳回</strong>：第 1 节是反问者（或保罗设想的反对者）的发问：「我们可以仍在罪中，叫恩典显多吗？」第 2 节保罗先以「断乎不可」斩钉截铁地否定，再以第二个反问驳回：「我们在罪上死了的人，岂可仍在罪中活着呢？」两个反问一正一反：第一个问「可不可以继续」，第二个问「已经死了的人怎么还能活着」——第二个反问的逻辑是：继续犯罪与已经死了，这两件事在逻辑上互不相容；不是「不应该」，而是「不可能」——一个死了的人，不可能继续过他死前那种生活。</li>
+            <li><strong>v2 的「在罪中活着」与「在罪上死了」的呼应</strong>：「活着」与「死了」相对，「在罪中」与「在罪上」相对——保罗故意用同一介词结构，把两种状态并置：从前是「在罪里活着」，如今是「对于罪死了」。介词没有变，变的是动词：活着→死了。整个第 6 章的伦理，都建立在这个动词的转换上。</li>
+            <li><strong>v3 的「岂不知」：诉诸读者已经知道的事实</strong>：「岂不知」在罗马书里是保罗的标志性句式（参 6:16、7:1、11:2）——他不是在传授新知识，而是在提醒读者：你们受洗的时候就已经知道、已经承认了这件事。论证的力量来自「你们自己已经站在这个事实上」：受洗归入基督的人，没法否认自己是受洗归入他的死——因为那正是洗礼所表明的。</li>
+            <li><strong>v4 的「所以……原是叫……」：埋葬的目的句</strong>：「所以」承接第 3 节的洗礼事实，推出结论；「原是叫我们一举一动有新生的样式」是目的从句——埋葬不是终点，目的是「行走在新生的样式里」。紧接着的比较句「像基督藉着父的荣耀从死里复活一样」是标准结构：基督复活的方式（藉着父的荣耀），就是我们行走新样式的原型——复活不是将来的事才生效，它的「样式」现在就该走出来。</li>
+            <li><strong>v5 的条件句：前件已真，后件是将来</strong>：「我们若在他死的形状上与他联合」是第一类条件句——前件被假定为真（我们确实已经联合了）；「也必要在他复活的形状上与他联合」的动词是将来时。结构的意思是：死的联合已经完成，复活的联合就必然跟上——将来时在这里不是「不确定的盼望」，而是「已经开始、必将完全」的确定。复活的形状，一部分是现在的新生样式，一部分是将来的身体复活（参 8:11、8:23），两部分由同一个「也必」连在一起。</li>
+            <li><strong>v6 的分词与目的：因为知道，所以不再</strong>：「因为知道」是原因分词——第 6 节的全部内容（旧人同钉十字架、罪身灭绝）是「我们知道」的事实；「叫我们不再作罪的奴仆」是不定式表目的／结果：十字架工作的目的，就是叫奴隶身份终止。第 6 节是一个完整的因果链：知道（事实）→灭绝（效力）→不再作奴仆（身份）。</li>
+            <li><strong>v7 的「因为」：以法庭逻辑收束</strong>：第 7 节以「因为」开头，解释第 6 节为什么成立：死了的人，罪的案子已经结了——法庭已经宣判他与罪脱离了关系。这是一个普遍原则（「已死的人」是泛指），保罗把它用在信徒身上：信徒在基督里死了，所以信徒的案子也已经结了。第 7 节的完成时（已经被称义／得释放）与第 2 节的过去时（已经死了）呼应：死是事件，释放是事件留下的持续状态。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>「仍在罪中叫恩典显多吗」：这个反问不是稻草人，而是 5:20 的诚实回声（v1–2）</strong>：原文根据是第 1 节「叫恩典显多」与 5:20「罪在哪里显多，恩典就更显多了」的用词呼应。穆理的论证抓住这一点：保罗没有说「你们误解了」，而是认真对待这个推论——如果恩典的逻辑是「罪越多、恩典越大」，那么「多犯罪以多得恩典」在纯逻辑上似乎说得通。保罗的驳斥不是「你的逻辑错了」，而是「你的前提错了」：恩典的「显多」不是在罪的账本上加码，而是在王权的转移上显大（5:21 恩典「藉着义作王」）——恩典作王的方式，恰恰是废掉罪的王权，而不是给罪发执照。穆尔进一步指出，第 1 节的「仍在罪中」用的是现在时、持续义：反问者设想的是一种「继续住在罪里」的生活方式，而保罗在第 2 节的回答针对的正是这种生活方式——不是「信徒会不会偶尔跌倒」（第 7 章还会讲挣扎），而是「信徒能不能把罪当作常住地」。分歧注明：历代对「断乎不可」之后保罗的论证有两种侧重：一种强调「逻辑的不相容」（死了的人不能活在罪里），一种强调「道德的不相容」（蒙恩的人不应该活在罪里）；穆理与穆尔都认为两者不可分——保罗的论证既是逻辑的（身份已经变了），也是道德的（新身份要求新生活），而逻辑在先：正因为身份已经变了，道德要求才不是外加的规条，而是身份的自然流露。互文：加 2:17「我们若求在基督里称义，却仍旧是罪人」——保罗在加拉太书面对的是同一个反问，回答的也是同一个逻辑：称义的人若仍旧活在罪里，就是把基督当作罪的用人，那是「断乎不可」的。</li>
+            <li><strong>「在罪上死了」：死的是管辖关系，不是犯罪的可能性（v2、7）</strong>：原文根据是第 2 节「在罪上死了」（过去时、关系与格）与第 7 节「已死的人是脱离了罪」（完成时、称义用语）。穆理的论证分三步：第一，「死」在这里是「关系的中断」——正如 7:1–6「妇人丈夫死了，她就脱离了丈夫的律法」的比喻：死不是消灭对方，而是终止管辖权；信徒对于罪死了，就是罪对他的管辖权终止了。第二，这个死是「在基督里」发生的：不是信徒自己「决定向罪死」，而是信徒「与基督联合」，基督的死就成了他的死（参 5:12–21 一人影响众人的代表原则——亚当的死如何临到众人，基督的死也如何临到在基督里的人）。第三，第 7 节的「称义」用语把死与称义连在一起：死之所以能终止管辖权，是因为法庭已经结案——罪的指控已经失效。穆尔则从「罪作王」的语言（5:12–21、6:12–14）展开：罪在第 5 章是「作王」的王，死就是「王权易手」的时刻；信徒死了，不是罪死了——罪还存在，但它不再是信徒的王。分歧注明：对「向罪死」有「已经完全死透」（信徒不再会犯罪）与「地位上已死、经历上仍挣扎」之争；穆理与穆尔都站在后者：一方面，第 2 节的过去时与第 6 节的「旧人同钉十字架」讲的是已经完成、不容置疑的事实；另一方面，第 6 章后半段的命令（6:12「不要容罪在你们必死的身上作王」、6:13「不要将肢体献给罪」）证明，挣扎仍然真实——如果罪已经不存在了，命令就没有对象了。已死与仍挣扎之间的张力，正是「已然未然」的张力：第 6 章讲的是「已然」（王权已经转移），第 7 章讲的是「未然」（旧势力仍在残存的战场上骚扰），两章合起来才是完整的成圣论。历代共识：教会一直用本段抵挡两种偏差——一是「放纵主义」（恩典够用，所以犯罪无妨），二是「完全主义」（重生的人就不再犯罪）；保罗的答案同时堵住了两条路：放纵主义忘了「已经死了」，完全主义忘了「仍要争战」。</li>
+            <li><strong>洗礼归入死：洗礼是联合的标记与印证，不是自动生效的魔法（v3–5）</strong>：原文根据是第 3 节两次「归入」（<span class="gk">εἰς</span>）与第 4 节「一同埋葬」、第 5 节「长在一起」。穆理的论证抓住洗礼的双重性质：一方面，洗礼是神所设立的标记与印证——它真实地表明并印证信徒与基督的联合，正如割礼之于亚伯拉罕（4:11「受割礼的记号，作他未受割礼的时候因信称义的印证」）；另一方面，洗礼的效力不在于水本身的魔力，而在于它所表明的联合——信心是领受联合的管道，洗礼是联合的公开印证。穆理因此反对两种极端：把洗礼贬为「纯粹的见证仪式」（联合与洗礼无关），与把洗礼抬为「自动重生的圣礼」（受洗就自动与基督联合，与信心无关）。穆尔从当代学术对话的角度补充：第 3 节的「受洗归入基督耶稣」，在保罗时代首先让人想到的是「归入基督的群体」——受洗就是进入基督的身体（参林前 12:13「我们不拘是犹太人，是希利尼人……都从一位圣灵受洗，成了一个身体」）；而「归入他的死」则把群体的进入与基督的死绑在一起：进入基督的身体，就是进入他的死与复活的形状。分歧注明：对洗礼与联合的关系，历代教会立场不一：天主教传统强调洗礼本身赋予恩典（洗礼重生），改革宗传统强调洗礼是恩典的标记与印证（效力藉信心领受），浸信会传统强调洗礼是信徒信心的公开见证（联合先于洗礼）；穆理与穆尔的共同点是：无论哪一传统，都不能把第 3–5 节读成「洗礼与联合无关」——保罗在这里讲的，恰恰是洗礼所表明的那个联合的真实性：受洗的人，就是已经与基督的死联合的人。互文：西 2:12「你们既受洗与他一同埋葬，也就在此与他一同复活」——保罗在歌罗西书用了与罗马书第 6 章几乎相同的语言，表明「埋葬→复活」的形状是保罗论洗礼的固定模式，不是罗马书的临时说法。</li>
+            <li><strong>旧人已钉、罪身已废：十字架废掉的是罪的统治权，不是身体，也不是挣扎（v6–7）</strong>：原文根据是第 6 节「旧人同钉十字架」「罪身灭绝」「不再作奴仆」与第 7 节「已死的人是脱离了罪」。穆理的论证抓住三个词的区别：第一，「旧人」是身份——在亚当里的旧我；「罪身」是工具——被罪辖制的身体；「奴仆」是状态——被罪当作奴隶使唤。十字架同时处理了三样：旧身份被处决（同钉十字架），旧工具被解除武装（罪身灭绝），旧状态被终止（不再作奴仆）。第二，「灭绝」（<span class="gk">καταργέω</span>）这个词在保罗书信里反复出现（参 3:3「神的信实废掉吗」、3:31「我们因信废了律法吗」、7:2「丈夫死了，妇人就脱离了丈夫的律法」中的「脱离」、林前 15:26「尽末了所毁灭的仇敌就是死」）：它的意思从来不是「不存在了」，而是「失效了、被解除了权能」——罪身还在（信徒仍有身体），但它作罪工具的权能已经被废了。第三，第 7 节的完成时「已经被称义／得释放」把整个论证系回称义：信徒脱离罪，不是靠自己「努力挣脱」，而是靠法庭已经结案——罪对他的索赔权已经失效。穆尔则把第 6 节放回 5:12–21 的「王权」主题：5:14 死作王、5:17 蒙恩的人在生命中作王、5:21 恩典藉着义作王、6:6 旧人同钉十字架——四处「王权」语言构成一条线：旧王（罪与死）被废，新王（恩典与义）登基；第 6 章的任务，就是讲清楚这个王权转移对信徒日常生活意味着什么。分歧注明：对「旧人」有「旧人已经完全死了」（信徒里面不再有旧人）与「旧人已经在地位上被处决、但旧习仍在」之争；穆理与穆尔都认为，第 6 节讲的是地位的处决——旧人在十字架上已经被判了死刑、执行了死刑，但旧习的残余（保罗在 7:23 称为「肢体中犯罪的律」）仍需一生争战；这正是为什么第 6 章后半段要下命令：地位已经定了，争战仍要打——命令不是对地位的怀疑，而是对地位的落实。互文：加 2:20「我已经与基督同钉十字架，现在活着的不再是我，乃是基督在我里面活着」——保罗用第一人称讲了同一件事：同钉十字架的终点，不是「我没有了」，而是「基督在我里面活着」；第 6 章的「不再作罪的奴仆」，在加拉太书的语言里就是「不再是我，乃是基督」。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>对一个已经死了的主人，停止交租</strong>：第 2 节说，你对于罪已经死了；第 6 节说，你不再是罪的奴仆。奴隶的特点是：主人一开口，他就得照办——不是因为他同意，而是因为他没有别的选择。操练：找出一个你最近仍在「照办」的领域——一个你明明知道不对、却总觉得「没办法，我就是这样的人」的习惯、反应或关系模式。今天对它说一句保罗式的话：「你已经不是我的主人了。我的旧人已经同钉十字架，你的租约已经到期了。」这句话不是自我催眠，而是对已经发生的事实的宣告：你不是在努力「变成」自由人，你是在提醒自己「已经是」自由人。自由人的挣扎与奴隶的顺从，看起来可能一样狼狈，但性质完全不同：奴隶挣扎是为了讨好主人，自由人挣扎是为了活出已经属于他的身份。</li>
+            <li><strong>把洗礼当作身份证，而不是当作纪念品</strong>：第 3–4 节说，受洗归入基督的人，就是受洗归入他的死的人。洗礼不是你「曾经参加过的一个仪式」，而是你的身份证——上面写着你的新归属：你属于基督，你的死与复活都已经刻进了他的形状里。操练：今天花几分钟，回想你受洗的那一天（如果还没有受洗，认真思想：是什么拦阻你公开地进入这个联合？）。然后用一句话向自己重申身份：「我已经与基督一同埋葬，也已经与他一同活在新生的样式里。」接下来的一天里，遇到试探时，先不问「我能不能抵挡」，先问「一个已经埋葬、已经复活的人，会怎么走这一步」——新生的样式，是从「行走」开始的，不是先从「感觉」开始的。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>第 2 节说「我们在罪上死了」，第 7 节说「已死的人是脱离了罪」——但你的经验里，罪显然还没有「不存在」。想一想：对你来说，更难相信的是哪一半？是「罪的王权已经废了」（你总觉得罪还是你的主人，改不掉），还是「挣扎本身是正常的」（你总觉得真基督徒不该再挣扎，挣扎就证明你没有真的死）？再想一个具体的场景：最近有没有一件你反复跌倒的事，是你一直用「我就是这样的人」来解释的？如果按第 6 节的说法，那个「这样的人」——旧人——已经同钉十字架了，那么今天，你愿意用哪一个具体的行动，来活一次「不再作奴仆」——不是一次成功的表演，而是一次自由人的选择，哪怕很小？</p>
+          </div>
+</article>
+
+
+        <div class="daynav"><a href="day12.html">← 第 12 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
