@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 14 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day14-am">6:15–19</a>
+        
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 14 天</span>2026-11-02（周一） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+                        <article class="entry" id="day14-am">
+          <div class="entry-head">
+            <span class="entry-day">第 14 天 · 晨 — 2026-11-02（周一）</span>
+            <h3 class="entry-title">换了主人，不是没了主人 <span class="ref">· 罗马书 6:15–19</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">15</span>这却怎么样呢？我们在恩典之下，不在律法之下，就可以犯罪吗？断乎不可！<span class="vn">16</span>岂不晓得你们献上自己作奴仆，顺从谁，就作谁的奴仆吗？或作罪的奴仆，以至于死；或作顺命的奴仆，以至成义。<span class="vn">17</span>感谢神！因为你们从前虽然作罪的奴仆，现今却从心里顺服了所传给你们道理的模范。<span class="vn">18</span>你们既从罪里得了释放，就作了义的奴仆。<span class="vn">19</span>我因你们肉体的软弱，就照人的常话对你们说：你们从前怎样将肢体献给不洁不法作奴仆，以至于不法；现今也要照样将肢体献给义作奴仆，以至于成圣。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>昨晚的最后一节（6:14）说：「罪必不能作你们的主，因你们不在律法之下，乃在恩典之下。」这句话一落地，第二个反问立刻就来了——和第 6 章开头的反问（6:1）一模一样的结构，问的却是另一件事。第一个反问抓住的是 5:20「罪显多、恩典更显多」：恩典既然总比罪大，犯罪岂不是能让恩典显多？第二个反问抓住的是 6:14「不在律法之下」：律法既然已经不再是管辖我们的体制，犯罪岂不是没有后果了？两个反问，一前一后，把「恩典福音会不会纵容犯罪」这个质疑从两个方向都问到了极致。保罗对两个反问的回答也一模一样：先是「断乎不可」，再给出理由——只不过这一次，理由换成了一个贯穿 6:15–23 的比喻：奴仆与主人。</p>
+          <p>在第 6 章的结构里，本篇是「奴仆论证」的第一半。6:1–14 讲的是「与基督联合」的事实与由此长出的第一批命令；6:15–23 讲的是同一个事实的另一面：联合就是「换主人」。今晚的晚篇（6:20–23）会把这个比喻推到终点：两个主人的两种「果子」与两种「结局」——死与永生、工价与恩赐。本篇只走到一半：先立下原则（16 节：顺从谁就是谁的奴仆），再讲罗马信徒身上已经发生的换主人（17–18 节），最后用「从前怎样、现今照样」的平行句，把这个原则落到肢体上（19 节）。第 19 节的「现今也要照样」是一个 hinge（转折铰链）：它既总结了本篇，也为晚篇的「果子」对比留好了接口。</p>
+          <p>还有一个背景值得留意：第 15 节的反问，把第 7 章的主题提前推到了门口。「不在律法之下」到底是什么意思？律法是不是坏东西？律法与恩典、律法与成圣到底是什么关系？保罗在第 6 章没有把这些问题一次讲完——他先堵住「可以犯罪吗」这个推论，把「律法」问题的正面展开留给了第 7 章。读本篇时，不必急着把第 7 章的答案提前搬进来；先让第 6 章自己的逻辑走完：换了主人的人，生活的改变不靠律法的鞭子，而靠新主人的权柄与新生命的方向。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>这却怎么样呢</strong>（<span class="gk">Τί οὖν;</span>，第 15 节）：「既然如此，又怎么样呢？」——「既然」承接的正是 6:14 的结论。反问者不是凭空发问，而是从保罗自己的话里推出来的：如果前提（不在律法之下）是保罗说的，结论（可以犯罪）似乎也是顺理成章的。保罗不收回前提，只否定结论——这是整段论证的关键姿态。</li>
+            <li><strong>断乎不可</strong>（<span class="gk">μὴ γένοιτο</span>，第 15 节）：与 6:2 完全相同的强烈否定。保罗在罗马书里每次用这个词，都是在对方的推论触碰到福音根基的时候。这里的惊骇针对的不是「犯罪」这个行为本身，而是把恩典体制理解为「犯罪无后果」的那个逻辑。</li>
+            <li><strong>献上自己作奴仆</strong>（<span class="gk">παριστάνετε ἑαυτοὺς δούλους</span>，第 16 节）：「献上」与 6:13 的「献肢体」是同一个动词，现在时表示习惯性的、持续的献上——不是一次性的签约，而是一次次把自己交出去的行动。「奴仆」（<span class="gk">δοῦλος</span>）是全段的核心词：不是「雇工」（雇工可以辞职），不是「仆人」（仆人尚有自己的生活），而是「奴隶」——归属、顺从、没有自主权。保罗故意用最重的词，不许读者把它稀释成「受点影响」。</li>
+            <li><strong>顺从</strong>（<span class="gk">ὑπακοή</span>，第 16 节）：原意是「在下面听」——站在主人之下、听他的话。注意第 16 节的逻辑：主人不是由你「宣称」决定的，而是由你「顺从」决定的。你顺从谁，你就是谁的奴仆。宣称可以撒谎，顺从不会。</li>
+            <li><strong>以至于死／以至成义</strong>（<span class="gk">εἰς θάνατον / εἰς δικαιοσύνην</span>，第 16 节）：介词「以至」表示目的地、归宿。两个主人各有一个终点站：罪的奴仆开往死，顺命的奴仆开往义。保罗在这里讲的不是「感觉」，而是「方向」：你今天顺从谁，就是在往哪个终点站走。</li>
+            <li><strong>感谢神</strong>（<span class="gk">χάρις τῷ θεῷ</span>，第 17 节）：「感谢」的词就是「恩典」（<span class="gk">charis</span>）——保罗在这里玩了一个有意的双关：感谢神，因为恩典做了这一切。换主人不是罗马信徒自己解放了自己，而是神的恩典把他们交给了新主人。第 17 节以感恩开头，整个换主人的故事就定性为「神的作为」，而不是「人的励志」。</li>
+            <li><strong>从心里顺服</strong>（<span class="gk">ὑπηκούσατε ἐκ καρδίας</span>，第 17 节）：「顺服」用的是不定过去时——一次决定性的顺服；「从心里」限定了顺服的性质：不是外表的 compliance（照办），而是内心认同的顺服。保罗在这里划了一条线：福音要求的顺服，先是心的顺服，然后才是肢体的顺服——顺序反了，就成了律法主义；只有肢体没有心，就成了表演。</li>
+            <li><strong>道理的模范</strong>（<span class="gk">τύπον διδαχῆς</span>，第 17 节）：「模范」（<span class="gk">typos</span>）原意是「模子、印模、范型」——像铸币的模子，倒进去什么料，出来就是什么形状。「道理」就是福音的教导：信徒被倒进了福音的模子里，出来就带着福音的形状。更值得注意的是第 17 节的被动语态：「所传给你们」在原文里是「你们被交付给了那个模范」——不是你们「接受了」道理，而是你们「被交给了」道理：神是交付的主体，人是被交付的客体。一个人能「从心里顺服」，是因为他先被交给了那个能塑造他的模范。</li>
+            <li><strong>得了释放、作了奴仆</strong>（<span class="gk">ἐλευθερωθέντες…ἐδουλώθητε</span>，第 18 节）：两个动词都是不定过去时被动语态，排在一起形成一个悖论：「被释放了」与「被奴役了」居然是同一件事的两个面。释放的主语与被奴役的主语都是神：神释放你脱离罪，恰恰是把你交给义作奴仆。自由在这里不是「没有主人」，而是「换了主人」——而且只有换了主人，才是真自由。</li>
+            <li><strong>照人的常话、肉体的软弱</strong>（<span class="gk">ἀνθρώπινον λέγω διὰ τὴν ἀσθένειαν τῆς σαρκὸς ὑμῶν</span>，第 19 节）：「照人的常话」直译是「按着人的方式说话」——保罗为「奴仆」这个比喻道歉：这个比喻是不完美的，因为作义的奴仆与作罪的奴仆在性质上完全不同（一个是自愿、喜乐、有益的，一个是压迫、羞耻、致死的），用同一个词讲两者，难免有失准确。道歉的原因是「你们肉体的软弱」——「肉体」在这里不是「身体是恶的」，而是「人还处在必死、有限、软弱的状态里」，需要用人能听懂的比喻来讲解属灵的实际。</li>
+            <li><strong>不洁、不法</strong>（<span class="gk">ἀκαθαρσία / ἀνομία</span>，第 19 节）：「不洁」是道德上的污秽，「不法」是「无法无天」——不认任何律法与界限。两个词并列，描绘出罪作主人时的生活质地：又脏、又乱。而与之对照的「义」与「成圣」，描绘的是新主人带来的生活质地：又正、又圣洁。主人的不同，生活质地就不同——这是可以观察、可以检验的。</li>
+            <li><strong>以至于成圣</strong>（<span class="gk">εἰς ἁγιασμόν</span>，第 19 节）：与 16 节的「以至于死／以至成义」同一个「以至」结构。成圣在这里是新献上的目的地、方向——不是已经完成的状态，而是正在走向的终点。注意成圣与称义的区别：称义是地位的一次改变（第 3–5 章），成圣是生活的持续方向（第 6–8 章）；第 19 节讲的是后者：献给义作奴仆的人，正在往成圣的方向走。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v15 的推论结构：前提是保罗的，结论是反问者的</strong>：「我们在恩典之下，不在律法之下」是 6:14 的原话；「就可以犯罪吗」是反问者从原话里推出来的结论。保罗的回应策略值得学：他不修改前提（他没有说「其实你们还是在律法之下」），他只切断推论（「断乎不可」）——然后用 16–19 节证明：体制换了，主人换了，但「顺从」这个结构没有换；没有主人的生活，从来就不存在。</li>
+            <li><strong>v16 的条件与选择：一般原则＋两个终点</strong>：「你们献上自己作奴仆，顺从谁，就作谁的奴仆」是一个普遍原则（现在时、习惯义）：献上与顺从是持续的动作，主人身份由持续的动作决定。紧接着的「或……或……」给出两个且仅有两个选项，没有第三个选项：或作罪的奴仆以至于死，或作顺命的奴仆以至成义。句法上的二选一，就是神学上的二选一——中立地带在句法里就没有位置。</li>
+            <li><strong>v17 的「从前虽然……现今却……」：对照句式</strong>：「从前作罪的奴仆」与「现今从心里顺服」用对照结构并置，中间的转折词「却」划出一条时间线：换主人已经发生了。感恩句（「感谢神」）放在对照句之前，定性了整个转折：转折的作者是神，不是人自己的决心。</li>
+            <li><strong>v18 的两个被动：释放与被奴役同句</strong>：分词「得了释放」与主句动词「作了奴仆」都是被动语态、都是过去时——两件事同时完成、同为神所做。句法上的并列，就是神学上的并列：释放与新奴役不是先后两步，而是一步的两面。想只要释放、不要奴役的人，是在拆散一个完整的句子。</li>
+            <li><strong>v19 的「从前怎样……现今也要照样」：精确的平行结构</strong>：「怎样将肢体献给不洁不法作奴仆，以至于不法」与「照样将肢体献给义作奴仆，以至于成圣」——动词相同（献）、对象相同（肢体）、结构相同（献给谁＋以至于什么），不同的只有两样：主人（不洁不法→义）与终点（不法→成圣）。平行结构的意思是：成圣不需要一套全新的生活材料——就是同一批肢体、同一段日常，换了主人、换了方向，就成了成圣的材料。保罗没有叫信徒去找一种「属灵的」新生活，他叫信徒把旧生活「照样」献给新主人。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>第二个反问与第一个反问问的不是同一件事（v15）</strong>：原文根据是第 15 节的推论前提与 6:1 的不同：6:1 的前提是「恩典显多」，6:15 的前提是「不在律法之下」。穆理的论证抓住这个区别：第一个反问是「恩典逻辑」的滥用（恩典越大、犯罪越划算），第二个反问是「体制逻辑」的滥用（律法体制既已过去，犯罪就不再有约束）。穆理指出，保罗对第二个反问的回答比第一个更「体制化」：他没有回到「死了」那个论证（6:2），而是引入「主人」这个论证——因为「不在律法之下」这个说法本身就是体制语言，回答也必须用体制语言：体制换了，但主人没有消失，只换了一位。穆尔则从全卷布局补充：第 15 节是第 7 章的「引子」——「不在律法之下」到底是什么意思，保罗要到第 7 章才正面展开（律法是圣洁的、是属乎灵的，但律法不能使人成圣，也不能作人的主人）；第 6 章的任务只是先堵住推论：无论律法问题最终怎么解答，「可以犯罪吗」的答案都已经是「断乎不可」。分歧注明：对「不在律法之下」的范围，历代有「律法作为称义途径已经过去」与「律法作为生活准则也已过去」两种侧重；穆理与穆尔都站在前者并兼顾后者的区分：律法作为「称义与定罪的体制」已经过去（参 7:1–6「脱离了律法」），但律法所启示的神的旨意并没有作废（参 7:12「律法是圣洁的」、13:8–10「爱完全了律法」）——第 6 章不展开这个区分，是因为本章的对手是放纵主义，不是律法主义；第 7 章的对手才会反过来。互文：加 5:13「你们蒙召是要得自由，只是不可将你们的自由当作放纵情欲的机会」——保罗在加拉太书用一句话讲了罗马书 6:15 的全部：自由不是放纵的执照，自由是换了主人之后的自由。</li>
+            <li><strong>没有中立地带：主人由顺从决定，不由宣称决定（v16）</strong>：原文根据是第 16 节「顺从谁，就作谁的奴仆」与两个「以至」的目的地。穆理的论证分三步：第一，奴仆身份的定义权不在奴仆手里，而在顺从的事实手里——一个人可以口称基督为主，却天天顺从罪的指令，保罗的判断标准是后者。第二，两个选项的终点（死与义）不是「可能的结果」，而是「必然的目的地」：介词「以至」表示方向，走哪条路，就会到哪个终点——这不是恐吓，而是方向的诚实描述。第三，「顺命的奴仆」这个说法本身就是悖论式的安慰：顺命（<span class="gk">hypakoē</span>）听起来是被动的，但在这里，顺从义恰恰是自由的形态——因为义的要求与人的真正好处是一致的。穆尔从第一世纪的社会背景补充：保罗的读者对奴隶制并不陌生——奴隶没有自主权、没有辞职权、主人的命令就是生活的全部；保罗借用这个读者最熟悉的制度讲福音，不是为奴隶制背书，而是借用它的「绝对归属」来说明：与神的关系也是绝对归属，只是换了一位好主人。穆尔提醒现代读者：我们容易把「奴仆」软化成「受影响」「有倾向」，但保罗的词是 <span class="gk">doulos</span>，没有软化的余地——软化这个词，等于软化整段论证。分歧注明：对「顺命的奴仆以至成义」中的「义」，有「神的义（地位）」与「义的生活（行为）」两种读法；穆理与穆尔都认为此处侧重后者——义在这里是被顺从、被服事的主人，是生活方向的义，与 3:21「神的义」是同一个词在不同语境里的用法，不可混淆，也不可割裂：地位的义（称义）是本，生活的义（成义的方向）是果。互文：约 8:34「所有犯罪的，就是罪的奴仆」与彼后 2:19「人被谁制伏，就是谁的奴仆」——新约对奴仆原则的表述惊人地一致：被谁制伏，就是谁的奴仆；自由从来不是「不被制伏」，而是「被对的主制伏」。</li>
+            <li><strong>「道理的模范」：福音是模子，不是参考意见（v17）</strong>：原文根据是第 17 节「从心里顺服了所传给你们道理的模范」与被动语态「被交付」。穆理的论证抓住「模子」这个意象：模子不是「建议」，而是「形状的决定者」——倒进去的料是什么不重要，出来都是模子的形状；同样，福音的教导不是「供你参考的意见」，而是塑造信徒生命形状的模子。穆理进一步指出「从心里」的分量：模子塑造的不是外表，而是心——心被模子塑造了，肢体自然跟上；只塑外表、不塑心，那是法利赛人的做法，不是福音的做法。穆尔则从「所传给你们」的传统背景展开：「道理的模范」很可能指使徒所传的、固定下来的福音教导传统（参林前 15:3「我当日所领受又传给你们的」、帖后 2:15「坚守所领受的教训」），甚至可能与洗礼时的认信问答有关——罗马信徒「从心里顺服」的，正是他们受洗时所认信的那套福音。分歧注明：对「模范」到底指「教导的内容」还是「教导所树立的榜样」，历代解释有分歧；穆理侧重「教义的范型」（福音真理本身塑造生命），穆尔兼顾「使徒传统的固定形态」（初代教会口传的福音纲要）；两者的共同点是：顺服的对象是客观的、外在的福音，不是内心的感觉——感觉会变，模范不变。历代共识：教会一直用本节抵挡「反智的敬虔」（只讲感觉、不讲道理）与「无心的正统」（只讲道理、不讲心）：保罗要的是「从心里顺服道理」——道理与心，两样都不能少。互文：罗 10:9–10「口里认耶稣为主，心里信神叫他从死里复活」——心与口、信与认的配对，与本节「从心里顺服道理的模范」是同一结构：福音进入心里，再从心里出来成为顺服。</li>
+            <li><strong>自由就是换主人，成圣就是换方向（v18–19）</strong>：原文根据是第 18 节两个被动的悖论与第 19 节「从前怎样、现今照样」的平行结构。穆理的论证分两层：第一层，自由的定义——人以为的自由（「没人管我」）在保罗看来根本不存在：人不是「自由」就是「奴仆」，没有第三种状态；真自由不是脱离一切主人，而是脱离坏主人、归属好主人——因为好主人的要求与人的真正本性是一致的，服事祂不是受压迫，而是归位。第二层，成圣的定义——第 19 节的「以至于成圣」表明，成圣是献上之后的方向，不是献上之前的前提：你不是「先成圣了，才配献给义」，而是「献给义了，才往成圣的方向走」；顺序一颠倒，福音就变成了律法。穆尔则从第 19 节的「道歉」（「照人的常话」）展开：保罗自己承认「奴仆」比喻不完美——作罪的奴仆是被迫的、羞耻的，作义的奴仆却是自愿的、喜乐的、有益的；比喻的「不完美」恰恰是重点：新主人与旧主人完全不同，旧主人的奴役是剥削，新主人的「奴役」是成全。穆尔还指出「肉体的软弱」的另一层意思：读者还处在必死的身体里，理解力有限，需要用人话讲天上的事——保罗的道歉不是谦虚的客套，而是牧者的体贴：他知道你在软弱中听道，所以他用人话讲给你听。分歧注明：对「成圣」在这里是「过程」还是「地位」，历代有「成圣是渐进过程」与「成圣是已然地位」之争；穆理与穆尔都认为本节侧重过程与方向（「以至」的终点语言），但不否认成圣也有地位的一面（林前 1:2 称信徒为「成圣的人」）——地位已经定了（在基督里分别为圣），方向正在走（往成圣的终点去），两面合起来才是完整的成圣论。互文：罗 6:22（今晚的晚篇）「现今你们既从罪里得了释放，作了神的奴仆，就有成圣的果子」——第 19 节的「以至于成圣」在第 22 节会变成「成圣的果子」：方向走久了，就会结果子；果子不是挣来的，是方向对了自然长出来的。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>用「顺从谁」验一验你的主人</strong>：第 16 节给了一个无法撒谎的验主标准：不是你宣称谁是主人，而是你顺从谁。操练：挑一个你最近反复出现的生活场景——比如一焦虑就刷手机、一被冒犯就口出恶言、一有压力就用消费安慰自己——然后诚实地问一句：「在这个场景里，我到底在顺从谁的指令？」不要急着定罪自己，先认清主人：认清了，才谈得上换主人。换主人的第一步不是「更努力」，而是「认对主人」：对旧主人说「你不再是我的主人」，对新主人说「今天这个场景，我听你的」。每一次这样认，就是一次小小的「献上自己」。</li>
+            <li><strong>把同一批肢体「照样」献给新主人</strong>：第 19 节的平行结构是一个极其实用的应许：成圣不需要你先换一套生活材料——就是同一双手、同一张嘴、同一段日常、同一份工作，换了主人就成了成圣的材料。操练：今天早上出门前，用一句话做一次献上：「主啊，我今天的手、脚、眼睛、舌头、日程，都献给你作义的器具。」然后在一天里挑一个具体的肢体——比如舌头（今天不讲一句贬低人的话）或眼睛（今天不看一样明知不该看的东西）——让它今天只服事新主人。晚上回想：这个肢体今天服事了谁？答案会告诉你，你今天的主人是谁。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>你心里对「自由」的默认定义是什么？是不是「没人管我、我想怎样就怎样」？第 16–18 节说，这种自由根本不存在——人要么作罪的奴仆，要么作义的奴仆，没有第三种状态。想一个你最近反复跌倒的具体场景：那个场景里，你顺从的到底是谁的指令——是罪的（「反正没人知道」「我就这一次」），还是义的？再想一想第 19 节的「照样」：如果成圣不需要新材料、只需要把同一批肢体换个主人，那么今天，有哪一个具体的肢体、哪一段具体的日常，是你可以「照样」献给义的——不是等感觉好了再献，而是今天就献？</p>
+          </div>
+</article>
+
+
+        <div class="daynav"><a href="day13.html">← 第 13 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
