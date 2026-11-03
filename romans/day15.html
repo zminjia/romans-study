@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 15 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  
+  </head>
+
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day15-am">7:1–6</a>
+        
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 15 天</span>2026-11-03（周二） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day15-am">
+          <div class="entry-head">
+            <span class="entry-day">第 15 天 · 晨 — 2026-11-03（周二）</span>
+            <h3 class="entry-title">脱离律法，归于复活的主 <span class="ref">· 罗马书 7:1–6</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>弟兄们，我现在对明白律法的人说，你们岂不晓得律法管人是在活着的时候吗？<span class="vn">2</span>就如女人有了丈夫，丈夫还活着，就被律法约束；丈夫若死了，就脱离了丈夫的律法。<span class="vn">3</span>所以丈夫活着，她若归于别人，便叫淫妇；丈夫若死了，她就脱离了丈夫的律法，虽然归于别人，也不是淫妇。<span class="vn">4</span>我的弟兄们，这样说来，你们藉着基督的身体，在律法上也是死了，叫你们归于别人，就是归于那从死里复活的，叫我们结果子给神。<span class="vn">5</span>因为我们属肉体的时候，那因律法而生的恶欲就在我们肢体中发动，以致结成死亡的果子。<span class="vn">6</span>但我们既然在捆我们的律法上死了，现今就脱离了律法，叫我们服事主，要按着心灵的新样，不按着仪文的旧样。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>第 6 章读完，留下一个没有正面展开的问题：第 6 章两次说「不在律法之下」（6:14、15），又两次遭到反问「就可以犯罪吗」（6:1、15）。保罗在第 6 章堵住了推论——恩典不纵容犯罪，因为信徒已经换了主人——却没有正面解释「不在律法之下」到底是什么意思：律法是不是坏东西？律法与成圣到底是什么关系？第 7 章就是对这个遗留问题的正面回答。本篇 7:1–6 是第 7 章的纲领：先立下总原则（死亡解除律法的管辖），再把这个原则应用到信徒身上（藉基督的身体，在律法上死了），最后用「从前／现今」的对照点出新生活的形态（按心灵的新样服事）。7:7–13 会接着问「律法是罪吗」，7:14–25 会展开律法之下内心的挣扎，8:1–4 则会说圣灵如何成全律法的要求——本篇是这整条论证线的门。</p>
+          <p>本篇与第 6 章的衔接比表面看起来更紧。第 6 章的两个主人是「罪」与「义」，第 7 章的两个「丈夫」是「律法」与「复活的基督」——主人换了，比喻换了，逻辑没有换：脱离旧权势的方式，在两章里都是「死」。第 6 章说「向罪死了」（6:2、11），第 7 章说「在律法上死了」（7:4、6）：同一次死（与基督联合的死），解除了两重捆绑——罪的主权与律法的管辖。而两章的终点也呼应：第 6 章的终点是「成圣的果子」（6:22），本篇的终点是「结果子给神」（7:4）；第 6 章的对照是「死亡的果子」（7:5 回望时用的正是这个词）与「成圣的果子」，本篇的对照是「结成死亡的果子」（7:5）与「结果子给神」（7:4）。读本篇时，把 6:22–23 放在手边，对照会格外清楚。</p>
+          <p>还有一个受众背景：第 1 节特意说「我现在对明白律法的人说」。罗马教会的读者里有犹太信徒，也有熟悉犹太律法的外邦信徒——「明白律法」不是指「精通律法条文的专家」，而是指「懂得律法是怎么管人的」这批读者。保罗不是在对门外汉讲律法常识，而是在对懂行的人讲一个懂行的人一听就明白的原则：法律只管活人。接下来的婚姻比喻，取材也是读者最熟悉的生活制度：婚姻的约束力以一方的死亡为终点——这一点，在犹太律法与罗马法里都是常识。保罗不是在发明一个新制度，他是在用读者自己的常识，推出一个读者未必料到的结论。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>明白律法</strong>（<span class="gk">γινώσκουσιν νόμον</span>，第 1 节）：「明白」是现在时、持续的懂得——不是「听说过律法」，而是「懂得律法如何运作」。保罗开篇先确认读者的资格：下面这个论证，你们有能力验算。</li>
+            <li><strong>管人、作主</strong>（<span class="gk">κυριεύει</span>，第 1 节）：与 6:9「死也不再作他的主」、6:14「罪必不能作你们的主」是同一个动词。律法在这里也被讲成一位「主」——有管辖权、有主权、能发命令。第 6 章的主人是罪，第 7 章的主人是律法：两个主人，同一个「作主」的词，说明保罗眼里的「捆绑」从来不只是一种心理感受，而是一种权势结构。</li>
+            <li><strong>被律法约束</strong>（<span class="gk">δέδεται νόμῳ</span>，第 2 节）：「被捆绑、被系住」，完成时被动语态——捆绑的状态已经形成、并且持续有效。妻子被称为「有丈夫的女人」（<span class="gk">ὕπανδρος γυνή</span>，直译「在丈夫之下的女人」）：她的身份由丈夫定义，她的行动受律法约束——这正是保罗要讲的「在律法之下」的处境。</li>
+            <li><strong>脱离</strong>（<span class="gk">κατήργηται</span>，第 2 节；<span class="gk">ἐλευθέρα</span>，第 3 节）：第 2 节的「脱离」直译是「被废止、被解除、被作废」——律法的约束力被解除了，不是被「违反」了，也不是被「逃避」了；第 3 节的「自由」则点明解除的结果：她不再是「在丈夫之下」的人，归于别人不再构成淫行。两个词一前一后：解除是法律事实，自由是解除的后果。</li>
+            <li><strong>淫妇</strong>（<span class="gk">μοιχαλίς</span>，第 3 节）：不是「不忠的妻子」那么轻，而是律法上的定罪名目。保罗故意用最重的词：丈夫活着而归于别人，不是「换一段关系」，而是「犯奸淫」——因为旧的约束还没有解除，新的关系就是非法的。这个重词，是为了衬托第 4 节的转折：约束既然已经因死解除了，新的归属就不再是淫行，而是合法的婚姻。</li>
+            <li><strong>在律法上死了</strong>（<span class="gk">ἐθανατώθητε τῷ νόμῳ</span>，第 4 节）：不定过去时被动语态——「你们被处死了，对象是律法」。注意语态与方向：不是「律法死了」，而是「你们向律法死了」；不是信徒杀死了律法，而是信徒在基督里经历了死，以致律法对他们再没有管辖权。方向一颠倒，整段就错了。</li>
+            <li><strong>藉着基督的身体</strong>（<span class="gk">διὰ τοῦ σώματος τοῦ Χριστοῦ</span>，第 4 节）：「身体」指基督在十字架上被钉的身体——祂的死，就是信徒的死发生的地方（参 6:3–4「受洗归入他的死」）。「藉着」表明中介：信徒不是自己「死了一次」，而是藉着基督的死而死；没有这个中介，「在律法上死了」就只是一句空话。</li>
+            <li><strong>结果子给神</strong>（<span class="gk">καρποφορήσωμεν τῷ θεῷ</span>，第 4 节）：与 6:22「成圣的果子」、7:5「死亡的果子」是同一组「果子」语言。果子不是「业绩」，而是「归属的自然产物」：归于谁，就结谁的果子——归于死亡的体制，结死亡的果子；归于复活的主，结给神的果子。</li>
+            <li><strong>属肉体的时候</strong>（<span class="gk">ὅτε ἦμεν ἐν τῇ σαρκί</span>，第 5 节）：「肉体」在这里不是「身体是恶的」，而是指「未重生的、靠自己的人性状态」——亚当里的旧存在方式。第 5 节的时态是过去时：这是「从前」，不是「现今」——这一点对理解 7:14–25 至关重要：7:5 的「属肉体的时候」已经过去了，7:14–25 的挣扎要放在这个前提下读。</li>
+            <li><strong>因律法而生的恶欲</strong>（<span class="gk">τὰ παθήματα τῶν ἁμαρτιῶν τὰ διὰ τοῦ νόμου</span>，第 5 节）：直译是「藉着律法而有的罪的情欲」。「情欲」不是泛泛的「欲望」，而是「被激动起来的、失控的欲求」；「因律法而生」不是说律法「制造」了罪，而是说罪「藉着律法」被激动、被点燃——律法像一根火柴，罪是火药：火柴没有罪，火药的爆炸却因火柴而起。这个悖论，保罗要到 7:7–13 才正面解释，本篇只先点出事实。</li>
+            <li><strong>在我们肢体中发动</strong>（<span class="gk">ἐνηργεῖτο ἐν τοῖς μέλεσιν ἡμῶν</span>，第 5 节）：未完成时——「一直在发动、持续作工」。与 6:13、19 的「肢体」呼应：罪的工作场所，就是人的肢体——手、脚、眼睛、舌头。律法激动的恶欲，不停留在「念头」里，它要占领肢体、结出果子。</li>
+            <li><strong>捆我们的律法</strong>（<span class="gk">ἐν ᾧ κατειχόμεθα</span>，第 6 节）：「被拘禁、被看守、被扣留」——未完成时被动语态，描绘的是一种持续被看管的状态。律法在这里像一个看守：不是保护性的看守，而是拘禁性的看守——人在它手下，没有自由行动的余地。</li>
+            <li><strong>心灵的新样／仪文的旧样</strong>（<span class="gk">καινότης πνεύματος / παλαιότης γράμματος</span>，第 6 节）：「新样」与「旧样」是两个「时代」的词：旧样是「仪文」——写下来的字句、外在的规条；新样是「心灵」——圣灵在人心里的工作。两个词对照的不是「字面意思 vs 属灵意思」，而是「旧约的服事方式 vs 新约的服事方式」：前者靠外在的字句约束，后者靠内在的圣灵更新。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v1 的问句与时间限定：全段的钥匙</strong>：「你们岂不晓得律法管人是在活着的时候吗？」——问句期待的答案是「是的，当然晓得」；而「在活着的时候」这个时间状语限定了律法管辖的全部范围：律法只管活人。整段论证就建立在这个限定上：死亡一到，管辖就到——后面的婚姻比喻与信徒应用，都是这一个限定的展开。</li>
+            <li><strong>v2–3 的条件句：两条路，没有第三条</strong>：「丈夫还活着，就被律法约束；丈夫若死了，就脱离了丈夫的律法」——两个条件句，两个且仅两个状态：活着就被约束，死了就得自由。句法上的二选一，就是法律上的二选一：没有「丈夫活着却可以自由」的状态，也没有「丈夫死了却仍被约束」的状态。保罗用这个严整的二选一，堵住一切「既要脱离律法、又不经过死」的中间路线。</li>
+            <li><strong>v4 的「这样说来」与两个目的句：从比喻到应用</strong>：「我的弟兄们，这样说来」——「这样」承接的正是 v1–3 的原则，「说来」表明下面是应用，不是新比喻。应用句里有两个「叫……」的目的从句，层层推进：第一，「叫你们归于别人，就是归于那从死里复活的」——脱离律法的目的不是「自由身」，而是「新婚姻」；第二，「叫我们结果子给神」——新婚姻的目的不是「换个主人就算了」，而是「结果子」。脱离 → 归属 → 结果子：三步缺一不可，少了最后一步，前两步就没有完成。</li>
+            <li><strong>v5–6 的「因为／但现今」：从前与现今的对照</strong>：v5 以「因为」解释 v4 的「结果子给神」为什么必要——因为从前的果子是「死亡的果子」；v6 以「但现今」翻转 v5——从前是「属肉体的时候」，现今是「脱离了律法」的时候；从前是「恶欲在肢体中发动」，现今是「按心灵的新样服事」。「但现今」与 3:21「但如今」、6:22「但现今」是同一组转折词：保罗每次用它，都是在宣告一个时代已经翻篇了。</li>
+            <li><strong>v6 的分词与主句：死是脱离的根据，服事是脱离的目的</strong>：「我们既然在捆我们的律法上死了，现今就脱离了律法」——分词「死了」在前，主句「脱离了」在后：死是根据，脱离是结果；「叫我们服事主」的目的句在后：脱离是手段，服事是目的。句法顺序就是神学顺序：先死、后脱离、再服事——把「服事」提前到「死」之前，就是律法主义；把「脱离」停在「自由」上、不走向「服事」，就是放纵主义。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>婚姻比喻的点与非点：死亡解除约束，但比喻不是一一对应的（v1–3）</strong>：原文根据是第 1 节「律法管人是在活着的时候」与第 2–3 节丈夫生死的两条路。穆理的论证抓住比喻的「点」：保罗要证明的只有一件事——死亡终止法律约束。婚姻只是这个原则最现成的例证：妻子对丈夫的法律义务，以丈夫的死为终点；丈夫一死，约束力就不存在了，妻子再嫁不再构成淫行。穆理特别提醒：比喻的「点」之外，不要多推——比喻里死的是丈夫，应用里死的却是信徒（v4「你们……在律法上死了」），这个不对称不是保罗的疏忽，而是比喻的常态：比喻只在一个点上照明，不在每一点上对应。穆尔从罗马法与犹太律法的背景补充：第一世纪的读者对「婚姻约束以死亡告终」这一点没有争议——犹太律法（参申 24 章的离婚与再嫁条例、利未记的婚姻法规）与罗马法都承认死亡解除婚姻；保罗选这个例子，正是因为它在读者那里是「无可争议的前提」，论证才能从共识出发、推向不共识的结论。分歧注明：对「丈夫的律法」到底指「婚姻法」还是「摩西律法整体」，历代有分歧；穆理与穆尔都认为此处「丈夫的律法」是「约束这段婚姻的那套法律规定」，而它所例证的原则是普遍的——任何法律约束都以死亡为终点；把「丈夫的律法」直接等同于「摩西律法」，会把比喻读成「律法死了」，而第 4 节明明说死的是「你们」。历代共识：教会一直用本节讲「死亡的法律效力」——洗礼所联合的死（6:3–4），在法律上是真实的死，不是象征性的死；真实的死，才有真实的解除。互文：罗 6:7「因为已死的人是脱离了罪」——第 6 章的「脱离了罪」与第 7 章的「脱离了律法」是同一动词逻辑：死解除一切旧权势的管辖，无论是罪，还是律法。</li>
+            <li><strong>不是律法死了，是我们在律法上死了：藉着基督的身体（v4）</strong>：原文根据是第 4 节被动语态「你们……在律法上死了」与中介短语「藉着基督的身体」。穆理的论证分三步：第一，主语是「你们」，不是「律法」——律法没有死，律法仍然是圣洁的（7:12 会明说）；死的是信徒向律法的关系：信徒在基督的死里死了，律法对死人就没有管辖权了——正如第 1 节的原则：律法只管活人。第二，中介是「基督的身体」——信徒的死不是自己制造的死，而是藉着基督在十字架上的身体而发生的死：基督的死，就是信徒的死；基督一次的死，成就了信徒向律法的一次死。穆理强调「身体」在这里指基督被钉的身体，不是「教会是基督的身体」（12:5 的用法）——上下文（「从死里复活的」紧接在后）决定了此处「身体」是受死身体。第三，新归属的对象是「那从死里复活的」——不是「一位新丈夫」那么抽象，而是特指复活的基督：信徒不是从「旧丈夫」手下逃出来、变成自由身，而是从旧婚姻里出来、进入新婚姻——新郎是复活的主，婚姻的性质也变了：旧婚姻结死亡的果子（v5），新婚姻结果子给神（v4）。穆尔则从救赎历史的进路补充：第 4 节的「在律法上死了」与 6:14「不在律法之下」是同一现实的两种说法——「不在律法之下」不是指「律法与我无关了」，而是指「律法作为定罪与管辖的体制，已经不再是我的主人了」；律法作为神旨意的启示，仍然有效（7:12、13:8–10），但它不再以「主人」的身份管辖信徒。穆尔还与新视角派对话：新视角派强调「律法」在这里主要指「犹太身份标志」（割礼、饮食、节期），穆尔承认这一层面的确在保罗的视野里（罗马教会犹太与外邦信徒的张力正是背景），但坚持「律法」在此不止于身份标志——第 5 节「因律法而生的恶欲」与第 7–13 节的展开表明，保罗讲的是律法整体作为旧时代体制的角色，不只是几条身份规条。分歧注明：对「在律法上死了」是否意味着「律法对信徒完全失效」，历代有「律法全然废去」与「律法功用转变」之争；穆理与穆尔都站在后者：废去的是律法「定罪与管辖的体制地位」，不是律法所启示的神的旨意——这一点，第 7 章后半（7:12「律法是圣洁的」）与第 8 章（8:4「律法的义成就在我们身上」）会共同证实。互文：加 2:19「我因律法，就向律法死了，叫我可以向神活着」——加拉太书用一句话讲了罗马书 7:4 的全部：向律法死的目的，是向神活；不是为死而死，而是为活而死。</li>
+            <li><strong>律法激动罪欲：火柴没有罪，火药却因它而爆（v5）</strong>：原文根据是第 5 节「因律法而生的恶欲在我们肢体中发动，以致结成死亡的果子」。穆理的论证抓住「因律法而生」的悖论：律法是圣洁的（7:12），却成了恶欲发动的「藉口」与「触媒」——不是律法本身有恶，而是罪利用了律法：律法说「不可贪心」，罪就藉着这条禁令激动起贪心（7:8「罪趁着机会，就藉着诫命叫诸般的贪心在我里头发动」）。穆理指出，这个悖论正是第 7 章后半要正面处理的问题，本篇只先陈述事实、不展开机制——读本篇时，不必急着把 7:7–13 的答案提前搬进来；先让事实站稳：从前，律法与恶欲、肢体与死亡，是连在一起的。穆尔则从「属肉体的时候」的时间限定展开：v5 讲的是「从前」，不是「现今」——「属肉体」是信主之前的存在状态（参 8:8–9「属肉体的人不能得神的喜欢……如果神的灵住在你们心里，你们就不属肉体」）；信主之后，信徒不再「在肉体里」，虽然肉体的影响仍在（7:14–25 的挣扎），但「属肉体的时候」作为体制已经过去了。穆尔提醒：把 v5 读成「基督徒现今的常态」，等于把「从前」与「现今」的对照抹平了——而这个对照，正是 v6「但现今」要立起来的。分歧注明：对「恶欲」是否只指「情欲方面的罪」，历代有分歧；穆理与穆尔都认为「罪的情欲」是广义的——一切被律法激动、被罪利用的欲求（贪心、骄傲、悖逆、自义都在内），不只是性方面的情欲；7:7–8 以「贪心」为例，正是因为贪心是最能说明「禁令激动欲望」机制的例子。历代共识：教会一直用本节抵挡两种错误——「律法是恶的」（错怪火柴）与「律法能治罪」（高估火柴）：律法既不能替罪背锅，也不能替人治罪；律法的功用是显明罪、激动罪（在罪人手里），却不是制服罪——制服罪的，是与基督联合的死与圣灵的新样（v6、8:1–4）。互文：罗 7:8、11 与林前 15:56「罪的权势就是律法」——三处经文讲同一悖论：律法本为善，罪却藉着它作恶；律法本为生命，罪却藉着它带来死亡。</li>
+            <li><strong>心灵的新样，不是无法无天：换了一套服事方式（v6）</strong>：原文根据是第 6 节「现今就脱离了律法，叫我们服事主，要按着心灵的新样，不按着仪文的旧样」。穆理的论证分两层：第一，「脱离了律法」的目的句是「叫我们服事」——脱离不是终点，服事才是终点；脱离律法的人，不是「不服事任何人」，而是「换一种方式服事同一位神」。第二，「新样」与「旧样」是两个时代的服事方式：旧样是「仪文」——写下来的字句、外在的规条、靠人自己的力量遵守；新样是「心灵」——圣灵在人心里的工作、内在的更新、靠圣灵的能力服事。穆理把这组对照接到旧约的应许上：耶利米书 31:33「我要将我的律法放在他们里面，写在他们心上」、以西结书 36:26–27「我也要赐给你们一个新心，将新灵放在你们里面……使你们顺从我的律例」——新约的「心灵新样」，正是这两处应许的应验：律法不再只写在石版上，而是写在心上；服事不再只靠外在的字句，而是靠内在的圣灵。穆尔则从哥林多后书 3:6「字句是叫人死，精意是叫人活」展开：保罗在哥林多用的「字句／精意」对照，与此处的「仪文／心灵」对照是同一组语言——「仪文」不是「字面解释」，而是「没有圣灵的旧约服事方式」；「心灵」不是「属灵的感觉」，而是「圣灵亲自在人心里的工作」。穆尔还指出 v6 与 8:4 的呼应：8:4 说「使律法的义成就在我们这不随从肉体、只随从圣灵的人身上」——心灵的新样服事，最终成全的正是律法所要求的「义」：不是废掉律法，而是以圣灵的方式，成就律法指向的义。分歧注明：对「仪文的旧样」是否包括「摩西律法的一切规条」，历代有「全然旧去」与「礼仪律旧去、道德律存留」之争；穆理与穆尔都主张区分「律法作为体制」与「律法所启示的神的旨意」：作为体制，旧样已经过去；作为神旨意的启示，律法的义仍在新样服事里被成全（13:8–10「爱完全了律法」）——本节不展开这个区分，是因为本章的任务是先立下「脱离与新样」的总原则，具体的区分要到 7:7–8:4 与 13 章才逐步展开。互文：结 36:26–27、耶 31:33、林后 3:6、罗 8:4——四处经文合起来，就是「心灵新样」的全部圣经根据：新心、新灵、写在心上的律法、叫人活的精意、成就在随从圣灵之人身上的律法之义。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>别再向已经死了的婚约交账</strong>：第 4 节说，你已经在律法上死了——可很多人心里还活在旧婚姻里：表现好才敢祷告，跌倒了就躲着不见神，服事像在还债、像在攒工价。操练：今天找出一件你仍在用「表现换接纳」的事——比如「今天灵修没做好，就觉得神今天不会听我祷告」——然后对它说一句第 4 节的话：「这段婚约已经因死解除了，我现在归于复活的主，祂接纳我的根据是祂的复活，不是我的表现。」说完，再照常祷告一次——不是等表现好了再祷告，而是带着「已经归于别人」的身份祷告。</li>
+            <li><strong>以「结果子给神」验一验你的新婚姻</strong>：第 4 节给新婚姻定了一个验收标准：结果子给神——不是「感觉更属灵」，而是「结出给神的果子」。操练：挑今天一个具体的场景——一次难相处的人际互动、一件拖延已久的工作、一个反复发作的坏习惯——然后问两个问题：第一，这个场景里，我正在结什么果子——是死亡的果子（逃避、发怒、放纵、冷漠），还是给神的果子（忍耐、诚实、饶恕、顺服）？第二，按「心灵的新样」服事，在这个场景里具体指什么——不是多立一条规条（「我以后再也不……」），而是靠圣灵做一件今天就能做的小事（先道歉一句、先动手十分钟、先忍住一句恶言）。新样服事的记号，从来不是规条变多了，而是果子变了。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>你心里是否还活在一个「丈夫已死、却还在守旧婚约」的状态里——明明已经归于复活的主，却仍在用旧婚姻的账本过日子：表现好才配亲近神，跌倒了就先躲起来，等「表现」攒够了再回来？第 6 节说，现今的服事要「按着心灵的新样，不按着仪文的旧样」：想一个你最近最常用「仪文旧样」对付的场景——靠立规条、靠咬牙坚持、靠数表现——然后问一句：如果换成「心灵的新样」，今天具体会有什么不同？是先承认自己靠不住、求圣灵帮助，还是先放下「攒够了再亲近神」的账本、直接回到复活的主面前？</p>
+          </div>
+</article>
+
+
+        <div class="daynav"><a href="day14.html">← 第 14 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
