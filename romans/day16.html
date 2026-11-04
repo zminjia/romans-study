@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 16 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day16-am">7:13–17</a>
+        
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 16 天</span>2026-11-04（周三） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day16-am">
+          <div class="entry-head">
+            <span class="entry-day">第 16 天 · 晨 — 2026-11-04（周三）</span>
+            <h3 class="entry-title">罪藉着良善的，显出恶极了 <span class="ref">· 罗马书 7:13–17</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">13</span>既然如此，那良善的是叫我死吗？断乎不是！叫我死的乃是罪。但罪藉着那良善的叫我死，就显出真是罪，叫罪因着诫命更显出是恶极了。<span class="vn">14</span>我们原晓得律法是属乎灵的，但我是属乎肉体的，是已经卖给罪了。<span class="vn">15</span>因为我所做的，我自己不明白；我所愿意的，我并不做；我所恨恶的，我倒做。<span class="vn">16</span>若我所做的，正是我所不愿意的，我就应承律法是善的。<span class="vn">17</span>既是这样，就不是我做的，乃是住在我里头的罪做的。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>晚篇 7:7–12 走完了第一步：律法不是罪，律法是叫人知罪的镜子，末了以「律法是圣洁的，诫命也是圣洁、公义、良善的」为律法作了无罪辩护。但辩护越彻底，一个更尖锐的问题就越躲不掉：如果律法真是好的，那「叫我死」的到底是谁？好东西怎么会与死连在一起？本篇 7:13 就是保罗的第二步：先把「死」的责任从良善的诫命身上彻底摘下来，安到罪身上——「叫我死的乃是罪」；再进一步说，罪藉着好东西杀人，恰恰把罪的恶显到了极处。7:13 是整章的铰链：它一面收束 7:7–12（「既然如此」承接前文的辩护），一面开启 7:14–25（从「罪藉诫命叫我死」的机制，转入「我」在律法之下的内心挣扎全景）。没有 7:13 这个铰链，7:14–25 的挣扎很容易被读成「律法叫人挣扎」；有了它，挣扎的主语从一开始就定准了：不是律法，是罪。</p>
+          <p>本篇也是罗马书论证链上一个关键的转折点。从 7:1 到 7:12，保罗讲的还是「律法与我」的关系（脱离律法、律法叫人知罪）；从 7:14 起，他要讲「我与罪」的关系——律法退到背景，罪走到前台，成为行动者。第 14 节「我们原晓得律法是属乎灵的」先把律法的定性钉死（律法没有问题），然后「但我是属乎肉体的」一转，问题就全落到了「我」身上：一个属灵的律法，对上一个属肉体、已经卖给罪的人，会发生什么？第 15–17 节就是答案的第一次展开：愿意与行为分裂，认同与行动脱节——而这一切的终极动因，是住在里头的罪。读本篇时，要把 7:5 放在手边（「属肉体的时候」）和 8:8–9（「属肉体的人不能得神的喜欢……如果神的灵住在你们心里，你们就不属肉体」）放在另一边：7:14 的「我是属乎肉体的」到底指谁，是本章后半最大的争论点，本篇只推开这扇门，争论要在 7:18–25 读完之后才能下判断。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>那良善的</strong>（<span class="gk">τὸ ἀγαθόν</span>，第 13 节）：中性单数、带定冠词——「那善的东西」。指的正是前一节刚被辩护过的「诫命」（7:12「诫命也是圣洁、公义、良善的」）。保罗不用「律法」而用「那良善的」，是把前一节的结论直接放进问题里：刚刚才说它是良善的，现在却问它是不是叫我死的——问题越尖锐，答案越彻底。</li>
+            <li><strong>断乎不是</strong>（<span class="gk">μὴ γένοιτο</span>，第 13 节）：与 7:7 相同的最强否定。罗马书里这个否定词每次出现，都是在最危险的推论路口：3:4、3:31、6:2、6:15、7:7——此处是又一次：好东西与死之间，绝不能划等号。</li>
+            <li><strong>就显出真是罪</strong>（<span class="gk">ἵνα φανῇ ἁμαρτία</span>，第 13 节）：「显出」是「显现、被看出来」的意思。罪藉着良善的叫我死，目的之一（第一个 ἵνα 目的句）是让罪「现形」：罪平时躲在暗处，藉着好东西杀人时，它的真面目才暴露出来——原来它连好东西都能利用。</li>
+            <li><strong>恶极了</strong>（<span class="gk">καθ᾽ ὑπερβολὴν ἁμαρτωλός</span>，第 13 节）：「罪因着诫命更显出是恶极了」——直译是「罪藉着诫命，按着超越的程度，成为极其罪的」。「超越」（<span class="gk">ὑπερβολή</span>）是「超出限度、登峰造极」的意思：罪的恶，不只是「很恶」，而是「恶到了超出衡量的地步」；而让它恶到这个地步的，正是它藉着好东西杀人这一点——恶的程度，是用它所利用的东西的好程度来量度的。</li>
+            <li><strong>属乎灵的</strong>（<span class="gk">πνευματικός</span>，第 14 节）：「属灵的、出于圣灵的」。律法的性质是属灵的：它出于神的灵，与神的性情一致——这与第 12 节「圣洁、公义、良善」是同一判断的另一种说法。律法没有问题，问题从来不在律法这一边。</li>
+            <li><strong>属乎肉体的</strong>（<span class="gk">σάρκινος</span>，第 14 节）：「肉做的、属肉体质料的」。与「按肉体行事」（<span class="gk">σαρκικός</span>）有细微差别：此处强调的是「构成」——「我」这个人，从质料上说就是肉体做的；一个属灵的律法，对上一个肉体构成的人，中间隔着一道质料的鸿沟。</li>
+            <li><strong>已经卖给罪了</strong>（<span class="gk">πεπραμένος ὑπὸ τὴν ἁμαρτίαν</span>，第 14 节）：完成时被动语态——「已经被卖出、并且持续处于被卖的状态」。奴隶市场的意象：人不是「偶尔被罪利用」，而是「已经被卖给了罪作奴隶」。「在罪之下」（<span class="gk">ὑπὸ τὴν ἁμαρτίαν</span>）与 3:9「都在罪恶之下」、6:14「不在律法之下」是同一组「之下」语言：人在谁之下，就是谁的奴仆。</li>
+            <li><strong>我自己不明白</strong>（<span class="gk">οὐ γινώσκω</span>，第 15 节）：不是「我不知道自己在做什么」，而是「我不认可、不理解自己所做的」——做的事与心里认同的事对不上号，以至于连自己都无法解释自己的行为。「不明白」的对象，是行为与认同之间的断裂本身。</li>
+            <li><strong>愿意／恨恶／做</strong>（<span class="gk">θέλω / μισῶ / πράσσω, ποιῶ</span>，第 15 节）：三个现在时动词，排成两组对照——「愿意的，不做；恨恶的，倒做」。「做」用了两个不同的词：<span class="gk">πράσσω</span>（持续地行、惯行）与 <span class="gk">ποιῶ</span>（做）交替出现，表明这不是一次性的失手，而是持续的状态：愿意的一直没做成，恨恶的一直在做。</li>
+            <li><strong>应承</strong>（<span class="gk">σύμφημι</span>，第 16 节）：「一同说、附和、赞同」——「我」与律法「说同样的话」。律法说「不可贪心」，「我」心里也说「贪心是不对的」：在这一点上，「我」与律法站在同一边。这个「应承」，是第 15 节分裂中的一道光：认同没有死，死的是行动力。</li>
+            <li><strong>住在我里头的罪</strong>（<span class="gk">ἡ οἰκοῦσα ἐν ἐμοὶ ἁμαρτία</span>，第 17 节）：「住着的」是现在时分词——罪不是路过的客人，而是住下来的住户；不是偶尔来访的冲动，而是常驻的权势。与 8:9–11「神的灵住在你们心里」对照：住在里头的是谁，决定了人是谁的奴仆——此处住的是罪，所以行为有罪的签名。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v13 的设问、否定、主语替换与双重目的句：四步定责</strong>：「那良善的是叫我死吗？」——设问；「断乎不是！」——最强否定；「叫我死的乃是罪」——主语替换：把「那良善的」从主语位置上拿下来，把「罪」放上去；「但罪藉着那良善的叫我死，就显出真是罪，叫罪因着诫命更显出是恶极了」——两个 ἵνα 目的句层层推进：第一，叫罪现形（显出真是罪）；第二，叫罪的恶显到极处（因着诫命更显出恶极了）。四步走完，责任的归属就再无可推诿：死是罪造成的，良善的只是被罪利用的工具；而且工具越好，罪的恶就显得越大。</li>
+            <li><strong>v14 的 γὰρ 与对照句：先钉死律法，再转到「我」</strong>：「我们原晓得律法是属乎灵的」——γὰρ（因为）表明这句是在解释第 13 节：为什么良善的不能是凶手？因为律法是属乎灵的。然后「但我是属乎肉体的」一转：律法一边没有问题，问题全在「我」这一边。两个「是」对照（律法是属乎灵的／我是属乎肉体的），中间隔着一道鸿沟——本章后半的全部挣扎，都是从这道鸿沟里长出来的。</li>
+            <li><strong>v15 的三组现在时排比：持续的分裂</strong>：「我所做的，我自己不明白」是总纲；「我所愿意的，我并不做；我所恨恶的，我倒做」是展开。动词全部是现在时——不是「有一次我失手了」，而是「一直在这样」：愿意的一直没做成，恨恶的一直在做。排比的工整，恰恰反衬出生活的失序：句子越整齐，里面讲的分裂就越刺痛。</li>
+            <li><strong>v16 的条件句：从经验推出认同</strong>：「若我所做的，正是我所不愿意的，我就应承律法是善的」——条件句的前件是第 15 节的经验（做了不愿意做的事），后件是推论（我就与律法说同样的话）。逻辑是：我心里不愿意做的事，律法也禁止——我与律法在「什么是善」上没有分歧；分歧不在「认同」上，而在「做得到」上。这个推论，是第 17 节归因的前提：既然认同没有问题，问题就只能出在行动的动因上。</li>
+            <li><strong>v17 的「既是这样……不是我……乃是……」：归因句，不是免责句</strong>：「既是这样」承接第 16 节的推论；「不是我做的，乃是住在我里头的罪做的」是归因分析：行为的终极动因，是内住的罪。这个句式很容易被误读成推卸责任——「不是我，是罪」——但第 17 节的「我」并没有消失：正是「我」在说话、正是「我」在承认住在里头的是罪；而且保罗紧接着会说「我也知道在我里头，就是我肉体之中，没有良善」（7:18）与「我真是苦啊」（7:24）——一个推卸责任的人，不会说「我真是苦啊」。归因而不免责，是读第 17 节必须守住的界线。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>叫我死的不是良善的，是罪：好东西成了凶器，罪的恶才显到极处（v13）</strong>：原文根据是第 13 节的四步定责（设问、否定、主语替换、双重目的句）与「恶极了」（<span class="gk">καθ᾽ ὑπερβολὴν</span>）。穆理的论证抓住两个目的句的递进：第一个目的「叫罪显出真是罪」，是说罪的本相平时是藏着的——人犯罪时，总觉得自己的罪「情有可原」「不过如此」；罪藉着良善的诫命杀人时，它的真面目才暴露：原来罪连好东西都不放过。第二个目的「叫罪因着诫命更显出是恶极了」，是说罪的恶有一个量度：恶的程度，是用它所利用的东西的好程度来量度的——利用越好的东西，恶就越大；用神的诫命作杀人工具的罪，恶到了超出衡量的地步。穆理把这句与 5:20「律法外添，叫过犯显多」打通：律法叫过犯「显多」，不是叫过犯「变多」而已，而是叫过犯「显出来、显得大」——显明的本身，就是审判的开始。穆尔则从「那良善的」与 7:12 的衔接展开：第 13 节问的「那良善的」，正是第 12 节刚被辩护为「圣洁、公义、良善」的诫命；保罗故意用第 12 节的结论作第 13 节的问题，是为了让读者无处可逃：如果诫命是良善的，它怎么会叫我死？答案只能是：它没有叫我死，叫我死的是罪——而罪之所以能藉着它叫我死，正因为它是良善的：越是良善、越是明确的禁令，越能成为罪的据点（7:8「趁着机会」）。穆尔还指出，第 13 节的「罪」在这里是单数、有定冠词的「那罪」——不是泛指「一件件罪行」，而是指「罪」这个权势（参 5:12–21、6:12–14 罪「作王」）：行动者是罪权势，不是某条诫命，也不是某次软弱。分歧注明：对「那良善的」到底指「诫命」还是「律法整体」，历代有分歧；穆理与穆尔都认为，上下文（7:12 的「诫命」）决定此处首先指诫命，但它的原则通于律法整体——任何良善的神的话语，都可能被罪用作据点。历代共识：教会一直用本节讲「好东西被罪利用」的悲剧结构：神的话是好的，罪却能把神的话变成定罪的工具——这不是话的错，而是罪的恶极；对付的办法从来不是「少读神的话」，而是对付那个利用者（参 8:1–4）。互文：罗 5:20、创 3:1–6（蛇藉着神的吩咐引诱）、林后 3:7（「那用字刻在石头上属死的职事」——职事属死，不是因为字是恶的，而是因为罪藉着字定罪）。</li>
+            <li><strong>律法属乎灵的，我属乎肉体、已经卖给罪：先定准两边的性质，挣扎才有坐标（v14）</strong>：原文根据是第 14 节的对照句（属乎灵的／属乎肉体的）与完成时被动语态「已经卖给罪了」。穆理的论证分两层：第一，「律法是属乎灵的」是对律法性质的最终定性：律法出于圣灵、与神的性情一致、本身是属灵的——这一点，与第 12 节的「圣洁、公义、良善」合起来，等于给律法上了三重保险：来源、标准、性质，没有一处可以指摘。第二，「我是属乎肉体的，是已经卖给罪了」是对「我」处境的最终定性：从质料上说，「我」就是肉体做的；从法律地位上说，「我」已经被卖给了罪作奴隶——完成时表明这个被卖的状态已经形成、并且持续有效。穆理强调，这个「已经卖给」与 6:16–17「顺从谁，就作谁的奴仆」是同一奴隶语言：人不是「偶尔被罪打败」，而是「已经是罪的奴隶」——这个判断的严重性，正是 7:24「我真是苦啊」的全部重量。穆尔则把第 14 节接到两条对照线上：往前接 7:5「属肉体的时候」——第 14 节的「我是属乎肉体的」，与第 5 节的「属肉体的时候」用的是同一组「肉体」语言，表明第 14 节讲的仍是「在肉体里」的存在状态；往后接 8:8–9「属肉体的人不能得神的喜欢……如果神的灵住在你们心里，你们就不属肉体」——第 14 节的「我」与第 8 章的「你们」形成对照：一个是没有圣灵内住、仍在肉体里的人，一个是已有圣灵内住、不再属肉体的人。穆尔认为，这个对照是理解 7:14–25 的钥匙：本段的「我」身上，圣灵一次也没有出场——挣扎全程，都是「我」一个人在与内住的罪搏斗，没有圣灵的援助。分歧注明：这正是穆理与穆尔在本章后半最大的分歧点——穆理把 7:14–25 的「我」读作已经蒙恩的保罗（重生者的挣扎：内心认同律法、却仍被内住的罪拖住），穆尔则把「我」读作律法之下、未蒙圣灵内住的人（未重生者的处境：认同律法是善的，却全然无力遵行）；分歧的证据要到 7:18–25 才能展开评判，本篇先把分歧摆出来、不急着下结论——但有一点两人完全一致：无论「我」是谁，第 14 节的判断都成立——律法是属乎灵的，「我」是属乎肉体的、已经卖给罪了；这个判断不依赖于「我」的身份，而依赖于律法与肉体的性质对照。历代共识：奥古斯丁晚年、改教家多把 7:14–25 读作重生者的挣扎，希腊教父与卫斯理传统多读作未重生者的处境——两条线都承认本节的坐标意义：律法没有问题，问题在「我」这一边。互文：罗 7:5、8:8–9、6:16–17、3:9。</li>
+            <li><strong>愿意与行为的分裂：不是意志软弱，而是内住的权势在行动（v15–16）</strong>：原文根据是第 15 节三组现在时排比与第 16 节「应承」的条件句。穆理的论证抓住「不明白」与「应承」的张力：一个人怎么会「不明白自己所做的」？因为做的事与心里认同的事对不上号——心里愿意善，行动却交出恶；心里恨恶恶，行动却交出恶。穆理指出，这个分裂的关键证据在第 16 节：分裂的人并没有「以恶为善」——他「应承律法是善的」，即他与律法说同样的话。认同没有死，死的是行动力：知道什么是善、心里也认同善，却做不出善来。穆理认为，这正是重生者挣扎的特征（他读 7:14–25 为重生者的经历）：未重生者的问题是「不认同律法是善的」（参 1:32「明知故犯」），而此处的人恰恰认同律法是善的——认同还在，能力却被内住的罪劫持了。穆尔则从结构上展开：第 15–17 节是第一轮，第 18–20 节是第二轮（同一模式再讲一遍：愿意善、却做不出；不愿意恶、却去做）；两轮重复，表明这不是一次性的失手，而是持续的、结构性的分裂。穆尔还指出，第 16 节的「应承」恰恰证明了「我」的内心并不以罪为乐——一个以罪为乐的人，不会「应承律法是善的」；但他同时坚持，这一点并不能证明「我」就是重生者：一个在律法之下、被律法光照的犹太人（参腓 3:6 保罗自述「就律法上的义说，无可指摘」），同样可以心里认同律法是善的、却做不到——认同律法是善的，是「律法之下的人」的共同特征，不是重生者的专利。分歧注明：穆理与穆尔对第 16 节的「应承」作出了相反的推论——穆理从「应承」推出「这是重生者」（因为未重生者不会真心认同律法），穆尔从「应承」推出「这还不能证明是重生者」（因为律法之下的人同样可以认同律法）——同一节经文，两种推论，分歧点在于「认同律法是善的」到底是谁的专利；本篇不裁决，只把两种推论的根据都摆出来，留待 7:18–25 的证据（特别是「我心里喜欢神的律」7:22 与「我是被掳去的」7:23）再作判断。历代共识：教会一直用本段抵挡两种简化——「基督徒不会有这种分裂」（否认挣扎的真实性）与「这种分裂就是基督徒的常态、不用求出路」（否认 8:1–4 的出路）：分裂是真实的，但它不是终点，终点在 7:25「感谢神，靠着我们的主耶稣基督就能脱离了」与 8:1「如今，那些在基督耶稣里的就不定罪了」。互文：加 5:17（肉体与圣灵相争——但需注意：加拉太书讲的是圣灵与肉体的相争，本段讲的却是没有圣灵出场的「我」与内住罪的相争，两处不可直接等同，这正是穆尔论证的关键之一）、腓 3:6、罗 1:32。</li>
+            <li><strong>不是我做的，乃是住在我里头的罪做的：归因而不免责（v17）</strong>：原文根据是第 17 节的归因句式与「住着的」（<span class="gk">οἰκοῦσα</span>）现在时分词。穆理的论证分三步：第一，这个「不是……乃是……」是归因分析，不是无罪辩护：保罗不是在说「我没有责任」，而是在说「行为的终极动因不在『我』的认同里，而在内住的罪里」——认同是我的，行动却被罪劫持了；区分「认同」与「动因」，是整段不读歪的关键。第二，「住在我里头的」表明罪的常驻性：罪不是偶尔来访的冲动，而是住下来的住户——与 6:12「不要容罪在你们必死的身上作王」对照：罪要作王，先要「住下」；住下了，作王就是迟早的事。第三，穆理提醒，第 17 节绝不能孤立地读：保罗紧接着说「我也知道在我里头，就是我肉体之中，没有良善」（7:18）与「我真是苦啊」（7:24）——一个推卸责任的人，不会说「我真是苦啊」；说「我真是苦啊」的人，恰恰是在认自己的苦境、而不是在推自己的责任。穆尔则把「内住的罪」与 8:9–11「圣灵内住」对照：住在里头的是谁，决定了人是谁的奴仆——第 7 章住的是罪，所以行为有罪的签名；第 8 章住的是圣灵，所以行为能有圣灵的果子。穆尔还指出，第 17 节的归因句式，在第 20 节会再出现一次（「若我去做所不愿意做的，就不是我做的，乃是住在我里头的罪做的」）——两轮归因，首尾呼应，表明这不是保罗一时的口误，而是他刻意的结论：内住的罪，是分裂的终极动因。分歧注明：对第 17 节是否给信徒留下了「推卸责任」的口子，历代有警惕；穆理与穆尔都以 7:18、24 为界：归因分析的合法性，止于「认清动因」，不延伸到「免除责任」——认清动因是为了求出路（7:25、8:1–4），不是为了找借口。历代共识：教会一直用本节讲「罪的内住」——罪不只是外在的行为清单，更是内住的权势；对付罪，不能只改行为（换一套规条），而要对付那个住在里头的权势——而对付它的路，不在第 7 章（第 7 章没有出路），而在第 8 章（圣灵内住、治死身体的恶行，8:13）。互文：罗 7:18、20、23–24、8:9–13、6:12。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>别再怪那条「良善的」：先把责任安对地方</strong>：第 13 节的四步定责，是一面镜子：当你被某句神的话刺痛时，第一反应是怪那句话吗——「这条标准太高了」「这个要求不近人情」「教会总拿这节经文压人」？第 13 节说：先别怪那条良善的。操练：找出一句最近让你想怪罪的经文或提醒（比如「不可起贪心」、一句关于饶恕或诚实的教导），按第 13 节的四步走一遍：第一，承认它是良善的（它出于神、本身是好的）；第二，问一句：叫我难受的，到底是这句话本身，还是我心里那个被它照出来的东西？第三，把责任安对地方：不是话有问题，是罪藉着好话把我里面的贪心、骄傲或不饶恕显出来了；第四，感谢这句话——它让罪现了形，现形是得医治的第一步。怪镜子的人，永远洗不干净脸。</li>
+            <li><strong>用第 16 节验一验你的分裂：认同还在吗？</strong>：第 15–16 节给了一个验分裂的标尺：你心里还「应承律法是善的」吗？很多人陷在反复失败里，第一反应是怀疑自己的认同——「我是不是根本就不爱神了」「我是不是已经不在乎了」。操练：挑一个你反复失败的点（比如一个坏习惯、一次总也管不住的脾气），先别急着立下一条更严的规条，只问第 16 节的问题：你心里还认同「这件事是不对的」吗？如果答案是「还认同」，那你的问题就不是「认同死了」，而是「行动力被内住的罪劫持了」——对付的办法不是「再认同一次」（你已经认同了），而是第 17 节的归因与第 8 章的出路：承认住在里头的罪的权势，然后求圣灵内住、治死身体的恶行（8:13），而不是靠意志力再打一场注定要输的仗。如果答案是「已经不认同了」——你已经觉得「这也没什么不对」——那问题就比第 15 节更深：不是分裂，是认同本身死了，需要回到第 7 节的镜子面前，让律法重新把罪显出来。先验认同，再谈方法；认同还在的人，与认同已死的人，走的不是同一条路。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>第 15 节的分裂——「愿意的做不到，恨恶的倒去做」——你最近在哪个具体场景里最有体会？先按第 16 节验一验：你心里还「应承」那条标准是善的吗？如果还认同，再按第 17 节想一想：这一次，你能不能不把失败只归于「我意志力不够」（那是第 15 节的表层），也不把它推给「都是罪的错、与我无关」（那是第 17 节的误读），而是老老实实地承认：我心里认同善，行动却被住在我里头的罪劫持了——然后，带着这个承认，去读 8:1–4 与 8:13，问一句：圣灵内住、治死身体恶行的出路，在这个具体场景里，今天可以先迈出哪一小步？</p>
+          </div>
+</article>
+
+
+
+        <div class="daynav"><a href="day15.html">← 第 15 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
