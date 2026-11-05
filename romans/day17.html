@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 17 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day17-am">8:1–4</a>
+
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 17 天</span>2026-11-05（周四） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day17-am">
+          <div class="entry-head">
+            <span class="entry-day">第 17 天 · 晨 — 2026-11-05（周四）</span>
+            <h3 class="entry-title">如今就不定罪了 <span class="ref">· 罗马书 8:1–4</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>如今，那些在基督耶稣里的就不定罪了。<span class="vn">2</span>因为赐生命圣灵的律，在基督耶稣里释放了我，使我脱离罪和死的律了。<span class="vn">3</span>律法既因肉体软弱，有所不能行的，神就差遣自己的儿子，成为罪身的形状，作了赎罪祭，在肉体中定了罪案，<span class="vn">4</span>使律法的义成就在我们这不随从肉体、只随从圣灵的人身上。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>第 7 章停在一个悬置里：第 25 节前半句说了感谢，后半句却又把张力原样摆回桌面——「我以内心顺服神的律，我肉体却顺服罪的律了」。第 8 章第 1 节的第一个词，就是推开这扇半掩的门的词：「如今」。从 7:14 到 7:25，保罗讲的是一个没有圣灵出场的人与内住之罪的搏斗；从 8:1 起，圣灵登场了——全章「圣灵」出现约二十次，而第 7 章后半一次也没有。这不是换了一个话题，而是换了一个世界：7 章的世界里，人被罪掳去；8 章的世界里，人在基督里就不定罪了。</p>
+          <p>本篇 8:1–4 是整章第 8 章的纲领段，也是全卷论证的一个高峰。它的四节经文，恰好回答了 7:24 的呼喊留下的两个问题：「谁能救我？」——第 3 节回答：神差遣自己的儿子；「脱离这取死的身体」怎么实现？——第 1–2 节回答：不定罪了、释放了；第 4 节则说出这一切的目的：律法的义，要成就在随从圣灵的人身上。此后全章都是这四节的展开：8:5–17 展开「随从圣灵」的生活（心思、治死恶行、儿子的名分），8:18–30 展开「如今」与「将来」之间的叹息与盼望，8:31–39 展开「不定罪」的终极确据（神若帮助我们，谁能敌挡我们？谁能控告神所拣选的人呢？）。读本篇，要把它当作第 8 章的总钥匙：后面每一节，都是这四节里某一个词的放大。</p>
+          <p>还要把 8:1–4 放回全卷的论证链上看。1:18–3:20 讲普世都在定罪之下（「没有义人，连一个也没有」）；3:21–5:21 讲因信称义与在基督里的新地位；6:1–7:25 讲称义之人的成圣挣扎（脱离罪的权势、脱离律法，却仍在肉体里被罪掳去）；8:1–4 就是这条链的收束与翻篇：定罪的问题已经由基督解决了，挣扎的问题现在由圣灵接手了。8:1 的「如今」，既是时间的「现在」（与 3:21 的「但如今」呼应），也是救赎历史的「如今」——基督已经来了，圣灵已经赐下了，旧世界已经翻篇了。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>如今</strong>（<span class="gk">ἄρα νῦν</span>，第 1 节）：两个词连用——ἄρα（「所以、这样看来」，承接前文的推论）加上 νῦν（「现在」，时间的转折点）。这不是一句随口的「现在」，而是一个救赎历史的路标：7:25 的悬置到此为止，8:1 的新时代从此开始。与 3:21 的「但如今」（νυνὶ δέ）呼应：3:21 的「如今」是神的义显明的时候，8:1 的「如今」是不定罪的判决生效的时候。</li>
+            <li><strong>不定罪</strong>（<span class="gk">κατάκριμα</span>，第 1 节）：「定罪的判决、定罪本身」，不是「定罪的感觉」，而是法庭上的「有罪判决」。这个词在罗马书只出现三次：5:16、5:18、8:1——从「众人都被定罪」到「在基督里的就不定罪」，8:1 是 5:18 的直接翻转：亚当里人人有罪判决，基督里判决已经撤销。</li>
+            <li><strong>在基督耶稣里</strong>（<span class="gk">ἐν Χριστῷ Ἰησοῦ</span>，第 1 节）：「在……里」是保罗最核心的联合语言：不是「靠近基督」「想着基督」，而是「在基督里面」——像在房子里、在身体里一样，处境变了，判决也就变了。不定罪不是因为「我表现好了」，而是因为「我所在的位置变了」：在亚当里，就在定罪里；在基督里，就在不定罪里。</li>
+            <li><strong>赐生命圣灵的律</strong>（<span class="gk">ὁ νόμος τοῦ πνεύματος τῆς ζωῆς</span>，第 2 节）：一串属格——「圣灵的律」「生命的圣灵」。「律」（νόμος）在这里不再是摩西的律法（第 7 章的「律」），而是「运行的法则、掌权的势力」：7:21、23 的「律」是「罪和死的律」，8:2 的「律」是与之对峙的另一条律——圣灵的律、赐生命的律。两条律交战，圣灵的律赢了。</li>
+            <li><strong>释放了我</strong>（<span class="gk">ἠλευθέρωσέν</span>，第 2 节）：「释放、使自由」，不定过去时——释放是一次已经完成的行动，不是正在争取的过程。抄本注：此处有「我」（με）与「你」（σε）两种读法，和合本从「我」（与 7:24–25 的第一人称连贯）；现代校勘本多取「你」（最早抄本的支持较强）。两种读法不影响神学含义：释放的对象，无论是我还是你，都是在基督里的人。</li>
+            <li><strong>律法……有所不能行的</strong>（<span class="gk">τὸ ἀδύνατον τοῦ νόμου</span>，第 3 节）：直译是「律法所不能的」——带定冠词的形容词作名词用：「律法的无能」。保罗不是说律法「有点弱」，而是给律法下了一个正式的诊断：律法有一件它做不到的事。这件做不到的事，不是「指明什么是善」（律法做得到，7:12），而是「叫人行出善来」（律法做不到，7:18）。</li>
+            <li><strong>因肉体软弱</strong>（<span class="gk">ἐν ᾧ ἠσθένει διὰ τῆς σαρκός</span>，第 3 节）：「因为它（律法）在肉体上是软弱的」——未完成时「是软弱的」，表明这不是一次失手，而是持续的状态。软弱的原因不在律法本身（律法是圣洁、公义、良善的，7:12），而在「肉体」——律法要通过肉体这个执行者来生效，肉体却执行不了；好比一条好法律，交给一个瘫痪的执行机构，就「有所不能行」。</li>
+            <li><strong>成为罪身的形状</strong>（<span class="gk">ἐν ὁμοιώματι σαρκὸς ἁμαρτίας</span>，第 3 节）：「在罪的肉体的样式里」。「形状、样式」（ὁμοίωμα）是本节最需要小心处理的词：它不是说基督「看起来像人、其实不是人」（那是幻影说），也不是说基督的肉体「就是有罪的肉体」（那是否认基督无罪）；它的意思是：基督取了与我们一样的、真实的人性——属于这个罪所辖制的肉体世界的肉体——却没有犯罪。样式相同，罪不同在。</li>
+            <li><strong>作了赎罪祭</strong>（<span class="gk">περὶ ἁμαρτίας</span>，第 3 节）：直译「为着罪、关于罪」，在七十士译本里是「赎罪祭」的固定译法（利未记中「赎罪祭」就是 περὶ ἁμαρτίας）。保罗用这个献祭术语，是把基督的死放进旧约献祭的框架里：基督不是泛泛地「为罪而死」，而是作为赎罪祭而死——替罪人承担罪的刑罚。</li>
+            <li><strong>在肉体中定了罪案</strong>（<span class="gk">κατέκρινεν τὴν ἁμαρτίαν ἐν τῇ σαρκί</span>，第 3 节）：「定罪」与第 1 节的「不定罪」是同一个词根（κατακρίνω）——神把「定罪」从我们身上挪开，是因为祂把「定罪」落到了罪身上：罪在肉体中被定了罪案。地点很关键：「在肉体中」——罪从前在肉体中作王（7:23「肢体中犯罪的律」），如今罪就在它作王的地方被宣判了死刑。</li>
+            <li><strong>律法的义</strong>（<span class="gk">τὸ δικαίωμα τοῦ νόμου</span>，第 4 节）：单数的「义的要求、公义的条例」——不是泛指「律法的义」，而是指律法所要求的那个「义的标准、义的判决」。它与 1:17、3:21 的「神的义」（δικαιοσύνη）用词不同：此处是律法「要求」的那一份义，要「成就」在我们身上。</li>
+            <li><strong>成就</strong>（<span class="gk">πληρωθῇ</span>，第 4 节）：被动语态的虚拟语气，放在 ἵνα（「使、为要」）目的句里——「为要使律法的义被成就」。被动语态很关键：义不是「我们成就的」，而是「在我们身上被成就的」——成就者是神，承受者是我们。</li>
+            <li><strong>随从</strong>（<span class="gk">περιπατοῦσιν</span>，第 4 节）：「行走、生活」，现在时分词——不是一次性的「走了一步」，而是持续的生活方式、行走的方向。「不随从肉体、只随从圣灵」讲的不是「从来没有随从肉体的时候」，而是「行走的方向、生活的归属」：按着谁的带领走，就是谁的人。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v1 的 ἄρα νῦν 与否定句：推论＋转折，一句定案</strong>：「所以，如今……就不定罪了」——ἄρα（所以）表明这是从 7:25 推出的结论，νῦν（如今）表明这是新时代的宣告，οὐδέν（「没有、一点也没有」）放在句首、语气最强：「一点定罪也没有」。三个词叠在一起，8:1 就成了一句不容打折的判决：不是「少一点定罪」，不是「将来不定罪」，是「如今，一点定罪也没有」。</li>
+            <li><strong>v2 的 γὰρ：解释为什么「就不定罪了」</strong>：「因为赐生命圣灵的律……释放了我」——γὰρ（因为）表明第 2 节是第 1 节的理由：不定罪不是一句空洞的安慰，它的根据是一次已经完成的释放。释放的完成时态（不定过去时）与第 1 节的「如今」配合：释放已经完成了，所以如今就不定罪了；不是「正在释放、所以快不定罪了」，是「已经释放、所以如今就不定罪了」。</li>
+            <li><strong>v3 的长句结构：律法无能，神行动</strong>：第 3 节是一个长句，主语到后半句才出现：「律法……有所不能行的，神就差遣自己的儿子……」——前半句是「律法的无能」（τὸ ἀδύνατον τοῦ νόμου），后半句是「神的行动」（ὁ θεὸς……πέμψας，「神差遣」）。句法本身就是神学：前半句越是无能（律法做不到），后半句的神就越是主角——神没有等律法「再努力一点」，神自己行动了。差遣的分词（πέμψας）后面跟了一串修饰：儿子的身份（「自己的儿子」）、儿子的样式（「罪身的形状」）、儿子的使命（「作了赎罪祭」）、行动的地点与结果（「在肉体中定了罪案」）——一个分词，装下了整个道成肉身与赎罪。</li>
+            <li><strong>v4 的 ἵνα 目的句与被动语态：目的与主角</strong>：「使律法的义成就在我们……身上」——ἵνα（为要）表明第 3 节神差遣儿子的目的：第 3 节不是终点，第 4 节才是终点——神差儿子、定罪案，是「为要」使律法的义成就在我们身上。而「成就」是被动语态：成就的主角是神，不是我们；我们是「成就的场所」（「在我们身上」），不是「成就的工人」。最后的分词短语「不随从肉体、只随从圣灵」是描写「我们」是谁：这班人不是凭行律法被认出来的，而是凭「随从谁」被认出来的。</li>
+            <li><strong>v1 与 v3–4 的「定罪」呼应：同一个词根，两次判决</strong>：第 1 节「不定罪」（οὐδὲν κατάκριμα）与第 3 节「定了罪案」（κατέκρινεν）是同一个词根的两次使用——神把定罪从我们身上挪开的办法，不是「取消定罪」这个程序，而是「转移定罪的对象」：罪在肉体中被定了罪案，我们在基督里就不定罪了。两个判决，一次转移，这就是 8:1–4 的全部逻辑。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>「如今就不定罪了」：不是感觉，是判决；不是将来，是现在（v1）</strong>：原文根据是第 1 节的 ἄρα νῦν、句首的 οὐδέν（一点也没有）与 κατάκριμα（法庭判决）。穆理的论证抓住「如今」的救赎历史重量：8:1 的「如今」不是「从今天起我要努力活得好一点」的励志起点，而是「基督已经来了、已经死了、已经复活了」的时代宣告——旧时代的判决（5:18「众人都被定罪」）在新时代里已经被翻转了。穆理强调，κατάκριμα 是法庭用语：不定罪，讲的不是「我不再觉得自己有罪」（感觉会起伏），而是「法庭的判决已经撤销」（判决不会起伏）——一个在基督里的人，早上觉得自己很糟、晚上觉得自己很好，判决都没有变，因为判决不在感觉里，在基督里。穆尔则从「在基督耶稣里」展开：不定罪的范围，恰好等于「在基督里」的范围——不在基督里，就仍在 5:18 的定罪里；在基督里，就在 8:1 的不定罪里；没有第三种位置。穆尔还指出一个抄本细节：有些晚期抄本在第 1 节后面加上了「不随从肉体、只随从圣灵的人」（从第 4 节抄过来的），但和合本第 1 节没有这句附加语，现代校勘本也一致认为它是后人从第 4 节抄入的，应予删除；第 4 节的「随从圣灵」是描写「律法的义成就在谁身上」，不是给第 1 节的「不定罪」加条件——不定罪是无条件的（在基督里），随从圣灵是这班人的生活描写，不是赚取不定罪的工价。分歧注明：对「不定罪」是否可能「失落」，历代有分歧——改革宗传统（穆理）强调判决的终局性（神的判决不会被人的起伏推翻），卫斯理传统则更强调「在基督里」的持续性（离了基督，就离了不定罪的范围）；但两派都承认本节的底线：只要在基督里，如今就没有定罪——争论不在「如今有没有定罪」，而在「怎样才算仍在基督里」。历代共识：教会一直用本节抵挡两种错误——「基督徒仍在定罪之下」（否认基督工作的完全）与「不定罪等于没关系」（把不定罪读成放纵的许可证，第 4 节的「随从圣灵」正是为此而写的）。互文：罗 5:16、18、8:33–34（「谁能控告神所拣选的人呢？有神称他们为义了。谁能定他们的罪呢？」）、约 3:18、5:24（「不至于定罪」）。</li>
+            <li><strong>「赐生命圣灵的律释放了我」：两条律交战，圣灵的律赢了（v2）</strong>：原文根据是第 2 节的属格链（圣灵的律、生命的圣灵）与不定过去时「释放了」。穆理的论证分两层：第一，「律」在这里不是摩西的律法，而是「掌权的势力、运行的法则」——7:21、23 已经用过这个意思（「我觉得有个律」「肢体中犯罪的律」），8:2 是同一用法的延续：罪和死的律是一条掌权的律，圣灵的律是另一条掌权的律，两条律不是「规条与规条」的竞争，而是「权势与权势」的交战。第二，「释放」是不定过去时——一次完成的行动：7:23 的「把我掳去」是现在进行时的被掳，8:2 的「释放了我」是已经完成的释放；被掳是过去式，释放是完成式——第 7 章的俘虏，如今是自由人了。穆尔则把第 2 节接到 7:25 的悬置上：7:25 的「我以内心顺服神的律，我肉体却顺服罪的律」讲的是「两个顺服」的僵局，8:2 讲的是僵局的打破——打破它的不是「我」更努力地顺服，而是圣灵的律「释放了我」：主语换了，从「我」换成了「圣灵的律」；7 章的主语是「我」（我愿意、我做、我被掳），8 章的主语是圣灵（圣灵释放、圣灵引导、圣灵代求）。穆尔还指出，「赐生命」不是装饰词：圣灵的律之所以能释放，是因为它是「生命」的律——与「罪和死的律」针锋相对：死的律辖制人，生命的律释放人；7 章的律叫人死（7:10–13），8 章的律叫人活。分歧注明：对「圣灵的律」到底指什么，历代有分歧——穆理读为「圣灵作为掌权者的统治」（圣灵亲自作王），穆尔读为「圣灵所带来的新秩序、新时代的运行法则」（与摩西律法的旧秩序对照）；两种读法都承认一点：释放的动因是圣灵，不是律法，也不是「我」。历代共识：教会一直用本节讲「成圣的动力」：成圣不是「我靠律法管住自己」，而是「圣灵的律释放了我」——动力换了，成圣才有出路；靠律法成圣的人，仍在 7 章里；靠圣灵成圣的人，已经进了 8 章。互文：罗 7:21、23、8:6、11（「叫耶稣从死里复活者的灵……也必叫你们必死的身体又活过来」）、林后 3:17（「主的灵在哪里，那里就得以自由」）、加 5:16–18。</li>
+            <li><strong>神差遣儿子，在肉体中定了罪案：罪在哪里作王，就在哪里被宣判（v3）</strong>：原文根据是第 3 节的长句结构（律法无能→神行动）与「罪身的形状」「赎罪祭」「在肉体中定了罪案」三个关键短语。穆理的论证抓住主语：全句的主语是「神」——不是「基督决定来」，不是「律法终于奏效」，是「神就差遣」：救赎的发起者是神，律法无能的地方，神亲自补上。穆理还强调「自己的儿子」（τὸν ἑαυτοῦ υἱόν）的分量：神差遣的不是一位天使、不是一位先知，是「自己的儿子」——代价的分量，就是儿子本身；神没有差遣一个次要的角色来处理罪，祂差遣的是祂的儿子。穆尔则从「罪身的形状」与「赎罪祭」两个短语展开：第一，「形状」（ὁμοίωμα）必须两面守住——一面是「真实的人性」（基督真的成了肉身，真的进了我们这个罪所辖制的肉体世界；否认这一点是幻影说，约翰一书 4:2–3 正是为此而写），另一面是「无罪」（祂的肉体与我们「样式相同」，却没有犯罪；来 4:15「他也曾凡事受过试探，与我们一样，只是他没有犯罪」）；丢了哪一面，第 3 节就塌了：不是真人，就不能替人；有了罪，就不能赎罪。第二，「赎罪祭」（περὶ ἁμαρτίας）把基督的死放进利未记的献祭框架：赎罪祭的牲畜替献祭者承担罪的刑罚，基督作为赎罪祭，替我们在肉体中承担了罪的刑罚。穆尔还指出「在肉体中定了罪案」的地点神学：罪从前在哪里作王（7:23「肢体中犯罪的律」、7:17「住在我里头的罪」）？在肉体中。如今罪在哪里被定罪？也在肉体中——在基督的肉体里。神没有绕开战场，祂在罪的老巢里宣判了罪的死刑：罪的刑场，就是罪的王宫。分歧注明：对「在肉体中定了罪案」的「肉体」到底指「基督的肉体」还是「我们的肉体」，历代有分歧——穆理与穆尔都认为首先指基督的肉体（神在基督的肉身里、藉着基督的死，定了罪的罪案），但它的效力落在我们的肉体上（罪在我们肉体中的权势因此被打破，8:13「靠着圣灵治死身体的恶行」正是这个效力的展开）；两种读法不是对立的，是「地点」与「效力」的两面。历代共识：教会一直用本节抵挡两种简化——「基督的死只是榜样」（否认赎罪祭的代赎）与「基督的死与我无关」（否认「在肉体中」的地点意义：祂进的正是我的肉体世界）。互文：利 16 章（赎罪日）、赛 53:10（「耶和华却定意将他压伤」）、林后 5:21（「神使那无罪的，替我们成为罪」）、来 4:15、约壹 4:2–3。</li>
+            <li><strong>「律法的义成就在我们身上」：成就是被动的，随从是方向（v4）</strong>：原文根据是第 4 节的 ἵνα 目的句、被动语态「成就」与现在时分词「随从」。穆理的论证抓住被动语态：律法的义「成就在我们身上」，不是「被我们成就出来」——成就的主角是神，成就是基督的顺服（5:19「因一人的顺从，众人也成为义了」）在我们身上的落实。穆理认为，第 4 节的「成就」首先是称义的成就：律法所要求的义，基督已经替我们成就了，并且算在我们身上；「随从圣灵」不是成就的条件，而是成就之人的记号——这班人之所以被认出来，是因为他们随从圣灵，不是因为他们随从圣灵才配得成就。穆尔则把「成就」读得更立体：他认为第 4 节的「成就」既包括基督为我们成就的义（归算），也包括圣灵在我们里面成就的义（更新）——律法的义，一面在基督身上已经成就（称义），一面在随从圣灵的人身上正在成就（成圣）；两面不是两件事，是一件事的两面：称义的义，必然在圣灵引导的生活中结出果子来。穆尔的证据是「随从」的现在时：随从圣灵是持续的生活方向——一个「随从圣灵」的人，生活中会长出律法所要求的义的果子（爱、圣洁、顺服），不是靠行律法长出来的，而是靠圣灵长出来的。分歧注明：穆理与穆尔对第 4 节的侧重点有分歧——穆理更重「归算」（基督成就的义算在我们身上，成就是已然的），穆尔更重「双面成就」（归算＋更新，成就是已然且正在进行的）；但两人一致的底线是：成就不是「我们靠行律法挣来的」，随从圣灵不是「赚取成就的工价」，而是「成就之人的生活方向」——把随从读成工价，就回到了 7 章（靠律法）；把随从读成可有可无，就丢掉了第 4 节的后半句（随从圣灵是「我们」这班人的定义）。历代共识：教会一直用本节讲「称义与成圣不可分、也不可混」：不可分——称义的义必然在生活中结果子；不可混——结果子不是称义的原因，称义的原因永远是基督。互文：罗 5:19、8:13、加 5:16、22–23（圣灵的果子）、腓 2:13（「神在你们心里运行，为要成就他的美意」）。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>分清「定罪」与「责备」：法庭的判决已经撤销，圣灵的责备仍在工作</strong>：第 1 节是一面镜子：你最近心里那个声音，是「定罪」还是「责备」？定罪的声音说：「你这个人完了，神不要你了」——它指向你的身份，叫你躲开神；责备的声音说：「这件事不对，回来吧」——它指向你的行为，叫你回到神面前。前者是 5:18 的旧判决，后者是圣灵的工作（约 16:8「叫世人为罪、为义、为审判，自己责备自己」）。操练：下一次心里响起「我完了」的时候，先按 8:1 验一验：这个声音是在撤销我的身份（定罪），还是在指认我的行为（责备）？如果是定罪，回答它：「如今，那些在基督耶稣里的就不定罪了」——判决已经撤销了，你的声音是旧时代的回声；如果是责备，别躲，顺着它回到神面前认罪、悔改——责备是回家的路标，不是法庭的传票。分不清这两样的人，要么活在定罪里（不敢亲近神），要么对责备麻木（听不见圣灵的声音）。</li>
+            <li><strong>用「随从谁」验一验今天的行走方向</strong>：第 4 节给了一个验方向的标尺：不是「今天我有没有犯错」（犯错是第 7 章的常态），而是「今天我是随从肉体走，还是随从圣灵走」。随从肉体，不一定是犯了大罪——也可能是「按着自己的意思、自己的算计、自己的脾气」作了一个决定；随从圣灵，也不一定是做了什么大事——也可能只是在一个小决定上，先停下来问一句：「圣灵，你怎么看？」操练：今晚睡前，挑今天一个具体的决定（一次说话、一次花钱、一次回应冲突的方式），问一句：这个决定，我是「随从肉体」作的（按我的意思、我的脾气、我的算计），还是「随从圣灵」作的（先祷告、先等一等、先按神的话）？如果答案是前者，别急着定罪自己（8:1 已经说了不定罪了），只把它带到神面前，求圣灵在下一个同样的路口，先给你一个「停下来」的提醒——随从圣灵不是一次到位的完美，是方向一次次地被扳回来。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>7:24 的呼喊是「谁能救我脱离这取死的身体呢？」，8:1 的回答是「如今就不定罪了」，8:3 的回答是「神差遣自己的儿子，在肉体中定了罪案」。把这两个回答连起来想一想：你最近最想喊「谁能救我」的那个具体场景（一个改不掉的习惯、一段修不好的关系、一种挥之不去的定罪感），8:1–4 给你的出路，是「再立一个更严的志」（那是 7 章的路），还是「先站稳一个已经生效的判决」（8:1 的不定罪），再「靠着一位已经差来的儿子」（8:3 的赎罪祭），然后「在今天的一个小决定上，随从圣灵走一步」（8:4 的随从）？今天，你能不能先迈出这一步——不是立志改掉整个习惯，而是在下一个同样的路口，先停下来，问一句：「圣灵，你怎么看？」</p>
+          </div>
+</article>
+
+        <div class="daynav"><a href="day16.html">← 第 16 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
