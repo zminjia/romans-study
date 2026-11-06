@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 18 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day18-am">8:12–17</a>
+
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 18 天</span>2026-11-06（周五） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day18-am">
+          <div class="entry-head">
+            <span class="entry-day">第 18 天 · 晨 — 2026-11-06（周五）</span>
+            <h3 class="entry-title">儿子的心：阿爸，父！ <span class="ref">· 罗马书 8:12–17</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">12</span>弟兄们，这样看来，我们并不是欠肉体的债去顺从肉体活着。<span class="vn">13</span>你们若顺从肉体活着，必要死；若靠着圣灵治死身体的恶行，必要活着。<span class="vn">14</span>因为凡被神的灵引导的，都是神的儿子。<span class="vn">15</span>你们所受的不是奴仆的心，仍旧害怕；所受的乃是儿子的心，因此我们呼叫：阿爸，父！<span class="vn">16</span>圣灵与我们的心同证我们是神的儿女。<span class="vn">17</span>既是儿女，便是后嗣，就是神的后嗣，和基督同作后嗣。如果我们和他一同受苦，也必和他一同得荣耀。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>晨篇 8:1–4 立下了全章的纲领：「如今就不定罪了」「圣灵的律释放了我」「神差儿子在肉体中定了罪案」「律法的义成就在随从圣灵的人身上」；晚篇 8:5–11 展开「随从圣灵」的第一步——心思的朝向、圣灵的内住、身体将来的复活。本篇 8:12–17 是这条线的继续，也是 8:5–17 这一大段的第二步：从「心思」转向「身份」——儿子的名分。第 12 节的第一个词「这样看来」，就是承接的铆钉：既然你们不在肉体里、乃在圣灵里（8:9），既然圣灵住在你们心里、身体将来也要活过来（8:11），那么——「我们并不是欠肉体的债」。</p>
+          <p>本篇的结构，是先命令、后根基：12–13 节是命令（靠着圣灵治死身体的恶行），14–17 节是命令的根基（你们是神的儿子）。保罗的次序永远是先身份、后命令：他不说「治死恶行，好叫你们成为儿子」，他说「你们是儿子，所以治死恶行」。8:18–30 会把「儿子」这个词推向高潮——受造之物「等候神的众子显出来」（8:19），我们自己也「等候得着儿子的名分，乃是我们的身体得赎」（8:23）；8:31–39 则以「神的爱」收束全章。读本篇，要把它当作从「不定罪」到「儿子的名分」的一座桥：福音给人的，不只是一张「无罪释放」的判决书，更是一份「收养为子」的文书。</p>
+          <p>还要把本篇放回全卷的论证链上看。1:18–3:20 讲普世都在定罪之下；3:21–5:21 讲因信称义与在基督里的新地位；6:1–7:25 讲称义之人的成圣挣扎（脱离罪的权势、脱离律法，却仍在肉体里被罪掳去）；8:1–4 是这条链的收束与翻篇：定罪由基督解决，挣扎由圣灵接手。本篇 8:12–17 则是 8 章前半段的收束：从「不定罪」（8:1）走到「儿子的名分」（8:15）——不定罪是法庭的判决，儿子的名分是家里的身份；判决叫你「不再被定罪」，名分叫你「可以回家」。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>这样看来</strong>（<span class="gk">ἄρα οὖν</span>，第 12 节）：两个推论词叠用——ἄρα（「所以」）加上 οὖν（「那么」），语气是「既然如此，那么结论就是」：第 12 节不是新话题的开头，是从 8:5–11 推出的结论。</li>
+            <li><strong>欠债</strong>（<span class="gk">ὀφειλέτης</span>，第 12 节）：「欠债的人、负有义务的人」。债的意象很实在：欠谁的债，就得向谁还；向谁还，就归谁管。保罗用这个词，是要我们先算清账：我们到底欠谁的？</li>
+            <li><strong>顺从肉体活着</strong>（第 12–13 节）：「按着肉体活着」——「活着」不是「呼吸」，是「生活方式、行走的方向」：按着肉体活着，就是让肉体当家、按肉体的意思过日子。</li>
+            <li><strong>必要死</strong>（<span class="gk">μέλλετε ἀποθνῄσκειν</span>，第 13 节）：将来时，「将要死」——结局，不是威胁，是陈述：顺从肉体活着的路，通向死。</li>
+            <li><strong>治死</strong>（<span class="gk">θανατοῦτε</span>，第 13 节）：「使死、治死」，现在时主动语态——持续地治死，不是一次治死就了事。注意：治死的是「身体的恶行」，不是「身体」。</li>
+            <li><strong>身体的恶行</strong>（<span class="gk">τὰς πράξεις τοῦ σώματος</span>，第 13 节）：「身体的作为、行为」——πρᾶξις 指具体的行为、作为。敌人不是身体本身，是身体里发动的恶行。</li>
+            <li><strong>被神的灵引导</strong>（<span class="gk">ἄγονται</span>，第 14 节）：「被带领、被引导」，现在时被动语态——主语是圣灵，被动语态：儿子是「被带领」的，不是「自己领路」的。</li>
+            <li><strong>奴仆的心</strong>（<span class="gk">πνεῦμα δουλείας</span>）与<strong>儿子的心</strong>（<span class="gk">πνεῦμα υἱοθεσίας</span>，第 15 节）：δουλεία 是「奴役、为奴的状态」；υἱοθεσία 是「儿子名分、收养为子」——由 υἱός（儿子）与 τίθημι（设立）合成：「被设立为儿子」。这个词在新约只出现五次，全部在保罗书信（罗 8:15、23；9:4；加 4:5；弗 1:5）。</li>
+            <li><strong>阿爸</strong>（<span class="gk">Ἀββᾶ</span>，第 15 节）：亚兰语，孩童对父亲的亲昵称呼；后面紧跟希腊语「父」（ὁ πατήρ）——双语并置，是早期教会祷告的固定用语。</li>
+            <li><strong>同证</strong>（<span class="gk">συμμαρτυρεῖ</span>，第 16 节）：σύν（一同）加上 μαρτυρέω（作见证）——「一同作见证、共同证实」：两个见证者，一个见证。</li>
+            <li><strong>后嗣</strong>（<span class="gk">κληρονόμος</span>，第 17 节）：「继承人」；<span class="gk">συγκληρονόμος</span> 是「同作后嗣」——σύν 加继承人，「一同继承的人」。</li>
+            <li><strong>一同受苦</strong>（<span class="gk">συμπάσχομεν</span>）与<strong>一同得荣耀</strong>（<span class="gk">συνδοξασθῶμεν</span>，第 17 节）：两个 σύν-复合词——「一同受苦」是现在时，「一同得荣耀」是将来时被动语态：受苦是现在进行的事，得荣耀是将来神要赐的事。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v12 的 ἄρα οὖν 与否定句：先否定，肯定的那一半没有明说</strong>：「这样看来，我们并不是欠肉体的债」——先否定（不欠肉体的债），肯定的那一半没有明说，留给第 13 节去补：欠的是圣灵的债——「靠着圣灵」治死恶行。保罗先把「不欠谁」说清楚，再把「欠谁」交给下一节。</li>
+            <li><strong>v13 的条件对比：两条路，两个结局，没有中间地带</strong>：两个「若……就……」平行——「若顺从肉体活着，必要死；若靠着圣灵治死身体的恶行，必要活着」。对称结构，两个结局（死／活），两条路。保罗没有写「有时候顺从肉体、有时候靠圣灵的人」，他写的是两条路——因为「靠着谁」决定了「走向哪里」。</li>
+            <li><strong>v13 的「靠着圣灵」：命令与能力在同一句里</strong>：「靠着圣灵治死」——「靠着」是工具状语：治死的「靠着」，不是「靠着意志力」「靠着立志」，是「靠着圣灵」。命令（「你们治死」）与能力（「靠着圣灵」）在同一句里：命令是对你发的，能力不是你的，是圣灵的。</li>
+            <li><strong>v14 的 γὰρ：儿子的身份，是治死恶行的根据</strong>：「因为凡被神的灵引导的，都是神的儿子」——γὰρ（因为）表明第 14 节是第 13 节的根据：为什么「靠着圣灵治死」就能活？因为被圣灵引导的人是儿子，儿子有活着的应许。身份是命令的根基：先是儿子，然后才谈治死。</li>
+            <li><strong>v15 的「不是……乃是」（οὐ…ἀλλὰ）：两种心，一刀两断</strong>：「不是奴仆的心……乃是儿子的心」——否定与肯定各一句，泾渭分明。奴仆的心通向「仍旧害怕」，儿子的心通向「呼叫阿爸，父」：心境不同，称呼就不同。</li>
+            <li><strong>v16 的双重见证：圣灵「与」我们的心「同证」</strong>：圣灵与我们的心，一同作见证——两个见证者，一个见证。不是圣灵单方面宣告，也不是我们的心单方面感觉，是「圣灵与我们的心」一同证实。</li>
+            <li><strong>v17 的逻辑链：一环扣一环，从身份推到产业，再推到道路与终点</strong>：「既是儿女，便是后嗣，就是神的后嗣，和基督同作后嗣。如果我们和他一同受苦，也必和他一同得荣耀」——从身份（儿女）推到产业（后嗣），再推到道路（同受苦）与终点（同得荣耀）。一环扣一环，断了哪一环，链条就断了。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>「我们不欠肉体的债」：命令的前提是身份，先算账，后治死（v12–13）</strong>：原文根据是第 12 节的 ὀφειλέτης（欠债的人）、第 13 节的 θανατοῦτε（现在时、持续治死）、τὰς πράξεις τοῦ σώματος（身体的恶行——行为，不是身体本身）与「靠着圣灵」（工具状语）。穆理的论证抓住「债」的逻辑：欠谁的债，就向谁还；向谁还，就归谁管。肉体给过我们什么？第 6 章已经算过账：罪的工价乃是死（6:23）。肉体没有为我们做过任何值得报答的事，它只给过我们死，所以我们不欠它。反过来，神的恩赐是在基督耶稣里永生——我们欠的是恩典的债（参 1:14「无论是希利尼人、化外人……我都欠他们的债」，那是福音的债）。穆理还强调「治死」的现在时：不是「治死一次」，是「持续地治死」——成圣是一场持续的仗，不是一次性的胜利；也强调治死的对象是「身体的恶行」（行为），不是「身体」：身体不是敌人，身体是圣灵的殿（林前 6:19），将来还要复活（8:11）；敌人是身体里发动的恶行。穆尔则把 8:13 接到 6:12–14 上：6 章的命令是「不要容罪在你们必死的身上作王」「将肢体献给神」，8 章的命令是「靠着圣灵治死」——是 6 章的命令在圣灵里的重述。差别在「靠着圣灵」四个字：6 章讲的是「你们要」，8 章讲的是「靠着圣灵你们要」——命令没变，能力来源点明了。穆尔还强调「必要活着」的将来时：治死的结局是生命——不是「治死就得救」，而是「被圣灵引导、治死恶行的人，是活着的人」（与第 14 节的「儿子」呼应）。分歧注明：对「治死」到底是「人的责任」还是「圣灵的工作」，历代有分歧——「你们治死」是命令（人的责任），「靠着圣灵」是能力（圣灵的工作）；改革宗传统强调两者并行不悖（人负责治死，圣灵赐能力治死；参 腓 2:12–13「就当恐惧战兢，做成你们得救的工夫，因为你们立志行事，都是神在你们心里运行」）；也有人把「靠着圣灵」读成「圣灵替你治死，你只管等着」，穆理与穆尔都反对——命令是对「你」发的，等着不是顺服。历代共识：教会一直用本节讲「治死罪」（mortification）：清教徒约翰·欧文的名言「要治死罪，否则罪要治死你」（Be killing sin or it will be killing you）正是对本节的发挥；治死的操练包括认罪、祷告、逃避试探、神的话语——但动力与能力都是圣灵。互文：罗 6:12–14、23，西 3:5（「就要治死你们在地上的肢体」），加 5:24（「凡属基督耶稣的人，是已经把肉体连肉体的邪情私欲同钉在十字架上了」），腓 2:12–13，来 12:4。</li>
+            <li><strong>「被神的灵引导的，都是神的儿子」：儿子是被带领的，引导是记号，不是条件（v14）</strong>：原文根据是第 14 节的 ἄγονται（现在时被动，「持续被带领」）与 υἱοί（儿子们）。穆理的论证抓住被动语态：儿子是「被带领」的，不是「自己领路」的。引导不是「圣灵给你一个感动，你照着做」，而是圣灵在生活中持续的带领：包括第 13 节的「治死恶行」、包括顺服神的话、包括圣灵的果子（加 5:22–23）。穆理强调，「被引导」是儿子的记号，不是儿子的条件：不是「被引导了，才成为儿子」，而是「是儿子，所以被引导」——次序不能颠倒。穆理还区分「儿子」（υἱοί）与「儿女」（τέκνα，第 16–17 节）：υἱός 强调成年儿子的地位与继承权，τέκνον 强调血缘与亲情；第 14 节用「儿子」，是因为这里讲的是地位与继承权（接第 17 节的「后嗣」）。穆尔则从与加 5:18 的平行展开：「你们若被圣灵引导，就不在律法以下」——引导与律法对照：律法之下的人被律法辖制，圣灵里的人被圣灵引导。穆尔还与当代灵恩派的解读对话：有人把「被圣灵引导」读成「等一个特别的感动、异象或声音才行动」，穆尔认为这读窄了也读偏了——保罗的「引导」是持续的、生活性的（治死恶行、顺服神的话、结圣灵的果子），不是逐次的特殊启示；等一个声音才肯顺服圣灵的人，恰恰没有被引导。分歧注明：对「引导」是否包括「圣灵在具体决定上的带领」（如选择职业、配偶），历代有分歧——穆理与穆尔都认为本节的「引导」首先指道德与属灵方向上的带领（治死罪、顺服神），不是指「圣灵告诉你买哪只股票」；但两人都承认圣灵会在生活中引导信徒（参 诗 32:8「我要教导你，指示你当行的路」、箴 3:5–6），只是这种引导通常是藉着神的话、祷告、肢体的劝勉与环境的印证综合显明的，不是单凭一个内在的感觉。历代共识：教会一直用本节讲「儿子的记号是顺服圣灵的带领」——不是「会说方言」、不是「有特别经历」，是「被圣灵引导着治死罪、顺服神」。互文：加 5:18、25，约 10:27（「我的羊听我的声音，我也认识他们，他们也跟着我」），诗 32:8，箴 3:5–6。</li>
+            <li><strong>「奴仆的心」与「儿子的心」：不是换一个称呼，是换一种关系（v15）</strong>：原文根据是第 15 节的 πνεῦμα δουλείας（奴仆的心）与 πνεῦμα υἱοθεσίας（儿子的心）、υἱοθεσία（收养为子／儿子名分，在新约只出现五次，全在保罗书信）、Ἀββᾶ ὁ πατήρ（阿爸，父——亚兰语加希腊语的双语并置），以及「仍旧害怕」（πάλιν εἰς φόβον，「再回到惧怕里」）。穆理的论证抓住罗马收养制度的背景：在罗马法里，被收养者脱离原来的父权，进入新父亲的权下，获得新父亲的名分与继承权，旧债一笔勾销。保罗用这个法律术语，是要告诉罗马的读者：你们与神的关系，不是「雇工与主人」（奴仆的心），是「儿子与父亲」（儿子的心）。「奴仆的心」不是指圣灵是「奴仆的灵」，而是指一种心境——惧怕：奴仆的心境是「怕做错了被罚」「怕主人不满意」「怕被赶出去」。儿子的心境是「阿爸，父」——孩童对父亲的亲昵称呼，耶稣自己在客西马尼就是这样称呼父的（可 14:36）。信徒藉着圣灵，也用耶稣的称呼呼叫神——这是何等的亲近。穆尔则从双语并置展开：亚兰语「阿爸」加上希腊语「父」，是早期教会祷告的固定用语（加 4:6 也是同样的并置），表明这不是保罗的即兴发挥，而是早期教会的共同祷告传统——初代信徒祷告时，就是这样呼叫「阿爸，父」。穆尔还指出「仍旧害怕」的「仍旧」（πάλιν）很关键：它表明惧怕是「从前」的状态——在律法之下、在奴仆的心里，人是惧怕的；如今得了儿子的心，就「不再」回到惧怕里去。律法不能除去惧怕（8:3），只有儿子的心能。分歧注明：对 υἱοθεσία 译为「儿子的名分」还是「收养为子」，历代有分歧——和合本译「儿子的心」，现代译本多译「收养为儿子之灵」或「儿子名分之灵」；穆理用「儿子的名分」，强调这是一个法律地位（收养），不只是一种感觉；穆尔也强调法律地位的一面，但更留意「收养」所带来的亲密关系——地位与亲密是一件事的两面。另，对「奴仆的心」到底指「圣灵所赐的一种心境」还是「人自己的心境」，也有分歧——穆理认为 πνεῦμα 在这里两次都是指「心境／灵的状态」，不是直接指圣灵本体；穆尔认为第 15 节的「儿子的心」就是圣灵自己（圣灵赐给我们儿子的心）；两种读法都承认一点：惧怕的心境出自奴仆的地位，儿子的心境出自圣灵的工作。历代共识：教会一直用本节讲「信徒称神为父」——这是圣灵内住的果子，不是人自己想出来的亲昵；也一直用本节抵挡两种错误：「把神当严厉的监工」（奴仆的心）与「把神当纵容的祖父」（没有敬畏的亲昵）——「阿爸，父」是亲昵中的敬畏、敬畏中的亲昵。互文：加 4:4–7（「神就差遣他的儿子……叫我们得着儿子的名分。你们既为儿子，神就差他儿子的灵进入你们的心，呼叫：『阿爸！父！』」），约 1:12，约壹 3:1（「你看父赐给我们是何等的慈爱，使我们得称为神的儿女」），可 14:36，路 11:2（主祷文「我们在天上的父」）。</li>
+            <li><strong>「圣灵与我们的心同证」：确据不是感觉，是圣灵的见证（v16）</strong>：原文根据是第 16 节的 συμμαρτυρεῖ（σύν 加 μαρτυρέω，「一同作见证」）与「我们的心」（τῷ πνεύματι ἡμῶν，「我们的灵」）。穆理的论证抓住「同证」的结构：双重见证不是两个独立的证据摆在一起，而是圣灵在我们心里作工，使我们的心也确信——圣灵是见证的主动方，我们的心是回应的见证：圣灵见证（在我们心里作工），我们的心也见证（我们里面生出对神的信靠、对罪的恨恶、对神话语的渴慕、对祷告的需要）——两个见证，一个确据。穆理强调，确据不是建立在感觉上，而是建立在圣灵的见证上：感觉会起伏，见证不会——圣灵的见证是「我们是神的儿女」这个事实的宣告，不是「我今天感觉自己是神的儿女」的温度计。穆尔则从申命记律法「凭两三个见证人的口，句句都要定准」（申 19:15）的背景展开：两个见证人，确据更稳固——圣灵作见证，我们的心也作见证——这不是一个见证，是两个见证按律法要求的「两三个见证人」作出的确据。穆尔还指出，「我们的心」的见证是什么：不是某种神秘的声音，而是信徒生命中的综合确据——信心（信靠基督）、悔改（恨恶罪）、爱心（爱神与爱人）、顺服（渴慕神的话）——这些都是圣灵在我们心里工作的证据。分歧注明：对「我们心里」的见证到底有多「可听见」，历代有分歧——有人认为圣灵的见证是「一种内在的声音」或「直接的感动」，穆理与穆尔都认为这读偏了：圣灵的见证通常是藉着神的话（「你们既为儿子」）、藉着我们里面的新生命（新心、新灵）显明的，不是一种可以随时「收听」的神秘声音；把见证读成「声音」的人，常常在听不见声音时就怀疑自己是不是神的儿女——这正是本节要医治的怀疑。历代共识：教会一直用本节讲「得救的确据」——确据是圣灵的工作，不是人自己制造的；怀疑的时候，不要先量感觉，先看圣灵的见证：你信基督吗？你里面有没有圣灵的工作？互文：申 19:15，林后 1:22（「他又用印印了我们，并赐圣灵在我们心里作凭据」），弗 1:13–14，约壹 5:10，加 5:22–23。</li>
+            <li><strong>「既是儿女，便是后嗣」：产业、苦难与荣耀，一同领受（v17）</strong>：原文根据是第 17 节的 κληρονόμος（后嗣／继承人）、συγκληρονόμος（同作后嗣）、εἴπερ（「既然」「如果果然」）、συμπάσχομεν（现在时，一同受苦）与 συνδοξασθῶμεν（将来时被动，一同得荣耀）。穆理的论证抓住逻辑链：一环扣一环——既是儿女，便是后嗣，就是神的后嗣，和基督同作后嗣。「后嗣」的分量：神的后嗣，继承的是什么？不是神的一块地、一笔钱，是神自己（诗 16:5「耶和华是我的产业」）、神的国（太 25:34「承受那创世以来为你们所预备的国」）、一切（启 21:7「得胜的，必承受这些为业」）。「和基督同作后嗣」不是「平分基业」，是「同享基督的基业」——基督的基业有多大，我们的就有多大。εἴπερ 不是「如果运气好」，是「既然」：受苦是得荣耀的路径，不是得荣耀的代价——儿子受苦，是因为儿子走儿子的路（来 12:6–7「主所爱的，他必管教」）。穆尔则从「受苦」与「得荣耀」的时态展开：「受苦」是现在时（现在进行的事），「得荣耀」是将来时被动（将来神要赐的事）；与 8:18 的过渡——「现在的苦楚，若比起将来要显于我们的荣耀，就不足介意了」——第 17 节是 8:18 的引子：苦难与荣耀的对比，从这里开始。穆尔还指出，σύν-（一同）这个前缀在第 17 节里出现了三次（同作后嗣、同受苦、同得荣耀）——与基督的联合是全方位的：产业一同、苦难一同、荣耀也一同。分歧注明：对「受苦」是否为得荣耀的必要条件，历代有分歧——穆理：受苦是儿子的记号（凡神所爱的，祂必管教），不是赚取荣耀的功德——把受苦读成「功德」，就把恩典变成了工价；穆尔：受苦是与基督联合的必然经历（腓 3:10「和他一同受苦，效法他的死」），不是附加条件——一个与基督联合的人，不可能完全绕开十字架。但两人都承认的底线是：得荣耀的根据永远是基督，不是我们的受苦——受苦是「同行」的记号，不是「入场券」。历代共识：教会一直用本节讲「苦难与荣耀相连」——这是新约一贯的教导（徒 14:22「我们进入神的国，必须经历许多艰难」；彼前 5:10「那赐诸般恩典的神，曾在基督里召你们，得享他永远的荣耀，等你们暂受苦难之后，必要亲自成全你们」）；也一直用本节抵挡「信主就不再受苦」的成功神学。互文：罗 8:18、28–30，诗 16:5，太 25:34，启 21:7，腓 3:10，来 12:6–7，徒 14:22，彼前 5:10。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>分清「欠谁的债」：肉体没有为你做过任何值得还的事</strong>：第 12 节是一面镜子：你最近顺从的那个声音，是「肉体」还是「圣灵」？肉体对你说「你欠我的，你得顺从我」的时候，先算清账：它给过你什么？第 6 章已经算过了：罪的工价乃是死（6:23）——它给你的只有死，没有什么值得还的。操练：今天，当一个欲望、一个习惯、一个「老我」的要求对你说「你欠我的」时，照着 8:12 回答它：「我不欠你的债。」不是靠意志力硬顶，是先算清账：它没给过你什么值得还的。反过来想一想：你真正欠的，是恩典的债——神的恩赐是在基督耶稣里永生（6:23）。欠恩典的债的人，活法是不一样的：不是「我得还」，是「我得了这么大的恩，我愿意这样活」。</li>
+            <li><strong>从奴仆的心到儿子的心：你祷告时，开口第一句是什么？</strong>：第 15 节是一面镜子：你祷告时，开口第一句是什么？是「尊敬的神」（隔着一层，像向上级汇报），还是「阿爸，父」（回到家里，像向父亲说话）？留意心里那个「仍旧害怕」的声音：怕神不满意、怕神不要你、怕一祷告就被数落——那是奴仆的心，不是儿子的心。操练：今天祷告时，有意识地用「阿爸，父」开头——不是改一个称呼，是换一种关系：你不是在向一位监工汇报工作，你是在向一位父亲说话。留意祷告之后心里的变化：奴仆的心祷告完更害怕，儿子的心祷告完更安稳——你是哪一种？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>8:17 说「如果我们和他一同受苦，也必和他一同得荣耀」。想想你现在正在经历的一件难处——一个改不掉的习惯、一段修不好的关系、一种挥之不去的软弱、一场病痛或一份压力：如果把它看作「和他一同受苦」的一部分——不是「神不管我了」，而是「基督与我一同走这条路」——这会如何改变你面对它的方式？今天，你能不能在它面前，先不急着问「什么时候结束」，而是问一句：「主啊，你要我在这件难处里，学什么？」</p>
+          </div>
+</article>
+
+        <div class="daynav"><a href="day17.html">← 第 17 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
