@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 19 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day19-am">8:26–30</a>
+
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 19 天</span>2026-11-07（周六） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day19-am">
+          <div class="entry-head">
+            <span class="entry-day">第 19 天 · 晨 — 2026-11-07（周六）</span>
+            <h3 class="entry-title">圣灵亲自替我们祈求 <span class="ref">· 罗马书 8:26–30</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">26</span>况且我们的软弱有圣灵帮助，我们本不晓得当怎样祷告，只是圣灵亲自用说不出来的叹息替我们祈求。<span class="vn">27</span>鉴察人心的，晓得圣灵的意思，因为圣灵照着神的旨意替圣徒祈求。<span class="vn">28</span>我们晓得万事都互相效力，叫爱神的人得益处，就是按他旨意被召的人。<span class="vn">29</span>因为他预先所知道的人，就预先定下效法他儿子的模样，使他儿子在许多弟兄中作长子。<span class="vn">30</span>预先所定下的人又召他们来；所召来的人又称他们为义；所称义的人又叫他们得荣耀。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>晚篇 8:18–25 以三重叹息收束了「如今」与「将来」之间的张力：受造之物叹息（第 22 节）、我们这有圣灵初结果的也叹息（第 23 节）。本篇 8:26–27 补上第三重叹息——圣灵的叹息。「况且」这个词就是承接的铆钉：叹息的链条还没有断，圣灵也叹息，而且是「亲自」叹息。三重叹息，一重比一重近：世界在叹息，我们在叹息，圣灵替我们在叹息。</p>
+          <p>而 8:28–30 是全章、甚至是全卷的高峰之一。8:18–27 讲的是「尚未」里的叹息与等候，8:28–30 讲的是「已然」里的确据与保障：从圣灵的代求（第 26–27 节）转向神的定旨（第 28–30 节）——代求保证了我们的祷告不会落空，定旨保证了我们的荣耀不会落空。第 28 节的「我们晓得」与第 18 节的「我想」（λογίζομαι）呼应：18 节是「算过账的判断」，28 节是「知道的确据」；第 30 节的四个动词——预定、召、称义、得荣耀——排成一条金链，是保罗论证的顶点：从永恒的预知到末世的荣耀，一环扣一环，没有一环会断。</p>
+          <p>还要把本篇放回 8 章的结构里看。8:1–17 讲「如今」的地位：不定罪、圣灵内住、儿子的名分；8:18–30 讲「将来」的完成：荣耀、身体得赎、万事效力、预定得荣耀的金链；8:31–39 以神的爱收束全章。本篇 8:26–30 是 8:18–30 这一大段的收束：从叹息开始，以金链结束——叹息是真的，但叹息不是最后一句话；最后一句话是「得荣耀」。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>况且</strong>（<span class="gk">ὡσαύτως δέ</span>，第 26 节）：「同样地、照样」——承接上文的叹息：受造之物叹息，我们也叹息，「同样地」，圣灵也叹息。</li>
+            <li><strong>软弱</strong>（<span class="gk">ἀσθένεια</span>，第 26 节）：「软弱、无力」；这里特指祷告上的软弱——「我们本不晓得当怎样祷告」。</li>
+            <li><strong>帮助</strong>（<span class="gk">συναντιλαμβάνεται</span>，第 26 节）：σύν（一同）＋ ἀντί（相对）＋ λαμβάνω（拿、抓住）——「一同承担、一同抓住另一端」：像两个人合抬一根木头，圣灵抓住另一端，和我们一起抬。新约只出现两次（本节与路 10:40 马大求主「吩咐她来帮助我」）。</li>
+            <li><strong>本不晓得当怎样祷告</strong>（<span class="gk">τὸ τί προσευξώμεθα καθὸ δεῖ οὐκ οἴδαμεν</span>，第 26 节）：「我们不知道应当祷告什么」——不是「不知道怎么祷告的技巧」，是「不知道当求什么才合神的心意」。</li>
+            <li><strong>圣灵亲自</strong>（<span class="gk">αὐτὸ τὸ πνεῦμα</span>，第 26 节）：αὐτὸ 是强调语气——不是别人，正是圣灵「亲自」。</li>
+            <li><strong>说不出来的叹息</strong>（<span class="gk">στεναγμοῖς ἀλαλήτοις</span>，第 26 节）：στεναγμός 是「叹息、呻吟」；ἀλάλητος 是「不能言说的、无法用言语表达的」——不是「没有声音」，是「言语说不出来」。</li>
+            <li><strong>替我们祈求</strong>（<span class="gk">ὑπερεντυγχάνει</span>，第 26 节）：ὑπέρ（为、替）＋ ἐντυγχάνω（代求、求情）——「替我们代求」；新约只出现两次（本节与 8:34 基督「为我们祈求」）。</li>
+            <li><strong>鉴察人心的</strong>（<span class="gk">ὁ ἐραυνῶν τὰς καρδίας</span>，第 27 节）：ἐραυνάω 是「察验、搜查、仔细查考」；现在分词作主语——「鉴察人心的那一位」。</li>
+            <li><strong>圣灵的意思</strong>（<span class="gk">τὸ φρόνημα τοῦ πνεύματος</span>，第 27 节）：φρόνημα 是「心思、意念」——与 8:6–7 的 φρόνημα（「体贴肉体／体贴圣灵」）是同一个词。</li>
+            <li><strong>照着神的旨意</strong>（<span class="gk">κατὰ θεόν</span>，第 27 节）：直译是「照着神」——圣灵的代求，是「照着神」的代求。</li>
+            <li><strong>万事都互相效力</strong>（<span class="gk">πάντα συνεργεῖ εἰς ἀγαθόν</span>，第 28 节）：συνεργέω 是「一同作工、互相效力」；εἰς ἀγαθόν 是「为着益处、叫……得益处」。文本注：部分抄本在 συνεργεῖ 后加上 ὁ θεός（「神使万事互相效力」），多数抄本与 Nestle-Aland 不加。</li>
+            <li><strong>爱神的人</strong>（<span class="gk">τοῖς ἀγαπῶσιν τὸν θεόν</span>，第 28 节）：现在分词作名词——「那些爱神的人」，持续地爱。</li>
+            <li><strong>按他旨意被召的人</strong>（<span class="gk">τοῖς κατὰ πρόθεσιν κλητοῖς</span>，第 28 节）：πρόθεσις 是「定旨、旨意、计划」；κλητός 是「被召的」。</li>
+            <li><strong>预先所知道</strong>（<span class="gk">προέγνω</span>，第 29 节）：προγινώσκω 的不定过去式，「预先知道」。</li>
+            <li><strong>预先定下</strong>（<span class="gk">προώρισεν</span>，第 29 节）：προορίζω 的不定过去式，「预先定下、预定」。</li>
+            <li><strong>效法他儿子的模样</strong>（<span class="gk">συμμόρφους τῆς εἰκόνος τοῦ υἱοῦ αὐτοῦ</span>，第 29 节）：σύμμορφος 是「与……同形、效法……的样式」；εἰκών 是「形象、模样」。</li>
+            <li><strong>长子</strong>（<span class="gk">πρωτότοκος</span>，第 29 节）：「长子、首先生的」；基督要在许多弟兄中作长子。</li>
+            <li><strong>召、称义、得荣耀</strong>（<span class="gk">ἐκάλεσεν、ἐδικαίωσεν、ἐδόξασεν</span>，第 30 节）：三个不定过去式——「召」「称义」「得荣耀」；「得荣耀」用过去式，是全节最值得留意的时态。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v26 的 ὡσαύτως δέ：叹息链条的第三环</strong>：「况且」——承接 8:22–23 的两重叹息，补上第三重：受造之物叹息，我们叹息，「同样地」，圣灵也叹息。</li>
+            <li><strong>v26 的 τῇ ἀσθενείᾳ ἡμῶν：与格，软弱是帮助发生的「地方」</strong>：「在我们的软弱上」圣灵帮助——帮助不是在我们刚强的时候来，是在我们软弱的时候来。</li>
+            <li><strong>v26 的双重否定与间接问句：我们的无知是彻底的</strong>：οὐ γὰρ τὸ τί προσευξώμεθα καθὸ δεῖ οὐκ οἴδαμεν——「我们实在不晓得当怎样祷告」：两个否定词叠用，语气是「我们真的不知道」。</li>
+            <li><strong>v26 的 αὐτὸ τὸ πνεῦμα：强调主语</strong>：「圣灵亲自」——不是别人，不是天使，不是我们自己的灵，是圣灵「亲自」替我们祈求。</li>
+            <li><strong>v27 的分词主语：鉴察者与代求者是同一位神</strong>：ὁ ἐραυνῶν τὰς καρδίας（「鉴察人心的那一位」）是主语——父鉴察人心，也晓得圣灵的意思；代求者是圣灵，应允者是父，同一位神在两端。</li>
+            <li><strong>v28 的 πάντα συνεργεῖ：中性复数主语配单数动词</strong>：「万事」是中性复数，动词 συνεργεῖ 却是单数——「万事」被看作一个整体：不是「每件事各自效力」，是「万事作为一个整体」一同效力。</li>
+            <li><strong>v28 的两个与格分词短语：同一群人，两种描述</strong>：τοῖς ἀγαπῶσιν τὸν θεόν（「爱神的人」）与 τοῖς κατὰ πρόθεσιν κλητοῖς（「按他旨意被召的人」）——是同一群人：爱神，是被召的人的记号；被召，是爱神的人的根源。</li>
+            <li><strong>v29 的 ὅτι οὓς προέγνω, καὶ προώρισεν：预知与预定的对象是同一批人</strong>：「他预先所知道的人，就预先定下」——关系代词 οὓς 领起，预知与预定的对象是同一批人，没有漏掉一个。</li>
+            <li><strong>v30 的四个不定过去式：金链一环扣一环</strong>：προώρισεν（预定）、ἐκάλεσεν（召）、ἐδικαίωσεν（称义）、ἐδόξασεν（得荣耀）——四个不定过去式排成一条链；「得荣耀」用过去式，是全卷最有力的「已经成就」的宣告。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>我们的软弱有圣灵帮助：说不出来的叹息（v26）</strong>：原文根据是第 26 节的 ἀσθενείᾳ（「软弱」）、συναντιλαμβάνεται（「一同承担」——σύν 加 ἀντί 加 λαμβάνω）、τὸ τί προσευξώμεθα καθὸ δεῖ οὐκ οἴδαμεν（「我们本不晓得当怎样祷告」）、αὐτὸ τὸ πνεῦμα（「圣灵亲自」）、στεναγμοῖς ἀλαλήτοις（「说不出来的叹息」）与 ὑπερεντυγχάνει（「替我们祈求」）。穆理的论证抓住「软弱」的具体所指：这里的软弱不是泛指一切软弱，是祷告上的软弱——「我们本不晓得当怎样祷告」：不是不知道「怎么开口」，是不知道「当求什么才合神的心意」。我们常常求错：求神挪开那根祂要留下的刺（林后 12:8–9），求神照我们的意思成就，求神把我们从祂要我们经过的路上挪开。穆理强调，συναντιλαμβάνεται 的意象是「一同抓住另一端」：祷告不是我们一个人抬着重担往前走，是圣灵抓住另一端，和我们一起抬——我们没有被丢下独自祷告。穆理还强调「圣灵亲自」：代求者不是别人，是圣灵自己——祂「亲自」用说不出来的叹息替我们祈求；叹息是圣灵的叹息，不是我们的叹息被圣灵「翻译」了一下——圣灵在我们里面叹息。穆尔的论证从三重叹息的链条展开：第 22 节受造之物叹息，第 23 节我们叹息，第 26 节圣灵叹息——三重叹息，一重比一重近：世界叹息，我们叹息，圣灵替我们叹息。穆尔还讨论「说不出来的叹息」与方言的关系：有人把本节的「说不出来的叹息」读成「方言祷告」，穆尔认为这读反了——ἀλάλητος 是「不能言说的、无法用言语表达的」，方言是「说出来的」（林前 14 章的方言是人说出来的言语），本节的叹息恰恰是「说不出来的」——是言语到不了的地方，圣灵在那里叹息。穆尔还指出，「替我们祈求」的 ὑπέρ（「为、替」）很关键：圣灵是「替」我们祈求，不是「代替我们祷告、我们就不用祷告了」——圣灵的代求是「在我们祷告里的代求」，不是「取消我们祷告的代求」。分歧注明：对「说不出来的叹息」到底是谁的叹息，历代有分歧——有人认为叹息是「我们的叹息」（圣灵使我们发出叹息），有人认为叹息是「圣灵的叹息」（圣灵自己叹息）；穆理与穆尔都取后者：语法上，叹息的主语是圣灵（「圣灵亲自……替我们祈求」）；但两人都承认，圣灵的叹息是在我们里面发出的——是我们里面的叹息，却是圣灵的叹息。另，对「软弱」是否包括身体的软弱与疾病，也有分歧——穆理与穆尔都认为本节的「软弱」首先指祷告上的无知（上下文如此），但不排除身体的软弱也是圣灵帮助的范围（参 林后 12:9「我的恩典够你用的，因为我的能力是在人的软弱上显得完全」）。历代共识：教会一直用本节讲「圣灵的代求」——这是信徒祷告生活的安慰：你不会祷告的时候，圣灵替你祷告；你不知道求什么的时候，圣灵知道；你的祷告词不达意的时候，圣灵的叹息达意。互文：罗 8:22–23、34，林后 12:8–9，约 14:16–17（「保惠师」——παράκλητος，「被召到身边帮助的那一位」，与本节的「一同承担」呼应），来 7:25（基督「长远活着，替他们祈求」），约壹 2:1（基督是「中保」）。</li>
+            <li><strong>鉴察人心的，晓得圣灵的意思：代求一定蒙应允（v27）</strong>：原文根据是第 27 节的 ὁ ἐραυνῶν τὰς καρδίας（「鉴察人心的那一位」——现在分词作主语）、οἶδεν τὸ φρόνημα τοῦ πνεύματος（「晓得圣灵的意思」）、ὅτι κατὰ θεὸν ἐντυγχάνει ὑπὲρ ἁγίων（「因为圣灵照着神的旨意替圣徒祈求」）。穆理的论证抓住「鉴察人心的」是谁：是父神——旧约里「鉴察人心」的是耶和华（诗 7:9「公义的神察验人的心肠肺腑」；耶 17:10「我耶和华是鉴察人心、试验人肺腑的」；启 2:23「我是那察看人肺腑心肠的」）。父鉴察人心，也「晓得圣灵的意思」——父与圣灵之间没有隔阂：圣灵的叹息，父听得懂；圣灵的意思，父晓得。穆理强调，κατὰ θεόν（「照着神」）是本节的枢纽：圣灵的代求，是「照着神」的代求——合乎神心意的代求。圣灵不会求错：祂的代求，永远合乎神的旨意；所以圣灵的代求，一定蒙应允。穆理还指出，本节与第 26 节构成一个闭环：我们不会祷告（第 26 节）→ 圣灵替我们祈求（第 26 节）→ 父晓得圣灵的意思（第 27 节）→ 圣灵的代求照着神的旨意（第 27 节）→ 代求蒙应允。穆尔的论证从 φρόνημα 一词展开：φρόνημα 在 8:6–7 出现过两次（「体贴肉体的，就是死；体贴圣灵的，乃是生命平安」「体贴肉体的，就是与神为仇」）——那里讲的是「人的心思」；这里讲的是「圣灵的心思」——父晓得圣灵的心思，正如圣灵晓得神的心思（参 林前 2:10–11「圣灵参透万事，就是神深奥的事也参透了……除了神的灵，也没有人知道神的事」）。穆尔还指出，「替圣徒祈求」的 ὑπὲρ ἁγίων（「为圣徒」）表明代求的对象是「圣徒」——就是第 28 节「爱神的人」「按他旨意被召的人」：圣灵不是为所有人代求，是为圣徒代求。穆尔与「圣灵的代求是否多余」的疑问对话：有人问，既然父已经晓得一切，圣灵何必代求？穆尔认为这是三位一体内在关系的显明：父、子、圣灵在救赎里各有工作——子在天上代求（8:34），圣灵在我们里面代求（8:26–27），父在宝座上应允——三位一体共同完成救赎。分歧注明：对「鉴察人心的」是否指基督，历代有分歧——启 2:23 把「察看人肺腑心肠」归给基督；穆理与穆尔都认为本节的「鉴察人心的」首先指父神（上下文是父与圣灵的关系），但两人都承认，父与子在鉴察人心上是一致的——神鉴察人心，不分位格。历代共识：教会一直用本节讲「祷告蒙应允的保障」——你的祷告词可能不达意，但圣灵的代求一定合神的心意；你不知道求什么，但圣灵知道；你求错了，圣灵替你求对了。互文：诗 7:9，耶 17:10，启 2:23，林前 2:10–11，罗 8:34，约壹 5:14（「我们若照他的旨意求什么，他就听我们」）。</li>
+            <li><strong>万事都互相效力：益处首先是「效法基督的模样」（v28）</strong>：原文根据是第 28 节的 οἴδαμεν（「我们晓得」——现在时，持续地知道）、πάντα συνεργεῖ εἰς ἀγαθόν（「万事都互相效力，叫……得益处」）、τοῖς ἀγαπῶσιν τὸν θεόν（「爱神的人」）与 τοῖς κατὰ πρόθεσιν κλητοῖς（「按他旨意被召的人」）。穆理的论证抓住「我们晓得」：这不是「我们猜想」，是「我们知道」——确据，不是愿望。穆理强调，「万事」是真的万事：好事与坏事、顺境与逆境、健康与疾病、成功与失败——没有一件事被排除在「万事」之外。穆理还强调，「益处」（ἀγαθόν）不是「舒服」：益处是什么？第 29 节回答：益处就是「效法他儿子的模样」——神使万事互相效力，是为了叫我们「像基督」。病痛可以叫人像基督，失败可以叫人像基督，逼迫可以叫人像基督——「益处」的量尺是「像基督」，不是「舒服」。穆理还指出，「爱神的人」与「按他旨意被召的人」是同一群人：爱神，是被召的人的记号；被召，是爱神的人的根源——爱不是被召的条件，被召是爱的根源。穆尔的论证从文本异文展开：部分抄本在 συνεργεῖ 后加上 ὁ θεός（「神使万事互相效力」），多数抄本与 Nestle-Aland 不加——穆尔认为，无论加不加，意思都是一样的：万事互相效力的背后，是神在作工；「万事」不是自动互相效力，是神使它们互相效力。穆尔还与「成功神学」的读法对话：有人把「万事都互相效力，叫爱神的人得益处」读成「爱神的人凡事顺利」——穆尔认为这读反了保罗：第 28 节的「益处」不是「凡事顺利」，是「效法基督的模样」（第 29 节）；保罗自己就是最好的反证：他爱神，却坐过监、挨过打、受过逼迫（林后 11:23–28）——万事互相效力，不是叫保罗「凡事顺利」，是叫保罗「更像基督」。穆尔还指出，「按他旨意被召的人」的 πρόθεσις（「定旨」）与第 29–30 节的预定链条相接：被召不是偶然，是神的定旨。分歧注明：对「万事都互相效力」是否包括「罪」与「恶」，历代有分歧——穆理与穆尔都认为「万事」包括人所犯的罪与人所受的恶（约瑟的例子是最好的注脚：创 50:20「从前你们的意思是要害我，但神的意思原是好的」；十字架是最好的注脚：人意思要害耶稣，神的意思却是救赎）——但两人都强调：神使恶「互相效力」叫人得益处，不等于神「赞成」恶，更不等于人可以「作恶以成善」（罗 3:8 已经驳斥过这种逻辑）。历代共识：教会一直用本节讲「神的护理」（providence）——没有一件事在神的护理之外；也一直用本节安慰受苦的人：不是「苦难本身是好的」，是「神能使苦难效力，叫你得益处」——益处是「像基督」。互文：创 50:20，罗 8:29，林后 11:23–28，腓 1:12–14（保罗的捆锁「更有利于福音的兴旺」），来 12:10–11（管教「是要我们得益处，在他的圣洁上有份」），雅 1:2–4，彼前 1:6–7。</li>
+            <li><strong>预先知道、预先定下效法儿子的模样：预知的根基是神的爱（v29）</strong>：原文根据是第 29 节的 ὅτι οὓς προέγνω, καὶ προώρισεν（「因为他预先所知道的人，就预先定下」）、συμμόρφους τῆς εἰκόνος τοῦ υἱοῦ αὐτοῦ（「效法他儿子的模样」——σύμμορφος 是「与……同形」）、εἰς τὸ εἶναι αὐτὸν πρωτότοκον ἐν πολλοῖς ἀδελφοῖς（「使他儿子在许多弟兄中作长子」）。穆理的论证抓住 προέγνω（「预先知道」）在圣经里的意思：不是「预先看见」——不是神「预先看见谁会信」，然后才预定谁。穆理从旧约的「知道」展开：「知道」在圣经里常常是关系性的、拣选性的——摩 3:2「在地上万族中，我只认识你们」；创 18:19「我眷顾他（亚伯拉罕）」；耶 1:5「我未将你造在腹中，我已晓得你」——「晓得」就是「拣选、看顾、立约的爱」。所以「预先所知道的人」，就是「神预先所爱、所拣选的人」。穆理还强调，预定的目标是「效法他儿子的模样」：预定不是预定人「上天堂」，是预定人「像基督」——预定的终点是「像基督」，上天堂是「像基督」的必然结果。穆理还指出，πρωτότοκος（「长子」）的重点不是「时间上先生」，是「地位上居首」：基督是长子，我们是众弟兄——基督的长子地位，是为了叫我们成为祂的弟兄（参 来 2:11「那使人成圣的和那些得以成圣的，都是出于一，所以他称他们为弟兄，也不以为耻」）。穆尔的论证与当代学术对话：有人把 προέγνω 读成「神预先知道谁会相信」（预见信心说），穆尔认为上下文不支持：第 29–30 节的链条是「预知 → 预定 → 召 → 称义 → 得荣耀」——预知是链条的第一环，预知若只是「预见信心」，链条的根基就落在「人的信心」上，而不是「神的定旨」上；保罗的链条，根基在神，不在人。穆尔还指出，προέγνω 与 προώρισεν 是同一批人：预知的人，就是预定的人——没有「预知了却没有预定」的人，也没有「预定了却没有预知」的人。穆尔还从 εἰκών（「形象」）的旧约与保罗背景展开：人是照着神的形象造的（创 1:26–27），基督是「神的像」（西 1:15；林后 4:4），信徒要「效法他儿子的模样」——救赎的终点，是恢复神的形象。分歧注明：对 προέγνω 到底是「预见」还是「预爱」，历代有分歧——亚米念传统读成「预见信心」（神预见谁会信，就预定谁）；改革宗传统读成「预爱、预先拣选」（神预先爱谁，就预定谁）；穆理与穆尔都取后者：理由是旧约「知道」的拣选含义（摩 3:2、耶 1:5）、保罗在 11:2 的用法（「神并没有弃绝他预先所知道的百姓」——「预先所知道的百姓」就是「神所拣选的以色列」），以及本节链条的逻辑（预知是预定的根基，预定是召的根基）。但两人都承认，分歧的双方都承认神的主权与人的责任——分歧在于「预知」的具体含义，不在于「神是否预定」。历代共识：教会一直用本节讲「预定的目标是像基督」——预定不是「宿命论」，是「神的爱在永恒里定下了你的终点：像祂的儿子」；也一直用本节讲「确据」：你的终点不是「看运气」，是神「预先定下」的。互文：摩 3:2，耶 1:5，创 18:19，罗 11:2，西 1:15，林后 3:18（「我们……就变成主的形状，荣上加荣」），来 2:11，约壹 3:2（「他若显现，我们必要像他」）。</li>
+            <li><strong>金链：预定、召、称义、得荣耀，一环都不掉（v30）</strong>：原文根据是第 30 节的四个不定过去式——προώρισεν（「预先定下」）、ἐκάλεσεν（「召」）、ἐδικαίωσεν（「称义」）、ἐδόξασεν（「得荣耀」），以及 οὓς…τούτους（「……的人……这些人」——同一批人，一环扣一环）。穆理的论证抓住「得荣耀」用过去式：得荣耀是「将来」的事（8:18「将来要显于我们的荣耀」），保罗却用过去式写——因为在神那里，得荣耀已经确定了：神的定旨一出，得荣耀就像已经成就了一样确定。穆理称之为「预言性的过去式」：神说「成了」，就是成了（参 启 21:6「都成了」）。穆理还强调链条的完整性：预定的人「又」召他们来，所召来的人「又」称他们为义，所称义的人「又」叫他们得荣耀——每一个「又」，都是一环扣一环；预定的人一个都不会掉：被召的，就是预定的；称义的，就是被召的；得荣耀的，就是称义的。穆理还指出，「召」在这里是「有效的召」（effectual calling）：不是一般的福音邀请（太 22:14「被召的人多，选上的人少」），是神使人「听见就回应」的召（参 罗 1:6–7「蒙召属耶稣基督的人」「蒙召作圣徒的」；约 10:27「我的羊听我的声音」）。穆尔的论证从链条的「省略」展开：链条里没有「成圣」——不是因为成圣不重要，是因为保罗的焦点是「神的作为」：预定、召、称义、得荣耀，全是神的作为——成圣是神在人里面的作为（腓 2:13「神在你们心里运行」），但本节的链条讲的是「神为我们做的事」，不是「我们在神里面做的事」。穆尔还指出，链条的每一环都是「神主动」：神预定、神召、神称义、神叫人得荣耀——人没有一环是「主动方」；这正是本节给人确据的原因：你的救恩，从头到尾都是神在作工——神开始的，神必完成（腓 1:6「那在你们心里动了善工的，必成全这工」）。穆尔还与「一次得救、永远得救」的争论对话：有人担心金链会叫人「放心犯罪」，穆尔认为这读反了保罗——金链的终点是「效法儿子的模样」（第 29 节），得荣耀的人，是「像基督」的人；一个「放心犯罪」的人，恰恰证明他不在金链上（参 约壹 3:9–10）。分歧注明：对「得荣耀」用过去式是否意味着「信徒已经得了荣耀」，历代有分歧——穆理与穆尔都认为不是「已经得了」，是「已经确定了」：荣耀在时间里还在将来（8:18），在神的定旨里已经成就；这正是「已然／未然」的张力——已然确定，未然实现。另，对链条是否「不可断」，也有分歧——改革宗传统强调链条不可断（「一次得救，永远得救」的圣经根基之一）；亚米念传统强调人可能「从恩典中坠落」（加 5:4）；穆理与穆尔都取前者：链条的每一环都是神的作为，神的作为不会失败——但两人都承认，本节的重点是「确据」，不是「争论」：保罗写金链，是为了叫受苦的罗马信徒「晓得」（第 28 节）——晓得万事互相效力，晓得荣耀已经确定。历代共识：教会一直用本节讲「救恩的金链」——从永恒到永恒，一环扣一环；也一直用本节讲「得救的确据」：你的救恩不是「看运气」，是神「预先定下」的；不是「靠你自己撑到底」，是神「召你、称你为义、叫你得荣耀」——神开始的，神必完成。互文：罗 1:6–7，约 10:27–29（「谁也不能从我父手里把他们夺去」），腓 1:6，腓 2:13，约壹 3:9–10，彼前 1:3–5（「为你们存留在天上的基业」），启 21:6。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>不会祷告的时候，圣灵替你祷告</strong>：第 26 节是一面镜子：你最近有没有「不知道该求什么」的时候？面对一场病、一个决定、一段关系，你开口祷告，却发现自己词不达意——求「神啊，让这件事快点过去」，心里却知道这不是真正要紧的；求「神啊，照我的意思成就」，心里却隐隐觉得自己的意思未必对。保罗说：你「本不晓得当怎样祷告」——这不是你的失败，是你的实况；圣灵知道。操练：今天，当你再一次「不知道该求什么」的时候，不要硬凑祷告词，不要因为「祷告得不好」就干脆不祷告——就把那份「不知道」带到神面前：告诉祂你不知道求什么，然后安静一会儿。圣灵亲自用说不出来的叹息替你祈求——你的叹息，圣灵听得懂；你的无言，圣灵替你说出来了。</li>
+            <li><strong>把「万事」里最难的那一件，交给「互相效力」的神</strong>：第 28 节是一面镜子：你生命里的「万事」中，有没有一件是你怎么也想不通的？一件你觉得「这件事怎么可能叫我得益处」的事？保罗没有说「这件事本身是好的」，他说「万事都互相效力，叫爱神的人得益处」——益处是「效法他儿子的模样」。操练：今天，把那件最难的事写下来，写在纸的左边；把 8:28–29 写在右边：「万事都互相效力，叫爱神的人得益处……预先定下效法他儿子的模样。」然后问自己：我最近量「益处」的尺子，是「舒服」还是「像基督」？如果这件事正在叫你更像基督——更有耐心、更会饶恕、更依靠神——那么它正在「互相效力」。不是苦难本身是好的，是神能使它效力。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>8:30 的金链说：预先所定下的人又召他们来，所召来的人又称他们为义，所称义的人又叫他们得荣耀——「得荣耀」用的是过去式，好像已经成就了一样。想想你现在的光景：有没有一件事，让你怀疑自己「还在不在链上」？一个改不掉的习惯、一次跌倒、一句说错的话、一段冷淡的日子？如果金链的每一环都是神的作为——神预定、神召、神称义、神叫人得荣耀——那么，你的怀疑，到底是在怀疑「神的作为会失败」，还是在怀疑「自己的表现够不够好」？今天，把你的怀疑带到 8:30 面前：不是先量自己的表现，是先看金链的链主——是谁在拉着这条链？</p>
+          </div>
+</article>
+
+        <div class="daynav"><a href="day18.html">← 第 18 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
