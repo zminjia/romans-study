@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 20 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day20-am">8:35–39</a>
+
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 20 天</span>2026-11-08（周日） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day20-am">
+          <div class="entry-head">
+            <span class="entry-day">第 20 天 · 晨 — 2026-11-08（周日）</span>
+            <h3 class="entry-title">谁能使我们与基督的爱隔绝呢 <span class="ref">· 罗马书 8:35–39</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">35</span>谁能使我们与基督的爱隔绝呢？难道是患难吗？是困苦吗？是逼迫吗？是饥饿吗？是赤身露体吗？是危险吗？是刀剑吗？<span class="vn">36</span>如经上所记：我们为你的缘故终日被杀；人看我们如将宰的羊。<span class="vn">37</span>然而，靠着爱我们的主，在这一切的事上已经得胜有余了。<span class="vn">38</span>因为我深信无论是死，是生，是天使，是掌权的，是有能的，是现在的事，是将来的事，<span class="vn">39</span>是高处的，是低处的，是别的受造之物，都不能叫我们与神的爱隔绝；这爱是在我们的主基督耶稣里的。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>晚篇 8:31–34 是法庭场景的四问：谁能敌挡我们呢？谁能控告神所拣选的人呢？谁能定他们的罪呢？本篇 8:35–39 是爱的场景的第二问：谁能使我们与基督的爱隔绝呢？从「法庭」到「爱」，从「定罪」到「隔绝」——保罗的论证从「神若帮助我们」推进到「神的爱永不隔绝」。31–34 问的是「敌人能不能赢」，35–39 问的是「爱会不会断」——两个问题，同一个答案：不能。</p>
+          <p>8:31–39 是全章的收束与高峰。31–34 讲「神为我们」：敌挡者不能、控告者无效、定罪者无权；35–39 讲「神的爱不离开我们」：患难不能隔绝、死亡不能隔绝、一切受造之物都不能隔绝。两段的逻辑是一条线：神已经做了金链里的一切（28–30），所以没有一样能敌挡我们（31–34），也没有一样能隔绝祂的爱（35–39）。本篇读完，第 8 章也就读完了。</p>
+          <p>还要把本篇放回 8 章的弧线里看。8:1 开篇：「如今，在基督耶稣里的就不定罪了。」8:39 收束：「都不能叫我们与神的爱隔绝；这爱是在我们的主基督耶稣里的。」开篇是「在基督耶稣里就不定罪」，收束是「在基督耶稣里的爱永不隔绝」——全章从「不定罪」开始，以「不隔绝」结束，画了一个完整的圆。本篇也是 5–8 章「称义的果效」这一大段的最后一句话：5 章讲与神相和，6 章讲向罪死，7 章讲脱离律法，8 章讲圣灵里的生命与荣耀的盼望——而 8:35–39 是这整整四章的收束：神的爱。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>使我们隔绝</strong>（<span class="gk">χωρίσει</span>，第 35 节）：χωρίζω 是「分开、隔开、使分离」；将来时——「谁能使我们隔绝呢？」</li>
+            <li><strong>基督的爱</strong>（<span class="gk">τῆς ἀγάπης τοῦ Χριστοῦ</span>，第 35 节）：「基督的爱」——属格，见下文解经部分的讨论。</li>
+            <li><strong>患难</strong>（<span class="gk">θλῖψις</span>，第 35 节）：「压迫、患难」；原意是「挤压」（像葡萄被压榨）。</li>
+            <li><strong>困苦</strong>（<span class="gk">στενοχωρία</span>，第 35 节）：στενός（窄）＋ χώρα（地方）——「狭窄、窘迫、无路可走的地方」。</li>
+            <li><strong>逼迫</strong>（<span class="gk">διωγμός</span>，第 35 节）：「逼迫、追赶」。</li>
+            <li><strong>饥饿</strong>（<span class="gk">λιμός</span>，第 35 节）：「饥荒、饥饿」。</li>
+            <li><strong>赤身露体</strong>（<span class="gk">γυμνότης</span>，第 35 节）：「赤身、裸露」。</li>
+            <li><strong>危险</strong>（<span class="gk">κίνδυνος</span>，第 35 节）：「危险、险境」。</li>
+            <li><strong>刀剑</strong>（<span class="gk">μάχαιρα</span>，第 35 节）：「刀、剑」；在罗马语境里，刀剑是处决的刑具。</li>
+            <li><strong>如经上所记</strong>（<span class="gk">καθὼς γέγραπται</span>，第 36 节）：引用诗篇 44:22（七十士译本 43:23）。</li>
+            <li><strong>为你的缘故</strong>（<span class="gk">ἕνεκεν σοῦ</span>，第 36 节）：「为了你、因你的缘故」。</li>
+            <li><strong>终日被杀</strong>（<span class="gk">θανατούμεθα ὅλην τὴν ἡμέραν</span>，第 36 节）：现在时被动——「我们终日被杀」。「终日」不是修辞，是「一整天、不断地」。</li>
+            <li><strong>将宰的羊</strong>（<span class="gk">πρόβατα σφαγῆς</span>，第 36 节）：σφαγή 是「屠宰」——「宰杀的羊」。</li>
+            <li><strong>然而</strong>（<span class="gk">ἀλλά</span>，第 37 节）：强烈的转折——第 36 节说「我们像将宰的羊」，第 37 节说「然而」。</li>
+            <li><strong>得胜有余</strong>（<span class="gk">ὑπερνικῶμεν</span>，第 37 节）：ὑπερνικάω 是「大大得胜、得胜有余」——ὑπέρ（超过）＋ νικάω（得胜）；现在时；新约只出现一次，就是本节。</li>
+            <li><strong>靠着爱我们的主</strong>（<span class="gk">διὰ τοῦ ἀγαπήσαντος ἡμᾶς</span>，第 37 节）：「藉着那爱我们的」；不定过去分词——爱是一件已经成就的事（十字架）。</li>
+            <li><strong>我深信</strong>（<span class="gk">πέπεισμαι</span>，第 38 节）：πείθω 的完成时被动——「我已经信服、并且仍然信服」。</li>
+            <li><strong>天使、掌权的、有能的</strong>（<span class="gk">ἄγγελοι、ἀρχαί、δυνάμεις</span>，第 38 节）：属灵的权势。</li>
+            <li><strong>现在的事、将来的事</strong>（<span class="gk">ἐνεστῶτα、μέλλοντα</span>，第 38 节）：现在分词与将来分词——「现在的事」与「将来的事」。</li>
+            <li><strong>高处的、低处的</strong>（<span class="gk">ὕψωμα、βάθος</span>，第 39 节）：「高处」与「深处」。</li>
+            <li><strong>别的受造之物</strong>（<span class="gk">τις κτίσις ἑτέρα</span>，第 39 节）：「任何别的受造之物」——兜底的一网。</li>
+            <li><strong>叫我们隔绝</strong>（<span class="gk">χωρίσει</span>，第 39 节）：与第 35 节同一个动词 χωρίζω，将来时——「都不能叫我们隔绝」。</li>
+            <li><strong>神的爱</strong>（<span class="gk">ἡ ἀγάπη τοῦ θεοῦ</span>，第 39 节）：「神的爱」。</li>
+            <li><strong>在我们的主基督耶稣里的</strong>（<span class="gk">ἡ ἐν Χριστῷ Ἰησοῦ τῷ κυρίῳ ἡμῶν</span>，第 39 节）：「在基督耶稣我们主里面的」——爱所在的地方。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>v35 的七重名单：七个主格名词，都是 χωρίσει 的主语</strong>：「难道是患难吗？是困苦吗？是逼迫吗？是饥饿吗？是赤身露体吗？是危险吗？是刀剑吗？」——七个反问排成一串，从一般的「患难」到致命的「刀剑」，语气是「这些，哪一个能？」</li>
+            <li><strong>v35 的 τῆς ἀγάπης τοῦ Χριστοῦ：属格之争</strong>：「基督的爱」是指基督爱我们，还是我们爱基督？语法上两种读法都可能，上下文决定答案（见解经第 1 点）。</li>
+            <li><strong>v36 的 καθὼς γέγραπται：引用诗篇作证据</strong>：受苦不是例外，是经上早已写明的常态——诗篇里的义人早就「为你的缘故终日被杀」。</li>
+            <li><strong>v36 的 ἕνεκεν σοῦ：受苦的原因</strong>：不是「因为我们做错了」，是「为你的缘故」——因为我们属于神。</li>
+            <li><strong>v37 的 ἀλλ' ἐν τούτοις πᾶσιν：得胜的地点</strong>：「在这一切的事上」——得胜的地点，正是患难的地点；不是「脱离了这一切」，是「在这一切之中」。</li>
+            <li><strong>v37 的 ὑπερνικῶμεν 现在时：得胜是持续的</strong>：不是「曾经得胜过」，是「正在得胜」——现在时，正在进行。</li>
+            <li><strong>v37 的 διὰ τοῦ ἀγαπήσαντος ἡμᾶς：不定过去分词</strong>：爱是一件已经成就的事；得胜的根基，是已经成就的爱（十字架）。</li>
+            <li><strong>v38 的 πέπεισμαι 完成时：「我深信」</strong>：已经信服、并且仍然信服——完成时表示一种「已经达成、持续有效」的确信。</li>
+            <li><strong>v38–39 的 οὔτε…οὔτε 排比：十重「不能隔绝」的名单</strong>：死与生（存在的两极）、天使与掌权者与有能者（属灵的权势）、现在的事与将来的事（时间的两极）、高处与低处（空间的两极）、别的受造之物（兜底的一网）——名单越排越宽，直到把一切都网进去。</li>
+            <li><strong>v39 的 χωρίσει 将来时：与 v35 呼应</strong>：第 35 节问「谁能隔绝？」，第 39 节答「都不能隔绝」——同一个动词，一问一答，全章收束。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>谁能使我们与基督的爱隔绝呢：七重患难的名单（v35）</strong>：原文根据是第 35 节的 τίς ἡμᾶς χωρίσει ἀπὸ τῆς ἀγάπης τοῦ Χριστοῦ（「谁能使我们与基督的爱隔绝呢？」）与七个主格名词——θλῖψις（「患难」）、στενοχωρία（「困苦」）、διωγμός（「逼迫」）、λιμός（「饥饿」）、γυμνότης（「赤身露体」）、κίνδυνος（「危险」）、μάχαιρα（「刀剑」）。穆理的论证抓住这份名单不是凭空想出来的：它是保罗自己的履历——林后 11:23–28 里，保罗数算自己受过的苦：多受劳苦、多下监牢、受鞭打、被石头打、遇着船坏、一日一夜在深海里、又屡次行远路，遭江河的危险、盗贼的危险、同族的危险、外邦人的危险、城里的危险、旷野的危险、海中的危险、假弟兄的危险，受劳碌、受困苦、多次不得睡、又饥又渴、多次不得食、受寒冷、赤身露体——第 35 节的七样，几乎就是林后 11 章那份履历的摘要。穆理强调，保罗问的不是「这些会不会来」——它们会来，保罗自己就是证明；保罗问的是「这些能不能使我们与基督的爱隔绝」——答案是不能。穆理还强调名单的顺序：从一般的「患难」开始，到致命的「刀剑」结束——一层比一层重，最后停在「刀剑」上：连死都不能隔绝。穆尔的论证从修辞展开：七个反问排成一串，语气是「这些，哪一个能？」——保罗甚至不屑于一个一个回答，因为答案是同一个：没有一个能。穆尔还讨论「基督的爱」的属格：语法上，「基督的爱」可以读成「基督爱我们」（主格属格，基督是爱的主体），也可以读成「我们爱基督」（宾格属格，基督是爱的对象）；穆尔认为上下文决定了答案：第 37 节说「靠着爱我们的主」——是主爱我们；第 39 节说「神的爱」——是神爱我们；所以第 35 节的「基督的爱」也是基督爱我们，不是我们爱基督。穆尔还指出，第 35 节与第 39 节构成首尾呼应：第 35 节是「基督的爱」，第 39 节是「神的爱……在基督耶稣里」——基督的爱就是神的爱，神的爱就在基督里。分歧注明：对「基督的爱」到底是「基督爱我们」还是「我们爱基督」，历代有分歧——奥古斯丁、路德、加尔文与穆理、穆尔都取前者（基督爱我们）；少数解经家取后者（我们爱基督），认为本节问的是「什么能使我们不再爱基督」；穆理与穆尔都认为后者站不住：理由是第 37 节「爱我们的主」与第 39 节「神的爱」都指向神爱我们，而且「我们爱基督」是会动摇的（彼得三次不认主就是证明），「基督爱我们」才是不动摇的——保罗要讲的正是「不动摇」。历代共识：教会一直用本节讲「患难不能隔绝神的爱」——患难是真的，但隔绝是不可能的；也一直用本节讲「神的爱不是感觉」——爱不是「我觉得神爱我」，是「基督爱我」这个事实，事实不随感觉动摇。互文：林后 11:23–28，罗 5:3–5（「患难生忍耐」），约 10:28–29（「谁也不能从我父手里把他们夺去」），约 13:1（「他既然爱世间属自己的人，就爱他们到底」），林前 13:8（「爱是永不止息」）。</li>
+            <li><strong>如经上所记：我们为你的缘故终日被杀（v36）</strong>：原文根据是第 36 节的 καθὼς γέγραπται（「如经上所记」）、ἕνεκεν σοῦ θανατούμεθα ὅλην τὴν ἡμέραν（「我们为你的缘故终日被杀」）与 ἐλογίσθημεν ὡς πρόβατα σφαγῆς（「人看我们如将宰的羊」），引自诗篇 44:22（七十士译本 43:23）。穆理的论证抓住诗篇 44 篇的背景：这是一篇「无辜受苦者」的哀歌——诗人说「我们没有忘记你，也没有违背你的约……你却把我们……交在野狗的口中」（诗 44:17–19），然后说「我们为你的缘故终日被杀」——受苦的原因不是「我们做错了」，是「为你的缘故」：正因为我们忠于神，所以才受苦。穆理强调，保罗引用这篇诗篇，是要证明受苦是神子民的常态——从诗篇的义人，到保罗自己，到罗马的信徒，神的子民从来就是「终日被杀」的；受苦不是神离弃的证据，是神子民的记号。穆理还指出一个精妙的呼应：ἐλογίσθημεν（「人看我们」——「我们被算为」）与 8:18 的 λογίζομαι（「我想」——「我算过账」）是同一个动词：世界「算」我们是将宰的羊，保罗「算」现在的苦楚比起将来的荣耀就不足介意——两个「算」，两个相反的结论；保罗的「算」胜过了世界的「算」。穆尔的论证从引用的功能展开：保罗引用诗篇，不是为了「证明受苦是常态」就完了，是为了回答一个更尖锐的问题——「如果神爱我们，为什么我们还在受苦？」诗篇的答案是：受苦恰恰是「为你的缘故」——因为我们属于神，所以世界恨我们（约 15:18–19「世人若恨你们，你们该知道，恨你们以先已经恨我了」）；受苦不是神的爱断了，是神的爱正在付代价。穆尔还指出，「终日被杀」的现在时被动：不是「曾经被杀过一次」，是「正在不断地被杀」——受苦是持续的，不是过去的。分歧注明：对这节引用到底是「证明受苦是常态」还是「证明受苦是属于神的记号」，穆理与穆尔都认为两者都包括；分歧只在于强调哪一边——穆理更强调「常态」（从诗篇到保罗到罗马，神的子民一直如此），穆尔更强调「记号」（「为你的缘故」——受苦是因为属于神）。历代共识：教会一直用本节讲「受苦不是被弃」——诗篇的义人受苦，保罗受苦，罗马的信徒受苦，神的爱都没有断；也一直用本节讲「将宰的羊」与基督的呼应——基督自己就是「被牵到宰杀之地」的羔羊（赛 53:7），我们是「将宰的羊」，正因为我们属于那位被宰的羔羊。互文：诗 44:17–22，赛 53:7，约 15:18–19，罗 8:18，太 5:10–12（「为义受逼迫的人有福了」），彼前 4:12–14（「亲爱的弟兄啊，有火炼的试验临到你们，不要以为奇怪」）。</li>
+            <li><strong>然而，在这一切的事上已经得胜有余了（v37）</strong>：原文根据是第 37 节的 ἀλλ' ἐν τούτοις πᾶσιν ὑπερνικῶμεν διὰ τοῦ ἀγαπήσαντος ἡμᾶς（「然而，靠着爱我们的主，在这一切的事上已经得胜有余了」）。穆理的论证抓住 ὑπερνικῶμεν 这个词：新约只出现一次，是保罗造的词——ὑπέρ（「超过」）＋ νικάω（「得胜」）——「得胜有余」，不是「勉强取胜」，是「大获全胜」。穆理强调，得胜的地点是 ἐν τούτοις πᾶσιν（「在这一切的事上」）——「这一切」就是第 35 节的七样患难：得胜不在患难之外，在患难之中——不是「脱离了患难才得胜」，是「在患难里就得胜」。穆理还强调，得胜的凭借是 διὰ τοῦ ἀγαπήσαντος ἡμᾶς（「藉着那爱我们的」）——不定过去分词，指向十字架上已经成就的爱；得胜的根基不是我们今天的刚强，是基督在十字架上已经成就的爱。穆理还指出一个悖论：得胜者正是第 36 节里「终日被杀、如将宰的羊」的人——在世界看来是将宰的羊，在神看来是得胜有余的得胜者；得胜的样子不是「不受苦」，是「在受苦中不被隔绝」。穆尔的论证从时态展开：ὑπερνικῶμεν 是现在时——得胜是持续的、正在进行的，不是「曾经得胜过一次」；「在这一切的事上」——七样患难，一样都不能把得胜推迟到「患难之后」：得胜就在患难里发生。穆尔还指出，διὰ（「藉着、靠着」）表明得胜不是我们的成就，是基督的爱「藉着」我们成就的——是我们得胜，但得胜的凭借是祂的爱；不是我们「靠自己」得胜，是我们「靠着爱我们的主」得胜。穆尔还与「成功神学」的读法对话：有人把「得胜有余」读成「信主的人不会受苦、凡事顺利」——穆尔认为这读反了保罗：第 36 节刚刚说「我们终日被杀」，第 37 节就说「得胜有余」——得胜有余的意思，恰恰是「在终日被杀里得胜有余」，不是「不被杀」。分歧注明：对「得胜有余」的「有余」到底指什么，历代有分歧——有人认为「有余」是指「胜过患难还绰绰有余」（胜得彻底），有人认为「有余」是指「患难本身成了得胜的凭据」（患难反倒成了好处）；穆理与穆尔都认为两者都包括：胜得彻底，而且患难本身成了得胜的 arena——正如林后 12:9–10「我的恩典够你用的，因为我的能力是在人的软弱上显得完全……我什么时候软弱，什么时候就刚强了」。历代共识：教会一直用本节作信徒的战歌——不是「等患难过去了再唱」，是「在患难里就唱」；也一直用本节讲「得胜的凭借」——不是我们的刚强，是「爱我们的主」。互文：林后 12:9–10，约 16:33（「在世上你们有苦难，但你们可以放心，我已经胜了世界」），约壹 5:4–5（「使我们胜了世界的，就是我们的信心」），林前 15:57（「感谢神，使我们藉着我们的主耶稣基督得胜」），启 12:11（「弟兄胜过它，是因羔羊的血和自己所见证的道」）。</li>
+            <li><strong>因为我深信：十重「不能隔绝」的名单（v38–39上）</strong>：原文根据是第 38–39 节的 πέπεισμαι γὰρ ὅτι οὔτε θάνατος οὔτε ζωὴ οὔτε ἄγγελοι οὔτε ἀρχαὶ οὔτε δυνάμεις οὔτε ἐνεστῶτα οὔτε μέλλοντα οὔτε ὕψωμα οὔτε βάθος οὔτε τις κτίσις ἑτέρα δυνήσεται ἡμᾶς χωρίσαι ἀπὸ τῆς ἀγάπης τοῦ θεοῦ（「因为我深信无论是死，是生，是天使，是掌权的，是有能的，是现在的事，是将来的事，是高处的，是低处的，是别的受造之物，都不能叫我们与神的爱隔绝」）。穆理的论证抓住这份名单是刻意「穷尽一切」的：死与生——存在的两极，连死（最后的仇敌，林前 15:26）都不能隔绝；天使、掌权的、有能的——属灵的权势，包括敌对的权势（弗 6:12「我们并不是与属血气的争战，乃是与那些执政的、掌权的……争战」）；现在的事、将来的事——时间的两极，没有一个「时候」能隔绝；高处、低处——空间的两极；别的受造之物——兜底的一网：凡是「受造」的，都在网里；只有造物主不在网里，而祂正是爱我们的那一位。穆理强调，名单的设计就是为了堵住每一个「万一」：保罗不是在「大概」列举，是在「穷尽」列举——每一个你能想到的「万一」，都在名单里。穆尔的论证从「高处与低处」的背景展开：在古代占星术里，ὕψωμα（「高处」）与 βάθος（「低处」）是星象术语——星星在天顶（高处）与天底（低处）的位置决定人的命运；保罗把人最害怕的东西——命运、星象、运势——也列进名单：连命运都不能隔绝。穆尔还指出名单的 widening：从个人的（死、生）到宇宙的（天使、权势），到时间的（现在、将来），到空间的（高处、低处），到普遍的（别的受造之物）——名单越排越宽，直到把一切都网进去。穆尔还指出 πέπεισμαι（「我深信」）的完成时：保罗的「深信」不是凭感觉，是凭金链（8:28–30）、凭法庭的判决（8:31–34）、凭这份名单——深信是有根基的深信。分歧注明：对 ἀρχαί（「掌权的」）与 δυνάμεις（「有能的」）是指善天使还是恶天使，历代有分歧——穆理与穆尔都认为本节包括敌对的权势（上下文是「隔绝」，善天使不会隔绝），但两人都承认，名单的重点是「全面」不是「分类」：无论是善是恶，是天上是地下，都不能隔绝。另，对「高处与低处」是否指占星术，也有分歧——穆理认为主要是「空间的两极」，穆尔认为占星术的背景值得重视；两人都不否认对方的读法：无论是空间还是命运，都不能隔绝。历代共识：教会一直用本节讲「神的爱无可隔绝」——这是圣经里最全面的确据：天上、地上、地底下，没有一样能隔绝；奥古斯丁、路德、加尔文都讲过本节，葬礼上最常读的经文之一——因为它说了关于受苦的最后一句话：它不能隔绝。互文：弗 6:12，林前 15:26（「尽末了所毁灭的仇敌就是死」），诗 139:7–10（「我往哪里去躲避你的灵？……我若升到天上，你在那里；我若在阴间下榻，你也在那里」），约 10:28–29，来 13:5（「我总不撇下你，也不丢弃你」）。</li>
+            <li><strong>这爱是在我们的主基督耶稣里的：全章、全卷的收束（v39下）</strong>：原文根据是第 39 节的 ἡ ἀγάπη τοῦ θεοῦ ἡ ἐν Χριστῷ Ἰησοῦ τῷ κυρίῳ ἡμῶν（「神的爱……是在我们的主基督耶稣里的」）。穆理的论证抓住本章的首尾呼应：8:1 开篇是「在基督耶稣里的就不定罪了」，8:39 收束是「在基督耶稣里的爱」——全章从「在基督耶稣里」开始，以「在基督耶稣里」结束；爱所在的地方，就是「在基督耶稣里」：在基督之外，没有这爱；在基督之内，这爱永不隔绝。穆理还指出，本节用的是最完整的称号——「我们的主基督耶稣」：保罗像是在全章的末尾，把福音的整句话签上全名——爱是「神的爱」，爱在「基督耶稣」里，基督是「我们的主」。穆尔的论证从第 35 节到第 39 节的移动展开：第 35 节是「基督的爱」，第 39 节是「神的爱……在基督耶稣里」——基督的爱就是神的爱，父的爱与子的爱是同一份爱，爱就「在」基督里；「在……里」（ἐν）这个介词是关键：爱不是一个抽象的属性，是一个「所在」——爱「在」基督里，就像我们「在」基督里（8:1）：我们与爱，同在一个地方。穆尔还指出，全章的收束也是 5–8 章的收束：5 章讲与神相和，6 章讲向罪死，7 章讲脱离律法，8 章讲圣灵里的生命与荣耀的盼望——而 8:39 是这整整四章的最后一句话：神的爱。分歧注明：对本节是否就是全卷的「高峰」，历代基本一致——穆理与穆尔都认为 8:31–39 是全章的高峰，8:38–39 是全卷最常被引用的确据经文；分歧只在于是「强调神的爱」还是「强调在基督里」，穆理与穆尔都认为两者不可分：神的爱就是在基督里的爱，在基督里的爱就是神的爱。历代共识：教会一直用本节作整卷罗马书的收束句——从 1:16–17「神的义正在这福音上显明出来」到 8:39「神的爱在基督耶稣里」：福音的起点是神的义，福音的终点是神的爱；也一直用本节讲「在基督里」——你的确据不在你的感觉里，不在你的表现里，在基督里。互文：罗 8:1，罗 1:16–17，约 3:16（「神爱世人，甚至将他的独生子赐给他们」），弗 3:18–19（「能以和众圣徒一同明白基督的爱是何等长阔高深……过于人所能测度的」），约壹 4:8–10（「神就是爱……神差他独生子到世间来，使我们藉着他得生」）。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>把七重患难当作一张清单，对一对你正在面对的那一样</strong>：第 35 节的七样——患难、困苦、逼迫、饥饿、赤身露体、危险、刀剑——你现在正面对哪一样？保罗的问题不是「这些会不会来」（它们会来，保罗自己就是证明），是「这些能不能使你与基督的爱隔绝」（它们不能）。操练：今天，写下你正在面对的那一样，在旁边写上 8:35 的问题和 8:39 的答案——「谁能使我们与基督的爱隔绝呢？」——「都不能叫我们与神的爱隔绝。」然后问自己：我最近量「神爱我」的尺子，是「我的处境顺不顺利」，还是「基督爱我」这个事实？</li>
+            <li><strong>在「这一切的事上」得胜有余，不是在「这一切的事后」</strong>：第 37 节的得胜不在患难之外，在患难之中——不是「等患难过去了再得胜」，是「在患难里就得胜」。操练：想一想你现在的一件难处，问自己：如果「得胜有余」不是「这件事消失了」，而是「这件事正在叫我更像基督」（8:29），那么今天的得胜是什么样子的？是更有耐心？更会饶恕？更依靠神？把那一样写下来，今天就活出它——得胜不是将来的事，是现在时（ὑπερνικῶμεν）：正在得胜。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>8:38 说「我深信」——用的是完成时：已经信服，并且仍然信服。保罗的「深信」不是凭感觉，是凭金链（8:28–30）、凭法庭的判决（8:31–34）、凭十重「不能隔绝」的名单（8:38–39）。想想你现在的光景：有没有一件事，让你觉得「神的爱大概还在，但离我很远」？一件让你怀疑「神还爱我吗」的事？如果「隔绝」是不可能的——不是「不太可能」，是「不能」（χωρίσει，将来时：都不能）——那么，你觉得「远」，到底是神远了，还是你的感觉远了？今天，把那件让你觉得「远」的事，带到 8:39 面前：不是先量自己的感觉，是先看这句话的主语——「都不能叫我们与神的爱隔绝」：主语是「都不能」，不是「我觉得」。第 8 章读完了，下一章，第 9 章，保罗要讲以色列——一个「神的爱是不是落空了」的问题。</p>
+          </div>
+</article>
+
+        <div class="daynav"><a href="day19.html">← 第 19 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
