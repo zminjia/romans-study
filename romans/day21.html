@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 21 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day21-am">9:6–9</a>
+
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 21 天</span>2026-11-09（周一） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day21-am">
+          <div class="entry-head">
+            <span class="entry-day">第 21 天 · 晨 — 2026-11-09（周一）</span>
+            <h3 class="entry-title">神的话没有落空 <span class="ref">· 罗马书 9:6–9</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">6</span>这不是说神的话落了空，因为从以色列生的，不都是以色列人；<span class="vn">7</span>也不因为是亚伯拉罕的后裔，就都作他的儿女；惟独「从以撒生的，才要称为你的后裔。」<span class="vn">8</span>这就是说，肉身所生的儿女不是神的儿女；惟独那应许的儿女才算是后裔。<span class="vn">9</span>因为所应许的话是这样说：「到明年这时候我要来，撒拉必生一个儿子。」</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>9:6 是罗马书 9–11 章的纲领句，也是全书一次重大的转折。第 9 章开篇（9:1–5）保罗以三重见证的誓言立下他「大有忧愁，心里时常伤痛」的心境，并历数以色列八项无与伦比的特权：儿子的名分、荣耀、诸约、律法、礼仪、应许、列祖，以及「按肉体说，基督也是从他们出来的」。特权清单越是辉煌，现实就越是刺眼：拥有这一切的以色列，大多数却拒绝了弥赛亚。于是，一个尖锐的问题无可回避地浮上台面——神对以色列的应许，难道落空了吗？神的话，难道失效了吗？</p>
+          <p>9:6 就是保罗对这个问题的正面回答：「这不是说神的话落了空。」这句话不是安慰性的口号，而是 9:6–29 整段论证的论题句：神的拣选主权（以撒、以扫与雅各、法老、窑匠与泥土）将依次展开，都是为了证明同一个结论——神没有失信，因为祂的应许从来就不是按血缘无条件地临到每一个以色列人。从全书结构看，9:6–13 讲拣选的事实（以撒胜过以实玛利，雅各胜过以扫），9:14–18 回答「神岂有不义吗」的质疑，9:19–29 回答「祂为什么还指责人」的质疑，9:30–10:21 说明以色列跌倒的原因（追求律法的义而非因信的义），第 11 章则以余民与「以色列全家都要得救」的盼望收束。今日这四节，是整座论证大厦的地基：先立住「神的话没有落空」，后面的拣选论证才有立足之地。</p>
+          <p>注意这段与 3:1–8 的呼应：早在 3:3 保罗就问过「纵然有不信的，这有何妨呢？难道他们的不信，就废掉神的信实吗？」当时他以「断乎不能」作答；到了 9:6，他把同样的主题推向更具体的层面——不是抽象地谈「神的信实」，而是直面以色列民族大规模拒绝福音这一历史事实，论证神的应许如何仍然站立得住。</p>
+          
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>神的话</strong>（<span class="gk">ὁ</span> <span class="gk">λόγος</span> <span class="gk">τοῦ</span> <span class="gk">θεοῦ</span>，第 6 节）：「话、言语」——此处不是泛指圣经或神的一般启示，而是指 9:4 提到的诸应许（<span class="gk">αἱ</span> <span class="gk">ἐπαγγελίαι</span>）。「神的话」就是神向以色列说出的应许之言；应许是否落空，是本段的核心问题。</li>
+            <li><strong>落了空</strong>（<span class="gk">ἐκπέπτωκεν</span>，第 6 节）：动词 <span class="gk">ἐκπίπτω</span> 的完成时，「掉出来、脱落、失效」。字面意思是「从原位掉落」：航海用语指船只偏离航线，花朵用语指花瓣凋落。完成时表示一种已经完成并持续存在的状态——「已经失效了」。保罗否定的正是这种「已经失效」的状态：神的话并没有偏离航线、没有凋落失效。</li>
+            <li><strong>从以色列生的</strong>（<span class="gk">οἱ</span> <span class="gk">ἐξ</span> <span class="gk">Ἰσραήλ</span>，第 6 节）：<span class="gk">ἐξ</span>（「从……而出」）表血缘出处——按肉身从以色列（雅各）生出来的后裔。同一个专名在同一句里出现两次，第二次却是神学意义上的「以色列」：两次出现，一实一虚，构成全句的双关。</li>
+            <li><strong>后裔</strong>（<span class="gk">σπέρμα</span>，第 7 节）：「种子、后裔」——单数集合名词，可指一个后裔，也可指全体后代。此处是集合用法，指亚伯拉罕的全体后裔。注意与加 3:16 的用法区分：保罗在那里把 <span class="gk">σπέρμα</span> 读作单数、指向基督；在这里 <span class="gk">σπέρμα</span> 是血缘后代的集合，问题是谁才「算」这后裔。</li>
+            <li><strong>儿女</strong>（<span class="gk">τέκνα</span>，第 7–8 节）：「孩子、儿女」——<span class="gk">τέκνα</span> 强调出生与血缘关系（与 <span class="gk">υἱοί</span>「儿子」强调名分与继承略有分工）。保罗刻意用 <span class="gk">τέκνα</span>：问题正是「谁才算生出来的儿女」。</li>
+            <li><strong>称为</strong>（<span class="gk">κληθήσεται</span>，第 7 节引文）：<span class="gk">καλέω</span> 的将来时被动态，「将被称呼、被命名」。在圣经语言里，「称呼」不是贴标签，而是赋予身份与地位：神说「从以撒生的，才要称为你的后裔」，是神亲自划定谁是后裔——命名权在神手里。</li>
+            <li><strong>肉身所生的儿女</strong>（<span class="gk">τὰ</span> <span class="gk">τέκνα</span> <span class="gk">τῆς</span> <span class="gk">σαρκός</span>，第 8 节）与<strong>应许的儿女</strong>（<span class="gk">τὰ</span> <span class="gk">τέκνα</span> <span class="gk">τῆς</span> <span class="gk">ἐπαγγελίας</span>）：两个属格都是「来源属格」——前者指「以肉身为来源」的儿女（凭人的生育能力、凭血缘自然产生的），后者指「以应许为来源」的儿女（凭神的应许之言而存在的）。<span class="gk">σάρξ</span>（肉身）与 <span class="gk">ἐπαγγελία</span>（应许）的对立，是整段的分水岭。</li>
+            <li><strong>算是</strong>（<span class="gk">λογίζεται</span>，第 8 节）：<span class="gk">λογίζομαι</span> 的现在时被动态，「被算为、被记入账上」。这是保罗在罗马书 4 章反复使用的「算账」语言（亚伯拉罕「信神，这就算为他的义」，4:3；「算为义」，4:5–6）：后裔的身份不是自然产出的，而是神「算」出来的——神的账本说了算。</li>
+            <li><strong>应许</strong>（<span class="gk">ἐπαγγελία</span>，第 8–9 节）：「应许、承诺」——第 8 节是「应许的儿女」，第 9 节是「所应许的话」（<span class="gk">ὁ</span> <span class="gk">λόγος</span> <span class="gk">τῆς</span> <span class="gk">ἐπαγγελίας</span>，「这应许的话」）。应许一词在两节里连用，把「儿女」的身份牢牢系在「神说过的话」上。</li>
+            <li><strong>到明年这时候</strong>（<span class="gk">κατὰ</span> <span class="gk">τὸν</span> <span class="gk">καιρὸν</span> <span class="gk">τοῦτον</span>，第 9 节引文）：「照着这时节、到这时候」——引自创 18:10、14（七十士译本）。神给应许定了一个时间：不是模糊的「将来」，而是「到这时候，明年」——应许有名有姓、有日期。</li>
+            <li><strong>我要来</strong>（<span class="gk">ἐλεύσομαι</span>，第 9 节引文）：<span class="gk">ἔρχομαι</span> 的将来时，「我将要来」。主语是耶和华自己：孩子的出生不是撒拉的作为，而是神的「来到」带来的结果。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>9:6 开头的 <span class="gk">οὐχ</span> <span class="gk">οἷον</span> <span class="gk">δὲ</span> <span class="gk">ὅτι</span> 句式</strong>：「这不是说……」——字面是「并非如此，以致……」，是保罗用来预先堵住读者误解的习语（参林前 10:19；腓 3:12）。<span class="gk">δὲ</span> 标志论证的转折：从 9:1–5 的忧愁与特权清单，转入对「神的话落空了」这一潜在指控的驳斥。保罗不等读者发问，自己先把最尖锐的质疑摆上台面，再否定它——这是修辞上的先发制人。</li>
+            <li><strong>9:6 的 <span class="gk">γὰρ</span>（「因为」）</strong>：解释性连词，引出否定句的理由——「神的话没有落空，因为从以色列生的，不都是以色列人」。整节的论证结构是「否认＋理由」，而理由本身就是一个需要展开的区分（两个「以色列」），于是引出 9:7–9 的例证。</li>
+            <li><strong>9:6 下半句的语序</strong>：<span class="gk">οὐ</span> <span class="gk">πάντες</span> <span class="gk">οἱ</span> <span class="gk">ἐξ</span> <span class="gk">Ἰσραὴλ</span> <span class="gk">οὗτοι</span> <span class="gk">Ἰσραήλ</span>——「不是所有从以色列生的，这些人就是以色列」。<span class="gk">οὗτοι</span>（「这些人」）是回指代词，把前半句的「从以色列生的」收回来，再作判断；否定词 <span class="gk">οὐ</span> 放在 <span class="gk">πάντες</span>（「所有」）之前，否定的是「全部」，不是「一个也没有」——保罗不是说「没有一个以色列人是真以色列」，而是说「不是每一个都是」。这个精确的否定，为第 11 章「余民」的主题留下了活口。</li>
+            <li><strong>9:7 的 <span class="gk">οὐδὲ</span> <span class="gk">ὅτι</span>（「也不因为……」）</strong>：与 9:6 的 <span class="gk">οὐ</span> 构成平行的双重否定——两个 <span class="gk">οὐ</span> 子句层层递进：第一，血缘以色列 ≠ 真以色列；第二，亚伯拉罕的后裔 ≠ 都是儿女。两个否定互相加固：连亚伯拉罕后裔这个更广的圈子，都不能保证儿女身份。</li>
+            <li><strong>9:7 引文的句法功能</strong>：<span class="gk">ἐν</span> <span class="gk">Ἰσαὰκ</span> <span class="gk">κληθήσεταί</span> <span class="gk">σοι</span> <span class="gk">σπέρμα</span>（「从以撒生的，才要称为你的后裔」，引创 21:12）——<span class="gk">ἐν</span>（「在……里」）加与格，表范围与凭借：「在以撒里、在以撒这一脉里」，后裔才被「称为」后裔。引文不是装饰，而是论证的证据：神自己的话早就划了界——后裔的范围由神的呼召（<span class="gk">κληθήσεται</span>）决定，不由血缘决定。</li>
+            <li><strong>9:8 的 <span class="gk">τοῦτ</span>&#x27; <span class="gk">ἔστιν</span>（「这就是说」）</strong>：保罗的解释公式，标志他要把引文的意思点明（参 7:18；10:6–8）。公式之后是 <span class="gk">οὐ</span>…<span class="gk">ἀλλὰ</span> 式的正反对立（和合本译作「不是……惟独……」）：「肉身所生的儿女不是神的儿女，惟独那应许的儿女才算是后裔。」正反对立把两种儿女截然分开，没有中间地带。</li>
+            <li><strong>9:9 的 <span class="gk">γὰρ</span> 与前置属格</strong>：<span class="gk">ἐπαγγελίας</span> <span class="gk">γὰρ</span> <span class="gk">ὁ</span> <span class="gk">λόγος</span> <span class="gk">οὗτος</span>（「因为所应许的话是这样说」）——属格 <span class="gk">ἐπαγγελίας</span>（「应许的」）被提到句首强调位置，<span class="gk">γὰρ</span> 说明 9:8 的断言有经文根据。句法顺序本身在讲道理：先是「应许」，然后才是「这话」；先是神的应许之言，然后才有以撒这个人。引文（创 18:10、14）作为论证的收尾证据，证明以撒从一开始就是应许的产物。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「神的话落了空」指什么：应许的性质与神的信实</strong>原文根据是第 6 节的 <span class="gk">ὁ</span> <span class="gk">λόγος</span> <span class="gk">τοῦ</span> <span class="gk">θεοῦ</span> 与 <span class="gk">ἐκπέπτωκεν</span>，以及 9:4 的诸应许（<span class="gk">αἱ</span> <span class="gk">ἐπαγγελίαι</span>）。穆理与穆尔的共识是：这里的「神的话」特指神向以色列所发的应许之言——不是神话语的一般权能（神的话岂能失效？），而是神在盟约里对以色列的承诺。问题之所以尖锐，是因为这些应许是向以色列民族发的，而拒绝弥赛亚的恰恰是以色列民族的大多数；如果应许是向「以色列」发的，而「以色列」拒绝了福音，应许岂不是落空了？ 穆理的论证脉络是：保罗的回答不是缩小应许、也不是把应许转给别人，而是澄清应许的领受对象——神的应许从来就不是向每一个按血缘属于以色列的人无条件保证救恩。穆理强调，9:6 的否定句（<span class="gk">οὐχ</span> <span class="gk">οἷον</span> <span class="gk">δὲ</span> <span class="gk">ὅτι</span>）之所以有力，是因为它建立在神自己的话上：创 21:12 早就表明，神在拣选以撒时就已经把「后裔」的范围限定了。神没有食言，因为祂从未应许过「每一个亚伯拉罕的血缘后裔都必然得救」。 穆尔补充了一个重要的互文线索：这场争论在罗马书里不是第一次出现。3:3–4 保罗已经处理过「人的不信岂能废掉神的信实」——当时的回答是「断乎不能」，因为神的信实不依赖人的回应；9:6 则是把同一原则具体化到以色列的历史处境中。穆尔指出，保罗的论证方向与人的直觉相反：人以为「大多数以色列人拒绝福音＝神的计划失败了」，保罗却说「大多数以色列人拒绝福音，恰恰显明神的计划从来就是拣选性的」——应许的成就方式，本身就是通过拣选。 分歧传统注明：自由派与部分历史批判学者认为，保罗在这里是在事后为以色列的拒绝寻找神学解释，是一种「辩护性」的重构；穆理与穆尔都拒绝这种读法，认为保罗不是在发明新定义，而是在揭示旧约本身就有的结构——旧约里「余民」的主题（赛 10:20–22；王上 19:18）早就表明，神的应许从来是向着祂所拣选的余民成就的。历代共识方面，奥古斯丁与加尔文都沿着同一路线：神的应许不落空，因为应许的对象从来是「蒙拣选的以色列」，而非「血缘的以色列」。</li>
+            <li><strong>2. 真以色列与血缘以色列的区分：「从以色列生的，不都是以色列人」</strong>原文根据是 9:6 下半句的双关：<span class="gk">οἱ</span> <span class="gk">ἐξ</span> <span class="gk">Ἰσραὴλ</span>（从以色列生的）与 <span class="gk">οὗτοι</span> <span class="gk">Ἰσραήλ</span>（这些人是「以色列」）。穆理的经典表述是：这句话里有两个「以色列」——第一个是按肉身的以色列（民族、血缘），第二个是按应许、按拣选的以色列（真以色列）。穆理强调，这不是保罗临时发明的文字游戏，而是旧约历史本身呈现的事实：以实玛利是以色列的血缘亲属却不在应许之列，以扫是雅各的孪生兄弟却不在拣选之列——从亚伯拉罕的家开始，神就在血缘之内划界。 穆尔的论证与此一致，但他更细致地处理了「以色列」一词在保罗书信中的用法光谱：林前 10:18「按肉体作以色列人的」（<span class="gk">Ἰσραὴλ</span> <span class="gk">κατὰ</span> <span class="gk">σάρκα</span>）是血缘用法；加 6:16「神的以色列」（<span class="gk">ὁ</span> <span class="gk">Ἰσραὴλ</span> <span class="gk">τοῦ</span> <span class="gk">θεοῦ</span>）是神学用法。穆尔认为 9:6 的第二个「以色列」接近加 6:16 的意思——蒙神拣选、承受应许的以色列。同时穆尔提醒：保罗在这里区分的不是「犹太人与教会」两个阵营，而是以色列民族内部的区分——「以色列中的以色列」，即余民。这对理解第 11 章至关重要：保罗从未说「教会取代了以色列」，他说的是「以色列中有一部分是真以色列」，而第 11 章还要论证神对整个以色列民族另有未来的计划（「以色列全家都要得救」，11:26）。 分歧传统注明：替代神学（supersessionism）的一种强读法认为，保罗在此把「真以色列」重新定义为教会，血缘以色列从此出局；穆理与穆尔都反对这种读法，认为 9:6 的区分发生在以色列内部，且 11:1（「神弃绝了他的百姓吗？断乎没有」）与 11:25–26 的「奥秘」都证明保罗没有把血缘以色列一笔勾销。另一方面，也有解经者把 9:6 的「以色列」读得过窄，只指「得救的个人」；穆理与穆尔则指出，保罗的视野同时包含群体（余民）与个人（蒙拣选者），两者并不冲突——余民正是由蒙拣选的个人组成的。金口约翰的讲道与此呼应：他说，保罗不是在取消以色列的特权，而是在说明特权的继承人是谁。</li>
+            <li><strong>3. 「应许的儿女」与「肉身的儿女」：以撒与以实玛利的对照</strong>原文根据是 9:7–8 的两个对比：<span class="gk">σπέρμα</span> <span class="gk">Ἀβραάμ</span>（亚伯拉罕的后裔）与 <span class="gk">τέκνα</span>（儿女），以及 <span class="gk">τὰ</span> <span class="gk">τέκνα</span> <span class="gk">τῆς</span> <span class="gk">σαρκός</span>（肉身的儿女）与 <span class="gk">τὰ</span> <span class="gk">τέκνα</span> <span class="gk">τῆς</span> <span class="gk">ἐπαγγελίας</span>（应许的儿女）。保罗举的例子是以实玛利与以撒：两人都出自亚伯拉罕的血脉——以实玛利是亚伯拉罕的长子，血缘上毫无问题；但神说「惟独从以撒生的，才要称为你的后裔」（创 21:12）。穆理的论证是：这个例子之所以有杀伤力，正因为它排除了所有借口——以实玛利不是外人，他是亚伯拉罕的亲生儿子；如果连他都不算「后裔」，血缘就彻底失去了决定权。决定权在神的「称为」（<span class="gk">κληθήσεται</span>）：神呼召谁为后裔，谁才是后裔；神的命名创造了身份，而不是追认既成的身份。 穆尔的论证进一步追问：为什么以撒是应许的儿女？因为以撒的出生本身就是应许的产物——撒拉已经过了生育的岁数（创 18:11；罗 4:19「自己的身体如同已死」），以撒的存在不是人的生育能力带来的，而是神的应许之言带来的。穆尔强调第 9 节引文的逻辑：「到明年这时候我要来，撒拉必生一个儿子」——应许先于出生，话语先于生命。以撒之所以是「应许的儿女」，不是因为他的血缘比以实玛利纯正，而是因为他的存在方式不同：一个是凭人的筹划（夏甲事件，创 16 章）生出来的，一个是凭神的应许生出来的。 互文印证最有力的是加拉太书 4:21–31：保罗在那里用同一个故事作了寓意解经——以实玛利是「按着血气生的」（<span class="gk">κατὰ</span> <span class="gk">σάρκα</span>），以撒是「凭着应许生的」（<span class="gk">δι</span>&#x27; <span class="gk">ἐπαγγελίας</span>）；加 4:28 更直接：「弟兄们，我们是凭着应许作儿女，如同以撒一样。」两处经文互相照亮：罗马书 9 章讲的是以色列内部的区分，加拉太书 4 章讲的是同一个原则如何临到外邦信徒——在基督里，信徒都成了「应许的儿女」。此外，<span class="gk">λογίζεται</span>（「算是」，9:8）与罗马书 4 章的「算为义」是同一动词：后裔的身份像义的身份一样，是神「算」出来的，不是人挣出来的——这是罗马书一以贯之的「算账」神学。 与新视角派的对话：邓恩等人强调，保罗在罗马书 9 章针对的是犹太人的「盟约身份」——割礼、律法、选民地位构成的身份边界；穆尔回应说，身份确实是背景，但 9:7–8 的论证核心不是「身份标记」，而是「神主权的拣选」——以实玛利与以撒的差别不在割礼或律法（两人都没有律法），而在神拣选了谁。穆理从救赎历史的角度补强：以撒与以实玛利的两条线，是救赎历史中「应许之线」与「肉身之线」的原型，此后整个旧约历史——雅各与以扫、余民与大众——都是同一结构的重复。分歧注明：少数解经者认为 9:8 的「肉身的儿女不是神的儿女」只是说「血缘本身不够」，而非否定血缘的价值；穆理与穆尔都同意血缘本身并非恶事（保罗在 9:4–5 刚肯定了以色列特权的真实价值），但血缘不能成为承受应许的根据——特权是真的，继承权却要按神的拣选来定。</li>
+            <li><strong>4. 9:9「到明年这时候」：应许的话如何证明以撒是应许的儿女</strong>原文根据是第 9 节的引文，取自创 18:10、14（七十士译本的合璧引用）：「到明年这时候我要来，撒拉必生一个儿子。」穆理的解读是：保罗用这节引文作 9:8 的证据——「所应许的话是这样说」，意思是：以撒是应许的儿女，这一点有神自己的话为证。穆理特别留意引文里的两个动词：「我要来」（<span class="gk">ἐλεύσομαι</span>）与「必生」（<span class="gk">ἔσται</span>）。孩子的出生被表述为神「来」的后果：不是撒拉做了什么，而是耶和华来了——神的临在带来了生命。撒拉的身体已经「如同已死」（罗 4:19），所以以撒的出生在人的层面是不可能的；应许之所以是应许，正因为它宣告了一件人做不到的事。 穆尔补充了引文出处的背景：创 18:14 紧接着就是那句著名的反问——「耶和华岂有难成的事吗？」（LXX：「<span class="gk">παρὰ</span> <span class="gk">τῷ</span> <span class="gk">θεῷ</span> <span class="gk">μὴ</span> <span class="gk">ἀδυνατήσει</span> <span class="gk">πᾶν</span> <span class="gk">ῥῆμα</span>;」）保罗引用 18:10、14，等于是把这句反问也带进了罗马书 9 章的论证：神岂有难成的事吗？——没有。所以神的应许没有落空：祂说「到明年这时候」，明年这时候撒拉果然生了儿子。穆尔还指出「到明年这时候」（<span class="gk">κατὰ</span> <span class="gk">τὸν</span> <span class="gk">καιρὸν</span> <span class="gk">τοῦτον</span>）的时间性意义：神的应许不是没有期限的空头支票，它有名有姓、有日期；神按祂定的时间成就应许，这正是应许可信的证据——以撒按时出生，证明说这话的神是信实的。 互文印证：来 11:11「因着信，连撒拉自己，虽然过了生育的岁数，还能怀孕，因她以为那应许她的是可信的」——撒拉的信，是对「那应许她的是可信的」这一判断；信心的对象不是抽象的「神会帮忙」，而是神那句有时间、有内容的话。创 21:1–2「耶和华按着先前的话眷顾撒拉，便照他所说的给撒拉成就」——「按着先前的话」、「照他所说的」，应许之言与成就之间是逐字对应的关系。穆理与穆尔的共识是：9:9 是 9:6–9 的收束证据——它证明了 9:8 的断言（以撒是应许的儿女），也证明了 9:6 的论题（神的话没有落空）：神的话没有落空，因为神的话生出了以撒；同样，神的话今天也没有落空，因为神的话正在生出「应许的儿女」——不论他们出自犹太人还是外邦人（参 9:24）。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>神的信实，按神的话来衡量，不按我们的期待来衡量</strong>：以色列人拒绝福音时，人的第一反应是「神的计划失败了」。保罗的回答颠覆了这个直觉：神的计划没有失败，是我们对计划的想象错了——我们以为神的应许是按血缘自动兑现的，神却说应许是按祂的拣选成就的。今天也一样：当教会人数下滑、当身边的人离开信仰、当祷告多年未蒙应允，我们很容易下结论说「神的话落空了」。9:6 教我们先停下来问：神到底应许了什么？祂应许的是「每一个挂名的人都得救」，还是「祂所拣选的儿女一个也不失落」？前者是我们编的应许，后者才是祂说过的话。操练：找出一句你最近觉得「落空」的应许，回到经文里核对——神原话到底是怎么说的？把你的期待与神的原话分开，失望常常就解开了一半。</li>
+            <li><strong>儿女的身份不是继承来的，是应许给的</strong>：以实玛利什么都不缺——他是亚伯拉罕的长子、血缘纯正、从小在应许之家中长大；他缺的只有一样：神没有说「从他生的，才要称为你的后裔」。今天，「肉身的儿女」的逻辑依然活着：生在基督徒家庭、从小上主日学、受过洗、在教会里长大——这些都是真实的恩典，却没有一样能自动兑换「神的儿女」的身份。儿女的身份来自神的应许之言临到你、你凭信领受它（参加 4:28；约 1:12–13「这等人不是从血气生的，乃是从神生的」）。检视：你倚靠的是哪一样？是「我是基督徒家庭出身」，还是「神在基督里应许了我，我凭信接受了」？前者是血缘的逻辑，后者是应许的逻辑——两者结局天差地别。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>9:6 说「从以色列生的，不都是以色列人」——身份的决定权不在血缘，而在神的应许与拣选。想一想：在你的生命里，有没有一样东西（家庭背景、教会资历、受洗年日、服侍记录、甚至「我一直很虔诚」）是你暗暗倚靠、觉得它能保证你「算是」神儿女的？如果神今天对你说「惟独那应许的儿女才算是后裔」，你倚靠的那一样，经得起这句话的检验吗？而神的应许——「到明年这时候我要来」——祂按时成就的信实，又如何成为你今天仍可仰望的凭据？</p>
+          </div>
+</article>
+
+        <div class="daynav"><a href="day20.html">← 第 20 天</a><a href="index.html#daily">全部天数</a><a href="day21.html">第 21 天 →</a></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
