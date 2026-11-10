@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 22 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day22-am">9:14–18</a>
+
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 22 天</span>2026-11-10（周二） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day22-am">
+          <div class="entry-head">
+            <span class="entry-day">第 22 天 · 晨 — 2026-11-10（周二）</span>
+            <h3 class="entry-title">神岂有不公平吗 <span class="ref">· 罗马书 9:14–18</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">14</span>这样，我们可说什么呢？难道神有什么不公平吗？断乎没有！<span class="vn">15</span>因他对摩西说：「我要怜悯谁，就怜悯谁；要恩待谁，就恩待谁。」<span class="vn">16</span>据此看来，这不在乎那定意的，也不在乎那奔跑的，只在乎发怜悯的神。<span class="vn">17</span>因为经上有话向法老说：「我将你兴起来，特要在你身上彰显我的权能，并要使我的名传遍天下。」<span class="vn">18</span>如此看来，神要怜悯谁，就怜悯谁；要叫谁刚硬，就叫谁刚硬。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>9:14 是 9:6–29 论证中的第一个「读者抗议」。昨晚读过的 9:10–13 把拣选推到了最尖锐的地步：双子未生、善恶未作，神已经说了「大的要服事小的」，「雅各是我所爱的，以扫是我所恶的」。任何一个诚实的读者读到这里都会脱口而出：这岂不是不公平吗？保罗不等读者发问，自己先把这个质疑摆上台面——「这样，我们可说什么呢？难道神有什么不公平吗？」</p>
+          <p>从全书结构看，9:14–18 回答「神岂有不义吗」的质疑，9:19–29 回答「祂为什么还指责人」的质疑，9:30–10:21 说明以色列跌倒的原因（追求律法的义而非因信的义），第 11 章则以余民与「以色列全家都要得救」的盼望收束。今日这五节，是整段拣选论证中承上启下的关键一环：保罗不回避、不软化拣选的尖锐性，而是直接诉诸圣经——两个出埃及记的引文（摩西与法老），两个「据此看来／如此看来」的结论。</p>
+          <p>两个引文都出自出埃及记，都关乎神在出埃及事件中的自我启示：对摩西（出 33:19），神宣告怜悯的主权；对法老（出 9:16），神宣告祂兴起法老的目的。怜悯与刚硬，一正一反，构成一副完整的图画：同一位神，在同一段历史里，既怜悯、又刚硬——而这两件事都显明祂的荣耀。</p>
+          
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>不公平</strong>（<span class="gk">ἀδικία</span>，第 14 节）：「不义、不公正」——名词，由否定前缀 <span class="gk">ἀ-</span> 加 <span class="gk">δίκη</span>（「公义、公正」）构成。质疑的字面意思是：「神那里有不义吗？」<span class="gk">παρὰ</span> <span class="gk">τῷ</span> <span class="gk">θεῷ</span>（「在神那里／与神同在」）把问题摆在神面前：神的作为里，有没有不公义的成分？</li>
+            <li><strong>断乎没有</strong>（<span class="gk">μὴ</span> <span class="gk">γένοιτο</span>，第 14 节）：<span class="gk">γίνομαι</span> 的愿望语气（optative），「愿它永不发生」——保罗最强烈的否定公式，全书凡遇根本性误解都用它来挡回去（3:4、6、31；6:2、15；7:7、13；9:14；11:1、11）。这不是礼貌的「不是的」，而是「绝无此事」。</li>
+            <li><strong>怜悯</strong>（<span class="gk">ἐλεέω</span>，第 15、16、18 节）：动词，「怜悯、施怜悯」——对处在苦难、需要中的人动慈心、施帮助。在七十士译本中常译希伯来文 <span class="gk">חָנַן</span>（「施恩」）与 <span class="gk">רָחַם</span>（「怜恤」）。</li>
+            <li><strong>恩待</strong>（<span class="gk">οἰκτείρω</span>，第 15 节）：「同情、怜恤」——与 <span class="gk">ἐλεέω</span> 近义，强调内心的怜恤之情。两词并列不是同义反复，而是出 33:19 原文的双重表达：神的怜悯既有行动（<span class="gk">ἐλεέω</span>），也有心肠（<span class="gk">οἰκτείρω</span>）。</li>
+            <li><strong>定意的</strong>（<span class="gk">τοῦ</span> <span class="gk">θέλοντος</span>，第 16 节）：<span class="gk">θέλω</span>（「愿意、定意、想要」）的现在时分词加定冠词，作名词用：「那愿意的人、那定意的人」。现在时表示持续的意愿状态。</li>
+            <li><strong>奔跑的</strong>（<span class="gk">τοῦ</span> <span class="gk">τρέχοντος</span>，第 16 节）：<span class="gk">τρέχω</span>（「跑、奔跑」）的现在时分词加定冠词：「那奔跑的人」。这是运动场上的意象（参林前 9:24–26；加 2:2；腓 2:16）：人生的赛跑、奋力的追求。</li>
+            <li><strong>发怜悯的神</strong>（<span class="gk">τοῦ</span> <span class="gk">ἐλεῶντος</span> <span class="gk">θεοῦ</span>，第 16 节）：<span class="gk">ἐλεέω</span> 的现在时分词：「那正在施怜悯的神」。现在时强调神怜悯的持续性与主动性——怜悯是神正在做的事。</li>
+            <li><strong>兴起来</strong>（<span class="gk">ἐξήγειρά</span>，第 17 节引文）：<span class="gk">ἐξεγείρω</span>（「兴起、使站起来」）的不定过去时。出 9:16（七十士译本）原文；希伯来原文是 <span class="gk">הֶעֱמַדְתִּיךָ</span>（「我使你站立／存留」）。「兴起」一词有两种读法：使法老登上王位，或在灾祸中存留他的性命（见解经部分）。</li>
+            <li><strong>彰显</strong>（<span class="gk">ἐνδείξωμαι</span>，第 17 节引文）：<span class="gk">ἐνδείκνυμι</span>（「显明、展示、证明」）的不定过去时虚拟语气，「好叫我显明」——<span class="gk">ὅπως</span> 引导的目的从句。</li>
+            <li><strong>传遍天下</strong>（<span class="gk">διαγγελῇ</span>，第 17 节引文）：<span class="gk">διαγγέλλω</span>（「传扬、宣告」）的不定过去时虚拟语气被动态，「好叫我的名被传扬」；<span class="gk">ἐν</span> <span class="gk">πάσῃ</span> <span class="gk">τῇ</span> <span class="gk">γῇ</span>（「在全地」）——神名的传扬没有地理边界。</li>
+            <li><strong>刚硬</strong>（<span class="gk">σκληρύνει</span>，第 18 节）：<span class="gk">σκληρύνω</span>（「使变硬、使刚硬」）的现在时，「正在使刚硬」。字根 <span class="gk">σκληρός</span>（「硬的」）；在出埃及记的叙事里，这个词同时用来讲法老自己的心刚硬与神使法老的心刚硬。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>9:14 的 <span class="gk">τί</span> <span class="gk">οὖν</span> <span class="gk">ἐροῦμεν;</span>（「这样，我们可说什么呢？」）</strong>：保罗书信中反复出现的问句公式（3:5；4:1；6:1；7:7；8:31；9:30），标志着辩论体（diatribe）的推进：先总结上文，再引出假想对手的质疑。紧接着的 <span class="gk">μὴ</span> <span class="gk">ἀδικία</span> <span class="gk">παρὰ</span> <span class="gk">τῷ</span> <span class="gk">θεῷ</span>（「难道神有什么不公平吗？」）是没有动词的省略问句，<span class="gk">μὴ</span> 引导期待否定回答的疑问——问的人心里已经倾向于「没有」，但仍要追问到底。</li>
+            <li><strong>9:15 的 <span class="gk">ἐλεήσω</span> <span class="gk">ὃν</span> <span class="gk">ἂν</span> <span class="gk">ἐλεῶ</span>（「我要怜悯谁，就怜悯谁」）</strong>：将来时 <span class="gk">ἐλεήσω</span> 加不定关系从句 <span class="gk">ὃν</span> <span class="gk">ἂν</span> <span class="gk">ἐλεῶ</span>（<span class="gk">ἄν</span> 加虚拟语气，表「无论谁」）：同一个动词在主句与从句里各出现一次——「我要怜悯的，就是我要怜悯的那一位」。动词的重复不是啰嗦，而是主权的宣告：怜悯的对象只有一个决定者，就是神自己。<span class="gk">οἰκτειρήσω</span> <span class="gk">ὃν</span> <span class="gk">ἂν</span> <span class="gk">οἰκτείρω</span>（「要恩待谁，就恩待谁」）是完全平行的第二句，双重重复把主权钉死。</li>
+            <li><strong>9:16 的 <span class="gk">ἄρα</span> <span class="gk">οὖν</span>（「据此看来」）与 <span class="gk">οὐ</span>…<span class="gk">ἀλλὰ</span> 结构</strong>：<span class="gk">ἄρα</span> <span class="gk">οὖν</span> 是保罗的结论标记（「所以、据此看来」），承接 9:15 的引文得出结论。句法是三个带定冠词的分词作主语的对照：<span class="gk">οὐ</span> <span class="gk">τοῦ</span> <span class="gk">θέλοντος</span>（「不在乎那定意的」）<span class="gk">οὐδὲ</span> <span class="gk">τοῦ</span> <span class="gk">τρέχοντος</span>（「也不在乎那奔跑的」），<span class="gk">ἀλλὰ</span> <span class="gk">τοῦ</span> <span class="gk">ἐλεῶντος</span> <span class="gk">θεοῦ</span>（「只在乎发怜悯的神」）。否定的是两个人的分词，肯定的是一个神的分词；两个「人」对一个「神」，句法上的数量对比本身就是神学：人的意愿与努力加起来，也抵不过神的一句怜悯。</li>
+            <li><strong>9:17 的 <span class="gk">λέγει</span> <span class="gk">γὰρ</span> <span class="gk">ἡ</span> <span class="gk">γραφή</span> <span class="gk">τῷ</span> <span class="gk">Φαραώ</span>（「因为经上有话向法老说」）</strong>：<span class="gk">γὰρ</span> 说明 9:18 的结论（「神要叫谁刚硬，就叫谁刚硬」）有经文根据；值得注意的是，说话的主语是「经上」（<span class="gk">ἡ</span> <span class="gk">γραφή</span>，字面「那经文」）——保罗把圣经本身当作说话者（参 9:17 与加 3:8 同样的用法）。<span class="gk">εἰς</span> <span class="gk">αὐτὸ</span> <span class="gk">τοῦτο</span>（「特要、正是为了这个」）是指示代词的强调用法：把目的从句的焦点收紧——「我兴起你，恰恰就是为了这两件事」。两个 <span class="gk">ὅπως</span> 目的从句并列：<span class="gk">ὅπως</span> <span class="gk">ἐνδείξωμαι</span> <span class="gk">ἐν</span> <span class="gk">σοὶ</span> <span class="gk">τὴν</span> <span class="gk">δύναμίν</span> <span class="gk">μου</span>（「要在你身上彰显我的权能」）与 <span class="gk">ὅπως</span> <span class="gk">διαγγελῇ</span> <span class="gk">τὸ</span> <span class="gk">ὄνομά</span> <span class="gk">μου</span> <span class="gk">ἐν</span> <span class="gk">πάσῃ</span> <span class="gk">τῇ</span> <span class="gk">γῇ</span>（「要使我的名传遍天下」）——权能的彰显与名的传扬，是同一个目的的两面。</li>
+            <li><strong>9:18 的 <span class="gk">ἄρα</span> <span class="gk">οὖν</span>…<span class="gk">ὃν</span> <span class="gk">θέλει</span> <span class="gk">ἐλεεῖ</span>, <span class="gk">ὃν</span> <span class="gk">δὲ</span> <span class="gk">θέλει</span> <span class="gk">σκληρύνει</span></strong>：与 9:16 平行的第二个结论，同样以 <span class="gk">ἄρα</span> <span class="gk">οὖν</span> 开头。两个 <span class="gk">ὃν</span> <span class="gk">θέλει</span>（「他愿意谁」）引导的从句完全对称：<span class="gk">ἐλεεῖ</span>（「就怜悯」）与 <span class="gk">σκληρύνει</span>（「就叫刚硬」）都是现在时——怜悯与刚硬，都是神持续行使的主权。<span class="gk">δὲ</span>（「而、却」）标示第二句的对照：怜悯与刚硬并列，但绝不是等同（见解经第 5 点）。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「神岂有不公平吗？」——异议本身就是证据</strong>原文根据是 9:14 的 <span class="gk">τί</span> <span class="gk">οὖν</span> <span class="gk">ἐροῦμεν</span> 与 <span class="gk">μὴ</span> <span class="gk">ἀδικία</span> <span class="gk">παρὰ</span> <span class="gk">τῷ</span> <span class="gk">θεῷ</span>。穆理与穆尔都指出一个关键的观察：这个异议本身，恰恰证明 9:6–13 讲的是无条件的拣选。穆理的论证是：如果拣选是按人预见的信心或行为决定的，没有人会质问神「不公平」——按条件给奖赏，人人都觉得合理；只有当拣选「不在乎人的行为，乃在乎召人的主」（9:11）时，「不公平」的质问才会冒出来。换句话说，读者的抗议恰好证明保罗说的是恩典的主权，不是人的功劳。穆尔补充：保罗没有回避这个异议，也没有软化它来让读者好受一点——他先以 <span class="gk">μὴ</span> <span class="gk">γένοιτο</span>（「断乎没有」）把「神不义」的可能性彻底挡回去，然后才诉诸圣经来论证。这种先否定、后论证的顺序很重要：神的公义不是待证明的假设，而是论证的起点。穆尔还提醒注意保罗回答问题的方式：他没有搬出一套关于神义论的哲学体系，而是引用两处经文（出 33:19；出 9:16）——神的公义，最终要由神自己的话来界定，而不是由人的公平观来审判。分歧传统注明：有人认为保罗的回答等于回避问题（「神说了算」）；穆理与穆尔都反对这种读法，认为 9:15–18 的论证恰恰是有实质内容的：怜悯按定义就是人不配得的恩惠，神不把怜悯给所有人，并不是亏欠了谁——没有人对怜悯拥有权利。历代共识方面，奥古斯丁与加尔文都沿此路线：神若按公义待人，人人都是被定罪的结局；神若施怜悯，那是白白的恩典——恩典的不均等发放，从来不是不义。</li>
+            <li><strong>2. 摩西的引文：怜悯是神主权的自我启示</strong>原文根据是 9:15 引自出 33:19 的 <span class="gk">ἐλεήσω</span> <span class="gk">ὃν</span> <span class="gk">ἂν</span> <span class="gk">ἐλεῶ</span>, <span class="gk">καὶ</span> <span class="gk">οἰκτειρήσω</span> <span class="gk">ὃν</span> <span class="gk">ἂν</span> <span class="gk">οἰκτείρω</span>。穆理的论证脉络是：这句话的出处本身就是论证的一部分。出 33 章的背景是金牛犊事件之后——以色列刚拜了金牛犊，按公义当受审判；摩西求见神的荣耀，神回答说「我要显我一切的恩慈，在你面前经过，宣告我的名耶和华。我要恩待谁，就恩待谁；要怜悯谁，就怜悯谁。」穆理强调：神是在以色列最不配的时候宣告怜悯主权的——怜悯的对象不是「配得的人」，而是「神愿意怜悯的人」；这节经文第一次出现的地方，就是一群刚犯了拜偶像之罪的人面前。穆尔补充了引文的文本细节：保罗引用的是七十士译本，两个动词的将来时加不定关系从句（<span class="gk">ὃν</span> <span class="gk">ἂν</span>）把怜悯的自由推到极致——神的怜悯没有被任何外在条件限定，它的唯一「条件」就是神自己的旨意。穆尔还指出，这句话在出埃及记里是神「名」的启示的一部分（出 33:19「宣告我的名」）：神的名字，包含祂怜悯的主权——认识神是谁，就包括认识祂有自由怜悯谁。互文印证：出 34:6–7 神在摩西面前宣告「耶和华，耶和华，是有怜悯有恩典的神」——怜悯是神自我启示的核心属性；而同一段经文也说「万不以有罪的为无罪」——怜悯与公义在神的名里并存，不互相抵消。与新视角派的对话：邓恩等人强调保罗在此处理的是犹太人与外邦人的「盟约身份」边界；穆尔回应说，身份问题确实是背景（谁才算神的子民），但 9:15 的论证核心不是身份标记，而是神在施怜悯上的主权自由——摩西的例子发生在律法颁布之后、教会存在之前，讲的是神对待祂百姓的方式本身。</li>
+            <li><strong>3. 「不在乎定意的，也不在乎奔跑的」——人的意志与努力在救恩中的位置</strong>原文根据是 9:16 的 <span class="gk">οὐ</span> <span class="gk">τοῦ</span> <span class="gk">θέλοντος</span> <span class="gk">οὐδὲ</span> <span class="gk">τοῦ</span> <span class="gk">τρέχοντος</span>, <span class="gk">ἀλλὰ</span> <span class="gk">τοῦ</span> <span class="gk">ἐλεῶντος</span> <span class="gk">θεοῦ</span>。穆理的解读是：<span class="gk">θέλων</span>（「定意、愿意」）与 <span class="gk">τρέχων</span>（「奔跑」）合起来，覆盖了人类活动的全部光谱——里面的意愿与外面的努力、起跑的心志与赛跑的行动。保罗说救恩「不在乎」这两样，意思不是人的意愿与努力毫无价值（人确实要「奔跑」——参林前 9:24「你们也当这样跑，好叫你们得着奖赏」），而是它们不是救恩的决定性根据：决定救恩的，是「发怜悯的神」。穆理特别留意介词的缺席：保罗没有说「不在乎人的定意和奔跑」，他用的是带定冠词的分词——「不在乎那定意的，也不在乎那奔跑的」——仿佛把「定意者」与「奔跑者」当作两类人摆上台面，然后逐一排除。穆尔的论证与此一致，但他更强调 9:16 是从 9:15 引文得出的正式结论（<span class="gk">ἄρα</span> <span class="gk">οὖν</span>）：保罗不是在发感慨，而是在做逻辑推演——既然神说「我要怜悯谁，就怜悯谁」，结论必然是：怜悯的归属不取决于人的意愿或努力。穆尔补充了一个重要的互文：约 1:13「这等人不是从血气生的，不是从情欲生的，也不是从人意生的，乃是从神生的」——约翰与保罗用不同的词汇讲同一件事：重生与儿女的身份，「不是从人意生的」。分歧注明：亚米念传统与协同论（synergism）认为 9:16 的否定只针对「靠行为称义」，人的信心仍是神拣选的条件；穆理与穆尔都认为 9:16 的否定比这更广——<span class="gk">θέλων</span> 涵盖一切人的意愿活动，包括「愿意相信」本身在内；若连「愿意」都不在乎，拣选的根据就只能在神一边。历代共识：奥古斯丁据此反驳佩拉纠——人连「愿意相信」的能力都是恩典；宗教改革的「唯独恩典」正立基于此。</li>
+            <li><strong>4. 法老的引文：神「兴起」法老的目的</strong>原文根据是 9:17 引自出 9:16 的 <span class="gk">εἰς</span> <span class="gk">αὐτὸ</span> <span class="gk">τοῦτο</span> <span class="gk">ἐξήγειρά</span> <span class="gk">σε</span>, <span class="gk">ὅπως</span> <span class="gk">ἐνδείξωμαι</span> <span class="gk">ἐν</span> <span class="gk">σοὶ</span> <span class="gk">τὴν</span> <span class="gk">δύναμίν</span> <span class="gk">μου</span> <span class="gk">καὶ</span> <span class="gk">ὅπως</span> <span class="gk">διαγγελῇ</span> <span class="gk">τὸ</span> <span class="gk">ὄνομά</span> <span class="gk">μου</span> <span class="gk">ἐν</span> <span class="gk">πάσῃ</span> <span class="gk">τῇ</span> <span class="gk">γῇ</span>。穆理的论证是：「兴起」（<span class="gk">ἐξήγειρα</span>）最自然的读法是神使法老登上埃及的王位——神在救赎历史中安置了这个人，目的就是要在他身上彰显权能。穆理强调目的从句的分量：<span class="gk">εἰς</span> <span class="gk">αὐτὸ</span> <span class="gk">τοῦτο</span>（「正是为了这个」）与两个 <span class="gk">ὅπως</span> 从句说明，法老的存在本身就是神计划的一部分——不是神临时利用了一个偶然出现的暴君，而是神在历史中设立了他，好让出埃及成为神大能的纪念碑。穆尔在词义上作了更细致的辨析：希伯来原文 <span class="gk">הֶעֱמַדְתִּיךָ</span>（出 9:16）也可译作「我使你存留」，联系出 9:15「我若伸手用瘟疫攻击你和你的百姓，你早就从地上除灭了」——神的意思是：我本可以早已灭绝你，我留你活着，就是为了在你身上显明我的权能。穆尔认为两种读法（登上王位／存留性命）并不冲突，共同指向一点：法老的权势与存活都在神的主权安排之内。互文印证最有力的是约书亚记 2:10–11：喇合对探子说，「我们听见耶和华在你们前面使红海的水干了」——法老身上彰显的权能，真的使神的名「传遍天下」，连耶利哥城的妓女都听见了；出 15:14–16 的摩西之歌也预言「外邦人听见就发颤」。神在法老身上所行的，成就的正是 9:17 说的目的。与新视角派的对话：邓恩指出，法老的例子在保罗的论证中针对的是「神对待以色列的自由」——正如神曾自由地刚硬法老，祂今天也能自由地对待拒绝福音的以色列；穆尔同意这个应用方向，但强调保罗的论证不限于以色列问题，而是神对待一切人的主权原则。</li>
+            <li><strong>5. 「要叫谁刚硬，就叫谁刚硬」——刚硬的性质与界限</strong>原文根据是 9:18 的 <span class="gk">ὃν</span> <span class="gk">θέλει</span> <span class="gk">ἐλεεῖ</span>, <span class="gk">ὃν</span> <span class="gk">δὲ</span> <span class="gk">θέλει</span> <span class="gk">σκληρύνει</span>。穆理的论证直面这节最难的问题：神叫人刚硬，是否等于神叫人犯罪、神成了罪的作者？穆理的回答分三层：第一，刚硬的对象从来不是无罪的人——法老早已是抵挡神、奴役神百姓的暴君，神的刚硬是审判性的确认，不是无中生有地制造恶意；第二，出埃及记的叙事顺序本身就是证据：法老先是自己刚硬己心（出 7:22；8:15、19、32；9:7——「法老的心刚硬」），然后经文才说「耶和华使法老的心刚硬」（出 9:12；10:1、20、27；11:10）——人的刚硬在先，神的刚硬是司法性的任凭与坚定；第三，刚硬的目的是荣耀的彰显（9:17），不是恶意的发泄。穆尔的论证与此一致，并补充了一个语言学观察：9:18 的对称句式（怜悯／刚硬）在修辞上对称，在道德上不对称——怜悯是神白白赐下人不配得的恩惠，刚硬是神对人已有的悖逆作出的审判回应；前者彰显神的恩慈，后者彰显神的公义，两者都是神荣耀的不同侧面，但绝不能把「神叫人刚硬」读成「神叫人犯罪」。穆尔还指出保罗在罗马书后文的用法：11:7「其余的就成了顽梗不化的」、11:25「以色列人有几分是硬心的」——刚硬在保罗的神学里始终是神对不信的审判性回应，且在以色列身上还是「有几分」、暂时的（11:25–26 的奥秘）。分歧传统注明：开放神学与部分自由派解经认为，神使法老刚硬是「事后叙述」的神学建构，实际是法老自己的选择；穆理与穆尔都认为这种读法割裂了出埃及记的叙事（经文明说「耶和华使法老的心刚硬」），也削弱了 9:17–18 的论证力度——保罗恰恰需要神的主权包括刚硬在内，才能回答 9:14 的质疑。历代共识：奥古斯丁与加尔文都坚持，神的刚硬绝不使神成为罪的作者；同时教会也始终承认，刚硬与人的责任之间的张力是真实的奥秘——这正是保罗在 9:19 要正面迎接的下一个质疑（今晚的晚篇）。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>恩典从来不是工资：当神的怜悯临到「别人」时，你的第一反应是什么？</strong>9:15–16 戳破了一个深藏的假设：我们潜意识里觉得，神的怜悯应该按「表现」分配——谁更虔诚、谁更努力，谁就该多得一点。所以当神怜悯了一个「不配」的人（一个晚年才信的亲戚、一个曾经伤害过你的人、一个教会里「后来居上」的人），我们心里会冒出和 9:14 一样的质问：「这公平吗？」保罗的回答是：怜悯按定义就不是工资。工资讲公平，恩典讲主权——神爱给谁就给谁，而祂给你的一份，也从来不是你挣来的。主耶稣讲过同样的道理：葡萄园的比喻（太 20:1–16），早工与午工拿一样的工钱，早工的人抱怨，家主说：「难道我不可随我的意思用我的东西吗？」操练：想一想你最近一次对神「不公平」的抱怨——是对别人的祝福眼红，还是对自己的处境不满？把它带到 9:16 面前：你所得的每一份怜悯，都是「发怜悯的神」白白给的；你没得的那一份，从来不是祂欠你的。</li>
+            <li><strong>「不在乎奔跑的」：在努力中安息，也在刚硬前警醒</strong>：9:16 对两类人都说话。对疲于奔跑的人——那些靠服侍时数、读经打卡、祷告时长来确认自己「还在神手里」的人——9:16 是安息：你的得救「不在乎那奔跑的」，只在乎发怜悯的神；祂的怜悯不靠你的配速。对另一边，9:17–18 也是一句警告：法老的心不是一天变硬的——出埃及记里，他一次一次自己刚硬，神才一次一次任凭他刚硬。刚硬是有轨迹的：每一次拒绝，每一次「我再想想」，都是在同一条路上再走一步。操练：今天诚实地检查一处你正在「刚硬」的地方——一句你明知该顺服却一直拖延的话、一个你明知该饶恕却一直不肯松手的人。不要等到「神使刚硬」的那一步才回头；在今天，心还柔软的时候，就顺服。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>9:18 说「神要怜悯谁，就怜悯谁；要叫谁刚硬，就叫谁刚硬」——如果救恩从头到尾都在乎发怜悯的神，你为还未信主的家人朋友祷告时，心态会有什么不同？是更绝望（「反正由神定」），还是更自由、更迫切（「神既是发怜悯的神，我就更可以坦然无惧地求祂施怜悯」）？而法老的轨迹又提醒你：在你自己的生命里，有没有一处持续的拒绝，正在悄悄变硬？你今天愿意在哪一件事上，先软下来？</p>
+          </div>
+</article>
+
+
+        <div class="daynav"><a href="day21.html">← 第 21 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
