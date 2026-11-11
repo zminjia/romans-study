@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 23 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day23-am">9:25–29</a>
+
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 23 天</span>2026-11-11（周三） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day23-am">
+          <div class="entry-head">
+            <span class="entry-day">第 23 天 · 晨 — 2026-11-11（周三）</span>
+            <h3 class="entry-title">本来不是我子民的，我要称为我的子民 <span class="ref">· 罗马书 9:25–29</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">25</span>就如神在何西阿书上说：「那本来不是我子民的，我要称为我的子民；本来不是蒙爱的，我要称为蒙爱的。<span class="vn">26</span>从前在什么地方对他们说：『你们不是我的子民』，将来就在那里称他们为永生神的儿子。」<span class="vn">27</span>以赛亚指着以色列人喊着说：「以色列人虽多如海沙，得救的不过是剩下的余数；<span class="vn">28</span>因为主要在世上施行他的话，叫他的话都成全，速速地完结。」<span class="vn">29</span>又如以赛亚先前说过：「若不是万军之主给我们存留余种，我们早已像所多玛、蛾摩拉的样子了。」</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>昨晚读过的 9:19–24 把拣选论证推到了窑匠与器皿的比喻：神有主权从同一团泥里做成贵重的器皿与卑贱的器皿，又多多忍耐宽容忿怒的器皿，为要将丰盛的荣耀彰显在蒙怜悯的器皿上。论证到这里，一个读者会立刻追问：这一切是保罗自己的发明，还是圣经早已说过的？9:25–29 就是保罗的回答——三段旧约引文，一气呵成：何西阿书两处（9:25–26），以赛亚书两处（9:27–29）。</p>
+          <p>从全书结构看，9:25–29 是 9:6–29 拣选论证的「经文证据」部分。9:6–13 讲拣选的事实（以撒与以实玛利、雅各与以扫），9:14–18 回答「神岂有不公平吗」，9:19–24 回答「祂为什么还指责人」，9:25–29 则用先知的话证明：外邦人蒙召与以色列只剩余民，这两件事都不是意外，而是神早已藉先知说出来的。今天这五节经文，恰好是论证的两个方向：9:25–26 证明外邦人蒙召早有预言（呼应 9:24「不但是从犹太人中，也是从外邦人中」），9:27–29 证明以色列只剩余民也早有预言（呼应 9:6「神的话没有落空」）。</p>
+          <p>三段引文的出处值得留意：何西阿书 2:23 与 1:10（七十士译本 2:25、2:1），以赛亚书 10:22–23 与 1:9。何西阿是北国以色列的先知，他的信息是对一个行淫背道的民族说的；以赛亚是南国犹大的先知，他的「余民」信息是对一个将遭审判的民族说的。保罗把南北两国先知的话并列在一起，论证的覆盖面就完整了：神的子民问题，从北国到南国、从以色列到外邦，都在先知的话里有了答案。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>称／呼召</strong>（<span class="gk">καλέσω</span>，第 25 节）：<span class="gk">καλέω</span>（「称呼、召叫」）的将来时主动语态，「我要称呼」。神的称呼不是事后的标签，而是构成身份的行动（参 9:24 的 <span class="gk">ἐκάλεσεν</span>「呼召」）。</li>
+            <li><strong>不是我子民的</strong>（<span class="gk">τὸν</span> <span class="gk">οὐ</span> <span class="gk">λαόν</span> <span class="gk">μου</span>，第 25 节）：字面是「那『不是我的子民』」——否定词 <span class="gk">οὐ</span> 加名词 <span class="gk">λαός</span>（「子民、百姓」），作名词用，指「那被称为『非我民』的群体」。引自何西阿书 2:23（七十士译本）。</li>
+            <li><strong>蒙爱的</strong>（<span class="gk">ἠγαπημένην</span>，第 25 节）：<span class="gk">ἀγαπάω</span>（「爱」）的完成时被动态分词，「被爱的、蒙爱的」——完成时表示「被爱」的状态已经成就。</li>
+            <li><strong>永生神</strong>（<span class="gk">θεοῦ</span> <span class="gk">ζῶντος</span>，第 26 节）：<span class="gk">ζάω</span>（「活着」）的现在时分词，「活着的神」——与死去的偶像相对（参帖前 1:9「离弃偶像，归向神，要服侍那又真又活的神」）。</li>
+            <li><strong>喊着说</strong>（<span class="gk">κράζει</span>，第 27 节）：<span class="gk">κράζω</span>（「大声喊叫、呼喊」）的现在时——先知的宣告带着紧迫与力量，不是在平静地陈述，而是在大声警告。</li>
+            <li><strong>余数</strong>（<span class="gk">ὑπόλειμμα</span>，第 27 节）：「剩下的、余民」——由 <span class="gk">ὑπό</span>（「在……之下」）加 <span class="gk">λείμμα</span>（「所剩下的」）构成；引自赛 10:22。余民不是失败的残渣，而是神信实工作的证据。</li>
+            <li><strong>施行、成全</strong>（<span class="gk">συντελῶν</span>，第 28 节）：<span class="gk">συντελέω</span>（「完成、成全到底」）的现在时分词。</li>
+            <li><strong>速速地完结</strong>（<span class="gk">συντέμνων</span>，第 28 节）：<span class="gk">συντέμνω</span>（「截短、速速了结」）的现在时分词——与 <span class="gk">συντελῶν</span> 并列：神的话既要完全成就，又要迅速了结。</li>
+            <li><strong>万军之主</strong>（<span class="gk">κύριος</span> <span class="gk">Σαβαώθ</span>，第 29 节）：<span class="gk">Σαβαώθ</span> 是希伯来文 <span class="gk">צְבָאוֹת</span>（「万军」）的音译，「万军之耶和华」——神是统领天上地下万军的主。</li>
+            <li><strong>存留余种</strong>（<span class="gk">ἐγκατέλιπεν</span>…<span class="gk">σπέρμα</span>，第 29 节）：<span class="gk">ἐγκαταλείπω</span>（「留下、存留」）的不定过去时；<span class="gk">σπέρμα</span>（「种子、后裔」）——七十士译本赛 1:9 用「种子」译希伯来文的「所剩无几的幸存者」，保罗保留了这个译法。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>9:25 的 <span class="gk">ὡς</span> <span class="gk">καὶ</span> <span class="gk">ἐν</span> <span class="gk">τῷ</span> <span class="gk">Ὡσηὲ</span> <span class="gk">λέγει</span>（「就如神在何西阿书上也说」）</strong>：<span class="gk">λέγει</span> 是现在时——圣经是「正在说话」的活的声音；<span class="gk">καὶ</span>（「也」）把何西阿的见证加进 9:24 的论证链：蒙召的器皿包括外邦人，先知也这样说。</li>
+            <li><strong>9:25–26 的平行结构</strong>：<span class="gk">καλέσω</span>…<span class="gk">λαόν</span> <span class="gk">μου</span>（「我要称为我的子民」，主动语态）与 <span class="gk">κληθήσονται</span> <span class="gk">υἱοὶ</span> <span class="gk">θεοῦ</span> <span class="gk">ζῶντος</span>（「要被称为永生神的儿子」，被动态）——前者是神称呼，后者是他们被称为；称呼的主体是神，身份的来源也是神。从「子民」（<span class="gk">λαός</span>）到「儿子」（<span class="gk">υἱοί</span>），身份还在递进：从群体的归属，进到儿子的亲密。</li>
+            <li><strong>9:26 的 <span class="gk">ἐν</span> <span class="gk">τῷ</span> <span class="gk">τόπῳ</span> <span class="gk">οὗ</span>…<span class="gk">ἐκεῖ</span>（「在什么地方……就在那里」）</strong>：关系副词 <span class="gk">οὗ</span>（「在那里」）与指示副词 <span class="gk">ἐκεῖ</span>（「就在那里」）首尾呼应——被拒绝的地方，正是得儿子的地方；地点不变，身份翻转。</li>
+            <li><strong>9:27 的 <span class="gk">ἐὰν</span> <span class="gk">ᾖ</span>…<span class="gk">ὡς</span> <span class="gk">ἡ</span> <span class="gk">ἄμμος</span> <span class="gk">τῆς</span> <span class="gk">θαλάσσης</span>（「以色列人虽多如海沙」）</strong>：<span class="gk">ἐὰν</span> 加虚拟语气构成条件句——人数再多，也不能保证得救；<span class="gk">ὡς</span>（「如同」）引出亚伯拉罕之约的应许（创 22:17「多如海边的沙」）——连应许中的众多，都不能保证全体得救。</li>
+            <li><strong>9:28 的 <span class="gk">λόγον</span>…<span class="gk">ποιήσει</span> <span class="gk">κύριος</span>（「主必施行他的话」）</strong>：<span class="gk">ποιέω</span>（「施行、作成」）的将来时；两个现在时分词 <span class="gk">συντελῶν</span> <span class="gk">καὶ</span> <span class="gk">συντέμνων</span> 修饰主的行动——神的话既要成全到底，又要速速了结。</li>
+            <li><strong>9:29 的 <span class="gk">εἰ</span> <span class="gk">μὴ</span>…<span class="gk">ἂν</span> <span class="gk">ἐγενήθημεν</span>…<span class="gk">ἂν</span> <span class="gk">ὡμοιώθημεν</span></strong>：<span class="gk">εἰ</span> <span class="gk">μὴ</span>（「若不是」）加不定过去时、主句加 <span class="gk">ἂν</span> 加不定过去时——第二类条件句（与事实相反的假设）：「若不是万军之主给我们存留余种，我们早已像所多玛、蛾摩拉的样子了。」假设的毁灭没有发生，恰恰因为神存留了余种。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 何西阿的引文：保罗把原本说以色列的话用在外邦人身上？</strong>原文根据是 9:25–26 引自何 2:23 与何 1:10（七十士译本 2:25、2:1）。穆理的论证是：何西阿原初的语境是北国以色列——神说「你们不是我的子民」，是审判的宣告；「我要称为我的子民」，是复兴的应许。保罗把这两句话用在外邦人身上，不是断章取义，而是因为何西阿的预言本身包含一个超越以色列的原则：神有主权把「不是子民」的称为子民。穆理强调 9:24 的「不但是从犹太人中，也是从外邦人中」是理解 9:25 的钥匙——保罗刚刚说了蒙召的器皿包括外邦人，紧接着就引用何西阿来证明：这正是先知早已说过的。穆尔的论证更为细致：他承认何西阿的原初对象是以色列（尤其是北国），但指出保罗的用法在犹太解经传统中有先例——拉比解经也常把先知的应许作预表式的延伸应用；更重要的是，保罗读何西阿，是放在基督事件的光中读：何西阿书讲的是神把悖逆的以色列重新接纳为子民，保罗看到的，是同一位神把从未作过子民的外邦人接纳进来——接纳的原则相同（神的呼召创造子民），应用的范围更广。穆尔还指出 9:26 的「在什么地方」对保罗的论证很关键：外邦人所在的地方——偶像之地、被拒绝之地——正是神称他们为「永生神的儿子」的地方；应许的地点不变，变的是人的身份。分歧传统注明：有学者（部分新视角派与历史批判学者）认为保罗在此「误用」了何西阿，把以色列的复兴硬套在外邦人身上；另有学者认为 9:25–26 仍指以色列的余民，外邦人只是顺带；穆理与穆尔都反对这两种读法——前者低估了保罗作为使徒的解经权柄与预表解经的合理性，后者与 9:24 的「也是从外邦人中」直接冲突。历代共识：教会历来据此承认，外邦人进入神的国不是神计划的临时补丁，而是先知早已预言的奥秘（参弗 3:6「外邦人在基督耶稣里，藉着福音，得以同为后嗣，同为一体，同蒙应许」）。</li>
+            <li><strong>2. 「称为我的子民」与「永生神的儿子」：称呼即创造</strong>原文根据是 9:25 的 <span class="gk">καλέσω</span>（将来时主动）与 9:26 的 <span class="gk">κληθήσονται</span>（将来时被动）。穆理的论证是：神的「称呼」不是事后的标签，而是创造性的行动——正如神说「要有光，就有了光」，神说「你是我的子民」，「不是子民」的就成了子民。穆理特别留意从「子民」（<span class="gk">λαός</span>）到「儿子」（<span class="gk">υἱοί</span>）的递进：9:25 说「我的子民」，9:26 说「永生神的儿子」——从群体的归属，进到儿子的亲密；这是 8:14–17「神的儿女」的回响。穆尔补充：<span class="gk">θεοῦ</span> <span class="gk">ζῶντος</span>（「永生神」）这个称号在旧约里常出现在与偶像的对比中（申 5:26；何 1:10；帖前 1:9「离弃偶像，归向神，要服侍那又真又活的神」）——外邦人从前拜的是死偶像，如今被称为「永生神的儿子」，身份的翻转同时是敬拜对象的翻转。互文印证：彼前 2:10「你们从前算不得子民，现在却作了神的子民；从前未曾蒙怜恤，现在却蒙了怜恤」——彼得几乎逐字引用了何西阿书 2:23 的同一句话，证明早期教会普遍把何西阿的应许读作外邦人蒙召的预言。</li>
+            <li><strong>3. 以赛亚的喊叫：以色列虽多如海沙，得救的不过是余数</strong>原文根据是 9:27 引自赛 10:22–23。穆理的论证是：这节经文直接回答 9:6 的命题——「神的话没有落了空」。为什么以色列人大多拒绝福音，神的话却没有落空？因为神的应许从来不是应许给「全体以色列人按血统」，而是应许给「余数」。穆理强调 <span class="gk">ὑπόλειμμα</span>（「余数、余民」）一词在以赛亚书中的地位：赛 10:20–23、赛 1:9、赛 37:31–32 都讲余民——余民不是失败的残渣，而是神信实工作的证据：神的话没有落空的证明，恰恰在于余民的存在。穆尔的论证与此一致，但他更强调 <span class="gk">κράζει</span>（「喊着说」）的现在时：以赛亚不是在平静地陈述，而是在「喊」——先知的声音带着警告的紧迫感；保罗引用这个「喊」，是让罗马的读者听见：以色列的现状（大多数拒绝）不是意外，而是先知早就大声喊出来的。穆尔还指出「多如海沙」的反讽：海沙之多本是亚伯拉罕之约的应许（创 22:17），保罗却说，连应许中的众多都不能保证全体得救——人数从来不是神信实的尺度，余民才是。</li>
+            <li><strong>4. 「主必速速地完结他的话」：神话语的确定性与急迫性</strong>原文根据是 9:28 引自赛 10:23。穆理的论证是：<span class="gk">συντελῶν</span>（「成全到底」）与 <span class="gk">συντέμνων</span>（「截短、速速了结」）并列，说明神的审判与拯救都不会拖延、不会打折：神说过的话，祂必「成全」，而且「速速」成全。穆理认为这节的重点是神话语的不可阻挡——以色列的命运不在人手里，而在神已经说出、正在成就的话里。穆尔补充了文本细节：部分古抄本在「他的话」后面加了「在公义中」（<span class="gk">ἐν</span> <span class="gk">δικαιοσύνῃ</span>），这是抄写者从赛 10:22 补进来的；无论有无这几个字，意思不变——神的作为既是确定的，也是公义的。穆尔还提醒：9:28 是理解 9:27 的关键——「余数得救」不是神的计划出了差错，而是神「速速完结」祂话语的一部分：祂早已定意，只留下余数。互文印证：赛 55:11「我口所出的话也必如此，决不徒然返回」；来 4:12 神的道「比一切两刃的剑更快」。</li>
+            <li><strong>5. 「若不是万军之主给我们存留余种」：余民的存在全然是恩典</strong>原文根据是 9:29 引自赛 1:9。穆理的论证是：这节是整段引文的高潮，也是第二类条件句的精妙运用——「若不是……我们早已像所多玛、蛾摩拉」：假设的毁灭没有发生，不是因为以色列比所多玛好，而是因为「万军之主给我们存留余种」。穆理强调 <span class="gk">σπέρμα</span>（「种子」）一词的选择：七十士译本用「种子」译希伯来文的「幸存者」，保罗保留了这个译法，因为「种子」呼应了 9:7–8「从以撒生的，才要称为你的后裔」——真正的后裔不是血统的全体，而是神所存留的「种子」。穆尔的论证补充了「我们」的第一人称复数：引文里的「我们」是先知以赛亚与他那一代的以色列人说的，保罗引用时，「我们」就包括了他自己与罗马教会中的犹太信徒——保罗把自己放进「余种」里：他自己就是神所存留的种子之一。穆尔还指出所多玛、蛾摩拉的对比：以色列的罪并不比所多玛轻（参结 16:46–52「所多玛比你还算为义」），以色列没有变成所多玛，唯一的差别是神「存留」了余种。分歧传统注明：有人认为「余种」指基督——一粒种子（加 3:16「那一个子孙，就是基督」）；穆理与穆尔都认为 9:29 的「种子」首先指余民群体，但承认它与基督里的后裔有深层关联：余民之所以能存留，正是因为那一位「种子」基督。历代共识：教会据此承认，神子民的延续从来不是靠多数、不是靠血统，而是靠神一次又一次「存留余种」的恩典。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>「不是子民」的地方，就是神称你为儿子的地方</strong>：9:26 的「就在那里」是最温柔的一句话：你被拒绝的地方、你最羞耻的过去、你觉得神不可能在那里找到你的那个角落——神偏偏在那里称你为儿子。操练：想一想你生命里那个「不是子民」的地方——一段失败的关系、一个改不掉的习惯、一个你以为神已经放弃你的时刻。把何西阿书的话读给自己听：「从前在什么地方对他们说『你们不是我的子民』，将来就在那里称他们为永生神的儿子。」神不绕过你的过去来接纳你，祂就在你的过去里接纳你。</li>
+            <li><strong>余民的信心：在人少的时候仍信神的话没有落空</strong>：9:27–29 是给「少数派」的安慰。当你觉得真理站在少数一边、当教会看起来只剩「余数」、当你的家人朋友大多拒绝福音，你会怀疑：神的话是不是落空了？保罗的回答是：余数本身就是神话语成就的证据。操练：数算你身边的「余种」——一个仍在祷告的家人、一位仍在坚持的同工、一次你以为神已经离开、后来却发现祂一直「存留」了你的经历。写下来，提醒自己：神从来不是靠人数工作的，祂靠「存留」工作。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>9:25 说神「要称为我的子民」——那个「称为」是神主动的开口。如果你的身份不是由你的表现、出身、教会资历定义的，而是由神的一句「你是我的」定义的，今天你看待自己的失败与别人的成功，会有什么不同？而 9:29 的所多玛对比又提醒你：你与「早已像所多玛」的结局之间，唯一的区别是神「存留」了你——这个认识，会让你对那位尚未信主的家人，多一分耐心，还是多一分焦急？</p>
+          </div>
+</article>
+
+
+
+        <div class="daynav"><a href="day22.html">← 第 22 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
