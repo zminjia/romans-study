@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 24 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day24-am">10:1–5</a>
+
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 24 天</span>2026-11-12（周四） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day24-am">
+          <div class="entry-head">
+            <span class="entry-day">第 24 天 · 晨 — 2026-11-12（周四）</span>
+            <h3 class="entry-title">向神有热心，但不是按着真知识 <span class="ref">· 罗马书 10:1–5</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>弟兄们，我心里所愿的，向神所求的，是要以色列人得救。<span class="vn">2</span>我可以证明他们向神有热心，但不是按着真知识；<span class="vn">3</span>因为不知道神的义，想要立自己的义，就不服神的义了。<span class="vn">4</span>律法的总结就是基督，使凡信他的都得着义。<span class="vn">5</span>摩西写着说：「人若行那出于律法的义，就必因此活着。」</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>昨晚读完的 9:30–33 是第 9 章的收束：外邦人「本来不追求义」却得了义，以色列人「追求律法的义」却跌在绊脚石上。第 10 章从今天开始，保罗把论证从神主权的一边（第 9 章）转向人的责任一边（第 10 章）：以色列人为什么跌倒？10:1–4 是直接的回答——他们有热心，却没有真知识；想要立自己的义，就不服神的义了。</p>
+          <p>10:1 的开头值得留意：保罗在讲完拣选、窑匠、器皿、余民这些「硬」神学之后，第一句话是祷告——「我心里所愿的，向神所求的，是要以色列人得救。」第 9 章开头的忧愁（9:1–3「我为我弟兄，我骨肉之亲，就是自己被咒诅，与基督分离，我也愿意」）在这里又回来了。拣选的教义没有让保罗变得冷漠，反而让他的祷告更迫切：神有主权，人也当祷告——两件事在保罗心里并不冲突。</p>
+          <p>从全书结构看，10:1–5 是第 10 章的开篇诊断，10:6–13 会展开两种义的对比（律法的义与信心的义），10:9–13 给出「口里认耶稣为主，心里信神叫他从死里复活，就必得救」的宣告，10:14–21 再追问福音传开之后以色列人为什么还是不信。今天这五节是全章的地基：先诊断病因（热心没有知识、立自己的义），再点出两种义的源头（第 5 节引用利未记 18:5，说明律法的义的原则是「行了就活」）。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>心里所愿的</strong>（<span class="gk">εὐδοκία</span>，第 1 节）：「美意、喜悦、切愿」——由 <span class="gk">εὖ</span>（「好」）加 <span class="gk">δοκέω</span>（「以为、看为」）构成，指心里真心实意的愿望，不是客套话。</li>
+            <li><strong>所求的</strong>（<span class="gk">δέησις</span>，第 1 节）：「恳求、祈求」——带着迫切感的祷告（参腓 4:6「应当一无挂虑，只要凡事藉着祷告、祈求和感谢」）。</li>
+            <li><strong>得救</strong>（<span class="gk">σωτηρία</span>，第 1 节）：「拯救、救恩」——从罪与审判中被救出来。</li>
+            <li><strong>热心</strong>（<span class="gk">ζῆλος</span>，第 2 节）：「热忱、热心」——源自动词 <span class="gk">ζέω</span>（「沸腾」），字面是「沸腾起来」：心里像水烧开了一样滚烫。热心本身是中性的，关键看它朝着什么方向烧。</li>
+            <li><strong>真知识</strong>（<span class="gk">ἐπίγνωσις</span>，第 2 节）：「真知识、完全的认识」——<span class="gk">ἐπί</span>（「在……之上」）加 <span class="gk">γνῶσις</span>（「知识」），比普通的「知道」更深：是准确、到位的认识。</li>
+            <li><strong>不知道</strong>（<span class="gk">ἀγνοέω</span>，第 3 节）：「不认识、无知」——现在时分词 <span class="gk">ἀγνοοῦντες</span>，作原因状语：「因为不知道」。</li>
+            <li><strong>自己的</strong>（<span class="gk">ἴδιος</span>，第 3 节）：「属于自己的」——「自己的义」与「神的义」针锋相对：义的来源只有两个，不是神的，就是自己的。</li>
+            <li><strong>立</strong>（<span class="gk">στῆσαι</span>，第 3 节）：<span class="gk">ἵστημι</span>（「设立、建立、使站立」）的不定过去时不定式——「想要设立、建立起自己的义」：像盖一座自己的楼。</li>
+            <li><strong>不服</strong>（<span class="gk">ὑποτάσσω</span>，第 3 节）：「顺服、服从」——不定过去时被动态 <span class="gk">οὐχ</span> <span class="gk">ὑπετάγησαν</span>，「他们没有顺服」：义不是靠建立，而是靠顺服领受。</li>
+            <li><strong>总结</strong>（<span class="gk">τέλος</span>，第 4 节）：「终点、目标、成全」——既可以指「终结」，也可以指「归宿、目标」。这是全节最关键、争议最大的一个词。</li>
+            <li><strong>凡信他的</strong>（<span class="gk">παντὶ</span> <span class="gk">τῷ</span> <span class="gk">πιστεύοντι</span>，第 4 节）：「每一个相信的人」——<span class="gk">πιστεύω</span>（「相信」）的现在时分词：持续信靠的状态；<span class="gk">παντὶ</span>（「每一个」）不分犹太人与外邦人。</li>
+            <li><strong>写着说</strong>（<span class="gk">γράφει</span>，第 5 节）：<span class="gk">γράφω</span>（「写」）的现在时——「摩西正在写着说」：圣经不是过去的文件，而是现在仍在说话的声音（与 9:25 的 <span class="gk">λέγει</span> 同一用法）。</li>
+            <li><strong>行</strong>（<span class="gk">ποιήσας</span>，第 5 节）：<span class="gk">ποιέω</span>（「行、做」）的不定过去时分词——「行了这些事的人」。</li>
+            <li><strong>就必因此活着</strong>（<span class="gk">ζήσεται</span>，第 5 节）：<span class="gk">ζάω</span>（「活」）的将来时——「必将活着」：行律法者所得的应许是生命。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>10:1 的 <span class="gk">εὐδοκία</span> <span class="gk">τῆς</span> <span class="gk">καρδίας</span> <span class="gk">μου</span> <span class="gk">καὶ</span> <span class="gk">δέησις</span>…<span class="gk">πρὸς</span> <span class="gk">τὸν</span> <span class="gk">θεόν</span>（「我心里的愿望，和向神的祈求」）</strong>：两个名词并列——里面的「愿望」与向外的「祈求」是一件事的两面；<span class="gk">εἰς</span> <span class="gk">σωτηρίαν</span>（「以致得救」）标明方向：愿望与祈求都朝着以色列人的得救去。</li>
+            <li><strong>10:2 的 <span class="gk">μαρτυρῶ</span> <span class="gk">γὰρ</span> <span class="gk">αὐτοῖς</span> <span class="gk">ὅτι</span> <span class="gk">ζῆλον</span> <span class="gk">θεοῦ</span> <span class="gk">ἔχουσιν</span>（「我可以为他们作见证：他们有向神的热心」）</strong>：<span class="gk">ζῆλον</span> <span class="gk">θεοῦ</span> 是宾格属格（「向着神的热心」）；<span class="gk">ἀλλ᾿</span> <span class="gk">οὐ</span> <span class="gk">κατ᾿</span> <span class="gk">ἐπίγνωσιν</span>（「但不是按着真知识」）一转：热心是真的，知识是缺的——肯定与否定只隔着一个 <span class="gk">ἀλλά</span>。</li>
+            <li><strong>10:3 的 <span class="gk">ἀγνοοῦντες</span> <span class="gk">γὰρ</span>…<span class="gk">τὴν</span> <span class="gk">ἰδίαν</span> <span class="gk">δικαιοσύνην</span> <span class="gk">ζητοῦντες</span> <span class="gk">στῆσαι</span>（「因为不知道神的义，想要立自己的义」）</strong>：两个现在时分词作原因状语——「不知道」是病因，「想要立」是症状；<span class="gk">ζητοῦντες</span> <span class="gk">στῆσαι</span>（「寻求建立」）是不定式表目的：他们的整个追求，就是要把自己的义「立」起来。</li>
+            <li><strong>10:3 的 <span class="gk">τῇ</span> <span class="gk">δικαιοσύνῃ</span> <span class="gk">τοῦ</span> <span class="gk">θεοῦ</span> <span class="gk">οὐχ</span> <span class="gk">ὑπετάγησαν</span>（「就不服神的义了」）</strong>：与格作顺服的对象（「向神的义顺服」），不定过去时被动态——「没有顺服」是已经发生的事实；「立自己的义」与「不服神的义」是同一件事的正反两面：人一面立自己的，一面就不服神的。</li>
+            <li><strong>10:4 的 <span class="gk">τέλος</span> <span class="gk">γὰρ</span> <span class="gk">νόμου</span> <span class="gk">Χριστός</span>（「律法的总结就是基督」）</strong>：<span class="gk">τέλος</span> 放在句首，表强调；<span class="gk">Χριστός</span> 是无冠词的表语主格——「基督」就是律法的那个「总结」。句子短促有力，像一句格言。</li>
+            <li><strong>10:4 的 <span class="gk">εἰς</span> <span class="gk">δικαιοσύνην</span> <span class="gk">παντὶ</span> <span class="gk">τῷ</span> <span class="gk">πιστεύοντι</span>（「使凡信他的都得着义」）</strong>：<span class="gk">εἰς</span> 加宾格表目标、结果——基督是律法的总结，「以致」每一个信的人都得着义；与格 <span class="gk">παντὶ</span> <span class="gk">τῷ</span> <span class="gk">πιστεύοντι</span>（「向每一个信的人」）把得义的范围推到最大：不分犹太人、外邦人。</li>
+            <li><strong>10:5 的 <span class="gk">Μωϋσῆς</span> <span class="gk">γὰρ</span> <span class="gk">γράφει</span> <span class="gk">τὴν</span> <span class="gk">δικαιοσύνην</span> <span class="gk">τὴν</span> <span class="gk">ἐκ</span> <span class="gk">τοῦ</span> <span class="gk">νόμου</span> <span class="gk">ὅτι</span>…（「摩西写着说那出于律法的义，就是……」）</strong>：<span class="gk">ὅτι</span> 引出律法的义的内容；<span class="gk">ὁ</span> <span class="gk">ποιήσας</span> <span class="gk">αὐτὰ</span> <span class="gk">ἄνθρωπος</span> <span class="gk">ζήσεται</span> <span class="gk">ἐν</span> <span class="gk">αὐτοῖς</span>（「行这些事的人，就必因此活着」）——带冠词的分词 <span class="gk">ὁ</span> <span class="gk">ποιήσας</span> 作主语（「那行了的人」），<span class="gk">ἐν</span> <span class="gk">αὐτοῖς</span>（「在这些事里／藉着这些事」）标明活的凭借：律法的义的原则是「行了，就活」。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 保罗的心愿与祷告：拣选的教义没有取消祷告</strong>原文根据是 10:1 的 <span class="gk">εὐδοκία</span>（「心里所愿」）与 <span class="gk">δέησις</span>（「所求」）。穆理的论证是：第 9 章讲神主权的拣选，第 10 章一开头保罗就祷告——这两件事在保罗心里并行不悖。穆理指出，如果拣选意味着宿命，保罗根本不必为以色列人祷告；他祷告，恰恰说明神的主权与人的责任、神的定旨与人的祈求在圣经里是并存的：神定旨的手段之一，就是祂子民的祷告。穆尔的论证补上「弟兄们」这个称呼：保罗是对着罗马教会（以外邦信徒为主）说「弟兄们，我心里所愿的……是要以色列人得救」——他不是在犹太人面前表演爱国情怀，而是在外邦信徒面前公开为以色列人代求；这本身就是 11:1「神弃绝了他的百姓吗？断乎没有」的预告：保罗自己就是第一个证据。穆尔还留意 <span class="gk">εὐδοκία</span> 一词在保罗书信中的用法：腓 2:13「神在你们心里运行，为要成就他的美意」（<span class="gk">εὐδοκία</span>）——同一个词既讲神的美意，也讲保罗心里的愿望：保罗的愿望，是与神的美意对齐的愿望。互文印证：9:1–3 的忧愁与 10:1 的祷告首尾相接——第 9 章开头的「大有忧愁，心里时常伤痛」没有随着拣选论证的展开而消失，反而在第 10 章化作了祈求。</li>
+            <li><strong>2. 有热心，却没有真知识：最危险的宗教是真诚的宗教</strong>原文根据是 10:2 的 <span class="gk">ζῆλον</span> <span class="gk">θεοῦ</span>（「向神的热心」）与 <span class="gk">οὐ</span> <span class="gk">κατ᾿</span> <span class="gk">ἐπίγνωσιν</span>（「不是按着真知识」）。穆理的论证是：保罗没有否认以色列人的热心——他「可以证明」，热心是真实的；问题是热心没有知识作方向。穆理指出，「热心」在犹太传统里是受尊敬的美德：非尼哈的热心（民 25:11–13）、马加比的热心，都是为神的缘故「沸腾起来」；但热心一旦脱离了真知识，就会变成逼迫（保罗自己就是例子）。穆尔的论证把保罗的自传摆进来：腓 3:6「就热心说，我是逼迫教会的」；加 1:14「我为我祖宗的遗传更加热心」；徒 22:3「我为神热心，像你们众人今日一样」——保罗写 10:2 的时候，写的是他自己从前的样子：他太知道「向神有热心，却没有真知识」是什么滋味了。穆尔还辨析 <span class="gk">ἐπίγνωσις</span> 与 <span class="gk">γνῶσις</span> 的差别：<span class="gk">ἐπίγνωσις</span> 不只是「知道一些关于神的事」，而是准确地认识神在基督里所做的事——以色列人不是对神一无所知（他们有律法、有圣言，3:2），他们缺的是对「神的义」的正确认识（10:3 紧接着就解释了）。分歧传统注明：有学者认为 10:2 的「热心」专指以色列人对律法的热心；穆理与穆尔都认为范围更广——是对神本身的热心，只是在错误的方向上燃烧。历代共识：从奥古斯丁到改教家，教会一直据此提醒：真诚不能代替真理，火热不能代替正确——「没有真知识的热心」是历代异端与逼迫的共同特征。</li>
+            <li><strong>3. 立自己的义，不服神的义：义的来源只有两个</strong>原文根据是 10:3 的 <span class="gk">ἀγνοοῦντες</span>（「不知道」）、<span class="gk">τὴν</span> <span class="gk">ἰδίαν</span> <span class="gk">δικαιοσύνην</span>（「自己的义」）与 <span class="gk">οὐχ</span> <span class="gk">ὑπετάγησαν</span>（「没有顺服」）。穆理的论证是：以色列人的根本错误不是「想要义」——想要义本身没有错；错误是想要「自己的」义，并且要把它「立」起来。<span class="gk">στῆσαι</span>（「建立」）的意象很关键：人像盖楼一样，要亲手把自己的义盖起来，站在自己盖的楼上见神。穆理指出，这就是人堕落之后最深的本能：做自己义的作者，而不是领受神的义。穆尔的论证把 10:3 放进与新视角派的对话里：邓恩（James Dunn）等新视角派学者认为，保罗反对的不是「靠行为赚取救恩」，而是犹太人用律法的标记（割礼、饮食条例、安息日）来划定「谁是神的子民」的边界；穆尔承认边界问题确实存在（参 3:29–30「难道神只作犹太人的神吗？」），但他坚持 10:3 的重点不在边界，而在来源：以色列人把义的来源弄错了——以为义是人靠行律法「立」起来的，而不是神白白赐下、人凭信心「顺服」领受的。穆尔还辨析「神的义」（<span class="gk">δικαιοσύνη</span> <span class="gk">τοῦ</span> <span class="gk">θεοῦ</span>）的属格：既可以指「神自己的义」（祂公义的品格），也可以指「从神而来的义」（祂赐给信徒的义）；穆理与穆尔都认为这里两层意思都在：神的义首先是神自己的公义作为，其次是神赐给人的义——人「不服」的，正是这样一位神、这样一种义。互文印证：腓 3:9 是保罗自己的对照——「不是有自己因律法而得的义，乃是有信基督的义，就是因信神而来的义」——「自己的义」与「神的义」的对立，在保罗的自传里就是同一组词。</li>
+            <li><strong>4. 「律法的总结就是基督」：τέλος 是「终结」还是「目标」？</strong>原文根据是 10:4 的 <span class="gk">τέλος</span> <span class="gk">γὰρ</span> <span class="gk">νόμου</span> <span class="gk">Χριστός</span>。穆理的论证是：<span class="gk">τέλος</span> 在希腊文里既有「终结、终点」的意思，也有「目标、归宿、成全」的意思；保罗这里用的主要是后者：基督是律法所指向的目标、律法所要成全的归宿——律法像一条路，基督是路的尽头；律法像一幅指向基督的路标（加 3:24「律法是我们训蒙的师傅，引我们到基督那里」）。穆理强调，<span class="gk">τέλος</span> 作「目标」解时，并不排除「终结」的意思：正因为基督是律法的目标，律法作为「得义的途径」就在基督里走到了尽头——人不再需要、也不可能再靠行律法得义。穆尔的论证与此一致，但他更细致地处理了两种读法的张力：他认为保罗的 <span class="gk">τέλος</span> 同时包含两层——基督是律法的「终结」（作为称义途径的律法已经结束了）与「目标」（律法从一开始就指向基督）。穆尔指出，关键在于限定范围：结束的不是律法本身（3:31「我们因信废了律法吗？断乎不是！更是坚固律法」），而是律法作为得义途径的功能；律法作为神旨意的启示、作为基督的见证，仍然有效。分歧传统注明：反律法主义者只取「终结」一义，主张律法与信徒全然无关；律法主义者只取「目标」一义，主张律法仍是得义的途径；穆理与穆尔都认为两种片面读法都错——保罗的 <span class="gk">τέλος</span> 是双关：基督既是律法的终点，也是律法的归宿。互文印证：太 5:17「莫想我来要废掉律法和先知。我来不是要废掉，乃是要成全」——耶稣自己说的「成全」（<span class="gk">πληρόω</span>）与保罗的 <span class="gk">τέλος</span> 互相照亮；加 3:24–25「律法是我们训蒙的师傅……但这因信得救的理既然来到，我们从此就不在师傅的手下了」——师傅的职分完成了，不是因为师傅错了，而是因为学生已经到了基督面前。</li>
+            <li><strong>5. 摩西写着说：律法的义的原则是「行了，就活」</strong>原文根据是 10:5 引自利 18:5「人若行那出于律法的义，就必因此活着」。穆理的论证是：保罗引用利未记，不是为了证明有人靠行律法活了，而是为了说明律法的义「是什么」：它的原则是「行」——行了，就活；不行，就死。这个原则本身没有错，错的是人以为自己行得出来。穆理指出，10:5 是 10:3 的注脚：以色列人「想要立自己的义」，而律法的义恰恰要求「行」——他们追求的，正是这样一条「行了才活」的路；路本身是对的，走路的人却走不到终点（参 3:20「凡有血气的，没有一个因行律法能在神面前称义」）。穆尔的论证补上引文的功能：10:5 是两种义的对比的起点——10:5 讲「出于律法的义」（<span class="gk">τὴν</span> <span class="gk">δικαιοσύνην</span> <span class="gk">τὴν</span> <span class="gk">ἐκ</span> <span class="gk">τοῦ</span> <span class="gk">νόμου</span>），10:6–8 紧接着讲「出于信心的义」（<span class="gk">τὴν</span> <span class="gk">ἐκ</span> <span class="gk">πίστεως</span> <span class="gk">δικαιοσύνην</span>）——两节经文的结构完全平行，内容完全相反：一个说「行了就活」，一个说「信了就活」。穆尔还提醒，保罗在加 3:12 引用了同一节经文（「行这些事的，就必因此活着」），用法完全一致：律法与信心是两种不同的原则，不能混在一起。分歧传统注明：有学者认为保罗「误读」了利未记——利 18:5 的原意是在约中生活的应许（在应许之地长久居住），不是永生的条件；穆理与穆尔都回应：保罗不是在作利未记的历史考据，他引用的是律法自身呈现的原则——「行」作为得生命的条件；律法在它自己的逻辑里就是这样说的，保罗只是把它说出来。历代共识：教会据此认定，律法与福音是两条不同的路——律法说「行了就活」，福音说「信了就活」；把两条路混在一起（又要信、又要靠行），就两条路都走不通。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>热心需要真知识校准</strong>：以色列人不是不热心，而是热心的方向错了——火烧得越旺，离目标越远。操练：想一想你最近最投入的一件事——一段坚持的灵修习惯、一个服侍岗位、一次为信仰的争论。问自己：这件事的动力是「认识神在基督里为我做了什么」，还是「我要为神做点什么、让自己站得住」？把 10:2 背下来，贴在你最容易「为神热心」却忘了「按着真知识」的地方。</li>
+            <li><strong>把「立自己的义」放下来</strong>：10:3 的「立」字很形象——人总想亲手盖一座义的楼：好表现、好习惯、好名声，一块砖一块砖往上砌，然后站在楼顶见神。但 10:4 说，律法的总结就是基督——楼已经有人盖好了，你要做的不是继续砌砖，而是「顺服」：走进基督已经盖好的义里。操练：每天睡前做一次交换——把今天「我表现如何」换成「基督今天为我成就了什么」，说出一件具体的事：一次祂的赦免、一次祂的供应、一次祂替你站住的时刻。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>10:2–3 说以色列人「向神有热心」，却「想要立自己的义」。在你的生命里，有没有一种「热心」其实是在「立自己的义」——比如坚持某种属灵习惯、守住某个服侍岗位、维持某种道德标准，是为了在神面前站得住？如果「律法的总结就是基督」，你今天可以把哪一件「立自己的义」的事放下来，交给基督？而 10:1 又提醒你：保罗一边讲拣选，一边为以色列人祷告——你有没有一个你觉得「已经没指望」的人，是你今天可以开始为他祷告的？</p>
+          </div>
+</article>
+
+
+
+        <div class="daynav"><a href="day23.html">← 第 23 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
