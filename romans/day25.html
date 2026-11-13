@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 25 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day25-am">10:11–15</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 25 天</span>2026-11-13（周五） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day25-am">
+          <div class="entry-head">
+            <span class="entry-day">第 25 天 · 晨 — 2026-11-13（周五）</span>
+            <h3 class="entry-title">凡求告主名的，就必得救 <span class="ref">· 罗马书 10:11–15</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">11</span>经上说：「凡信他的人必不至于羞愧。」<span class="vn">12</span>犹太人和希腊人并没有分别，因为众人同有一位主，他也厚待一切求告他的人。<span class="vn">13</span>因为「凡求告主名的，就必得救。」<span class="vn">14</span>然而人未曾信他，怎能求他呢？未曾听见他，怎能信他呢？没有传道的，怎能听见呢？<span class="vn">15</span>若没有奉差遣，怎能传道呢？如经上所记：「报福音传喜信的人，他们的脚踪何等佳美！」</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>昨晚读完的 10:6–10 是两种义对比的另一半：律法的义说「行了，就活」，信心的义说「信了，就活」；「这道离你不远，正在你口里，在你心里」，口里认耶稣为主、心里信神叫他从死里复活，就必得救。今晨的 10:11–15 是这段论证的收束与转折：先以两处经文印证 10:9–10 的应许（赛 28:16「凡信他的人必不至于羞愧」，珥 2:32「凡求告主名的，就必得救」），再以四个反问把论证推向传道与差遣——福音既然这么近、这么普世，为什么以色列人还是不信？</p>
+          <p>10:11–13 的两个「凡」字是全段的钥匙。「凡信他的」「凡求告主名的」——不设例外，不分犹太人、希腊人。10:12 的「并没有分别」直接呼应 3:22「并没有分别，因为世人都犯了罪」与 3:29–30「难道神只作犹太人的神吗？不也是作外邦人的神吗？」：第 3 章讲「都在罪之下，没有分别」，第 10 章讲「都蒙拯救，没有分别」——定罪的普遍性与救恩的普遍性，在保罗笔下是同一枚硬币的两面。</p>
+          <p>10:14–15 的四个反问（「怎能求他呢？怎能信他呢？怎能听见呢？怎能传道呢？」）构成一条倒推的链条：求告以信为前提，信以听见为前提，听见以传道为前提，传道以奉差遣为前提。这条链条一方面把论证推向 10:16–21 的追问——福音明明已经传开了，以色列人为什么还是不信（10:18 会回答：「他们的声音传遍天下」）；另一方面，它也是整卷罗马书的宣教枢纽：福音要传到地极，因为「没有传道的，怎能听见呢」。第 15 节引用的赛 52:7（「报福音传喜信的人，他们的脚踪何等佳美」）出自被掳归回的欢呼：报信的人翻山越岭而来，脚上沾着尘土，却是佳美的——因为他带来的是平安与救恩的好消息。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>经上说</strong>（<span class="gk">λέγει</span> <span class="gk">ἡ</span> <span class="gk">γραφή</span>，第 11 节）：<span class="gk">λέγω</span>（「说」）的现在时——「经正在说」：圣经不是过去的文件，而是现在仍在说话的声音。</li>
+            <li><strong>凡信他的人</strong>（<span class="gk">πᾶς</span> <span class="gk">ὁ</span> <span class="gk">πιστεύων</span>，第 11 节）：<span class="gk">πιστεύω</span>（「相信」）的现在时分词——「每一个持续信靠他的人」；<span class="gk">πᾶς</span>（「每一个、凡」）不设例外。</li>
+            <li><strong>必不至于羞愧</strong>（<span class="gk">καταισχυνθήσεται</span>，第 11 节）：<span class="gk">καταισχύνω</span>（「使羞愧、蒙羞」）的将来时被动态——「必将不至蒙羞」。</li>
+            <li><strong>分别</strong>（<span class="gk">διαστολή</span>，第 12 节）：「区分、差别」——源自动词 <span class="gk">διαστέλλω</span>（「分开、区别」）。</li>
+            <li><strong>厚待</strong>（<span class="gk">πλουτῶν</span>，第 12 节）：<span class="gk">πλουτέω</span>（「富有、丰盛地施予」）的现在时分词——「他向一切求告他的人显出丰盛」。</li>
+            <li><strong>求告</strong>（<span class="gk">ἐπικαλέω</span>，第 12–13 节）：「呼求、求告」——由 <span class="gk">ἐπί</span>（「向着」）加 <span class="gk">καλέω</span>（「呼叫」）构成；第 12 节是中动态现在时分词 <span class="gk">ἐπικαλουμένους</span>，第 13 节是不定过去时虚拟语气中动态 <span class="gk">ἐπικαλέσηται</span>。</li>
+            <li><strong>主的名</strong>（<span class="gk">τὸ</span> <span class="gk">ὄνομα</span> <span class="gk">κυρίου</span>，第 13 节）：「求告主名」是旧约敬拜的固定说法（参创 4:26；诗 116:4）。</li>
+            <li><strong>怎能</strong>（<span class="gk">πῶς</span>，第 14–15 节）：「怎么、怎能」——四个反问都以 <span class="gk">πῶς</span> 开头。</li>
+            <li><strong>信</strong>（<span class="gk">πιστεύσωσιν</span>，第 14 节）、<strong>听见</strong>（<span class="gk">ἀκούσωσιν</span>，第 14 节）、<strong>求他</strong>（<span class="gk">ἐπικαλέσωνται</span>，第 14 节）：三个动词都是不定过去时虚拟语气——反问句里的「怎能……呢」。</li>
+            <li><strong>传道</strong>（<span class="gk">κηρύσσω</span>，第 14–15 节）：「传讲、宣讲」——第 14 节是现在时分词属格 <span class="gk">κηρύσσοντος</span>（「没有传讲的人」），第 15 节是现在时虚拟语气 <span class="gk">κηρύξωσιν</span>（「怎能传讲呢」）。</li>
+            <li><strong>奉差遣</strong>（<span class="gk">ἀποσταλῶσιν</span>，第 15 节）：<span class="gk">ἀποστέλλω</span>（「差遣、打发」）的不定过去时虚拟语气被动态——「若没有被差遣」。</li>
+            <li><strong>如经上所记</strong>（<span class="gk">καθὼς</span> <span class="gk">γέγραπται</span>，第 15 节）：<span class="gk">γράφω</span>（「写」）的完成时被动态——「已经写下、至今仍在」。</li>
+            <li><strong>报福音传喜信</strong>（<span class="gk">εὐαγγελιζομένων</span> <span class="gk">τὰ</span> <span class="gk">ἀγαθά</span>，第 15 节）：<span class="gk">εὐαγγελίζω</span>（「报好消息、传福音」）的现在时分词；<span class="gk">τὰ</span> <span class="gk">ἀγαθά</span>（「美好的事、喜信」）。</li>
+            <li><strong>脚踪何等佳美</strong>（<span class="gk">ὡς</span> <span class="gk">ὡραῖοι</span> <span class="gk">οἱ</span> <span class="gk">πόδες</span>，第 15 节）：<span class="gk">ὡραῖος</span>（「美丽、佳美」）；<span class="gk">πούς</span>（「脚」）的复数——「脚」是借代，指报信者的来临。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>10:11 的 <span class="gk">λέγει</span> <span class="gk">γὰρ</span> <span class="gk">ἡ</span> <span class="gk">γραφή</span>（「经上说」）</strong>：<span class="gk">γὰρ</span>（「因为」）把第 11 节接在 10:9–10 之后——经文是「口认心信就必得救」的印证；<span class="gk">πᾶς</span> <span class="gk">ὁ</span> <span class="gk">πιστεύων</span> <span class="gk">ἐπ᾽</span> <span class="gk">αὐτῷ</span>（「凡信靠他的人」）——<span class="gk">ἐπί</span> 加与格表信靠的对象：信是「信靠在……身上」。</li>
+            <li><strong>10:12 的 <span class="gk">διαστολὴ</span> <span class="gk">γὰρ</span> <span class="gk">οὐκ</span> <span class="gk">ἔστιν</span>（「并没有分别」）</strong>：否定词 <span class="gk">οὐκ</span> 与「分别」直接相连，语气斩钉截铁；<span class="gk">ὁ</span> <span class="gk">γὰρ</span> <span class="gk">αὐτὸς</span> <span class="gk">κύριος</span> <span class="gk">πάντων</span>（「因为众人同有一位主」）——<span class="gk">αὐτός</span>（「同一位」）强调主的独一性：正因为主只有一位，救恩才没有分别；<span class="gk">πλουτῶν</span> <span class="gk">εἰς</span> <span class="gk">πάντας</span>（「厚待一切……的人」）——<span class="gk">εἰς</span> 加宾格表方向：「向一切求告他的人显出丰盛」。</li>
+            <li><strong>10:13 的 <span class="gk">πᾶς</span> <span class="gk">γὰρ</span> <span class="gk">ὃς</span> <span class="gk">ἂν</span> <span class="gk">ἐπικαλέσηται</span>（「因为凡求告主名的」）</strong>：不定关系从句（<span class="gk">ὃς</span> <span class="gk">ἂν</span> 加虚拟语气）——「无论谁求告」；<span class="gk">σωθήσεται</span>（「就必得救」）是将来时被动态，作主句的应许。</li>
+            <li><strong>10:14–15 的四个 <span class="gk">πῶς</span> 反问</strong>：四个问句层层倒推，每一步都以前一步为前提——求告 → 信 → 听见 → 传道 → 奉差遣；每个问句都是 <span class="gk">πῶς</span> 加虚拟语气，预期答案是「不能」：人若没有信，就不能求告；没有听见，就不能信；没有人传，就不能听见；没有人差遣，就没有人传。</li>
+            <li><strong>10:15 的 <span class="gk">καθὼς</span> <span class="gk">γέγραπται</span>（「如经上所记」）</strong>：完成时被动态 <span class="gk">γέγραπται</span>——「已经写下、至今有效」；引文是感叹句式：<span class="gk">ὡς</span> <span class="gk">ὡραῖοι</span> <span class="gk">οἱ</span> <span class="gk">πόδες</span>（「他们的脚踪何等佳美」）——<span class="gk">ὡς</span> 表惊叹，脚是借代：报信者翻山越岭而来，脚上沾着尘土，却是佳美的。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「凡信他的人必不至于羞愧」：那块石头就是基督</strong>原文根据是 10:11 对赛 28:16 的引用。穆理的论证是：10:11 的「他」不是泛指的神，而是 9:33 那块「绊脚的石头」——「看哪，我在锡安放一块绊脚的石头，跌人的磐石；信靠他的人必不至于羞愧。」保罗在 9:33 已经引用过同一节经文，10:11 把它再引一次，首尾相接：9:33 讲以色列人「跌在那绊脚石上」，10:11 讲「信靠他的人必不至于羞愧」——同一块石头，跌倒的跌倒，信靠的却站立。穆尔的论证补上「羞愧」的末世含义：<span class="gk">καταισχύνω</span>（「蒙羞」）在旧约与新约里常指审判日当众蒙羞（参诗 25:2–3；赛 45:17；可 8:38）——「必不至于羞愧」不是说信徒今生不会尴尬，而是说在末日的审判台前，信靠基督的人不会蒙羞。穆尔还留意赛 28:16 的七十士译本用「信靠」（<span class="gk">πιστεύω</span>）译希伯来文的「依靠」——保罗顺着这个译法，把以赛亚的「信靠房角石」直接读作「信基督」。分歧传统注明：有学者认为保罗把以赛亚原本讲锡安稳固根基的话「基督化」了，是过度解读；穆理与穆尔都回应：以赛亚的房角石在旧约里本就是指向弥赛亚的预言（参诗 118:22；赛 8:14），保罗不是强行嫁接，而是按圣经自身的线索认出那石头是谁。</li>
+            <li><strong>2. 「并没有分别」：定罪没有分别，救恩也没有分别</strong>原文根据是 10:12 的 <span class="gk">διαστολὴ</span> <span class="gk">γὰρ</span> <span class="gk">οὐκ</span> <span class="gk">ἔστιν</span>（「并没有分别」）与 <span class="gk">ὁ</span> <span class="gk">αὐτὸς</span> <span class="gk">κύριος</span> <span class="gk">πάντων</span>（「众人同有一位主」）。穆理的论证是：这句话是 3:22「并没有分别，因为世人都犯了罪」的镜像——第 3 章讲「都在罪之下，没有分别」，第 10 章讲「都蒙拯救，没有分别」；犹太人独占神的观念，在「同一位主」面前彻底瓦解：主既然只有一位，祂就不能只是犹太人的主。穆尔的论证把 10:12 放进与新视角派的对话里：邓恩等新视角派学者认为，保罗的「没有分别」主要针对犹太人用律法标记（割礼、饮食、安息日）划定的族群边界；穆尔承认边界问题确实在保罗的视野里，但他坚持 10:12 的重点更深——不只是「谁可以进教会」的边界问题，更是神不偏待人（2:11）的品格问题：神的丰盛（<span class="gk">πλουτέω</span>，「厚待」）向「一切求告他的人」敞开，不分种族、不分背景。互文印证：1:16「先是犹太人，后是希腊人」；3:29–30「难道神只作犹太人的神吗？不也是作外邦人的神吗？是的，也作外邦人的神」——「没有分别」是罗马书从第一章就埋下的主线。</li>
+            <li><strong>3. 「凡求告主名的，就必得救」：约珥书的耶和华，就是耶稣</strong>原文根据是 10:13 对珥 2:32 的引用。穆理的论证是：这是保罗基督论最直接的证据之一——珥 2:32 的「主」在原文里是耶和华（YHWH），「求告耶和华的名」是旧约敬拜的固定说法（创 4:26「那时候，人才求告耶和华的名」；诗 116:4）；保罗毫不犹豫地把这句经文用在耶稣身上：求告耶稣的名，就必得救——耶稣就是旧约的耶和华。穆尔的论证与此一致，但他更强调 10:13 与 10:9 的呼应：10:9 说「口里认耶稣为主」，10:13 说「求告主名」——「认耶稣为主」与「求告主名」是同一件事：承认耶稣是主，并且向他呼求。穆尔还指出，「求告」一词本身就预设了信心——这正是 10:14 链条的起点：「人未曾信他，怎能求他呢？」求告不是无内容的呼喊，而是信靠的呼喊。分歧传统注明：耶和华见证人等群体否认耶稣的神性，认为 10:13 的「主」只是指父神；穆理与穆尔都指出，保罗在 10:9 明明说「认耶稣为主」，10:12–13 的「主」在上下文里只能是耶稣——保罗把耶和华的经文用在耶稣身上，是初代教会基督论最坚实的圣经根据之一。历代共识：教会据此认定，耶稣是配受求告的主——祷告的对象不是一位抽象的神，而是复活的基督。</li>
+            <li><strong>4. 四个反问的链条：神藉着传讲的道施行拯救</strong>原文根据是 10:14–15 的四个 <span class="gk">πῶς</span> 反问。穆理的论证是：这条链条说明神拯救的「方式」——神不是绕过人的耳朵直接把信心塞进人心里，而是藉着传讲的道施行拯救。链条的每一环都不可少：求告以信为前提，信以听见为前提，听见以传道为前提，传道以奉差遣为前提；而链条的起点是「奉差遣」——差遣者是神：传道不是人自告奋勇的事业，而是神发起的使命。穆理指出，这条链条把人的责任与神的主权编在了一起：第 9 章讲神主权的拣选，第 10 章讲人的责任——人要听、要信、要求告；而传道与差遣又把人带回神的主权面前：没有神差遣，就没有人传道。穆尔的论证把 10:14–15 看作第 10 章的宣教枢纽：一方面，它为外邦宣教辩护——福音必须传出去，因为「没有传道的，怎能听见呢」；另一方面，它为 10:16–21 的追问作铺垫——以色列人不信，问题不在链条断了（10:18 将说「他们的声音传遍天下，他们的言语传到地极」），而在他们听见了却不信。穆尔还留意链条的倒推方向：保罗从「求告」往回推到「差遣」，是要读者看见——你今天能求告，是因为有人被差遣、有人传了道、你听见了、你信了：你的得救，站在一长串神的作为与人的顺服之上。互文印证：林前 1:21「神乐意用人所当作愚拙的道理，拯救那些信的人」；提前 2:4「他愿意万人得救，明白真道」——神愿意万人得救，祂所定的方式，就是传道。</li>
+            <li><strong>5. 「脚踪何等佳美」：传道本身就是好消息的一部分</strong>原文根据是 10:15 对赛 52:7 的引用。穆理的论证是：赛 52:7 的背景是被掳归回——报信的人翻山越岭而来，宣告「你的神作王了」，他的脚沾着尘土，却是佳美的，因为他带来的是平安与救恩的好消息（赛 52:7「那报佳音，传平安，报好信，传救恩的，对锡安说：你的神作王了」）。穆理指出，「脚」是借代：脚所代表的，是报信者的来临本身——福音的到来，就是美好的事。穆尔的论证补上保罗的改写：以赛亚原文是「报好信息」（<span class="gk">εὐαγγελιζόμενος</span>），保罗把它读作「传福音」——旧约的「报好信」如今就是新约的「传福音」；传道不是福音的附加环节，而是神所定的、美好的拯救手段：神把救恩放在「传」与「听」之间，传道者沾着尘土的脚，在神眼中是佳美的。分歧传统注明：有学者认为 10:14–15 的链条把得救过度依赖于人的传讲——没听过福音的人怎么办？穆理与穆尔都指出，链条的起点是「奉差遣」——差遣者是神，传道是神的作为，不是人的功劳；至于未曾听见者的结局，保罗在 1:18–20 与 2:12–16 已经处理过（人按所领受的光景受审），10:14–15 的重点不是未闻者的命运，而是已闻者的责任：福音已经传开了，以色列人没有借口。历代共识：教会据此认定，宣教不是可有可无的选修课，而是福音逻辑的必然——「没有传道的，怎能听见呢」是历代宣教运动最常引用的经文之一。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>福音拆掉的墙，你心里还在砌吗？</strong>10:12 说「并没有分别」——但人心里总有一堵墙：某一类人、某一种背景，是你潜意识里觉得「福音大概轮不到他」的。操练：想一想那个人——你心里默认「他大概不会信」的那一位。10:12–13 是对他说的，也是对你说的：主「厚待一切求告他的人」，「凡」字里面没有例外。今晚为他祷告一次，并且找一个机会，把福音摆在他面前。</li>
+            <li><strong>你是链条上的一环</strong>：10:14–15 的链条往回推——你今天能求告，是因为有人被差遣、有人传了道、你听见了、你信了。你的得救，站在一长串神的作为与人的顺服之上。操练：回想是谁把福音传给你的——写下他的名字，为他祷告；再想一个你可以向他开口的人——这周找一次机会，把你听见的，传给他听。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>10:14–15 的链条从「求告」一路倒推到「奉差遣」——每一环都不能少。在你的经历里，是谁在链上把福音传给了你？而今天，神把你放在了谁的链上——谁需要听见你口中的福音？另外，10:12 说「并没有分别」——在你心里，有没有一堵你还在维护的墙：某一类人、某一种背景，是你潜意识里觉得「福音大概不适合他」的？10:13 的「凡」字，怎么拆掉这堵墙？</p>
+          </div>
+</article>
+
+
+          <article class="entry" id="day24-pm">
+          <div class="entry-head">
+            <span class="entry-day">第 24 天 · 晚 — 2026-11-12（周四）</span>
+            <h3 class="entry-title">这道离你不远 <span class="ref">· 罗马书 10:6–10</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">6</span>惟有出于信心的义如此说：「你不要心里说：谁要升到天上去呢？」就是要领下基督来；<span class="vn">7</span>「谁要下到阴间去呢？」就是要领基督从死里上来。<span class="vn">8</span>他到底怎么说呢？他说：「这道离你不远，正在你口里，在你心里。」就是我们所传信主的道。<span class="vn">9</span>你若口里认耶稣为主，心里信神叫他从死里复活，就必得救。<span class="vn">10</span>因为人心里相信，就可以称义；口里承认，就可以得救。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>今天早上读完的 10:1–5 是第 10 章的开篇诊断：以色列人有热心却没有真知识，想要立自己的义，就不服神的义了；10:5 引用利未记 18:5，说明「出于律法的义」的原则是「行了，就活」。今晚的 10:6–10 是这一诊断的另一半——「出于信心的义」又是怎样的？两节经文的结构完全平行，内容完全相反：一个说「行了就活」，一个说「信了就活」。10:5–13 是两种义的完整对比：10:6–8 引用申命记 30 章说明信心的义的「近」，10:9–10 给出信心的义的实际内容（口认心信），10:11–13 再以经文印证「凡信他的必不至羞愧」「凡求告主名的就必得救」。</p>
+          <p>申命记 30 章的背景值得先交代：那是摩西临终之言，以色列人即将进入应许之地，摩西在约的更新中说：「我今日所吩咐你的诫命不是你难行的，也不是离你远的。不是在天上……也不是在海那边……这话却离你甚近，就在你口中，在你心里，使你可以遵行。」（申 30:11–14）保罗引用这段话时作了两处关键改写：「在天上」变成了「升到天上去」，「在海那边」变成了「下到阴间去」——而这两处改写，正是他要讲的基督论：基督已经从天上下来、已经从死里上来，人不需要再去「取」他。今晚这五节的中心就是一句话：救恩不在远处，就在你口里、心里。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>出于信心的义</strong>（<span class="gk">ἡ</span> <span class="gk">ἐκ</span> <span class="gk">πίστεως</span> <span class="gk">δικαιοσύνη</span>，第 6 节）：「从信心而来的义」——<span class="gk">ἐκ</span> 加属格表来源；与 10:5 的「出于律法的义」（<span class="gk">τὴν</span> <span class="gk">δικαιοσύνην</span> <span class="gk">τὴν</span> <span class="gk">ἐκ</span> <span class="gk">τοῦ</span> <span class="gk">νόμου</span>）结构完全平行：义的来源只有两个，不是出于律法，就是出于信心。</li>
+            <li><strong>如此说</strong>（<span class="gk">οὕτως</span> <span class="gk">λέγει</span>，第 6 节）：「这样说」——「信心的义」被拟人化，像一位说话者开口；与 10:5「摩西写着说」平行对照：律法的义由摩西「写着说」，信心的义自己「如此说」。</li>
+            <li><strong>你不要心里说</strong>（<span class="gk">μὴ</span> <span class="gk">εἴπῃς</span> <span class="gk">ἐν</span> <span class="gk">τῇ</span> <span class="gk">καρδίᾳ</span> <span class="gk">σου</span>，第 6 节）：<span class="gk">μὴ</span> 加不定过去时虚拟语气，表禁止——「不要在心里嘀咕、盘算」。</li>
+            <li><strong>谁要升到天上去呢</strong>（<span class="gk">τίς</span> <span class="gk">ἀναβήσεται</span> <span class="gk">εἰς</span> <span class="gk">τὸν</span> <span class="gk">οὐρανόν</span>，第 6 节）：<span class="gk">ἀναβαίνω</span>（「上去」）的将来时；引申命记 30:12「谁替我们上天取下来」。</li>
+            <li><strong>领下基督来</strong>（<span class="gk">Χριστὸν</span> <span class="gk">καταγαγεῖν</span>，第 6 节）：<span class="gk">κατάγω</span>（「带下来、领下来」）的不定过去时不定式。</li>
+            <li><strong>阴间</strong>（<span class="gk">ἄβυσσος</span>，第 7 节）：「深渊、无底坑」——申命记原文是「海那边」，保罗改写为「深渊」；在新约里 <span class="gk">ἄβυσσος</span> 指死者的居所、鬼魔的去处（参路 8:31；启 9:1）。</li>
+            <li><strong>领基督从死里上来</strong>（<span class="gk">Χριστὸν</span> <span class="gk">ἐκ</span> <span class="gk">νεκρῶν</span> <span class="gk">ἀναγαγεῖν</span>，第 7 节）：<span class="gk">ἀνάγω</span>（「领上来」）的不定过去时不定式；<span class="gk">ἐκ</span> <span class="gk">νεκρῶν</span>（「从死人中」）。</li>
+            <li><strong>他到底怎么说呢</strong>（<span class="gk">ἀλλὰ</span> <span class="gk">τί</span> <span class="gk">λέγει</span>，第 8 节）：<span class="gk">ἀλλά</span> 表转折、追问——「那么，它到底怎么说呢？」</li>
+            <li><strong>这道</strong>（<span class="gk">τὸ</span> <span class="gk">ῥῆμα</span>，第 8 节）：<span class="gk">ῥῆμα</span>（「话语、所说的话」）——比 <span class="gk">λόγος</span> 更强调「说出来的话」。</li>
+            <li><strong>离你不远</strong>（<span class="gk">ἐγγύς</span> <span class="gk">σου</span>，第 8 节）：<span class="gk">ἐγγύς</span>（「近」）——「近在你身边」。</li>
+            <li><strong>信主的道</strong>（<span class="gk">τὸ</span> <span class="gk">ῥῆμα</span> <span class="gk">τῆς</span> <span class="gk">πίστεως</span>，第 8 节）：「信心的道」——属格表内容、特征：这道的内容就是信心。</li>
+            <li><strong>所传</strong>（<span class="gk">κηρύσσομεν</span>，第 8 节）：<span class="gk">κηρύσσω</span>（「传讲、宣讲」）的现在时——「我们正在传讲的」。</li>
+            <li><strong>口里认</strong>（<span class="gk">ὁμολογήσῃς</span> <span class="gk">ἐν</span> <span class="gk">τῷ</span> <span class="gk">στόματί</span> <span class="gk">σου</span>，第 9 节）：<span class="gk">ὁμολογέω</span>（「承认、认信」）的不定过去时虚拟语气；由 <span class="gk">ὁμός</span>（「相同」）加 <span class="gk">λόγος</span>（「话」）构成，字面是「说同样的话」——与神说同样的话，公开承认。</li>
+            <li><strong>耶稣为主</strong>（<span class="gk">κύριον</span> <span class="gk">Ἰησοῦν</span>，第 9 节）：<span class="gk">κύριος</span>（「主」）——在七十士译本中，<span class="gk">κύριος</span> 是耶和华之名的译法。</li>
+            <li><strong>心里信</strong>（<span class="gk">πιστεύσῃς</span> <span class="gk">ἐν</span> <span class="gk">τῇ</span> <span class="gk">καρδίᾳ</span> <span class="gk">σου</span>，第 9 节）：<span class="gk">πιστεύω</span>（「相信」）的不定过去时虚拟语气；<span class="gk">καρδία</span>（「心」）——人的内在中心。</li>
+            <li><strong>叫他从死里复活</strong>（<span class="gk">ὁ</span> <span class="gk">θεὸς</span> <span class="gk">αὐτὸν</span> <span class="gk">ἤγειρεν</span> <span class="gk">ἐκ</span> <span class="gk">νεκρῶν</span>，第 9 节）：<span class="gk">ἐγείρω</span>（「使复活、叫起来」）的不定过去时。</li>
+            <li><strong>就必得救</strong>（<span class="gk">σωθήσῃ</span>，第 9 节）：<span class="gk">σῴζω</span>（「拯救」）的将来时被动态——「必将得救」。</li>
+            <li><strong>就可以称义</strong>（<span class="gk">πιστεύεται</span> <span class="gk">εἰς</span> <span class="gk">δικαιοσύνην</span>，第 10 节）：<span class="gk">πιστεύω</span> 的现在时被动态——「（用心）相信，以致得义」；<span class="gk">εἰς</span> 加宾格表结果、目标。</li>
+            <li><strong>就可以得救</strong>（<span class="gk">ὁμολογεῖται</span> <span class="gk">εἰς</span> <span class="gk">σωτηρίαν</span>，第 10 节）：<span class="gk">ὁμολογέω</span> 的现在时被动态——「（用口）承认，以致得救」。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>10:6 的 <span class="gk">ἡ</span> <span class="gk">δὲ</span> <span class="gk">ἐκ</span> <span class="gk">πίστεως</span> <span class="gk">δικαιοσύνη</span> <span class="gk">οὕτως</span> <span class="gk">λέγει</span>（「惟有出于信心的义如此说」）</strong>：主语是「出于信心的义」，<span class="gk">δὲ</span> 表对比，承接 10:5 的律法的义；<span class="gk">οὕτως</span>（「如此」）提前，强调说话的方式——信心的义「这样」说话。</li>
+            <li><strong>10:6–7 的两个 <span class="gk">τίς</span>……问句与 <span class="gk">τοῦτ᾽</span> <span class="gk">ἔστιν</span>（「这就是说」）</strong>：两个问句都是申命记 30:12–13 的改写，保罗各加一句 <span class="gk">τοῦτ᾽</span> <span class="gk">ἔστιν</span> 作解释——「升到天上去」的意思是「要把基督领下来」，「下到阴间去」的意思是「要把基督从死里领上来」：人想靠自己的努力去完成基督已经完成的事。</li>
+            <li><strong>10:8 的 <span class="gk">ἐγγύς</span> <span class="gk">σου</span> <span class="gk">τὸ</span> <span class="gk">ῥῆμά</span> <span class="gk">ἐστιν</span>（「这道离你不远」）</strong>：<span class="gk">ἐγγύς</span>（「近」）放在句首表强调；<span class="gk">ἐν</span> <span class="gk">τῷ</span> <span class="gk">στόματί</span> <span class="gk">σου</span> <span class="gk">καὶ</span> <span class="gk">ἐν</span> <span class="gk">τῇ</span> <span class="gk">καρδίᾳ</span> <span class="gk">σου</span>（「在你口里，在你心里」）两个介词短语并列：道的位置，就是口与心的位置——正好对应 10:9–10 的口认心信。</li>
+            <li><strong>10:9 的 <span class="gk">ἐὰν</span> <span class="gk">ὁμολογήσῃς</span>…<span class="gk">καὶ</span> <span class="gk">πιστεύσῃς</span>…<span class="gk">σωθήσῃ</span>（「你若口里认……心里信……就必得救」）</strong>：第三类条件句（<span class="gk">ἐὰν</span> 加虚拟语气，配将来时主句）——「你若……就必……」；口认与心信用 <span class="gk">καὶ</span> 并列为条件，得救为结果。</li>
+            <li><strong>10:10 的交叉结构</strong>：<span class="gk">καρδίᾳ</span> <span class="gk">γὰρ</span> <span class="gk">πιστεύεται</span> <span class="gk">εἰς</span> <span class="gk">δικαιοσύνην</span>，<span class="gk">στόματι</span> <span class="gk">δὲ</span> <span class="gk">ὁμολογεῖται</span> <span class="gk">εἰς</span> <span class="gk">σωτηρίαν</span>（「因为人心里相信，就可以称义；口里承认，就可以得救」）——心—信—称义／口—认—得救，两个分句结构完全对称；工具格 <span class="gk">καρδίᾳ</span>／<span class="gk">στόματι</span>（「用心／用口」）各放在句首。</li>
+            <li><strong>10:10 与 10:9 的次序颠倒</strong>：10:9 是口认在前、心信在后（按宣告的顺序），10:10 是心信在前、口认在后（按逻辑的顺序）——次序的颠倒说明两者不是两个先后阶段，而是一件事的两面：心里信是根，口里认是果。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 两种义的平行对比：行了就活，还是信了就活</strong>原文根据是 10:6 的 <span class="gk">ἡ</span> <span class="gk">ἐκ</span> <span class="gk">πίστεως</span> <span class="gk">δικαιοσύνη</span>（「出于信心的义」）与 10:5 的 <span class="gk">τὴν</span> <span class="gk">δικαιοσύνην</span> <span class="gk">τὴν</span> <span class="gk">ἐκ</span> <span class="gk">τοῦ</span> <span class="gk">νόμου</span>（「出于律法的义」）。穆理的论证是：这两节经文的结构完全平行，内容完全相反——律法的义说「行了，就活」，信心的义说「信了，就活」。穆理指出，这不是两条并行的路，而两种原则的对立：律法的原则是「做」（<span class="gk">ποιέω</span>），信心的原则是「信」（<span class="gk">πιστεύω</span>）；律法的义要求人先行出来，信心的义要求人先信进去。穆尔的论证补上 10:6 的 <span class="gk">δὲ</span>（「惟有」）：这个小小的转折词承接 10:5，把对比的另一边引出来——保罗不是在讲两种「义」并存，而是讲两种义只能选一种。穆尔还留意「信心的义」是主语、是说话者：义不是一件等人去取的物品，而是一位开口说话的主体——「信心的义如此说」。互文印证：加 3:12 用同一组对比——「律法原不本乎信，只说：行这些事的，就必因此活着」，而哈 2:4「义人必因信得生」是另一边的总纲；保罗在罗马书与加拉太书用的是同一套论证。</li>
+            <li><strong>2. 申命记 30 章的引用与改写：基督已经下来、已经上来</strong>原文根据是 10:6–8 对申 30:12–14 的引用与改写。穆理的论证是：保罗不是在作申命记的字面考据，而是用申命记的话说明一个原则——神的道近在咫尺，不需要人上天入地去取。申命记的原意是「诫命不是你难行的，也不是离你远的」，保罗把这个原则应用到基督身上：基督已经从天上下来（道成肉身）、已经从死里上来（复活），人不需要再去「领他下来」「领他上来」——想去「取」基督，本身就是不信：仿佛基督还没有来、仿佛他还没有复活。穆尔的论证更细致地处理了两处改写：第一，「在天上」对应道成肉身——「升到天上去」是要把基督「领下来」，即否认他已经降世；第二，「在海那边」被改写为「下到阴间去」——申命记的「海」在犹太传统里与深渊相通（参创 1:2 的深渊、诗 107:23–26 的海），保罗把「海那边」读作「阴间」，「下到阴间去」是要把基督「从死里领上来」，即否认他已经复活。穆尔认为这是保罗的基督论式读经：摩西的话在基督里得到了终极实现——申命记讲的「近的道」，如今就是「我们所传信主的道」（10:8）。分歧传统注明：有学者认为保罗「误用」了申命记——申 30 章的原意是诫命的可行性（人可以遵行律法），不是基督论；穆理与穆尔都回应：保罗的引用是类比性、预表性的应用，不是字面解释——申命记讲的是「神的道近」，保罗指出这「近」的道如今就是传讲基督的福音；这不是误读，而是圣灵默示下的应用：律法的原则（道近）没有被废掉，而是在基督里被成全。历代共识：教会据此认定，救恩的「近」是福音的本质特征——福音不是要人上天入地去寻找神，而是神已经把道送到了人的口里、心里。</li>
+            <li><strong>3. 「这道离你不远」：福音的近，是口与心的近</strong>原文根据是 10:8 的 <span class="gk">ἐγγύς</span> <span class="gk">σου</span> <span class="gk">τὸ</span> <span class="gk">ῥῆμά</span> <span class="gk">ἐστιν</span>（「这道离你不远」）与 <span class="gk">τὸ</span> <span class="gk">ῥῆμα</span> <span class="gk">τῆς</span> <span class="gk">πίστεως</span> <span class="gk">ὃ</span> <span class="gk">κηρύσσομεν</span>（「就是我们所传信主的道」）。穆理的论证是：律法时代「道」已经近（申 30:14），福音时代「道」更近——不是远在天边要人去取，而是已经传到你口里、心里；「口里」与「心里」不是两个地点，而是信心的两个器官：心是信的所在，口是认的所在——道住在心里，就要从口里出来。穆尔的论证把 10:8 看作全段的关键转折：申命记的「道」（<span class="gk">ῥῆμα</span>）如今就是使徒所传的「信心的道」——<span class="gk">ὃ</span> <span class="gk">κηρύσσομεν</span>（「我们所传的」）把旧约的经文直接接上了使徒的宣讲：保罗不是在引用一句古话，而是在说「这句古话就是我们正在传的福音」。穆尔还留意 <span class="gk">ῥῆμα</span> 与 <span class="gk">λόγος</span> 的差别：<span class="gk">ῥῆμα</span> 更强调「说出来的话」——福音是被宣讲出来的道，是进到人耳朵里、口里、心里的话。互文印证：申 30:14 是原文；诗 119:105「你的话是我脚前的灯，是我路上的光」——道近的主题贯穿旧约；约 1:14「道成了肉身，住在我们中间」——道「近」到了极致：成了肉身，住在人中间。</li>
+            <li><strong>4. 口认心信：认耶稣为主，信神叫他复活</strong>原文根据是 10:9 的 <span class="gk">ὁμολογήσῃς</span> <span class="gk">ἐν</span> <span class="gk">τῷ</span> <span class="gk">στόματί</span> <span class="gk">σου</span> <span class="gk">κύριον</span> <span class="gk">Ἰησοῦν</span>（「口里认耶稣为主」）与 <span class="gk">πιστεύσῃς</span> <span class="gk">ἐν</span> <span class="gk">τῇ</span> <span class="gk">καρδίᾳ</span> <span class="gk">σου</span> <span class="gk">ὅτι</span> <span class="gk">ὁ</span> <span class="gk">θεὸς</span> <span class="gk">αὐτὸν</span> <span class="gk">ἤγειρεν</span> <span class="gk">ἐκ</span> <span class="gk">νεκρῶν</span>（「心里信神叫他从死里复活」）。穆理的论证是：认与信不是两个条件，而是信心的内外两面——心里信是根，口里认是果；「耶稣为主」（<span class="gk">κύριος</span> <span class="gk">Ἰησοῦς</span>）是最早的基督论认信（参林前 12:3「若不是被圣灵感动的，也没有能说『耶稣是主』的」；腓 2:11「无不口称『耶稣基督为主』」），<span class="gk">κύριος</span> 在七十士译本中是耶和华之名的译法——认耶稣为主，就是承认他的神性与主权；而「神叫他从死里复活」是信心的具体内容：复活是神对基督的印证（参 1:4「按圣善的灵说，因从死里复活，以大能显明是神的儿子」；4:24–25「耶稣被交给人，是为我们的过犯；复活，是为叫我们称义」）。穆尔的论证补上 10:9 的格式：口认加心信加复活，与早期教会洗礼认信的格式相近，保罗很可能引用了教会通用的认信公式；但他强调这里的重点不是仪式，而是信心的本质——信的内容是复活的基督，信的表达是公开的认信。分歧传统注明：有传统把「口里认」当作得救的独立条件（必须公开认信才算得救）；穆理与穆尔都反对——10:10 的交叉结构表明认与信是同一信心的两面，口认是心信的自然流露，不是外加的功德；同时也要警惕另一极端：把信心缩减为「心里同意」而拒绝公开认信——约 12:42–43 的官长「暗暗地信」，却因怕法利赛人而不敢承认，正是这种半个信心的反面例子。历代共识：教会据此认定，真正的信心一定有「口」——心里所信的，口里总要说出来（参太 10:32–33）。</li>
+            <li><strong>5. 10:10 的交叉结构：称义与得救是同一救恩的两种表述</strong>原文根据是 10:10 的 <span class="gk">καρδίᾳ</span> <span class="gk">γὰρ</span> <span class="gk">πιστεύεται</span> <span class="gk">εἰς</span> <span class="gk">δικαιοσύνην</span>，<span class="gk">στόματι</span> <span class="gk">δὲ</span> <span class="gk">ὁμολογεῖται</span> <span class="gk">εἰς</span> <span class="gk">σωτηρίαν</span>。穆理的论证是：「心里相信，就可以称义」与「口里承认，就可以得救」不是两个步骤（先称义、后得救），而是同一救恩的两种表述——称义是得救的法庭面向（神算人为义），得救是称义的整体面向（人从罪与审判中被救出来）；两个 <span class="gk">εἰς</span>（「以致」）都是表结果，两个分句完全对称，说明信与认同等重要、不可分割。穆尔的论证与此一致，但他更强调 10:10 是对 10:9 的解释（<span class="gk">γὰρ</span>，「因为」）：10:9 说「口认心信就必得救」，10:10 解释为什么——因为心信带来称义，口认带来得救；穆尔还指出，<span class="gk">πιστεύεται</span> 与 <span class="gk">ὁμολογεῖται</span> 都是现在时被动态（「被相信」「被承认」），表的是信心的一般原则，不是某个一次性事件：信与认，是信徒持续的状态。互文印证：太 10:32–33「凡在人面前认我的，我在我天上的父面前也必认他」；路 12:8–9 同样的话；约 12:42–43 的反面例子——信而不认，终究是怕人的信心。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>救恩近在咫尺，不必上天入地去取</strong>：10:6–7 的两个问题暴露了一种心态：总觉得救恩还缺一步，要靠自己去「取」基督——先改掉某个习惯、先达到某种状态、先攒够某种经历，才配得上得救。但 10:8 说「这道离你不远」：基督已经下来了、已经上来了，道已经在你口里、心里。操练：回想一次你觉得「神离我很远」的时刻，对照 10:8——把 10:9 大声读出来：「我口里认耶稣为主，心里信神叫他从死里复活，我就必得救。」让这句话从你的口里说出来，进到你的心里去。</li>
+            <li><strong>心与口要一致</strong>：心里信却不敢开口认，与口里认心里却不信，都是半个信心。10:10 把心与口并列：心是信的所在，口是认的所在——心里所信的，口里总要说出来。操练：本周找一次机会，在一个人面前自然地说出「我信耶稣是主」——不一定是在讲台上，可以是在一次真实的对话里：一次被问到「你信什么」时的回答，一次为信仰作的简单见证。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>10:6–7 的两个问题（「谁要升到天上去」「谁要下到阴间去」）暴露了一种心态：总觉得救恩还缺一步，要靠自己去「取」基督。在你的生命里，有没有这样一步你总觉得「还得靠自己完成」的事——比如要先改掉某个习惯、要先达到某种状态，才配得上得救？而 10:8 说「这道离你不远」——如果你相信道已经在你口里、心里，你今天就可以放下哪一件「取基督」的努力？另外，10:9–10 把「口里认」与「心里信」并列——你的信心有没有一个「口」：有没有人听见你认耶稣为主？如果还没有，你可以在本周向谁开口？</p>
+          </div>
+</article>
+
+
+
+        <div class="daynav"><a href="day24.html">← 第 24 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
