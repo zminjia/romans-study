@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 26 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day26-am">11:1–6</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 26 天</span>2026-11-14（周六） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day26-am">
+          <div class="entry-head">
+            <span class="entry-day">第 26 天 · 晨 — 2026-11-14（周六）</span>
+            <h3 class="entry-title">神弃绝了他的百姓吗？断乎没有 <span class="ref">· 罗马书 11:1–6</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>我且说，神弃绝了他的百姓吗？断乎没有！因为我也是以色列人，亚伯拉罕的后裔，属便雅悯支派的。<span class="vn">2</span>神并没有弃绝他预先所知道的百姓。你们岂不知道经上论到以利亚是怎么说的呢？他在神面前怎样控告以色列人说：<span class="vn">3</span>「主啊，他们杀了你的先知，拆了你的祭坛，只剩下我一个人，他们还要寻索我的命。」<span class="vn">4</span>神的回话是怎么说的呢？他说：「我为自己留下七千人，是未曾向巴力屈膝的。」<span class="vn">5</span>如今也是这样，照着拣选的恩典，还有所留的余数。<span class="vn">6</span>既是出于恩典，就不在乎行为；不然，恩典就不是恩典了。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>昨晚读完的 10:21 是第 10 章的收尾：「我整天伸手招呼那悖逆顶嘴的百姓。」神整天伸手，以色列却整天顶嘴——问题顺理成章：那神是不是已经把以色列丢掉了？今晨的 11:1 是全章的开门问题，也是 9–11 章的第三个大问句（9:6「神的话落了空吗？」；9:14「神有什么不公平吗？」；11:1「神弃绝了他的百姓吗？」）。三个问题，三次「断乎没有」。</p>
+          <p>保罗的第一件证据是他自己：他就是以色列人，亚伯拉罕的后裔，便雅悯支派——一个正在写信给罗马教会、正在传福音的犹太人，就是神没有弃绝以色列的活证据。便雅悯支派值得留意：这是以色列第一位王扫罗的支派（保罗的希伯来名就叫扫罗），也是南北分裂后唯一留在犹大身边的支派——保罗的身世本身就带着「余数」的色彩。</p>
+          <p>第二件证据是旧约的先例：以利亚的故事（王上 19 章）。亚哈、耶洗别逼迫，巴力的先知得势，以利亚在罗腾树下求死，说「只剩下我一个人」。人的视角里，神的百姓只剩一个；神的回答是：我为自己留下了七千人。七千人是「未曾向巴力屈膝的」——他们没有发声、没有露面，以利亚一个也不认识，但神数过他们。</p>
+          <p>11:5 把以利亚的先例搬到「如今」：照着拣选的恩典，还有所留的余数。余数（<span class="gk">λεῖμμα</span>）是贯穿 9–11 章的词：9:27–29 引用以赛亚「以色列人虽多如海沙，得救的不过是余数」；11:5 是同一主题的正面展开。11:1–10 是第一论证（余数），11:11–24 是第二论证（橄榄树），11:25–32 是第三论证（奥秘：全以色列都要得救），11:33–36 是颂赞。</p>
+          <p>11:6 是余数论证的逻辑收口：余数若是出于恩典，就不在乎行为——恩典与行为，在拣选这件事上不能并存。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>我且说</strong>（<span class="gk">λέγω</span> <span class="gk">οὖν</span>，第 1 节）：<span class="gk">λέγω</span>（「说」）加 <span class="gk">οὖν</span>（「那么、所以」）——承接 10:21 的追问。</li>
+            <li><strong>弃绝</strong>（<span class="gk">ἀπώσατο</span>，第 1–2 节）：<span class="gk">ἀπωθέω</span>（「推开、弃绝」）的不定过去时中动态——「神把他的百姓推开了吗？」</li>
+            <li><strong>断乎没有</strong>（<span class="gk">μὴ</span> <span class="gk">γένοιτο</span>，第 1 节）：<span class="gk">γίνομαι</span>（「成为、发生」）的愿望语气——「绝不如此、断乎不可」。罗马书里保罗用了十次（3:4、3:6、3:31、6:2、6:15、7:7、7:13、9:14、11:1、11:11），每次都是对错误结论的最强否定。</li>
+            <li><strong>预先所知道</strong>（<span class="gk">προέγνω</span>，第 2 节）：<span class="gk">προγινώσκω</span>（「预先知道」）的不定过去时——与 8:29「预先所知道的人」同一个词。</li>
+            <li><strong>论到以利亚是怎么说的</strong>（<span class="gk">ἐν</span> <span class="gk">Ἠλίᾳ</span>，第 2 节）：<span class="gk">ἐν</span> 加与格，指经文中「以利亚那一段」。</li>
+            <li><strong>控告</strong>（<span class="gk">ἐντυγχάνει</span>，第 2 节）：<span class="gk">ἐντυγχάνω</span>（「向……申诉、代求」），原意是「与……相遇、交涉」——以利亚在神面前「控告」以色列人。</li>
+            <li><strong>寻索我的命</strong>（<span class="gk">ζητοῦσιν</span> <span class="gk">τὴν</span> <span class="gk">ψυχήν</span> <span class="gk">μου</span>，第 3 节）：<span class="gk">ζητέω</span>（「寻找、索取」）的现在时——「他们还要取我的命」。</li>
+            <li><strong>回话</strong>（<span class="gk">χρηματισμός</span>，第 4 节）：「神谕、神的回答」——新约仅此一处；由 <span class="gk">χρηματίζω</span>（「发出神谕」）而来。</li>
+            <li><strong>留下</strong>（<span class="gk">κατέλιπον</span>，第 4 节）：<span class="gk">καταλείπω</span>（「留下、存留」）的不定过去时——「我为自己留下了」。</li>
+            <li><strong>七千人</strong>（<span class="gk">ἑπτακισχιλίους</span> <span class="gk">ἄνδρας</span>，第 4 节）：「七千个男人」；七在圣经里是完全的数字。</li>
+            <li><strong>未曾向巴力屈膝</strong>（<span class="gk">οὐκ</span> <span class="gk">ἔκαμψαν</span> <span class="gk">γόνυ</span> <span class="gk">τῷ</span> <span class="gk">Βάαλ</span>，第 4 节）：<span class="gk">κάμπτω</span>（「屈膝、弯曲」）的不定过去时——「没有向巴力屈过膝」；巴力是迦南的风暴与丰产之神，亚哈时代以色列的官方偶像。</li>
+            <li><strong>余数</strong>（<span class="gk">λεῖμμα</span>，第 5 节）：「余留、剩下的部分」——新约仅此一处，是动词 <span class="gk">καταλείπω</span>（「留下」）的名词形式。</li>
+            <li><strong>拣选的恩典</strong>（<span class="gk">ἐκλογὴ</span> <span class="gk">χάριτος</span>，第 5 节）：「出于恩典的拣选」——<span class="gk">ἐκλογή</span>（「拣选」）加 <span class="gk">χάρις</span>（「恩典」）的属格：拣选的根据是恩典。</li>
+            <li><strong>不在乎行为</strong>（<span class="gk">οὐκ</span> <span class="gk">ἐξ</span> <span class="gk">ἔργων</span>，第 6 节）：「不是出于行为」——<span class="gk">ἐξ</span>（「出于」）表来源。</li>
+            <li><strong>不然</strong>（<span class="gk">ἐπεὶ</span>，第 6 节）：「否则」——引出反证。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>11:1 的 <span class="gk">μὴ</span> <span class="gk">ἀπώσατο</span> <span class="gk">ὁ</span> <span class="gk">θεὸς</span> <span class="gk">τὸν</span> <span class="gk">λαὸν</span> <span class="gk">αὐτοῦ</span>;（「神弃绝了他的百姓吗？」）</strong>：<span class="gk">μὴ</span> 开头的问句期待否定的回答：「神弃绝了他的百姓吗？（不，没有。）」；<span class="gk">μὴ</span> <span class="gk">γένοιτο</span>（「断乎没有」）是保罗的招牌式否定。</li>
+            <li><strong>11:1 的 <span class="gk">γὰρ</span> <span class="gk">κἀγὼ</span> <span class="gk">Ἰσραηλίτης</span> <span class="gk">εἰμί</span>（「因为我也是以色列人」）</strong>：<span class="gk">γὰρ</span>（「因为」）引出证据——保罗以自己为第一证据；<span class="gk">κἀγώ</span>（<span class="gk">καὶ</span> <span class="gk">ἐγώ</span>，即「我也是」）表强调；三个同位语层层收窄：以色列人 → 亚伯拉罕的后裔 → 便雅悯支派的。</li>
+            <li><strong>11:2 的 <span class="gk">ὃν</span> <span class="gk">προέγνω</span>（「他预先所知道的」）</strong>：关系从句作「百姓」的定语——百姓之所以是百姓，是因为神预先知道了他们；「预先知道」限定了百姓的身份。</li>
+            <li><strong>11:2 的 <span class="gk">ἢ</span> <span class="gk">οὐκ</span> <span class="gk">οἴδατε</span>（「你们岂不知道吗？」）</strong>：否定问句期待肯定回答——「你们当然知道。」</li>
+            <li><strong>11:3–4 的两段引文对照</strong>：以利亚的话（王上 19:10、14）与神的回话（王上 19:18）——人的控告对神的回答；「只剩下我一个人」对「我为自己留下七千人」。</li>
+            <li><strong>11:5 的 <span class="gk">οὕτως</span> <span class="gk">οὖν</span> <span class="gk">καὶ</span> <span class="gk">ἐν</span> <span class="gk">τῷ</span> <span class="gk">νῦν</span> <span class="gk">καιρῷ</span>（「如今也是这样」）</strong>：<span class="gk">οὕτως</span>（「这样」）加 <span class="gk">οὖν</span>（「所以」）加 <span class="gk">ἐν</span> <span class="gk">τῷ</span> <span class="gk">νῦν</span> <span class="gk">καιρῷ</span>（「在现今的时候」）——从以利亚时代到如今的类比。</li>
+            <li><strong>11:6 的 <span class="gk">εἰ</span> <span class="gk">δὲ</span> <span class="gk">χάριτι</span>, <span class="gk">οὐκέτι</span> <span class="gk">ἐξ</span> <span class="gk">ἔργων</span>, <span class="gk">ἐπεὶ</span> <span class="gk">ἡ</span> <span class="gk">χάρις</span> <span class="gk">οὐκέτι</span> <span class="gk">γίνεται</span> <span class="gk">χάρις</span>（「既是出于恩典，就不在乎行为；不然，恩典就不是恩典了」）</strong>：第一类条件句式的逻辑链；<span class="gk">οὐκέτι</span>（「不再」）两次出现，强调互斥；<span class="gk">γίνεται</span>（「成为、算是」）——恩典若掺了行为，就「不再算是」恩典。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「断乎没有」：三个大问题，三次断乎没有</strong>原文根据是 11:1 的 <span class="gk">μὴ</span> <span class="gk">ἀπώσατο</span>…<span class="gk">μὴ</span> <span class="gk">γένοιτο</span>（「神弃绝了他的百姓吗？断乎没有」），与 9:6、9:14 的两个问题呼应。穆理的论证是：9–11 章是保罗为神的信实所作的三重辩护——神的话没有落空（9:6），神没有不公平（9:14），神没有弃绝以色列（11:1）；三个问题层层递进：从神的话，到神的公义，到神与百姓的关系。穆尔的论证补上 11:1 与 10:21 的衔接：10:21 说神「整天伸手」，以色列「整天顶嘴」，读者自然会问——神是不是终于放弃了？保罗的回答先是否定（断乎没有），再是证据（我就是证据）。分歧传统注明：有学者认为保罗的问题只是修辞性的，他根本不认为有人会这样问；穆理与穆尔都认为这是真实的反对声音——罗马教会里的外邦信徒可能正这样想：以色列拒绝了福音，神就转而拣选了我们。互文印证：撒上 12:22「耶和华既喜悦选你们作他的子民，就必不撇弃你们」；诗 94:14「耶和华必不丢弃他的百姓，也不离弃他的产业」——保罗的问题与回答，都站在旧约的应许之上。</li>
+            <li><strong>2. 保罗自己就是证据</strong>原文根据是 11:1 的「因为我也是以色列人，亚伯拉罕的后裔，属便雅悯支派的」。穆理的论证是：保罗不是用抽象的神学回答，而是用自己的存在回答——一个法利赛人出身、逼迫过教会的犹太人，如今成了外邦人的使徒；若神弃绝了以色列，保罗这个人就不可能站在这里。穆尔的论证把三个身份标签逐一拆开：「以色列人」是立约身份，「亚伯拉罕的后裔」是应许的血脉（参 9:7「从以撒生的才要称为后裔」），「便雅悯支派」是最具体的支派归属——便雅悯是雅各最小的儿子、拉结所生的第二个儿子，也是第一位王扫罗的支派；保罗的希伯来名扫罗（<span class="gk">Σαῦλος</span>）正是从这位扫罗王而来。互文印证：腓 3:5「我是第八天受割礼的，属以色列族、便雅悯支派，是希伯来人所生的希伯来人」；林后 11:22「他们是希伯来人吗？我也是。」——保罗的身世不是偶然的点缀，而是他论证的一部分：神若弃绝了以色列，就不会留下一个便雅悯人来写罗马书。</li>
+            <li><strong>3. 「预先所知道的百姓」：预知是拣选的爱，不是冷眼的预见</strong>原文根据是 11:2 的 <span class="gk">ὃν</span> <span class="gk">προέγνω</span>（「他预先所知道的百姓」）。穆理的论证是：<span class="gk">προγινώσκω</span>（「预先知道」）在 8:29 与 11:2 是同一个词——「他预先所知道的人，他就预先定下效法他儿子的模样」；「预先知道」在圣经里不是神预见了人将来的信心或行为，而是神在永恒中以拣选的爱「认识」了他们——正如摩 3:2「在地上万族中，我只认识你们」，创 18:19「我眷顾他」：「认识」就是立约的拣选。穆尔的论证把 11:2 放进与新视角派的对话里：新视角派学者（如邓恩）认为「预知」在犹太传统里主要指神在历史中拣选了以色列这个民族；穆尔同意「百姓」的集体维度，但坚持 11:2 的「预先知道」同时有个人维度——保罗在 11:1 用自己作证据，11:2 就用「预先知道」解释为什么神没有弃绝：神的拣选先于人的回应，人的不信不能废掉神的拣选。分歧传统注明：阿民念传统把「预知」理解为神预见了谁会信；穆理与穆尔都指出，这种读法颠倒了 11:5–6 的逻辑——若预知只是预见人的信心，余数就是「预见到的信的人」，恩典就不再是恩典。互文印证：8:29–30 的金链；耶 1:5「我未将你造在腹中，我已晓得你」；彼前 1:2「就是照父神的先见被拣选」。</li>
+            <li><strong>4. 以利亚的七千人：人眼的余数与神眼的余数</strong>原文根据是 11:3–4 对王上 19:10、14、18 的引用。穆理的论证是：以利亚的抱怨出自真实的绝望——他刚在迦密山上大胜巴力的先知，转眼就被耶洗别追杀；他的结论「只剩下我一个人」在人的视角里是真实的：他所见的以色列，确实只剩他一个还在坚持。但神的回答纠正了他的算术：七千人没有向巴力屈膝——他们没有发声，没有露面，以利亚一个也不认识，但神数过他们。穆理指出，七千人的重点不是人数，而是「为自己留下」（<span class="gk">κατέλιπον</span> <span class="gk">ἐμαυτῷ</span>）：留下他们的是神，不是他们自己撑住了。穆尔的论证补上保罗引用的改写：王上 19:18 原文是「我在以色列人中为自己留下七千人」，保罗的版本强调「为自己」——余数的存在是神主权的作为；穆尔还留意以利亚的「控告」（<span class="gk">ἐντυγχάνω</span>）与 8:26–27、34 圣灵与基督的「代求」是同一个动词，形成对照：以利亚在神面前控告百姓，基督却在神右边为百姓代求——控告者与代求者，用的竟是同一个词。历代共识：教会常以此安慰处在少数、受逼迫中的信徒——你以为只剩自己一人，神却早已为自己留下了你不知道的同伴。</li>
+            <li><strong>5. 「既是出于恩典，就不在乎行为」：恩典与行为互斥的逻辑</strong>原文根据是 11:6 的 <span class="gk">εἰ</span> <span class="gk">δὲ</span> <span class="gk">χάριτι</span>, <span class="gk">οὐκέτι</span> <span class="gk">ἐξ</span> <span class="gk">ἔργων</span>（「既是出于恩典，就不在乎行为」）。穆理的论证是：这是罗马书因信称义的总纲在余数问题上的具体应用——余数之所以是余数，不是因为他们比别人更努力、更忠心，而是因为恩典拣选了他们；若余数是凭行为被留下的，恩典就不再是恩典——恩典的定义就是「白白给的」，掺了行为就不再是恩典（参 4:4「做工的得工价，不算恩典，乃是该得的」）。穆尔的论证把 11:6 放进与新视角派的对话里：新视角派认为保罗反对的不是「靠行为赚救恩」的犹太教，而是「以律法标记划定族群边界」的犹太教；穆尔承认边界问题在保罗的视野里，但 11:6 的逻辑是普遍的——任何把「行为」当作拣选根据的神学，都与恩典互斥：不是因为犹太人特别坏，而是因为恩典与行为在定义上不能并存。穆尔还留意 11:6 的文本异读：部分后期抄本加了一句「若是出于行为，就不是恩典了；不然，行为就不是行为」——这是抄写员把保罗的逻辑对称补全了，但最早的抄本没有这句，和合本跟从较短的读法；短读法本身已足够：恩典一旦掺了行为，就不再是恩典。互文印证：弗 2:8–9「你们得救是本乎恩，也因着信……也不是出于行为，免得有人自夸」；多 3:5「他便救了我们，并不是因我们自己所行的义，乃是照他的怜悯」。</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>当你觉得只剩自己一个人的时候</strong>：以利亚在罗腾树下求死，说「只剩下我一个人」。也许你也在某个处境里觉得：坚持信仰的只剩我一个，同事里、家人里、朋友里没有人理解。神对以利亚的回答，也是对你的回答：我为自己留下了七千人——你不知道的同伴、你没见过的忠心者，神都数过。操练：这周找一个你以为「只有我一个人在坚持」的处境，停下来想一想：神可能在你看不见的地方，保守着谁？为他们祷告，也求神让你遇见他们。</li>
+            <li><strong>余数是恩典，不是功劳</strong>：11:6 把两件事切开：若你今天还在信，不是你比别人更努力，而是恩典拣选了你；若有人今天还不信，也不是你该论断他「不配」。恩典的逻辑拆掉两种骄傲：对自己的骄傲（「我留下来是凭我的坚持」），和对别人的论断（「他被丢下是凭他的不配」）。操练：回想你信主的经过——写下三件你无法归功于自己的事（一次偶然的听见、一个人的邀请、一句留住你的话），为这三件「恩典的证据」感谢神。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>以利亚以为只剩自己一人，神却说还有七千人——在你的生活里，有没有一个时刻你觉得「只有我还在坚持」，而神可能在别处保守着你不知道的同伴？另外，11:6 说「既是出于恩典，就不在乎行为」——这句话怎么应用到你对自己、也对别人的判断上：你有没有在心里把人分成「靠行为配得」与「不配得」两类？如果你今天还站在这里，不是凭你的坚持，而是凭恩典——这会改变你看待自己和看待别人的方式吗？</p>
+          </div>
+</article>
+
+
+
+        <div class="daynav"><a href="day25.html">← 第 25 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
