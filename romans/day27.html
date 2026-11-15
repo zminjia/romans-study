@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 27 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day27-am">11:13–16</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 27 天</span>2026-11-15（周日） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day27-am">
+          <div class="entry-head">
+            <span class="entry-day">第 27 天 · 晨 — 2026-11-15（周日）</span>
+            <h3 class="entry-title">敬重职分，为叫骨肉之亲发愤 <span class="ref">· 罗马书 11:13–16</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">13</span>我对你们外邦人说这话，因我是外邦人的使徒，所以敬重我的职分，<span class="vn">14</span>或者可以激动我骨肉之亲发愤，好救他们一些人。<span class="vn">15</span>若他们被丢弃，天下就得与神和好，他们被收纳，岂不是死而复生吗？<span class="vn">16</span>所献的新面若是圣洁，全团也就圣洁了；树根若是圣洁，树枝也就圣洁了。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p>昨晚读完的 11:11–12 是全章的第二个大问题：以色列失脚，是要他们跌倒吗？断乎不是。反倒因他们的过失，救恩临到外邦人，要激动他们发愤。今晨的 11:13，保罗忽然转过身来，直接对外邦人说话：「我对你们外邦人说这话。」这是全章的转折点，也是 11 章后半段的开端。</p>
+          <p>这一转有意思的地方在于：保罗对外邦人说的话，谈的却是犹太人的得救。他敬重自己外邦人使徒的职分，不是为了外邦人本身，而是为了借着外邦人的蒙恩，激动他的骨肉之亲发愤，好救他们一些人。外邦人的得救与以色列的回转，是同一个计划的两面。</p>
+          <p>11:15 把 11:12 的「何况」推理再说一遍，换了一个更强的说法：若他们的被丢弃，叫天下与神和好，他们的被收纳，岂不是死而复生吗？11:16 则用两个比喻收束：新面与全团，树根与树枝。这两个比喻都是为接下来 11:17–24 的橄榄树比喻铺路。</p>
+          <p>全段结构：13–14 节，保罗的职分与目的；15 节，「何况」推理的再版；16 节，两个圣洁传递的比喻。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>对你们外邦人说这话</strong>（<span class="gk">λέγω</span> <span class="gk">ὑμῖν</span> <span class="gk">τοῖς</span> <span class="gk">ἔθνεσιν</span>，第 13 节）：保罗在书信里第一次这样直接称呼罗马教会里的外邦信徒，标志着论述对象的转换。</li>
+            <li><strong>因我是外邦人的使徒</strong>（<span class="gk">ἐθνῶν</span> <span class="gk">ἀπόστολος</span>，第 13 节）：保罗的自我定位，从 1:5 就已出现——「我们在万国之中领受了使徒的职分」。</li>
+            <li><strong>敬重我的职分</strong>（<span class="gk">δοξάζω</span> <span class="gk">τὴν</span> <span class="gk">διακονίαν</span> <span class="gk">μου</span>，第 13 节）：<span class="gk">δοξάζω</span>（「使荣耀、尊荣」）——敬重不是自夸，是尊荣神所托付的职分；<span class="gk">διακονία</span>（「服事、事工」）。和合本另有译法「看重我的职分」。</li>
+            <li><strong>或者可以</strong>（<span class="gk">εἴ</span> <span class="gk">πως</span>，第 14 节）：「如果可能、如果 somehow」——带着谦卑的不确定：成败在神，尽忠在我。</li>
+            <li><strong>骨肉之亲</strong>（<span class="gk">μου</span> <span class="gk">τὴν</span> <span class="gk">σάρκα</span>，第 14 节）：直译「我的肉」——保罗称犹太同胞为「我的肉」，带着血缘的亲近。</li>
+            <li><strong>激动发愤</strong>（<span class="gk">παραζηλώσω</span>，第 14 节）：<span class="gk">παραζηλόω</span>（「激起嫉妒」）——与 11:11 同一个词，呼应 10:19 引申 32:21。</li>
+            <li><strong>救他们一些人</strong>（<span class="gk">σώσω</span> <span class="gk">τινὰς</span> <span class="gk">ἐξ</span> <span class="gk">αὐτῶν</span>，第 14 节）：<span class="gk">τινάς</span>（「某些人、一些人」）——这个词很谦卑：保罗不夸口要救全以色列，只说救一些人。</li>
+            <li><strong>被丢弃</strong>（<span class="gk">ἀποβολή</span>，第 15 节）：「弃绝、抛弃」——新约仅此一处。</li>
+            <li><strong>与神和好</strong>（<span class="gk">καταλλαγὴ</span> <span class="gk">τοῦ</span> <span class="gk">κόσμου</span>，第 15 节）：<span class="gk">καταλλαγή</span>（「和好」）——在 5:11 已经出现过：「我们借着基督与神和好」。</li>
+            <li><strong>被收纳</strong>（<span class="gk">πρόσλημψις</span>，第 15 节）：「接纳、收纳」——新约仅此一处。</li>
+            <li><strong>死而复生</strong>（<span class="gk">ζωὴ</span> <span class="gk">ἐκ</span> <span class="gk">νεκρῶν</span>，第 15 节）：直译「从死里得生命」。</li>
+            <li><strong>所献的新面</strong>（<span class="gk">ἀπαρχὴ</span>，第 16 节）：「初熟的果子」——民 15:17–21 规定：以色列人要用初熟的面做饼献给神。</li>
+            <li><strong>全团</strong>（<span class="gk">φύραμα</span>，第 16 节）：「面团」。</li>
+            <li><strong>树根</strong>（<span class="gk">ῥίζα</span>，第 16 节）：「根」；<strong>树枝</strong>（<span class="gk">κλάδος</span>）：「枝子」。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>11:13 的 <span class="gk">ἐφ'</span> <span class="gk">ὅσον</span> <span class="gk">μὲν</span> <span class="gk">οὖν</span> <span class="gk">εἰμι</span> <span class="gk">ἐγὼ</span> <span class="gk">ἐθνῶν</span> <span class="gk">ἀπόστολος</span>（「因我是外邦人的使徒」）</strong>：<span class="gk">ἐφ'</span> <span class="gk">ὅσον</span>（「就……的程度而言」）——保罗敬重职分，是因为职分本身带着神的托付。</li>
+            <li><strong>11:13 的 <span class="gk">δοξάζω</span>（「我敬重」）</strong>：现在时，表示持续的尊荣，不是一时的热情。</li>
+            <li><strong>11:14 的两个目的不定式 <span class="gk">παραζηλῶσαι</span>…<span class="gk">σῶσαι</span>（「激动发愤……救他们」）</strong>：外邦人事工的目的链是：传福音给外邦人 → 激动犹太人嫉妒 → 救他们一些人。</li>
+            <li><strong>11:15 的反问 <span class="gk">εἰ</span> <span class="gk">γὰρ</span> <span class="gk">ἡ</span> <span class="gk">ἀποβολὴ</span> <span class="gk">αὐτῶν</span> <span class="gk">καταλλαγὴ</span> <span class="gk">κόσμου</span>, <span class="gk">τίς</span> <span class="gk">ἡ</span> <span class="gk">πρόσλημψις</span> <span class="gk">εἰ</span> <span class="gk">μὴ</span> <span class="gk">ζωὴ</span> <span class="gk">ἐκ</span> <span class="gk">νεκρῶν</span>;（「若他们被丢弃，天下就得与神和好，他们被收纳，岂不是死而复生吗？」）</strong>：问句期待的回答是「只能是死而复生，别无其他」。</li>
+            <li><strong>11:16 的两组第一类条件句 <span class="gk">εἰ</span> <span class="gk">δὲ</span> <span class="gk">ἡ</span> <span class="gk">ἀπαρχὴ</span> <span class="gk">ἁγία</span>, <span class="gk">καὶ</span> <span class="gk">τὸ</span> <span class="gk">φύραμα</span>（「所献的新面若是圣洁，全团也就圣洁了」）</strong>：圣洁从源头流向整体，不是从整体流向源头。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 职分的悖论：向外邦人说话，为的是犹太人得救</strong>原文根据是 11:13 的「我对你们外邦人说这话，因我是外邦人的使徒，所以敬重我的职分」。穆理的论证是：保罗的逻辑看似绕了一个大弯——他对外邦人说话，谈的却是犹太人的得救；他尊荣外邦人的职分，目的却是救犹太人。但这正是神计划的奇妙之处：神拯救以色列的途径，恰恰是借着外邦人的蒙恩。保罗的职分不是与犹太人事工对立的，他的外邦人事工本身就是神挽回以色列的工具。「敬重职分」不是自夸，而是尊荣神的托付：神把外邦人的使徒职分给了他，他就把这职分做到极致，因为职分做得越好，以色列被激动的可能性就越大。穆尔的论证补上直接称呼的意义：这是罗马书里保罗第一次直接称呼外邦读者，标志着论述从以色列转向外邦人，也标志着 11 章后半段的开始。穆尔指出，保罗在这里同时回应两边的怀疑：犹太人怀疑他的外邦人事工是不是背叛了以色列，外邦人则可能因蒙恩而骄傲；保罗的回答是：我的外邦人事工，正是为了以色列的得救。互文印证：徒 13:46，保罗在彼西底的安提阿说「神的道先讲给你们，原是应当的；只因你们弃绝这道……我们就转向外邦人去」；徒 28:28「这救恩已传给外邦人，他们必听从」——外邦人的蒙恩，从来不是以色列故事的句号，而是逗号。</li>
+            <li><strong>2. 「或者可以」救他们「一些人」：谦卑的迫切</strong>原文根据是 11:14 的 <span class="gk">εἴ</span> <span class="gk">πως</span> <span class="gk">παραζηλώσω</span> <span class="gk">μου</span> <span class="gk">τὴν</span> <span class="gk">σάρκα</span> <span class="gk">καὶ</span> <span class="gk">σώσω</span> <span class="gk">τινὰς</span> <span class="gk">ἐξ</span> <span class="gk">αὐτῶν</span>（「或者可以激动我骨肉之亲发愤，好救他们一些人」）。穆理的论证是：「或者可以」（<span class="gk">εἴ</span> <span class="gk">πως</span>）带着真实的不确定——保罗不知道能救多少人，也不知道这方法一定奏效。他不是在宣告一个必然的结果，而是在尽一个忠心的仆人所能尽的本分：把福音传给外邦人，尽力激动同胞发愤，至于救多少人，在神手里。但谦卑不等于冷淡：「或者可以」后面，跟着的是「救他们一些人」这个明确的目的。「一些人」（<span class="gk">τινὰς</span>）这个词很小，却很真实：保罗不夸口要一次性救回全以色列，他只求救一些人。穆尔的论证把「一些人」与 11:12 的「丰满」对照：11:12 说「何况他们的丰满呢」，11:14 却只说「救他们一些人」——丰满是未来的盼望，一些人是现在的实际。穆尔认为，这正是保罗事工神学的写照：他活在「已然」与「未然」之间——一面相信神对以色列有丰满的计划，一面在今天只求忠心地救一些人。分歧传统注明：有解经者认为「一些人」暗示保罗对以色列大规模归信并不乐观；穆理与穆尔都回应：11:14 的「一些人」是保罗个人事工的范围，不是神计划的范围——神计划的范围在 11:25–26：「等到外邦人的数目添满了，于是以色列全家都要得救」。互文印证：林前 9:22「向什么样的人，我就作什么样的人。无论如何，总要救些人」——同一个「无论如何」，同一种「或者可以」：方法可以灵活，目的始终是救人。</li>
+            <li><strong>3. 「死而复生」：从被丢弃到被收纳，「何况」多少</strong>原文根据是 11:15 的 <span class="gk">εἰ</span> <span class="gk">γὰρ</span> <span class="gk">ἡ</span> <span class="gk">ἀποβολὴ</span> <span class="gk">αὐτῶν</span> <span class="gk">καταλλαγὴ</span> <span class="gk">κόσμου</span>, <span class="gk">τίς</span> <span class="gk">ἡ</span> <span class="gk">πρόσλημψις</span> <span class="gk">εἰ</span> <span class="gk">μὴ</span> <span class="gk">ζωὴ</span> <span class="gk">ἐκ</span> <span class="gk">νεκρῶν</span>;（「若他们被丢弃，天下就得与神和好，他们被收纳，岂不是死而复生吗？」）。穆理的论证是：这是 11:12「何况」推理的再版，但措辞更强。11:12 说的是「过失」与「丰满」，11:15 说的是「被丢弃」（<span class="gk">ἀποβολή</span>）与「被收纳」（<span class="gk">πρόσλημψις</span>）：被丢弃是主动的弃绝，被收纳是主动的接纳。两节的逻辑一样：若小的尚且带来大的，大的岂不带来更大的？但 11:15 的结论换了一个意象：「死而复生」。穆理认为，「死而复生」不只是比喻，它带着末世复活的回声：以色列的被收纳，将与末日的复活相连——以色列今天的被丢弃，叫天下与神和好；以色列将来的被收纳，将是死人复活一样的生命大事。穆尔的论证把两种读法都摆出来：一种读法把「死而复生」理解为字面的末世复活，认为以色列的归回将伴随复活的发生；另一种读法把它理解为比喻，指以色列属灵的复兴，就像死人复活一样彻底。穆尔认为，无论取哪种读法，保罗的重点都一样：以色列的被收纳，其规模与意义，将远超过他们被丢弃时带来的祝福——被丢弃尚且叫天下与神和好，被收纳岂不是更大的生命吗？互文印证：结 37 章枯骨复活的异象——神说「我必使气息进入你们里面，你们就要活了」；约 5:25「死人要听见神儿子的声音，听见的人就要活了」——保罗的「死而复生」，站在旧约枯骨复活的应许之上。</li>
+            <li><strong>4. 初熟的面与全团：圣洁从源头流向整体</strong>原文根据是 11:16 的「所献的新面若是圣洁，全团也就圣洁了」。穆理的论证是：这个比喻出自民 15:17–21——以色列人进迦南后，要把初熟的麦面做成饼，举祭献给神；献上的那一团面若是圣洁的，整团面就都是圣洁的。初熟的部分代表整体，整体因着初熟的部分而成圣。穆理认为，这里的「初熟的面」指的是列祖：亚伯拉罕、以撒、雅各。他们是神从万民中分别出来的初熟果子，因着神与他们所立的约，整个以色列民族都被分别为圣。「圣洁」在这里不是道德的完美，而是约中的分别：以色列之所以圣洁，不是因为他们比别人好，而是因为神拣选了他们的列祖。穆尔的论证补上「初熟」（<span class="gk">ἀπαρχή</span>）一词的新约用法：8:23「我们有圣灵初结的果子」，林前 15:20「基督是从死里首先复活的，初熟的果子」，16:5 称以拜尼土是「亚细亚献给基督初结果子」——在这些用法里，初熟的果子总是代表整体、保证整体的。穆尔还留意一个分歧：有学者认为「初熟的面」指的是第一批信主的犹太人，就是 11:5 所说的余数；穆理与穆尔都倾向于列祖的读法，因为 11:28 会明说：「就着拣选说，他们为列祖的缘故是蒙爱的。」互文印证：民 15:17–21，初熟面饼的条例；申 7:6「你是归耶和华你神为圣洁的民，耶和华从地上的万民中拣选你，特作自己的子民」——圣洁的源头是神的拣选，不是人的表现。</li>
+            <li><strong>5. 树根与树枝：根托着枝子，不是枝子托着根</strong>原文根据是 11:16 下半句：「树根若是圣洁，树枝也就圣洁了。」穆理的论证是：这是第二个比喻，与第一个比喻平行——新面之于全团，犹如树根之于树枝。树根指的是列祖，树枝指的是以色列的后代。圣洁从根流向枝子，不是从枝子流向根：以色列的后代之所以圣洁，是因为他们的根——列祖——是圣洁的。穆理指出，这个比喻是为接下来 11:17–24 的橄榄树比喻铺路的：保罗先在这里立下原则——根的圣洁决定枝子的圣洁，然后在 11:17 才展开橄榄树：好枝子被折下来，野橄榄被接上去。穆尔的论证提醒一个容易误读的地方：「树根圣洁、树枝就圣洁」，这句话不能被理解为以色列人无论信不信，都自动是圣洁的。接下来的 11:17–24 会明说：不信的枝子会被折下来，接上去的野橄榄若不信，也会被砍下来。11:16 的圣洁，是约中的地位，不是无条件的保证。穆尔还与新视角派对话：新视角派学者强调，保罗在这里讲的是约中的成员身份——列祖的约保证了以色列在神计划中的位置；穆尔同意约的维度，但坚持 11:16 必须与 11:17–24 一起读：约中的地位是真实的，但享受这地位的条件是信心。历代共识：教会常以此安慰为不信的亲人祷告的人——神与列祖所立的约没有废掉，你的家人仍在神的计划里；但这安慰必须配上 11:17–24 的警告：枝子若不信，也会被折下来。互文印证：11:28「就着福音说，他们为你们的缘故是仇敌；就着拣选说，他们为列祖的缘故是蒙爱的」；11:18「你若夸口，就当知道，不是你托着根，乃是根托着你。」</li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>你的职分，可能是别人的救恩之路</strong>：保罗的外邦人事工，成了犹太人得救的工具。神常常「绕远路」做工：你服事甲，神却用这服事去挽回乙。你在教会里带的一群人，你在职场上的一份坚持，你在家里的一次忍让，你以为是在做一件事，神却可能用它去触动另一个你完全没想到的人。操练：想一想你现在的一份服事或工作，谁可能因此被激动、被挽回？为那个人祷告，求神让你看见：你的职分，不只是你的职分，也是神挽回别人的路。</li>
+            <li><strong>「或者可以救一些人」：谦卑的迫切</strong>：保罗不知道能救多少人，只说「或者可以救一些人」。他不夸口结果，只尽忠本分。不要用结果衡量忠心，也不要因「只救了一些人」而灰心。你传福音给一个人，他没有立刻信，不等于你的话白说了；你为一个人祷告十年，他还没有回转，不等于神没有听见。操练：回想一次你以为白费力气的服事或代祷，写下来，问问自己：我是按结果在衡量忠心，还是按忠心在衡量结果？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>保罗说他「敬重」外邦人使徒的职分，目的却是「或者可以救他们一些人」——他的犹太同胞。在你的生活里，有没有一份服事，你以为是为甲做的，神却用它去触动了乙？另外，11:16 说「树根若是圣洁，树枝也就圣洁了」——这句话对你理解「神与列祖所立的约今天仍然有效」有什么提醒？你是把以色列看作「已经被神丢弃的民族」，还是像保罗一样，相信他们的故事还没有写完——而你的故事，也还没有写完？</p>
+          </div>
+</article>
+
+
+
+
+        <div class="daynav"><a href="day26.html">← 第 26 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
