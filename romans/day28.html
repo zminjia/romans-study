@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 28 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day28-am">11:25–29</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 28 天</span>2026-11-16（周一） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day28-am">
+          <div class="entry-head">
+            <span class="entry-day">第 28 天 · 晨 — 2026-11-16（周一）</span>
+            <h3 class="entry-title">以色列全家都要得救 <span class="ref">· 罗马书 11:25–29</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">25</span>弟兄们，我不愿意你们不知道这奥秘（恐怕你们自以为聪明）：就是以色列人有几分是硬心的，等到外邦人的数目添满了，<span class="vn">26</span>于是以色列全家都要得救。如经上所记：必有一位救主从锡安出来，要消除雅各家的一切罪恶；<span class="vn">27</span>又说：我除去他们罪的时候，这就是我与他们所立的约。<span class="vn">28</span>就着福音说，他们为你们的缘故是仇敌；就着拣选说，他们为列祖的缘故是蒙爱的。<span class="vn">29</span>因为神的恩赐和选召是没有后悔的。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 在罗马书 9–11 章中的位置</strong></p>
+          <p>罗马书 9–11 章是保罗为神的信实所作的长篇辩护：神对以色列的应许落空了吗？9 章讲神主权的拣选（雅各与以扫、法老、窑匠与泥土），10 章讲以色列的责任（他们追求律法上的义却不信基督），11 章讲神拣选的余民与未来的盼望。</p>
+          <p>11 章的论证层层推进：</p>
+          <ul>
+            <li><strong>11:1–10</strong>：神没有弃绝祂的百姓，现今仍有余数（以利亚时代的七千人作先例）；</li>
+            <li><strong>11:11–16</strong>：以色列的跌倒反使救恩临到外邦人，初熟的果子与面团、树根与树枝的圣洁，预示全体终将归主；</li>
+            <li><strong>11:17–24</strong>：橄榄树的比喻——野橄榄枝（外邦信徒）被接上，本枝（不信的犹太人）被折下；警告外邦信徒不可自高，神也能把本枝重新接上；</li>
+            <li><strong>11:25–32</strong>：本段是全章的高潮与总结。保罗以「奥秘」揭开神救赎历史的终局：以色列暂时的硬心、外邦人数目的添满、以色列全家的得救。25–29 节是神学宣告，30–32 节是应用性总结（「神将众人都圈在不顺服之中，特意要怜恤众人」），33–36 节则是颂赞的爆发。</li>
+          </ul>
+          <p>因此，本段不是孤立的预言，而是 9–11 章全部论证的收束：神的拣选没有失败，祂的应许没有落空，犹太人与外邦人最终都要在基督里同蒙怜恤。</p>
+          <p><strong>2. 承接橄榄树比喻</strong></p>
+          <p>11:17–24 的橄榄树比喻留下两个悬念：被折下的本枝「若不是长久不信，仍要被接上」（23 节）；外邦信徒「不要向旧枝子夸口」（18 节）。25 节正是直接回应这两个悬念：保罗用「弟兄们，我不愿意你们不知道这奥秘」把话题从警告转向启示——神的计划有一个隐藏而如今显明的次序：以色列硬心是「有几分」、是「等到」某时为止；外邦人被接上不是终点，而是通向以色列全家得救的道路。</p>
+          <p><strong>3. 罗马教会的处境</strong></p>
+          <p>罗马教会以外邦信徒为主，犹太信徒为少数。外邦信徒容易因以色列普遍不信基督而轻看犹太人，甚至以为神已经彻底弃绝他们。保罗的「恐怕你们自以为聪明」正是对准这种自满：你们以为自己看透了神的计划，其实神的计划比你们想的更大、更长、更满有怜悯。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">μυστήριον</span>（mystērion，奥秘）——25 节</strong>在新约中，「奥秘」不是指人永远无法理解的谜，而是指神在永恒中隐藏、如今藉着启示显明的救赎计划（参罗 16:25；弗 3:3–6；西 1:26）。保罗在罗马书中只在此处与 16:25 使用此词。穆尔指出，这里的奥秘有三个要素：以色列的硬心是部分的、是暂时的、其终点是全家得救。穆理强调，「奥秘」一词本身表明这不是从旧约字面推导出来的结论，而是使徒领受的启示——旧约先知预言了外邦人归主与以色列复兴，但二者的时间次序与相互关系，是保罗在此首次清楚揭示的。</li>
+            <li><strong>2. <span class="gk">πώρωσις</span>（pōrōsis，硬心）——25 节</strong>源自动词 <span class="gk">πωρόω</span>，本义是使皮肤变硬、长茧，引申为心灵刚硬、失去知觉。保罗在 11:7 已用过同一词（「其余的就成了顽梗不化的」）。这里是名词，配以 <span class="gk">ἀπὸ</span> <span class="gk">μέρους</span>（「有几分」／「部分地」）：硬心不是临到全部以色列人，也不是临到每一个犹太人内心深处的全部——现今仍有余民（11:5），且硬心是「部分」的，在范围上和程度上都是有限的。</li>
+            <li><strong>3. <span class="gk">πλήρωμα</span>（plērōma，数目添满／丰满）——25 节</strong>由 <span class="gk">πληρόω</span>（充满）而来，意为「满数」「丰满」「完全的数目」。「外邦人的数目添满」指神所预定的外邦选民数目达到完全。穆理指出，<span class="gk">πλήρωμα</span> 在此不是指所有外邦人无一例外都得救，而是指神在外邦人中拣选的数目达到祂所定的丰满之数；与 11:12「以色列的丰满」（<span class="gk">πλήρωμα</span>）相对应——外邦人的丰满先到，以色列的丰满随后而来，二者互相呼应。</li>
+            <li><strong>4. <span class="gk">πᾶς</span> <span class="gk">Ἰσραήλ</span>（pas Israēl，以色列全家）——26 节</strong><span class="gk">πᾶς</span> 为「全部、所有」，<span class="gk">Ἰσραήλ</span> 指以色列民族。这一短语是本段解释争议的中心：它是指末世时活着的全体犹太人，还是指历代以来所有被拣选的以色列余民的总和，或是指由犹太人与外邦信徒共同组成的「属灵的以色列」（即教会）？下文解经部分将展开三种解释。</li>
+            <li><strong>5. <span class="gk">σωθήσεται</span>（sōthēsetai，将要得救）——26 节</strong><span class="gk">σῴζω</span> 的未来时被动语态，第三人称单数。未来时表明这是一个尚未完全实现的末世事件；被动语态表明得救是神的作为，人是领受者。保罗不用现在时（已经得救），也不用过去时，刻意指向未来。</li>
+            <li><strong>6. <span class="gk">ἀμεταμέλητα</span>（ametamelēta，没有后悔的／不可撤回的）——29 节</strong>由否定前缀 <span class="gk">ἀ</span>- ＋ <span class="gk">μεταμέλομαι</span>（后悔、改变心意）构成，意为「不会后悔的、不可反悔的」。新约中仅出现两次：此处与林后 7:10（「因为依着神的意思忧愁，就生出没有后悔的懊悔来」）。穆理强调，这不是说神没有情感或不作任何回应，而是说神的恩赐与选召是坚定不移的——祂既已赐下，就不会收回；既已选召，就不会废弃。</li>
+            <li><strong>7. <span class="gk">χαρίσματα</span>（charismata，恩赐）与 <span class="gk">κλῆσις</span>（klēsis，选召）——29 节</strong><span class="gk">χαρίσματα</span> 是 <span class="gk">χάρισμα</span> 的复数，指神白白赐下的恩典礼物（参罗 5:15–16；6:23；12:6）；<span class="gk">κλῆσις</span> 指神有效的呼召与拣选（参罗 11:7；林前 1:26）。二者并列，涵盖神在以色列身上所施的一切恩惠（儿子的名分、荣耀、诸约、律法、礼仪、应许，参罗 9:4–5）与神拣选他们作选民的决定。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 25 节：<span class="gk">οὐ</span> <span class="gk">γὰρ</span> <span class="gk">θέλω</span> <span class="gk">ὑμᾶς</span> <span class="gk">ἀγνοεῖν</span>（我不愿意你们不知道）</strong>这是否定愿望句式，保罗书信中常用的郑重引入语（参罗 1:13；林前 10:1；12:1；帖前 4:13）。<span class="gk">γὰρ</span>（因为）承接上文的警告：正因为你们不可自高，所以我不愿意你们不知道这奥秘。<span class="gk">ἀγνοεῖν</span>（不知道）为现在时不定式，强调持续的无知状态。随后插入的 <span class="gk">ἵνα</span> <span class="gk">μὴ</span> <span class="gk">ἦτε</span> <span class="gk">παρ</span>' <span class="gk">ἑαυτοῖς</span> <span class="gk">φρόνιμοι</span>（恐怕你们自以为聪明）是目的子句——揭示奥秘的目的，是要打碎外邦信徒的自满。<span class="gk">φρόνιμοι</span>（聪明）前有 <span class="gk">παρ</span>' <span class="gk">ἑαυτοῖς</span>（在自己眼中），直译为「在自己眼中看为聪明」，即自以为是的聪明。</li>
+            <li><strong>2. 25 节：<span class="gk">ἄχρι</span> <span class="gk">οὗ</span>（等到……为止）</strong><span class="gk">ἄχρι</span> <span class="gk">οὗ</span> 是时间连词，标明一个有时限的状态：以色列的硬心持续到某个时间点为止，之后便不再如此。它既表明硬心的暂时性，也表明神的时间表是确定的。穆尔指出，这一结构与 25 节的 <span class="gk">γέγονεν</span>（已经发生，完成时）形成对比：硬心「已经发生」是既成事实，但其持续时间是「等到」外邦人数目添满为止。</li>
+            <li><strong>3. 26 节：<span class="gk">καὶ</span> <span class="gk">οὕτως</span>（于是／这样）</strong><span class="gk">καὶ</span> <span class="gk">οὕτως</span> 是关键的承接词：<span class="gk">οὕτως</span>（这样、如此）指以前文所述的方式——即藉着外邦人数目添满、以色列硬心结束的方式——以色列全家将要得救。它表明 26 节的得救不是与 25 节无关的独立事件，而是 25 节所描述的过程的必然结果。穆理特别强调 <span class="gk">οὕτως</span> 的方式含义：以色列的得救将以这种方式发生，而不是以某种与外邦人归主无关的方式发生。</li>
+            <li><strong>4. 26–27 节：引文的组合</strong>保罗将以赛亚书 59:20–21 与 27:9（并有耶利米书 31:33–34 的背景）组合成一句引文：「必有一位救主从锡安出来，要消除雅各家的一切罪恶；我除去他们罪的时候，这就是我与他们所立的约。」原文以赛亚书 59:20 是「必有一位救赎主来到锡安——雅各家……」，保罗改为「从锡安出来」，这一改动是有意的神学强调（见下文解经）。引文用第三人称未来时（<span class="gk">ἥξει</span>，必来；<span class="gk">ἀποστρέψει</span>，要消除）与第一人称未来时（<span class="gk">ἀφέλωμαι</span>，我除去）交替，表明这是神亲自立约、亲自成就的救赎。</li>
+            <li><strong>5. 28–29 节：<span class="gk">μὲν</span>…<span class="gk">δὲ</span> 对比结构</strong>28 节是典型的 <span class="gk">μὲν</span>…<span class="gk">δὲ</span>（「一方面……另一方面……」）对比句：<p><span class="gk">κατὰ</span> <span class="gk">μὲν</span> <span class="gk">τὸ</span> <span class="gk">εὐαγγέλιον</span> <span class="gk">ἐχθροὶ</span> <span class="gk">δι</span>' <span class="gk">ὑμᾶς</span>（就着福音说，他们为你们的缘故是仇敌）；
+- <span class="gk">κατὰ</span> <span class="gk">δὲ</span> <span class="gk">τὴν</span> <span class="gk">ἐκλογὴν</span> <span class="gk">ἀγαπητοὶ</span> <span class="gk">διὰ</span> <span class="gk">τοὺς</span> <span class="gk">πατέρας</span>（就着拣选说，他们为列祖的缘故是蒙爱的）。</p><p>同一群人（不信的犹太人）同时具有两种看似矛盾的身份：从福音的立场看，他们是神的仇敌；从拣选的立场看，他们是神所爱的。两个 <span class="gk">διὰ</span>（为……的缘故）短语形成平行对照：仇敌是「为你们（外邦人）的缘故」，蒙爱是「为列祖的缘故」。29 节的 <span class="gk">γὰρ</span>（因为）给出这种双重身份的根基：神的恩赐与选召是不可撤回的。</p></li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「奥秘」的含义：神救赎历史的次序</strong>保罗所说的「奥秘」，不是指以色列最终得救这一事实本身——旧约先知早已预言以色列的复兴（申 30:1–10；耶 31:31–34；结 36:22–32；何 3:4–5；亚 12:10）。奥秘的核心在于<strong>次序与方式</strong>：以色列的硬心是部分的、暂时的；外邦人的丰满先到，以色列的全家得救随后而来。<p>穆理认为，这一奥秘的揭示有三个神学要点：第一，神的计划有一个清晰的时间表，历史不是偶然的；第二，以色列的拒绝不是神计划的失败，而是神计划的一部分——他们的硬心为外邦人开了救恩之门（11:11、15）；第三，神的计划最终要使犹太人与外邦人同得怜恤（11:32），显明祂的智慧与信实。</p><p>穆尔补充说，「奥秘」一词在保罗书信中总是指向基督里的启示（弗 3:4–6；西 1:26–27）。这里的奥秘与以弗所书 3:6 的奥秘互相印证：外邦人在基督耶稣里，藉着福音，得以同为后嗣、同为一体、同蒙应许。而罗马书 11:25 的独特之处在于，它把外邦人的丰满与以色列的复兴连成一个因果链条：外邦人的得救不是以色列被弃的证明，而是以色列得救的前奏。</p><p>历代教会的共识是：神的奥秘不是要人凭理性猜测，而是要人凭信心顺服。奥古斯丁、加尔文与历代改革宗神学家都强调，神救赎历史的细节属于祂的主权，信徒的责任是承认神的智慧深哉（11:33），而不是试图绘制精确的时间表。</p></li>
+            <li><strong>2. 「部分硬心」与「外邦人数目添满」</strong>「以色列人有几分是硬心的」——穆理与穆尔都强调 <span class="gk">ἀπὸ</span> <span class="gk">μέρους</span> 的双重含义：<ul><li><strong>范围上的部分</strong>：不是所有犹太人都硬心，现今仍有余民（11:5），保罗自己就是明证（11:1）；</li><li><strong>程度上的部分</strong>：硬心不是绝对的、不可逆的，神能「将他们重新接上」（11:23）。</li></ul><p>「等到外邦人的数目添满了」——穆理认为 <span class="gk">πλήρωμα</span> <span class="gk">τῶν</span> <span class="gk">ἐθνῶν</span> 指神所预定的外邦选民达到完全的数目，与 11:12「以色列的丰满」相对称。穆尔则指出，<span class="gk">πλήρωμα</span> 在此也带有「丰满进入」的动态含义：<span class="gk">εἰσέλθῃ</span>（进入）一词表明外邦人是「进入」神的国度、进入救恩的丰满。这与路加福音 21:24「外邦人的日期满了」互相印证，表明神为外邦人的归主设定了一个时期。</p><p>分歧传统：对于「数目添满」是否意味着一个可数的、确定的数目，历代解经家有不同看法。奥古斯丁与加尔文认为这是指神预定的选民数目；部分现代解经家则认为这是指外邦人福音广传的时期达到丰满。穆理与穆尔都倾向于前者，但都强调：无论如何理解，重点不在人能计算出这个数目，而在神的时间表是确定的、祂的旨意必要成就。</p></li>
+            <li><strong>3. 「以色列全家都要得救」——三种主要解释</strong>这是罗马书 9–11 章中最受争议的一节。历代教会主要有三种解释，穆理与穆尔的立场不同，须仔细分辨。<p><strong>解释一：末世全体以色列人归主（末世论解释）</strong></p><p>认为 <span class="gk">πᾶς</span> <span class="gk">Ἰσραήλ</span> 指在基督再来前后、活在世上的全体犹太民族将大规模归主信基督。这是历史上多数教父、改教家与近代福音派解经家的主流立场。</p><ul><li><strong>原文根据</strong>：<span class="gk">πᾶς</span> 的自然含义是「全体」；26 节用未来时 <span class="gk">σωθήσεται</span>，指向一个尚未发生的未来事件；27 节引文的「消除雅各家的一切罪恶」与「除去他们的罪」指向一个民族性的、末世性的赦罪行动；28–29 节强调神对以色列民族的选召不可撤回，指向民族整体而非个人余民。</li><li><strong>穆理的立场</strong>：穆理坚定持此说。他认为 11:26 的「以色列全家」必须与 11:25 的「以色列人有几分是硬心的」中的「以色列」同一所指——即犹太民族整体。他论证说，如果「全家」只指历代余民的总和，保罗就不需要用「奥秘」来揭示，也不需要用未来时来预言；余民得救在每一世代都已发生，不是一个需要启示的未来事件。穆理进一步指出，11:12「以色列的丰满」与 11:15「他们被收纳……岂不是死而复生吗」都指向一个民族性的复兴，与 11:26 互相印证。</li><li><strong>穆尔的立场</strong>：穆尔也持此说，但论证进路略有不同。他承认「全家」一词在旧约与犹太文献中有时指「全体余民」，但认为在罗马书 11 章的语境中，保罗一贯用「以色列」指犹太民族（11:1、2、7、11、25），因此 26 节的「以色列全家」最自然的读法是末世时犹太民族的大规模归主。穆尔同时提醒：这不等于说每一个犹太人（包括已死的不信者）都自动得救——「全家」是指那个世代的以色列民族整体大规模归主，而非每一个个体无条件得救；得救仍是藉着信基督（11:23「若不是长久不信」）。</li><li><strong>互文印证</strong>：撒迦利亚书 12:10（「他们必仰望我，就是他们所扎的」）、以赛亚书 59:20–21、耶利米书 31:33–34、路加福音 21:24，都支持以色列民族末世归主的盼望。</li></ul><p><strong>解释二：历代余民的总和（余民解释）</strong></p><p>认为「以色列全家」指历代以来所有被拣选的以色列余民的总和——即在历史长河中所有信主的犹太人加起来，就是「全以色列」。</p><ul><li><strong>原文根据</strong>：<span class="gk">πᾶς</span> 在新约中有时指「全部种类」而非「每一个个体」（如罗 11:26 的平行经文加拉太书 6:16「神的以色列」）；保罗在 11:5 已说「如今也是这样，照着拣选的恩典，还有所留的余数」，余民在每一世代都不断得救，最终总和即为「全家」。</li><li><strong>分歧立场</strong>：持此说的解经家（包括部分改革宗学者，如霍志恒 Charles Hodge 的部分论述）认为，末世大规模归主的解释把太多盼望寄托在未来，而忽略了余民神学的一贯性。穆理回应说：余民解释无法解释为何保罗用「奥秘」与未来时来宣告，也无法解释 11:12、15 的「丰满」与「收纳」所指向的民族性转折。穆尔则认为余民解释在语法上并非不可能，但在罗马书 11 章的论证脉络中说服力较弱——保罗的论证是从「现今余民」（11:5）推进到「将来丰满」（11:12、15、26），余民是保证，不是终点。</li></ul><p><strong>解释三：教会意义上的以色列（属灵以色列解释）</strong></p><p>认为「以色列全家」指由犹太信徒与外邦信徒共同组成的教会，即「属灵的以色列」（参罗 2:28–29；9:6「从以色列生的，不都是以色列人」；加 6:16）。</p><ul><li><strong>原文根据</strong>：保罗在罗马书 9:6 已区分「以色列」与「真以色列」；在加拉太书 3:29，信基督的人就是亚伯拉罕的后裔；因此「全家得救」可理解为教会（犹太与外邦信徒合一的身体）最终完全得救。</li><li><strong>分歧立场</strong>：穆理与穆尔都明确拒绝此说。穆理指出，在罗马书 11 章中，保罗始终严格区分「以色列」与「外邦人」（11:11–13、25、28），若 26 节突然把「以色列」改为「教会」，会使整章的论证断裂。穆尔补充说，加拉太书 6:16 的「神的以色列」语境与此不同，不能直接套用到罗马书 11:26；且 11:28「就着福音说，他们……是仇敌」中的「他们」显然指不信的犹太人，若「以色列全家」指教会，则 28 节的「他们」与 26 节的「以色列」无法衔接。历代教会的共识也倾向于：保罗在此不是在重新定义「以色列」，而是在预言以色列民族的未来。</li></ul><p><strong>小结</strong>：穆理与穆尔虽然论证侧重不同（穆理偏重改革宗救赎历史的整体进路，穆尔更注重与当代新约学术、包括新视角派的对话，并对「全家」的范围持更谨慎的表述），但在核心结论上一致：<strong>「以色列全家都要得救」最自然的解释，是末世时犹太民族将大规模归主信基督</strong>。这一解释既符合原文的未来时与「全体」含义，也符合 9–11 章从余民到丰满的论证脉络，更符合旧约先知的预言。信徒当以此为盼望祷告，而不是以此为借口推迟传福音——因为以色列的得救仍是藉着信基督，而福音正是要传给他们（罗 10:14–15；11:23）。</p></li>
+            <li><strong>4. 以赛亚引文与新约的应验（26–27 节）</strong>保罗引用的经文组合了以赛亚书 59:20–21（「必有一位救主来到锡安」）与以赛亚书 27:9（「雅各的罪孽得赦免」），并有耶利米书 31:33–34 新约的背景。<p>两个值得注意的改动：</p><ul><li><strong>「从锡安出来」而非「来到锡安」</strong>：以赛亚书原文是「来到锡安」，保罗改为「从锡安出来」。穆尔指出，这一改动可能源自七十士译本的异文，也可能有意强调基督的救赎是从锡安（即以色列、教会）发出、临到万邦的——救恩从犹太人出来（约 4:22），再传回犹太人。穆理则认为，无论异文来源如何，这一改动都指向基督的两次来临：祂第一次从锡安出来成就救赎，第二次再来时将完成以色列的拯救。</li><li><strong>「消除雅各家的一切罪恶」</strong>：以赛亚书 59:20 的条件是「雅各家离弃罪过的人」，保罗略去条件句，强调神主权的赦罪行动。穆理认为，这表明以色列的得救不是因他们先悔改、神才施恩，而是神先施恩、除去他们的罪，他们才得以悔改归主——与 11:29「神的恩赐和选召是没有后悔的」互相印证。</li></ul><p>27 节「我除去他们罪的时候，这就是我与他们所立的约」——指向耶利米书 31:31–34 的新约：神将律法放在他们里面、写在他们心上，赦免他们的罪孽，不再记念。穆尔指出，保罗在此把新约的应许直接应用到以色列全家的得救上：这不是另一个约，而是基督在十字架上所立的新约在以色列身上的最终成全。</p></li>
+            <li><strong>5. 双重身份：为福音的缘故是仇敌，为列祖的缘故是蒙爱的（28 节）</strong>这是全段最富张力的一节。同一群不信的犹太人，同时是「仇敌」与「蒙爱的」——这不是矛盾，而是从两个不同角度看同一现实：<ul><li><strong>就着福音说，他们是仇敌</strong>：因他们拒绝福音、敌对基督（参罗 5:10「我们作仇敌的时候」；帖前 2:15），他们在福音的立场上与神为敌。穆理强调，「仇敌」在此不是指神恨恶他们，而是指他们在福音上的敌对状态——正如保罗自己从前也是「亵渎神的、逼迫人的、侮慢人的」（提前 1:13），却蒙了怜恤。</li><li><strong>就着拣选说，他们是蒙爱的</strong>：因神拣选了他们的列祖（亚伯拉罕、以撒、雅各），并与他们立约，他们仍是神所爱的。穆尔指出，「为列祖的缘故」不是说列祖的功德可以遗传，而是说神对列祖的应许是信实的，祂的爱是立约的爱、是守约的爱。历代教会的共识是：神的爱有不同的层面——祂爱世人（约 3:16），祂特别爱祂的选民，而对以色列民族的爱是基于祂与列祖所立的约。</li><li><strong>两个「为……的缘故」</strong>：仇敌是「为你们（外邦人）的缘故」——他们的拒绝使福音转向外邦人；蒙爱是「为列祖的缘故」——他们的蒙爱不是因他们自己的功德，而是因神的应许。这两个短语并列，显明神的主权与恩典：人的拒绝不能废掉神的应许，人的敌对反而成了神施行怜恤的器皿。</li></ul></li>
+            <li><strong>6. 神的恩赐和选召是没有后悔的（29 节）</strong>29 节是 28 节的根基，也是 9–11 章的总结性宣告。<p>穆理认为，「恩赐」（<span class="gk">χαρίσματα</span>）指神赐给以色列的一切特权（罗 9:4–5：儿子的名分、荣耀、诸约、律法、礼仪、应许），「选召」（<span class="gk">κλῆσις</span>）指神拣选以色列作祂子民的决定；二者都是 <span class="gk">ἀμεταμέλητα</span>——不可撤回的。神不会因以色列的不信而收回祂的恩赐，也不会因他们的拒绝而废弃祂的选召。这不是说每一个犹太人都会自动得救（9:6 已说明「从以色列生的，不都是以色列人」），而是说神对以色列民族的旨意必要成就——祂的拣选是有效的，祂的应许是信实的。</p><p>穆尔补充说，<span class="gk">ἀμεταμέλητα</span> 一词在新约中仅出现两次，另一次在林后 7:10 指「没有后悔的懊悔」。这一用词表明，神的选召不是一种可以反悔的决定，而是一种坚定不移的旨意。与人的后悔不同，神的「没有后悔」不是冷漠，而是不改变的信实——正如民数记 23:19 所说：「神非人，必不致说谎，也非人子，必不致后悔。」</p><p>对信徒的安慰是：神对以色列的信实，也是神对我们信实的保证——祂既不废弃对以色列的选召，也必不废弃对我们在基督里的选召（罗 8:28–30；腓 1:6）。我们得救的确据，不在自己的坚定，而在神的不后悔。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：不要自以为聪明，要以敬畏的心看神的计划</strong>保罗揭示奥秘的目的，是要打碎外邦信徒的自满（「恐怕你们自以为聪明」）。今天的我们也容易自以为聪明：以为自己看透了神对某个民族、某个人、某件事的旨意，轻看那些尚未信主的人，甚至断言神已经弃绝他们。本段提醒我们：神的计划比我们想的更大、更长、更满有怜恤。我们不知道神的时间表，但我们知道祂的信实。对尚未信主的家人、朋友、同胞，我们当存盼望为他们祷告，而不是论断与轻看；对神的作为，我们当存敬畏，而不是自以为是的评判。</li>
+            <li><strong>应用二：在神的信实里得安慰，在福音的托付里尽忠心</strong>神对以色列的选召「是没有后悔的」，这对我们是极大的安慰：我们的得救不在乎自己的表现，而在乎神不改变的应许。但这安慰不是叫我们闲懒，而是叫我们尽忠心——以色列全家的得救，是藉着福音传给他们（罗 10:14–15）。神把外邦人接入橄榄树，不是叫我们夸口，而是叫我们作见证：让犹太人看见外邦信徒的生命，激动他们发愤（11:11、14）。今天，我们是否也以自己的生命与言语，向未信者显明基督的丰盛，激动他们来就基督？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>保罗说，以色列人「就着福音说……是仇敌；就着拣选说……是蒙爱的」。在你生命中，有没有一个人，你曾因他的拒绝与敌对而断定神已经弃绝他？本段的「双重身份」与「没有后悔的选召」，如何改变你为他祷告与向他传福音的态度？请为他提名祷告，并思想你可以如何向他显明基督的爱。</p>
+          </div>
+</article>
+
+        <div class="daynav"><a href="day27.html">← 第 27 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
