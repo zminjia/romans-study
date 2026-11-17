@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 29 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 8.55%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day29-am">12:1–5</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+        <a href="day28.html">第 28 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 29 天</span>2026-11-17（周二） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day29-am">
+          <div class="entry-head">
+            <span class="entry-day">第 29 天 · 晨 — 2026-11-17（周二）</span>
+            <h3 class="entry-title">将身体献上，当作活祭 <span class="ref">· 罗马书 12:1–5</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>所以，弟兄们，我以神的慈悲劝你们，将身体献上，当作活祭，是圣洁的，是神所喜悦的；你们如此事奉乃是理所当然的。<span class="vn">2</span>不要效法这个世界，只要心意更新而变化，叫你们察验何为神的善良、纯全、可喜悦的旨意。<span class="vn">3</span>我凭着所赐我的恩对你们各人说：不要看自己过于所当看的，要照着神所分给各人信心的大小，看得合乎中道。<span class="vn">4</span>正如我们一个身子上有好些肢体，肢体也不都是一样的用处。<span class="vn">5</span>我们这许多人，在基督里成为一身，互相联络作肢体，也是如此。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 全卷的转折点：「所以」</strong></p>
+          <p>12:1 的「所以」是罗马书全卷最关键的转折之一。从 1:18 起，保罗论证了人的罪（1–3 章）、因信称义（3–5 章）、在基督里的新生命（6–8 章）、神对以色列的信实（9–11 章），最后以 11:33–36 的颂赞收束：「深哉，神丰富的智慧和知识！……因为万有都是本于他，倚靠他，归于他。」从 12:1 起，保罗转向生活的应用——12–15 章的劝勉，全部建立在 1–11 章的教义之上。</p>
+          <p>这个次序本身就是神学宣告：保罗不是先给人一套道德规条、再用福音来解释，而是先讲清楚神在基督里已经作成的（1–11 章），然后才说「所以」——既然神如此怜悯了你们，你们的生命当如何回应。劝勉不是福音的附加品，而是福音的必然结果。</p>
+          <p><strong>2. 「神的慈悲」指什么</strong></p>
+          <p>「我以神的慈悲劝你们」——「慈悲」（<span class="gk">οἰκτιρμός</span>）是复数，指神施行的一切怜悯。最近的背景是 11:30–32 的三重「怜恤」：外邦人因犹太人的不顺服蒙了怜恤，犹太人也要因施给外邦人的怜恤蒙怜恤，「神将众人都圈在不顺服之中，特意要怜恤众人」。但「慈悲」的范围不止于 9–11 章——它涵盖全卷的福音：神的义藉着基督显明、罪人因信称义、信徒在基督里得自由、神的爱藉着圣灵浇灌在心里（5:5）、没有任何事物能使我们与神的爱隔绝（8:38–39）。保罗以全部的「慈悲」作为劝勉的根基：不是以律法的威吓劝人，而是以福音的怜悯劝人。</p>
+          <p><strong>3. 罗马教会的处境：骄傲与分裂的危险</strong></p>
+          <p>罗马教会由犹太信徒与外邦信徒组成，两类信徒之间存在张力：11 章的警告「不可自高，反要惧怕」（11:20）仍在耳边；14–15 章将继续处理「信心软弱的」与「刚强的」在饮食与节期上的争论。12:3–5 的劝勉——「不要看自己过于所当看的」「在基督里成为一身，互相联络作肢体」——正是针对这种张力：恩赐不同、背景不同、信心程度不同的人，如何在同一个身体里彼此相顾而不彼此轻看。</p>
+          <p>本段的结构因此是三层递进：</p>
+          <ul>
+            <li><strong>12:1–2</strong>：总纲——将身体献上、心意更新而变化；</li>
+            <li><strong>12:3</strong>：对个人的劝勉——看自己要合乎中道；</li>
+            <li><strong>12:4–5</strong>：对群体的异象——一个身子、许多肢体、互相联络。</li>
+          </ul>
+          <p>晚篇（12:6–8）将继续展开：各人按所得的恩赐彼此服事。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">παρακαλῶ</span>（parakalō，劝）——1 节</strong>现在时，表明持续的劝勉。保罗在书信中常用此词引入伦理劝勉（参罗 15:30；16:17；林前 1:10；腓 4:2）。它不是命令式的强迫，而是带着恳求的劝说——正合乎「以神的慈悲劝」的语气：劝勉的权柄来自福音的怜悯，而不是使徒的威严。</li>
+            <li><strong>2. <span class="gk">οἰκτιρμός</span>（oiktirmos，慈悲／怜悯）——1 节</strong>复数形式，指神施行的一切怜悯行动。同词出现在林后 1:3（「发慈悲的父」）、腓 2:1（「怜悯的心肠」）、西 3:12（「怜悯」）。复数表明神的怜悯不是单一的一件事，而是祂在救赎历史中一再施行的诸般恩惠。</li>
+            <li><strong>3. <span class="gk">παραστῆσαι</span>（parastēsai，献上）——1 节</strong>不定过去时不定式，表明一次性的、决定性的行动；这是祭祀用语，指把祭物带到祭坛前献上（参罗 6:13、16、19「将肢体献给神」）。不定过去时与 2 节的现在时命令（「不要效法」「要变化」）形成对比：献上是一次决志性的行动，更新变化则是持续一生的过程。</li>
+            <li><strong>4. <span class="gk">θυσίαν</span> <span class="gk">ζῶσαν</span>（thysian zōsan，活祭）——1 节</strong>与旧约被宰杀的祭物形成对照：基督徒献上的祭是「活的」——不是一次流血的死，而是持续活着的奉献。「活」字表明这祭不是一时的冲动，而是每天活出来的生命。</li>
+            <li><strong>5. <span class="gk">λογικὴν</span> <span class="gk">λατρείαν</span>（logikēn latreian，理所当然的事奉）——1 节</strong><span class="gk">λογικός</span> 源自 <span class="gk">λόγος</span>（道、理性），可解作「合乎理性的」或「属灵的」；<span class="gk">λατρεία</span> 是圣殿敬拜的专用词（指献祭与事奉，参罗 9:4「礼仪」）。二者结合，意为「合乎真理的敬拜」——献上身体就是真正的敬拜。和合本译作「理所当然的」，强调这是信徒蒙了如此怜悯之后唯一合乎情理的回应。</li>
+            <li><strong>6. <span class="gk">συσχηματίζεσθε</span>（syschēmatizesthe，效法）——2 节</strong>现在时被动语气命令式，字面是「不要被模塑成……的形状」：<span class="gk">σχῆμα</span> 指外在的形状、样式、模式。被动语态表明，世界不是被动地等着人去效法，而是主动地、持续地把人塑造成它的形状——信徒若不抵挡，就会被它同化。</li>
+            <li><strong>7. <span class="gk">μεταμορφοῦσθε</span>（metamorphousthe，变化）——2 节</strong>现在时被动语气命令式，指内在本质的改变、蜕变（同词用于基督登山变像，太 17:2；可 9:2；以及林后 3:18「荣上加荣」）。与「效法」形成对照：前者是被世界从外面塑形，后者是被神从里面改变；同样是被动语态——改变的动力在神，但人要顺服、配合这改变。</li>
+            <li><strong>8. <span class="gk">ἀνακαινώσει</span>（anakainōsei，更新）——2 节</strong>名词，指「心意（<span class="gk">νοῦς</span>）的更新」。「心意」在保罗书信中指人的思想、判断与价值取向（参罗 7:23、25；林前 2:16）。更新的途径是心意——不是靠意志力硬撑，而是让神的话语重塑我们的判断（参弗 4:23「心志改换一新」；西 3:10「穿上了新人」）。</li>
+            <li><strong>9. <span class="gk">δοκιμάζειν</span>（dokimazein，察验）——2 节</strong>本义是试验金属、检验真伪，引申为经过试验而辨别、认可。心意更新的结果，是信徒能「察验」神的旨意——分辨什么是善的、什么是神所喜悦的。三个形容词修饰神的旨意：<span class="gk">τὸ</span> <span class="gk">ἀγαθὸν</span>（善良的）、<span class="gk">καὶ</span> <span class="gk">εὐάρεστον</span>（可喜悦的）、<span class="gk">καὶ</span> <span class="gk">τέλειον</span>（纯全的）。</li>
+            <li><strong>10. <span class="gk">φρονεῖν</span>（phronein，看／思想）——3 节</strong>本节三次使用同一动词，构成保罗的文字游戏：<span class="gk">ὑπερφρονεῖν</span>（看过于所当看的，高看自己）— <span class="gk">φρονεῖν</span>（看）— <span class="gk">σωφρονεῖν</span>（看得合乎中道，清醒地思想）。<span class="gk">σωφρονεῖν</span> 由 <span class="gk">σῶς</span>（健全）＋ <span class="gk">φρήν</span>（心思）构成，意为头脑清醒、判断健全。保罗用同一个词根的三重变化，教导信徒如何「看」自己。</li>
+            <li><strong>11. <span class="gk">μέτρον</span> <span class="gk">πίστεως</span>（metron pisteōs，信心的大小／度量）——3 节</strong><span class="gk">μέτρον</span> 是「度量、份量」；神「分给」各人的信心有不同的度量。信心本身是神所赐的（参弗 2:8；腓 1:29），各人所得不同，因此没有人可以凭信心夸口。</li>
+            <li><strong>12. <span class="gk">σῶμα</span>／<span class="gk">μέλη</span>（sōma／melē，身子／肢体）——4–5 节</strong><span class="gk">σῶμα</span> 是身体，<span class="gk">μέλη</span> 是肢体、器官。身体的比喻是保罗论教会合一的核心意象（参林前 12:12–27；弗 4:15–16）：一个身体有许多肢体，肢体各有不同的用处，却同属一个身体、彼此需要。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 1 节：<span class="gk">διὰ</span> <span class="gk">τῶν</span> <span class="gk">οἰκτιρμῶν</span> <span class="gk">τοῦ</span> <span class="gk">θεοῦ</span>（藉着神的慈悲）</strong>介词短语置于句首，是全段劝勉的根基与出发点。保罗不是先讲「你们当如何」，而是先讲「神已经如何怜悯了你们」。劝勉的全部重量，都挂在「慈悲」这一个词上。</li>
+            <li><strong>2. 1 节：时态的对比</strong><span class="gk">παραστῆσαι</span>（献上）是不定过去时不定式——一次性的、决定性的献上；2 节的 <span class="gk">συσχηματίζεσθε</span>（不要效法）与 <span class="gk">μεταμορφοῦσθε</span>（要变化）都是现在时命令式——持续的、反复的行动。句法本身在讲道：献上是一次决志，更新是一生之功。</li>
+            <li><strong>3. 1 节末：<span class="gk">ἥτις</span> <span class="gk">ἐστὶν</span> <span class="gk">ἡ</span> <span class="gk">λογικὴ</span> <span class="gk">λατρεία</span> <span class="gk">ὑμῶν</span>（这就是你们理所当然的事奉）</strong>关系代词 <span class="gk">ἥτις</span>（就是）把「献上身体」与「敬拜」等同起来：献上身体不是敬拜之外的另一件事，它本身就是敬拜。保罗在此重新定义敬拜——敬拜不是去圣殿献祭，而是把自己献上。</li>
+            <li><strong>4. 2 节：<span class="gk">μὴ</span>…<span class="gk">ἀλλὰ</span>…（不要……只要……）的对照</strong>否定命令与肯定命令并列，都是现在时被动语气：「不要被这个世界模塑」与「要被（神）改变」。两个被动语态表明，信徒始终处在被塑造的状态中——问题不是「是否被塑造」，而是「被谁塑造」：被世界，还是被神。</li>
+            <li><strong>5. 2 节：<span class="gk">εἰς</span> <span class="gk">τὸ</span> <span class="gk">δοκιμάζειν</span> <span class="gk">ὑμᾶς</span>（叫你们察验）</strong>目的不定式：变化的目的是叫你们察验神的旨意。三个形容词 <span class="gk">τὸ</span> <span class="gk">ἀγαθὸν</span> <span class="gk">καὶ</span> <span class="gk">εὐάρεστον</span> <span class="gk">καὶ</span> <span class="gk">τέλειον</span>（善良、纯全、可喜悦的）用单数中性冠词 <span class="gk">τὸ</span> 统摄，表明这三者描述的是同一个旨意的不同方面——神的旨意本身是善的、蒙神喜悦的、完全的。</li>
+            <li><strong>6. 3 节：<span class="gk">λέγω</span>…<span class="gk">παντὶ</span> <span class="gk">τῷ</span> <span class="gk">ὄντι</span> <span class="gk">ἐν</span> <span class="gk">ὑμῖν</span>（我……对你们各人说）</strong>保罗以使徒的权柄说话：「我凭着所赐我的恩」——他说话的根据不是自己的地位，而是神所赐的恩。然后是 <span class="gk">ὑπερφρονεῖν</span> <span class="gk">παρ</span>' <span class="gk">ὃ</span> <span class="gk">δεῖ</span> <span class="gk">φρονεῖν</span>（看自己过于所当看的）与 <span class="gk">φρονεῖν</span> <span class="gk">εἰς</span> <span class="gk">τὸ</span> <span class="gk">σωφρονεῖν</span>（看得合乎中道）的对照：前者的「过于」是 <span class="gk">παρ</span>'（超过）＋所当看的，后者的「合乎中道」是看进清醒的判断里——标准是「神所分给各人信心的大小」，不是自己的感觉。</li>
+            <li><strong>7. 4–5 节：<span class="gk">καθάπερ</span>…<span class="gk">οὕτως</span>（正如……也是如此）的比较结构</strong>4 节「正如我们一个身子上有好些肢体」，5 节「我们这许多人，在基督里成为一身……也是如此」。比较的要点不是肢体有多少，而是「一个身子」与「许多肢体」的张力：肢体不同、用处不同，却同属一个身子。<span class="gk">ἐν</span> <span class="gk">Χριστῷ</span>（在基督里）标明合一的范围——合一不在种族、文化或社会地位里，而在基督里。<span class="gk">ἀλλήλων</span> <span class="gk">μέλη</span>（互相联络作肢体）中的「互相」表明，肢体之间的关系是双向的、彼此依存的。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「所以」：劝勉建立在福音之上，不是律法之上</strong>穆理认为，12:1 的 <span class="gk">οὖν</span>（所以）是罗马书全卷最具分量的一次转折：它把 1–11 章的全部教义——神的忿怒与人的罪、因信称义、与基督联合、圣灵的工作、神对以色列的信实——都收束为劝勉的根基。劝勉不是道德的附录，而是福音的必然结果：神既已如此怜悯了我们，我们的生命必然要以献上回应。<p>穆尔补充说，<span class="gk">οὖν</span> 在此承接的不仅是 11:30–36 的颂赞，更是整个 1–11 章。他指出，保罗的伦理劝勉有一个固定模式：先是指示性的宣告（indicative，神已经作成的），然后才是命令性的劝勉（imperative，人当如何行）。这一模式贯穿保罗书信（参弗 4:1「既然蒙召，行事为人就当与蒙召的恩相称」；西 3:1「你们若是与基督一同复活，就当求在上面的事」），在罗马书 12:1 达到最集中的表达：「我以神的慈悲劝你们」——劝勉的权柄与动力都来自神的慈悲，而不是人的意志力。</p><p>历代教会的共识是：基督徒的伦理不是律法主义。奥古斯丁的名言「爱神，然后随心所欲」与此同理：当人真正被神的慈悲抓住，顺服就不再是重担。加尔文在《基督教要义》中也强调，罗马书 12:1 是「基督徒生活的总纲」——一切圣洁生活的起点，都是献上自己。</p></li>
+            <li><strong>2. 「将身体献上，当作活祭」：旧约献祭语言的新约转移</strong>穆理指出，<span class="gk">παραστῆσαι</span>（献上）与 <span class="gk">θυσία</span>（祭）都是旧约献祭的语言（参利未记的燔祭、素祭）。保罗把这一语言转移到基督徒的身体上，表明在基督里，献祭的场所从圣殿转移到了信徒的日常生活，祭物从牛羊转移到了人自己。<p>「活祭」与旧约祭物形成对照：旧约的祭物是被宰杀的、死的；基督徒的祭是活着的、持续的。穆理强调，「活」字有两层含义：第一，这祭是活着的生命，不是死的形式——献上不是一次性的仪式，而是每天活出来的奉献；第二，这祭之所以能「活」，是因为基督已经一次献上了自己（来 10:10–14），信徒的献上是回应基督的献祭，而不是重复它。</p><p>穆尔补充说，「身体」（<span class="gk">σῶμα</span>）在保罗书信中指整个人在世上的具体存在——包括时间、精力、才能、选择（参罗 6:12–13「不要容罪在你们必死的身上作王」；林前 6:19–20「你们的身子就是圣灵的殿」）。献上身体，就是献上全部的自己：不是献上一部分时间、不是献上一种情绪，而是把整个人的主权交给神。与彼前 2:5「你们来到主面前，也就像活石，被建造成为灵宫，作圣洁的祭司，藉着耶稣基督奉献神所悦纳的灵祭」互相印证：每一位信徒都是祭司，每一位信徒的生命都是祭物。</p><p>分歧传统：罗马天主教传统曾把「活祭」与弥撒中的祭献联系起来，认为信徒在弥撒中参与基督的祭献；改革宗传统则强调，基督在十字架上一次献祭已经完备（来 9:25–28；10:10），信徒的献祭是感恩的回应、是生活的敬拜，而不是赎罪的重复。穆理明确站在后者：12:1 的「活祭」是信徒对基督已成之工的回应，不是为赎罪再献祭。</p></li>
+            <li><strong>3. 「你们如此事奉乃是理所当然的」：敬拜的重新定义</strong>穆理认为，<span class="gk">λογικὴ</span> <span class="gk">λατρεία</span> 是保罗对敬拜的重新定义：<span class="gk">λατρεία</span> 本是圣殿礼仪的专用词（指献祭与事奉），保罗却把它用在「献上身体」上——真正的敬拜，不是去圣殿献祭，而是把自己献上。<span class="gk">λογικός</span>（合乎理性的、属灵的）表明，这种敬拜是按真理而行的、是与神的道相称的：蒙了如此怜悯的人，把自己献上，是唯一合乎情理的回应。<p>穆尔指出，<span class="gk">λογικὴ</span> <span class="gk">λατρεία</span> 的翻译有两种传统：「理所当然的事奉」（和合本，强调这是合乎情理的回应）与「属灵的敬拜」（强调这是与旧约礼仪相对的、属灵的敬拜）。两种译法各有依据，穆尔认为二者并不冲突：献上身体既是合乎理性的回应（因神如此怜悯），也是属灵的敬拜（因敬拜的场所已从圣殿转移到生命本身）。他进一步指出，保罗对敬拜的重新定义，与新视角派关注的「教会群体身份」有关：敬拜的群体不再是按种族划分的以色列，而是犹太人与外邦人在基督里合一的身体——敬拜的场所是这个身体，敬拜的内容是这个身体的彼此服事（12:3–8 正是这一点的展开）。</p><p>历代共识：从早期教会到宗教改革，解经家都认同 12:1 是基督徒敬拜观的基石——敬拜不是一周一次的仪式，而是每一天的生命。奥古斯丁说：「你的身体就是你的祭坛。」加尔文说：「真正的敬拜，是把自己全然献给神。」</p></li>
+            <li><strong>4. 「不要效法这个世界，只要心意更新而变化」</strong>穆理指出，<span class="gk">αἰὼν</span>（世界／世代）指现今这个悖逆神的世代（参加 1:4「现今这邪恶的世代」；弗 2:2「行事为人随从今世的风俗」；约壹 2:15–17「不要爱世界」）。「效法」（<span class="gk">συσχηματίζεσθε</span>）的被动语态至关重要：世界不是被动地等着人去效法，而是主动地、持续地把人塑造成它的形状——它的价值观、它的成功标准、它的焦虑与欲望，透过文化、媒体、同侪压力，无声地模塑着每一个人。信徒若不抵挡，就会被它同化。<p>穆尔补充说，「变化」（<span class="gk">μεταμορφοῦσθε</span>）与「效法」形成精确的对照：前者是被世界从外面塑形，后者是被神从里面改变；同样是被动语态——改变的动力在神，但人要顺服、配合这改变。这一动词在新约中只出现四次：太 17:2、可 9:2（基督变像）、罗 12:2、林后 3:18（「我们众人……就变成主的形状，荣上加荣，如同从主的灵变成的」）。穆尔指出，林后 3:18 与罗 12:2 互相印证：变化是圣灵持续的工作，是「荣上加荣」的渐进过程，不是一次完成的事件。</p><p>「心意更新」是变化的途径：穆理强调，<span class="gk">νοῦς</span>（心意）指人的思想、判断与价值取向——变化不是从行为开始，而是从心意开始。不是先改变行为、再改变思想，而是让神的话语重塑我们的判断，行为随之改变（参弗 4:23「又要将你们的心志改换一新」；西 3:10「穿上了新人，这新人在知识上渐渐更新」）。穆尔则提醒，「心意更新」不是一次性的顿悟，而是持续的过程——现在时表明，更新与变化都是进行时：信徒一生都在被更新、被变化。</p></li>
+            <li><strong>5. 「察验何为神的旨意」：更新的心意能分辨善</strong>穆理认为，<span class="gk">δοκιμάζειν</span>（察验）指经过试验而辨别、认可——如同检验金属的真伪。心意更新的结果，是信徒能分辨神的旨意：不是说人可以凭理性推导出神的每一个具体旨意（例如该选择哪一份工作、该嫁给谁），而是说在更新的心意里，信徒能辨认出什么是善良、纯全、可喜悦的——即神在圣经中显明的普遍旨意。<p>穆尔补充说，三个形容词（善良、纯全、可喜悦）是对神旨意的描述，也是对信徒生活的描述：神的旨意本身是善的，行在其中就是蒙神喜悦的、完全的。他指出，保罗在此的重点不是给出一套「如何得知神旨意」的方法论，而是宣告一个事实：心意更新的人，自然能察验神的旨意——因为神的旨意与更新的心意是相合的。分歧传统：对「神的旨意」范围的不同理解——有的解经家认为此处指神对个人人生的个别旨意（具体抉择），有的认为指神在圣经中显明的普遍道德旨意；穆理与穆尔都倾向于后者：12:2 的上下文是伦理生活的总纲（12:1–15:13），「神的旨意」首先指神在圣经中显明的善，而个别抉择的引导是在这一普遍旨意的框架内、藉着更新的心意去分辨的。</p></li>
+            <li><strong>6. 「不要看自己过于所当看的」：恩赐与骄傲</strong>穆理认为，3 节的劝勉直接针对罗马教会中的骄傲——特别是有恩赐者轻看他人。保罗用 <span class="gk">φρονεῖν</span> 的三重变化构成一个精妙的教导：不要「高看」（<span class="gk">ὑπερφρονεῖν</span>）自己，要「清醒地看」（<span class="gk">σωφρονεῖν</span>）自己——看自己的标准，不是自己的感觉、不是别人的评价，而是「神所分给各人信心的大小」。<p>穆尔指出，这一节与 11:18–20 的警告直接相连：「不要向旧枝子夸口」「不可自高，反要惧怕」。11 章的警告是针对外邦信徒轻看犹太人，12 章的劝勉是针对每一个信徒轻看他人——骄傲是同一种罪，只是换了对象。关于 <span class="gk">μέτρον</span> <span class="gk">πίστεως</span>（信心的大小），穆尔倾向于理解为「各人所得信心的度量」：神分给各人的信心有不同的度量，各人按自己的度量看自己、服事他人。穆理也持此说，但补充说信心本身即是神的恩赐（参弗 2:8「你们得救是本乎恩，也因着信；这并不是出于自己，乃是神所赐的」；腓 1:29「因为你们蒙恩，不但得以信服基督」）——因此没有人可以凭信心夸口，信心越大，越当谦卑。</p><p>分歧传统：对 <span class="gk">μέτρον</span> <span class="gk">πίστεως</span> 的另一种理解，是把它解作「信心的标准」，即福音真理本身——保罗劝人按福音的真理看自己。穆理与穆尔都认为这一理解在语法上可能，但在上下文中说服力较弱：3 节的重点是各人不同（「各人」「分给」），而「度量」一词正指向这种不同。</p></li>
+            <li><strong>7. 「一个身子，互相联络作肢体」：合一的异象</strong>穆理认为，4–5 节的身体比喻是保罗论教会合一的核心经文之一（与林前 12:12–27、弗 4:15–16 并列）。「在基督里」（<span class="gk">ἐν</span> <span class="gk">Χριστῷ</span>）是合一的基础与范围：合一不在种族、文化或社会地位里，而在基督里——犹太人与外邦人、强者与弱者、有恩赐者与无恩赐者，都在基督里成为一个身体。<p>穆尔补充说，保罗在此把身体的比喻与 12:6–8 的恩赐论连接起来：肢体不同、用处不同，但同属一个身体；这直接回应了罗马教会犹太与外邦信徒之间的张力——正如 11 章的橄榄树比喻（野橄榄枝被接上、本枝被折下），12 章的身体比喻也在讲同一件事：不同背景的人，在基督里成为一体，互相需要、缺一不可。与林前 12:21「眼不能对手说：『我用不着你』」互相印证：没有一个肢体可以轻看另一个肢体；与弗 4:25「我们是互相为肢体」互相印证：肢体之间的关系是双向的、彼此依存的。</p><p>历代教会的共识是：教会的合一不是组织上的统一，而是「在基督里」的生命联合；合一不是抹平差异（肢体「也不都是一样的用处」），而是让差异在同一个身体里彼此成全。穆理特别指出，5 节的「互相联络作肢体」是全段的高潮：保罗不是在讲一个抽象的合一理论，而是在讲一种具体的生活——肢体之间的关系，是「互相」的、是「联络」的、是彼此需要的。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：献上是每天的决定，不是仪式</strong>「活祭」是活着的祭：不是一次性的奉献仪式，而是每天把身体——时间、精力、才能、选择——献给神。献上不是把生命的某一部分交给神，而是把整个人的主权交给祂。今天早上，你可以具体地问自己：我的时间表今天属于谁？我的注意力今天献给了什么？我的身体——我的眼睛、我的手、我的口——今天要用来服事谁？献上不是抽象的决心，而是具体的、每天的行动：把手机放下陪伴家人、把时间分别出来读经祷告、把才能用在服事他人上，都是「将身体献上」的具体形式。</li>
+            <li><strong>应用二：不要被世界模塑，要让心意更新</strong>世界每天都在把我们塑造成它的形状：消费的标准、成功的定义、比较的焦虑、对年龄与外貌的恐惧。保罗说，不要被它模塑，要被神改变——而改变的途径是「心意更新」。心意更新不是靠意志力硬撑，而是让神的话语重塑我们的判断：每天读经、默想、祷告，让神的话进入我们的思想，取代世界的标准。当你的判断被神的话重塑，你自然能「察验」什么是善良、纯全、可喜悦的——不是因为你更聪明了，而是因为你的心意被更新了。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>保罗说，信徒「在基督里成为一身，互相联络作肢体」。在你的教会或团契里，有没有一个你曾经轻看、或觉得「用不着」的肢体？12:3–5 如何挑战你对他的看法？请具体地想一想：你可以如何向他显明，你们是「互相联络」的肢体——不是彼此独立的个体，而是同一个身体上彼此需要的部分？</p>
+          </div>
+</article>
+
+        <div class="daynav"><a href="day28.html">← 第 28 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
