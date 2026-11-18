@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 30 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 75.75%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day30-am">12:9–13</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+        <a href="day28.html">第 28 天</a>
+        <a href="day29.html">第 29 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 30 天</span>2026-11-18（周三） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day30-am">
+          <div class="entry-head">
+            <span class="entry-day">第 30 天 · 晨 — 2026-11-18（周三）</span>
+            <h3 class="entry-title">爱人不可虚假 <span class="ref">· 罗马书 12:9–13</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">9</span>爱人不可虚假。恶，要厌恶；善，要亲近。<span class="vn">10</span>爱弟兄，要彼此亲热；恭敬人，要彼此推让。<span class="vn">11</span>殷勤，不可懒惰；要心里火热，常常服侍主。<span class="vn">12</span>在指望中要喜乐，在患难中要忍耐，祷告要恒切。<span class="vn">13</span>圣徒缺乏，要帮补；客，要一味地款待。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 从「献上」到「彼此相爱」：12:9 是 12:9–21 的总纲</strong></p>
+          <p>12:1–8 的逻辑是一条链：献上身体、心意更新（12:1–2）→ 看自己合乎中道（12:3）→ 一个身子、许多肢体（12:4–5）→ 按所得的恩赐彼此服事（12:6–8）。12:9 起，保罗把镜头从「恩赐」转向「爱」：恩赐若没有爱，就成了鸣的锣、响的钹（林前 13:1）。「爱人不可虚假」是 12:9–21 整段的总纲——其后的每一句（厌恶恶、亲近善、彼此亲热、彼此推让、殷勤火热、喜乐忍耐恒切祷告、帮补款待）都是这句总纲的具体展开。有解经家称 12:9–21 为罗马书的「爱之章」，与哥林多前书 13 章、约翰一书 4 章并列。</p>
+          <p><strong>2. 文体的转变：从命令式到一连串短句</strong></p>
+          <p>12:1–2 用的是命令式（「不要效法」「要变化」）；从 12:9 起，保罗改用一连串简短的分词与省略动词的短句，节奏骤然加快，像一串珍珠，每一句都是一条可以默想一周的生活准则。劝勉的语气并没有消失——整个 12 章仍在 12:1「我以神的慈悲劝你们」的劝勉之下；分词的命令色彩正是从那里延续而来。</p>
+          <p><strong>3. 罗马教会的处境：爱若虚假，合一就是空话</strong></p>
+          <p>12:4–5 说「我们这许多人，在基督里成为一身，互相联络作肢体」。犹太信徒与外邦信徒、强者与弱者同处一个身体，差异真实存在（11 章的警告仍在耳边）。爱若虚假——表面客气、心里轻看——合一就是空话；爱若真实，差异就成为彼此成全。12:9–13 的每一句，都是对「互相联络作肢体」的具体化：爱不是抽象的态度，而是厌恶、亲近、亲热、推让、殷勤、火热、喜乐、忍耐、恒切、帮补、款待这些看得见的行动。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">ἀγάπη</span> <span class="gk">ἀνυπόκριτος</span>（agapē anypokritos，爱，不可虚假）——9 节</strong><span class="gk">ἀνυπόκριτος</span> 由否定前缀 <span class="gk">ἀν-</span> 加 <span class="gk">ὑποκρίνομαι</span>（戴面具演戏）构成，意为「不戴面具的、不伪装的」——和合本「不可虚假」译得准确。同词见于林后 6:6（「诚实无伪的爱心」）、提前 1:5（「无伪的信心」）、彼前 1:22（「爱弟兄没有虚假」）。虚假的爱是戴着面具的爱：嘴上说爱，心里另有算计。</li>
+            <li><strong>2. <span class="gk">ἀποστυγέω</span>（apostygeō，厌恶）——9 节</strong>由强化前缀 <span class="gk">ἀπο-</span> 加 <span class="gk">στυγέω</span>（憎恨）构成，意为「深恶痛绝、从心里厌恶」，新约仅此一处。分词 <span class="gk">ἀποστυγοῦντες</span>（厌恶着）与下文 <span class="gk">κολλώμενοι</span> 相对：对恶不是「不喜欢」，而是「厌恶」。</li>
+            <li><strong>3. <span class="gk">κολλάομαι</span>（kollaomai，亲近、紧贴）——9 节</strong>本义是「用胶粘合、紧紧贴住」，分词 <span class="gk">κολλώμενοι</span>（紧贴着）。七十士译本用此词译创世记 2:24「人要离开父母，与妻子连合（<span class="gk">προσκολληθήσεται</span>）」；申命记 10:20「专靠他」也是此词。保罗用婚姻与盟约的语言讲「亲近善」：善不是远处的一件好东西，而是要像夫妻连合那样紧贴不放。</li>
+            <li><strong>4. <span class="gk">φιλοστοργία</span>（philostorgia，彼此亲热）——10 节</strong>新约仅此一处。<span class="gk">στοργή</span> 是家人之间天然的亲情（如父母对儿女）；加上 <span class="gk">φιλό-</span>（喜爱），指「家人般的温情」。保罗把教会说成一个家：弟兄姊妹之间的爱，应当带着家人般的亲热，而不是公事公办的客气。</li>
+            <li><strong>5. <span class="gk">φιλαδελφία</span>（philadelphia，爱弟兄）——10 节</strong>字面是「爱弟兄」，指信徒之间手足般的爱（参帖前 4:9；来 13:1；彼前 1:22；彼后 1:7）。「爱弟兄」是身份宣告：因为在基督里成了弟兄，所以要彼此亲热。</li>
+            <li><strong>6. <span class="gk">τιμή</span>（timē，恭敬）与 <span class="gk">προηγοῦμαι</span>（proēgeomai，推让、争先）——10 节</strong><span class="gk">τιμή</span> 是「尊荣、价值」；<span class="gk">προηγοῦμαι</span>（分词 <span class="gk">προηγοῦμενοι</span>）本义是「走在前面、带头」，新约仅此一处。直译是「在彼此恭敬上，要争先恐后」——保罗把罗马社会人人争夺的「尊荣」翻转过来：不要争着受人恭敬，要争着恭敬别人。</li>
+            <li><strong>7. <span class="gk">σπουδή</span>（spoudē，殷勤）与 <span class="gk">ὀκνηρός</span>（oknēros，懒惰）——11 节</strong><span class="gk">σπουδή</span> 是「热切、勤奋、尽心」；<span class="gk">ὀκνηρός</span> 是「拖拉、畏缩、懒惰」（参太 25:26 懒惰的仆人）。两者构成对照：爱里的殷勤不是可有可无的美德，而是不可懒惰的命令。</li>
+            <li><strong>8. <span class="gk">ζέω</span>（zeō，心里火热）——11 节</strong>本义是「沸腾、滚开」，分词 <span class="gk">ζέοντες</span>（沸腾着）。同词用于使徒行传 18:25 的亚波罗——「心里火热」。火热不是情绪高涨，而是像水烧开那样持续地滚烫。</li>
+            <li><strong>9. <span class="gk">δουλεύω</span>（douleuō，服侍）——11 节</strong>指「作奴仆服侍」，分词 <span class="gk">δουλεύοντες</span>（服侍着）。「服侍主」点明殷勤与火热的对象与主人：不是服侍自己的野心，不是服侍人的称赞，而是服侍主。</li>
+            <li><strong>10. <span class="gk">ὑπομένω</span>（hypomenō，忍耐）与 <span class="gk">προσκαρτερέω</span>（proskartereō，恒切）——12 节</strong><span class="gk">ὑπομένω</span> 是「留在下面、忍受到底」（参罗 5:3–4；8:25）；<span class="gk">προσκαρτερέω</span> 是「坚持不懈、专心致志」，用于祷告的恒切（参徒 1:14；2:42；6:4；西 4:2）。忍耐与恒切是一对：患难中不退，祷告中不辍。</li>
+            <li><strong>11. <span class="gk">κοινωνέω</span>（koinōneō，帮补）与 <span class="gk">φιλοξενία</span>（philoxenia，款待）——13 节</strong><span class="gk">κοινωνέω</span> 是「分享、分担、有份于」；<span class="gk">χρεία</span> 是「缺乏、需要」。<span class="gk">φιλοξενία</span> 字面是「爱陌生人」（<span class="gk">φίλος</span>＋<span class="gk">ξένος</span>），指接待客旅；<span class="gk">διώκω</span>（追求）本是「追赶、逼迫」——分词 <span class="gk">διώκοντες</span>（追求着）表明，款待不是被动地等人上门，而是主动地去追求、去寻找接待的机会。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 9 节上半是无动词句</strong>「<span class="gk">ἡ</span> <span class="gk">ἀγάπη</span> <span class="gk">ἀνυπόκριτος</span>」（爱，不可虚假）——没有动词，只有一个名词加形容词。这种省略不是残缺，而是强调：保罗把「爱不可虚假」作为一条悬在全段之上的标题，动词由读者自己补上——爱「应当是」不虚假的。</li>
+            <li><strong>2. 分词作命令</strong>9 节下半至 13 节几乎全是现在时分词（<span class="gk">ἀποστυγοῦντες</span>、<span class="gk">κολλώμενοι</span>、<span class="gk">προηγοῦμενοι</span>、<span class="gk">ζέοντες</span>、<span class="gk">δουλεύοντες</span>、<span class="gk">χαίροντες</span>、<span class="gk">ὑπομένοντες</span>、<span class="gk">προσκαρτεροῦντες</span>、<span class="gk">κοινωνοῦντες</span>、<span class="gk">διώκοντες</span>）。命令的语气不是来自这些分词本身，而是从 12:1 的 <span class="gk">παρακαλῶ</span>（我劝你们）延续而来——劝勉一旦发出，其后的每一句分词都带着命令的分量。</li>
+            <li><strong>3. 对偶结构</strong>全段由成对的对照构成——厌恶恶／亲近善（9 节下）、亲热（内在的情）／推让（外在的敬）（10 节）、殷勤／懒惰、火热／冷淡（11 节）。对偶不是修辞点缀，而是伦理的辨别：爱从来不是含糊的，它总是在两者之间作出选择。</li>
+            <li><strong>4. 12 节的三个与格</strong><span class="gk">τῇ</span> <span class="gk">ἐλπίδι</span>（在指望中）、<span class="gk">τῇ</span> <span class="gk">θλίψει</span>（在患难中）、<span class="gk">τῇ</span> <span class="gk">προσευχῇ</span>（在祷告上）——三个与格标明三个分词的「领域」：喜乐的领域是指望，忍耐的领域是患难，恒切的领域是祷告。喜乐不在顺境里，忍耐不在安逸里，恒切不在一时冲动里。</li>
+            <li><strong>5. 13 节的格位对照</strong><span class="gk">κοινωνοῦντες</span>（帮补）带与格 <span class="gk">ταῖς</span> <span class="gk">χρείαις</span>（圣徒的缺乏）——「与缺乏有份」，是分担；<span class="gk">διώκοντες</span>（追求）带宾格 <span class="gk">τὴν</span> <span class="gk">φιλοξενίαν</span>（款待）——「追赶款待」，是主动出击。句法本身在讲道：帮补是俯身分担，款待是起身追赶。</li>
+            <li><strong>6. 11 节的异文</strong>少数抄本（包括伯撒抄本 D 等）把「服侍主」（<span class="gk">τῷ</span> <span class="gk">κυρίῳ</span>）写作「服侍时机」（<span class="gk">τῷ</span> <span class="gk">καιρῷ</span>），仅一字之差（<span class="gk">κυρίῳ</span>／<span class="gk">καιρῷ</span>）。现代校勘本（NA28）与绝大多数抄本支持「主」；「时机」的读法可能是抄写之误，也可能源于 13:11「现今就是该趁早睡醒的时候」的联想。和合本从「主」，是稳妥的抉择。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「爱人不可虚假」：全段的总纲，爱的真伪之辨</strong>穆理认为，12:9 的 <span class="gk">ἀγάπη</span> <span class="gk">ἀνυπόκριτος</span> 是 12:9–21 整段的标题句：保罗不是在罗列一串互不相干的美德，而是在展开「不虚假的爱」这一主题的各个侧面。爱若虚假，后面的一切都会变质——厌恶会变成论断，亲热会变成奉承，殷勤会变成表演，款待会变成炫耀。<p>穆尔补充说，<span class="gk">ἀνυπόκριτος</span> 一词在新约中总与真诚的信仰生活相连：提前 1:5「爱是从清洁的心和无亏的良心、无伪的信心生出来的」；彼前 1:22「你们既因顺从真理，洁净了自己的心，以致爱弟兄没有虚假，就当从心里彼此切实相爱」。虚假的爱有一个共同特征：它以自我为中心——讨好人、赚取好感、维护形象。真实的爱则以对方为中心。与旧约先知对虚假敬拜的批判互相印证：赛 29:13「这百姓亲近我，用嘴唇尊敬我，心却远离我」；诗 78:36–37「他们却用口谄媚他，用舌向他说谎；因他们的心向他不正」。</p><p>分歧传统：对「虚假」的理解——有的解经家把重点放在言语与行为的不一致（说一套做一套），有的放在动机的不纯（爱里掺杂自利）；穆理与穆尔都认为二者不可分割：虚假的爱既是言行不一，也是动机不纯，因为心里若真爱，言行自然一致。</p></li>
+            <li><strong>2. 「恶要厌恶，善要亲近」：爱不是不分是非的包容</strong>穆理指出，<span class="gk">ἀποστυγέω</span> 的强度不容淡化：保罗用的不是「不喜欢」「回避」，而是「深恶痛绝」。爱若没有对恶的厌恶，就不是爱，而是纵容——正如医生若不厌恶疾病，就无法爱病人；父母若不厌恶毒害儿女的东西，就不是真爱儿女。<p>穆尔则强调 <span class="gk">κολλάομαι</span> 的盟约背景：七十士译本用此词译创 2:24 的「连合」与申 10:20 的「专靠他」——亲近善，是像夫妻连合、像以色列专靠耶和华那样，把自己粘合在善上，片刻不离。两位学者都指出，这一对分词与诗 97:10「你们爱耶和华的，都当恨恶罪恶」、摩 5:15「要恶恶好善」、帖前 5:21–22「善美的要持守，各样的恶事要禁戒不做」互相印证：圣经的爱从来不是不分是非的包容，而是以神的善恶标准为尺度的抉择。</p><p>历代共识：奥古斯丁说「爱人当恨罪，不当恨人」——厌恶的对象是恶本身，不是作恶的人；这正是 12:14–21「祝福逼迫你们的」的前提：恨恶罪恶与爱仇敌并不矛盾，因为恨的是罪，爱的是人。</p></li>
+            <li><strong>3. 「爱弟兄，彼此推让」：把争夺尊荣翻转过来</strong>穆理认为，10 节的两句构成一对：前句讲内在的情（<span class="gk">φιλοστοργία</span>，家人般的温情），后句讲外在的敬（<span class="gk">τιμή</span>，尊荣）。教会是神的家（参提前 3:15「神的家」；弗 2:19「神家里的人了」），家人之间的爱既要有温情，也要有敬重——温情而不敬重会变成随便，敬重而无温情会变成客套。<p>穆尔则把重点放在罗马社会的荣誉文化上：在罗马世界，「尊荣」是最核心的社会货币，人人争夺、处处计较。保罗的命令 <span class="gk">προηγοῦμενοι</span>（争先恐后地恭敬别人）把这套逻辑彻底翻转：不要争着受人恭敬，要争着恭敬别人。与腓 2:3「各人看别人比自己强」互相印证；与路 14:7–11 耶稣论赴筵席不要坐首位、反要坐末位的教导互相印证。</p><p>分歧传统：对 <span class="gk">προηγοῦμαι</span> 的理解——有的解经家译作「在恭敬上彼此推让」，有的译作「争先恐后地恭敬」；穆理倾向于后者更合原意，因为 <span class="gk">προηγοῦμαι</span> 的本义是「走在前面、带头」——保罗要的不是谦让的客气，而是抢着去尊敬人的热切。</p></li>
+            <li><strong>4. 「殷勤不可懒惰，心里火热，常常服侍主」：爱是行动，不是感觉</strong>穆理指出，11 节的三句是一个递进：殷勤（<span class="gk">σπουδή</span>）是外在的行动，火热（<span class="gk">ζέω</span>）是内在的状态，服侍主（<span class="gk">δουλεύοντες</span>）是行动与状态的归属。爱若没有行动，就是空话；行动若没有火热，就会枯干；火热若不归向主，就会烧错方向。<p>穆尔补充说，「心里火热」的 <span class="gk">τῷ</span> <span class="gk">πνεύματι</span>（在灵里／藉着圣灵）是关键：火热不是人凭血气鼓起来的热情，而是圣灵的工作——正如亚波罗「心里火热」（徒 18:25）讲道，是因为他被圣灵充满。关于异文「服侍主」与「服侍时机」，穆尔认为两种读法在神学上都能成立（服侍主，也包括把握时机），但校勘证据支持「主」；穆理则强调，即使按「时机」读，也不能把「时机」理解为人的机会主义——时机是主的时机。</p><p>历代共识：加尔文在注释中说，懒惰是爱的最大敌人——爱若懒惰，就会在需要行动的时候缺席；殷勤与火热是爱的两条腿，缺一不可。与西 3:23「无论做什么，都要从心里做，像是给主做的，不是给人做的」互相印证：服侍主，是殷勤与火热不致枯竭的秘密。</p></li>
+            <li><strong>5. 「指望中喜乐，患难中忍耐，祷告恒切」：三重姿态，一条生命线</strong>穆理认为，12 节的三句与罗马书 5:2–5 的链条直接相连：「欢欢喜喜盼望神的荣耀」「患难生忍耐，忍耐生老练，老练生盼望」。指望是喜乐的根：喜乐不在眼前的顺境里，而在将来的指望里——因为指望是确定的（5:5「盼望不至于羞耻」），所以喜乐是可能的。忍耐是患难中的姿态：<span class="gk">ὑπομένω</span> 是「留在下面」，不是逃离患难，而是在患难之下站立得住。<p>穆尔补充说，三句的次序是精心安排的：指望（将来）→ 患难（现在）→ 祷告（贯穿始终的手段）。祷告恒切不是第三件事，而是前两件事得以成立的条件——没有恒切的祷告，指望会变成空想，忍耐会变成硬撑。与罗 8:18–25「现在的苦楚若比起将来要显于我们的荣耀就不足介意了」互相印证；与西 4:2「你们要恒切祷告，在此警醒感恩」互相印证。</p><p>分歧传统：对「在指望中喜乐」的理解——有的解经家认为指望是喜乐的原因（因为有指望，所以喜乐），有的认为指望是喜乐的领域（在指望这件事上喜乐）；穆理与穆尔都认为二者同时成立：指望既是喜乐的源头，也是喜乐的所在。</p></li>
+            <li><strong>6. 「圣徒缺乏要帮补，客要一味款待」：爱落到钱财与家门上</strong>穆理指出，13 节把爱从态度与言语落到最具体的地方：钱财与家门。<span class="gk">κοινωνέω</span>（有份、分担）表明，帮补不是居高临下的施舍，而是「与缺乏有份」——把别人的缺乏当作自己的缺乏来分担。这与 15:25–27 保罗为耶路撒冷圣徒募捐的背景直接相关，也与林后 8–9 章马其顿教会的榜样相连。<p>穆尔则强调 <span class="gk">φιλοξενία</span> 的社会背景：在没有旅馆、客栈简陋危险的古代世界，巡回传道人与受逼迫逃亡的信徒全靠教会的接待；来 13:2「不可忘记用爱心接待客旅，因为曾有接待客旅的，不知不觉就接待了天使」、彼前 4:9「你们要互相款待，不发怨言」、约三 5–8「为真道作见证的弟兄」都讲同一件事。<span class="gk">διώκω</span>（追求）一词尤其值得注意：保罗用的不是「接待」，而是「追求接待」——款待不是等人敲门，而是主动寻找机会、打开家门。</p><p>历代共识：早期教会把款待看作信徒的基本标记之一（提前 3:2、5:10 把「乐意接待远人」列为监督与寡妇的资格）；爱若到不了家门与钱包，就还没有落地。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：拒绝「表演式」的爱</strong>虚假的爱最常见的样子，是奉承与讨好：嘴上说「你真好」，心里想「你欠我」；当面夸奖，背后议论；需要你的时候热情，不需要的时候冷淡。真实的爱敢说「不」——敢厌恶恶、敢指出错、敢在对方走错路时直言。今天就可以检查一次：我最近一次对人说「爱」的话，是出于真心，还是出于想被喜欢、想被夸奖？</li>
+            <li><strong>应用二：让殷勤与火热落到具体的人身上</strong>爱不是一种感觉，而是一连串看得见的行动：帮补一位有缺乏的圣徒、款待一位远来的客旅、在患难中陪伴一个人、为一件小事殷勤服侍。本周具体地做一件：打开家门请一个人吃饭，或悄悄帮补一位有需要的人——不要等到「有感动」才做，殷勤的意思就是不等感觉，火热的意思就是现在就做。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>12:12 的三重姿态——在指望中喜乐、在患难中忍耐、祷告恒切——哪一个是你现在最难的？是喜乐（因为指望模糊了），是忍耐（因为患难太久了），还是恒切祷告（因为祷告总被别的事挤掉）？请具体地想一想：这三个当中，你最需要从哪一个开始操练？</p>
+          </div>
+</article>
+
+        <div class="daynav"><a href="day29.html">← 第 29 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
