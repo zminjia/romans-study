@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 31 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 79.21%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day31-am">13:1–7</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+        <a href="day28.html">第 28 天</a>
+        <a href="day29.html">第 29 天</a>
+        <a href="day30.html">第 30 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 31 天</span>2026-11-19（周四） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day31-am">
+          <div class="entry-head">
+            <span class="entry-day">第 31 天 · 晨 — 2026-11-19（周四）</span>
+            <h3 class="entry-title">在上有权柄的，人人当顺服 <span class="ref">· 罗马书 13:1–7</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>在上有权柄的，人人当顺服他，因为没有权柄不是出于神的。凡掌权的都是神所命的。<span class="vn">2</span>所以，抗拒掌权的就是抗拒神的命；抗拒的必自取刑罚。<span class="vn">3</span>作官的原不是叫行善的惧怕，乃是叫作恶的惧怕。你愿意不惧怕掌权的吗？你只要行善，就可得他的称赞；<span class="vn">4</span>因为他是神的用人，是与你有益的。你若作恶，却当惧怕；因为他不是空空地佩剑；他是神的用人，是伸冤的，刑罚那作恶的。<span class="vn">5</span>所以，你们必须顺服，不但是因为刑罚，也是因为良心。<span class="vn">6</span>你们纳粮，也为这个缘故；因他们是神的差役，常常特管这事。<span class="vn">7</span>凡人所当得的，就给他：当得粮的，给他纳粮；当得税的，给他上税；当惧怕的，惧怕他；当恭敬的，恭敬他。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 从「不要效法这个世界」到「在上有权柄的」：新的一章，同一条总纲</strong></p>
+          <p>12:1–2 的「不要效法这个世界，只要心意更新而变化」是 12–15 章全部劝勉的总纲。12 章讲的是教会里面的生活（恩赐、彼此相爱、爱仇敌），13:1–7 则把镜头转向教会外面的生活——信徒如何对待世上的掌权者。保罗的逻辑是：心意更新的人，活在世界里，却不属这个世界（约 17:14–18）；权柄问题正是「心意更新」最现实的考验之一：一个不效法世界的人，是顺服掌权者，还是轻看、反抗掌权者？第 13 章的回答是：顺服——因为权柄的来源在神。</p>
+          <p><strong>2. 罗马教会的处境：尼禄初期与纳税的敏感话题</strong></p>
+          <p>写作时约为主后 55–57 年，尼禄在位初期，在塞内加与布鲁斯辅政下，罗马城相对平稳，史家称之为「五年善政」。但纳税始终是敏感话题：罗马的人头税与土地税是犹太人最切身的政治痛点，奋锐党人以抗税、反罗马为旗帜，耶稣也曾被问及「纳税给该撒可以不可以」（可 12:13–17）。罗马的基督徒夹在中间：既不能附和犹太人的政治反抗，也不能被罗马当局视为颠覆分子。保罗的教导既是神学，也是处境中的牧养智慧——它划清了基督徒与政治反抗神学的界限。</p>
+          <p><strong>3. 与 12:19 的衔接：伸冤的权柄并没有消失，只是换了执行者</strong></p>
+          <p>12:19 说「不要自己伸冤，宁可让步，听凭主怒」；13:4 立即说明神施行报应的一种方式——掌权者是「神的用人，是伸冤的，刑罚那作恶的」。不伸冤不是因为没有公义，而是因为公义的执行权在神手里，神有时藉着祂设立的权柄施行。同时，13:1–7 也为 14–15 章铺路：连外面的权柄都要顺服，里面的弟兄更要彼此接纳、不彼此论断。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">ἐξουσία</span>（exousia，权柄）——1 节</strong>本义是「能力、许可、权柄」；在新约中可指神的权柄（太 28:18）、人的权柄（路 12:11），也可指灵界的权柄（弗 1:21）。保罗在 1 节三次使用：既指「权柄」本身，也以复数 <span class="gk">ἐξουσίαι</span> 指具体的掌权者。</li>
+            <li><strong>2. <span class="gk">ὑποτάσσω</span>（hypotassō，顺服）——1、5 节</strong>由 <span class="gk">ὑπό</span>（在……之下）加 <span class="gk">τάσσω</span>（安排、安放）构成，本义是「被安置在……之下」。与「顺从」（<span class="gk">ὑπακούω</span>）不同：顺服是承认秩序、甘心站在应有的位置上；它不等于对每一条命令都盲目执行——界限见于徒 5:29「顺从神，不顺从人，是应当的」。</li>
+            <li><strong>3. <span class="gk">τάσσω</span>（tassō，命定、安排）——1 节</strong>完成时被动分词 <span class="gk">τεταγμέναι</span>（是神所命的）：完成时表示已经完成且持续有效的安排——权柄的设立不是偶然的，是神已经安放好的秩序。</li>
+            <li><strong>4. <span class="gk">ἀντιτάσσομαι</span>（antitassomai，抗拒）——2 节</strong>现在时中间态分词 <span class="gk">ὁ</span> <span class="gk">ἀντιτασσόμενος</span>（那抗拒的）。与 <span class="gk">ὑποτάσσω</span> 构成反义：顺服是「站在之下」，抗拒是「站起来对抗」。雅 4:6、彼前 5:5 用同一词说「神阻挡骄傲的人」。</li>
+            <li><strong>5. <span class="gk">κρίμα</span>（krima，刑罚、审判）——2 节</strong>既可指人间法庭的判决，也可指神末世的审判。<span class="gk">ἑαυτοῖς</span> <span class="gk">κρίμα</span> <span class="gk">λήμψονται</span>（必自取刑罚）——「自取」表明抗拒的后果是自己招来的，不是别人强加的。</li>
+            <li><strong>6. <span class="gk">ἔπαινος</span>（epainos，称赞）——3 节</strong>行善的会「得他的称赞」。权柄的正面功能是奖励善行，不只是惩罚恶行——奖善与罚恶是权柄的两面。</li>
+            <li><strong>7. <span class="gk">διάκονος</span>（diakonos，用人、仆役）——4 节</strong>同一个词在 12:7 译作「执事」，在 16:1 译作「女执事」非比。掌权者与教会执事共享同一个词：都是神的仆役，只在不同的领域服侍——一个在教会里，一个在社会里。</li>
+            <li><strong>8. <span class="gk">μάχαιρα</span>（machaira，剑）——4 节</strong>「佩剑」在罗马世界是行刑权的象征：总督有「剑权」，可判处死刑。保罗不是在讲武器本身，而是在讲国家强制力的合法性——剑不是「空空地」佩的。</li>
+            <li><strong>9. <span class="gk">ἔκδικος</span>（ekdikos，伸冤的）——4 节</strong>与 12:19 的 <span class="gk">ἐκδίκησις</span>（伸冤）同词根。掌权者是神施行报应的器皿——12:19 叫信徒放下报复，13:4 说明报复的权柄并没有消失，只是交在了神设立的权柄手里。</li>
+            <li><strong>10. <span class="gk">συνείδησις</span>（syneidēsis，良心）——5 节</strong>字面是「与自己一同知道」：良心是人里面对善恶的知觉与见证（参罗 2:15「是非之心」）。顺服不只是因为怕刑罚，也是因为良心在神面前作证：这秩序是神所立的。</li>
+            <li><strong>11. <span class="gk">φόρος</span>（phoros，粮／贡银）与 <span class="gk">τέλος</span>（telos，税）——6–7 节</strong><span class="gk">φόρος</span> 是直接税（人头税、土地税），<span class="gk">τέλος</span> 是间接税（关税、商税）。罗马的税制分两类，保罗一并提及：该纳的都要纳，没有例外。</li>
+            <li><strong>12. <span class="gk">λειτουργός</span>（leitourgos，差役）——6 节</strong>原指在公共事务上服役的人，在七十士译本中专指在圣殿供职的祭司（参来 8:2）。保罗把这个带圣殿色彩的词用在收税的官吏身上：他们在神面前是「供职者」，纳税因此有了敬拜的维度。</li>
+            <li><strong>13. <span class="gk">ὀφειλή</span>（opheilē，所当得的、债）——7 节</strong><span class="gk">ἀπόδοτε</span>（还给、归还）是商业用语：该给的不是恩惠，是债；欠了就要还，一一结清。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 1 节的命令式 <span class="gk">ὑποτασσέσθω</span></strong>第三人称单数现在时被动命令式，主语是 <span class="gk">πᾶσα</span> <span class="gk">ψυχή</span>（每一个人，字面「每一个灵魂」）。第三人称命令式是普遍性的颁布：保罗不是在建议，是在下一条人人适用的命令；现在时表示持续的姿态，不是一次性的动作。</li>
+            <li><strong>2. 1 节的 <span class="gk">γὰρ</span> 论证链</strong>两句 <span class="gk">γὰρ</span> 从句（<span class="gk">οὐ</span> <span class="gk">γὰρ</span> <span class="gk">ἔστιν</span>……；<span class="gk">αἱ</span> <span class="gk">δὲ</span> <span class="gk">οὖσαι</span>……<span class="gk">τεταγμέναι</span> <span class="gk">εἰσίν</span>）给出顺服的根据：没有权柄不是出于神，凡掌权的都是神所命的。命令的根基不是权柄的贤明，而是权柄的来源。</li>
+            <li><strong>3. 1 节的 <span class="gk">εἰ</span> <span class="gk">μή</span>（除了……之外）与完成时分词</strong><span class="gk">οὐ</span> <span class="gk">γὰρ</span> <span class="gk">ἔστιν</span> <span class="gk">ἐξουσία</span> <span class="gk">εἰ</span> <span class="gk">μὴ</span> <span class="gk">ὑπὸ</span> <span class="gk">θεοῦ</span>——否定一切例外；再以完成时分词 <span class="gk">τεταγμέναι</span> 肯定神已经完成的安排：秩序是已经安放好的，不是正在商量中的。</li>
+            <li><strong>4. 2 节的 <span class="gk">ὥστε</span>（所以）推论</strong>从神学前提（权柄出于神）推出实践结论（抗拒掌权者就是抗拒神的命）。<span class="gk">ὁ</span> <span class="gk">ἀντιτασσόμενος</span> 是带冠词的分词（「那抗拒的」），把抗拒者定型为一类人；<span class="gk">λήμψονται</span> 是将来时中间态（「必自取刑罚」）——审判是确定的，只是时间未到。</li>
+            <li><strong>5. 3 节的修辞问句</strong><span class="gk">θέλεις</span> <span class="gk">δὲ</span> <span class="gk">μὴ</span> <span class="gk">φοβεῖσθαι</span> <span class="gk">τὴν</span> <span class="gk">ἐξουσίαν</span>（你愿意不惧怕掌权的吗？）——<span class="gk">θέλεις</span>（你愿意）加不定式；问句的答案是条件句：<span class="gk">τὸ</span> <span class="gk">ἀγαθὸν</span> <span class="gk">ποίει</span>（你只要行善，现在时命令式，持续行善），<span class="gk">καὶ</span> <span class="gk">ἕξεις</span> <span class="gk">ἔπαινον</span>（就可得他的称赞，将来时）——称赞是行善的自然结果。</li>
+            <li><strong>6. 4 节的三重「是」</strong><span class="gk">διάκονος</span>……<span class="gk">ἐστιν</span>（他是神的用人）→ 中间的对比（你若作恶，却当惧怕；他不是空空地佩剑）→ 第二次 <span class="gk">διάκονος</span> <span class="gk">ἐστιν</span>（他是神的用人）加 <span class="gk">ἔκδικος</span>（是伸冤的）。两次「神的用人」框住中间的「佩剑」与「刑罚」：国家强制力之所以合法，是因为它被「神的用人」这一身份框住。</li>
+            <li><strong>7. 5 节的 <span class="gk">διὸ</span>（所以）与 <span class="gk">ἀνάγκη</span> <span class="gk">ὑποτάσσεσθαι</span>（必须顺服）</strong><span class="gk">οὐ</span> <span class="gk">μόνον</span>……<span class="gk">ἀλλὰ</span> <span class="gk">καί</span>（不但是……也是因为）并列两个动机：<span class="gk">διὰ</span> <span class="gk">τὴν</span> <span class="gk">ὀργὴν</span>（因为刑罚）与 <span class="gk">διὰ</span> <span class="gk">τὴν</span> <span class="gk">συνείδησιν</span>（因为良心）。前者是外在的畏惧，后者是内在的认信——顺服的理由从「怕被罚」升到「良心知道这是对的」。</li>
+            <li><strong>8. 6 节的 <span class="gk">διὰ</span> <span class="gk">τοῦτο</span> <span class="gk">γὰρ</span> <span class="gk">καί</span>（你们纳粮，也为这个缘故）</strong><span class="gk">γὰρ</span> 说明纳税与顺服是同一件事的两个面；<span class="gk">λειτουργοὶ</span> <span class="gk">θεοῦ</span>（神的差役）是复数，指各级官吏；<span class="gk">προσκαρτεροῦντες</span>（常常特管）——「坚持不懈地专注于这事」，与 12:12 的 <span class="gk">προσκαρτεροῦντες</span>（祷告恒切）是同一个词：官吏恒切于公务，信徒恒切于祷告。</li>
+            <li><strong>9. 7 节的四重平行</strong><span class="gk">φόρος</span>／<span class="gk">τέλος</span>／<span class="gk">φόβος</span>／<span class="gk">τιμή</span>——前两者是物质的（粮、税），后两者是态度的（惧怕、恭敬）。<span class="gk">ἀπόδοτε</span>（要还给）是第二人称复数不定过去时命令式：一次性的动作——欠什么，还什么，一一结清。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「没有权柄不是出于神的」：权柄的神圣来源与它的界限</strong>穆理认为，<span class="gk">τεταγμέναι</span>（是神所命的）讲的是权柄的制度（institution），不是为每一位掌权者的每一项作为背书：神命定权柄的存在，不等于神喜悦掌权者的一切行为——法老也是神「兴起来」的（9:17），却仍要为自己的刚硬负责。<p>穆尔补充说，<span class="gk">αἱ</span> <span class="gk">οὖσαι</span>（实际存在的）是关键：保罗说的是现实中实际存在的权柄，不是一种理想化的权柄；这节不是在论证某一种政体最合神心意，而是在宣告：无论何种政体，其权柄的终极来源都在神。两位学者都指出，这一节与诗 75:7「惟有神断定，他使这人降卑，使那人升高」、但 2:21「他废王，立王」互相印证。</p><p>分歧传统：对「命定」的理解——神积极的安排，还是神的许可？穆理倾向于前者：权柄的设立是神主权护理的一部分；穆尔则区分神设立权柄制度与神许可具体掌权者的作为。历代共识：奥古斯丁与加尔文都持「权柄的制度出于神，掌权者的滥用仍要向神交账」——神的命定从不为人的罪行开脱。</p></li>
+            <li><strong>2. 「抗拒掌权的就是抗拒神的命」：抗拒的性质与后果</strong>穆理指出，抗拒不是中性的政治异议，而是对神所立秩序的反叛：<span class="gk">ὥστε</span>（所以）把 1 节的神学前提直接变成 2 节的实践结论——既然权柄出于神，抗拒权柄就是抗拒神。<span class="gk">κρίμα</span>（刑罚）既包括国家刑罚，也包括神末世的审判，二者不是非此即彼，而是里外两层。<p>穆尔则梳理 <span class="gk">κρίμα</span> 的两种解释，认为此处首先指国家刑罚（下文 3–4 节接续讲刑罚），但保罗把国家刑罚放在神审判的框架里：人间的判决是神判决的影子。与 12:19 互相印证：信徒不自己伸冤，正因为神已设立审判的渠道；抗拒那渠道，就是抗拒设立渠道的神。</p><p>历代共识：早期教会一面顺服罗马政权（彼前 2:13–17 与本段几乎同文），一面拒绝拜皇帝像——顺服的是神所立的秩序，拒绝的是僭越神主权的命令。</p></li>
+            <li><strong>3. 「作官的原不是叫行善的惧怕」：权柄的规范功能，不是经验描述</strong>穆理指出，这是权柄「应当是」的样子，是神设立权柄的目的——奖善罚恶。行善的得称赞、作恶的当惧怕：权柄的剑有两面，一面是奖励，一面是刑罚。<p>穆尔则提醒，这句不是经验描述——历史上有太多权柄恰恰叫行善的惧怕（尼禄晚年逼迫教会、启示录 13 章的兽）；保罗讲的是神赋予权柄的规范功能，不是对现实的粉饰。正因为权柄会偏离这一功能，信徒才需要分辨：顺服的对象是神所立的秩序，不是权柄的每一项恶行。与彼前 2:14「赏善罚恶」、耶 27 章神藉巴比伦施行审判、却仍审判巴比伦的暴虐互相印证。</p><p>分歧传统：对 3 节的理解——有的解经家把这句读作普遍事实（「好政府都奖励善行」），穆理与穆尔都拒绝这种读法：保罗讲的是神设立权柄的意图，不是历史统计。</p></li>
+            <li><strong>4. 「他是神的用人……佩剑……伸冤的」：剑权的合法性</strong>穆理认为，<span class="gk">μάχαιρα</span>（剑）不只是象征，是真实的行刑权，包括死刑在内；他由此论证国家有合法使用武力的权力，基督徒不可把「不可杀人」理解为取消国家刑罚权——「他不是空空地佩剑」的意思正是：剑是带着真实权柄佩的。<p>穆尔则更为谨慎：剑首先是强制力的象征，保罗的重点不在死刑的存废，而在国家强制力的神圣来源；穆尔指出「神的用人」一词在 4 节出现两次，是全段的钥句——权柄的合法性完全系于它作神仆役的身份；一旦权柄不再作神的仆役、反倒与神为敌，它就失去了这段经文所给的背书。与创 9:6「凡流人血的，他的血也必被人所流」、约 19:11 耶稣对彼拉多说「若不是从上头赐给你的，你就毫无权柄办我」互相印证。</p><p>分歧传统：死刑问题历来有争论，穆理与穆尔都承认经文肯定国家强制力的合法性，但在死刑的具体应用上，改革宗传统内部也有不同声音；此处不展开死刑之争，只立住原则：强制力本身不是恶，恶的是滥用强制力。</p></li>
+            <li><strong>5. 「不但是因为刑罚，也是因为良心」：顺服的双重动机</strong>穆理认为，良心（<span class="gk">συνείδησις</span>）是神放在人里面的见证（2:15「是非之心」）：基督徒顺服，是因为良心在神面前认出这秩序是神立的；只怕刑罚的顺服是奴仆的顺服，因良心而顺服才是儿子的顺服。<p>穆尔补充说，两个动机对应两种层次：怕刑罚是对所有人的底线，凭良心是基督徒的标志；这节把 13:1–4 的神学落到人的里面——顺服不是外在的姿态，是里面的认信。与彼前 2:19「人若因我受冤屈而忍耐，这是可喜爱的」、提前 1:5「爱是从清洁的心和无亏的良心」互相印证。</p><p>历代共识：加尔文说，良心是「神在人里面的法庭」——顺服若只出于惧怕，良心就不安；顺服若出于良心，惧怕就有了安息。</p></li>
+            <li><strong>6. 「你们纳粮……因他们是神的差役」：纳税是敬拜的一部分</strong>穆理指出，纳税不是世俗的负担，是对神秩序的承认；<span class="gk">λειτουργός</span> 这个带圣殿色彩的词表明，纳税支持的是神的供职者——纳税因此有了敬拜的维度：你在纳税时，是在承认神藉着这些人在管理这个世界。<p>穆尔则结合历史背景：罗马的人头税与土地税是犹太人最敏感的政治议题，奋锐党人以抗税为起义的旗帜；保罗要罗马基督徒与这种政治神学划清界限。与可 12:17「该撒的物当归给该撒，神的物当归给神」直接相连：纳税与敬拜神不是对立的两件事，而是同一位神之下的两项义务；太 17:24–27 耶稣吩咐彼得纳税（「免得触犯他们」）也是同一逻辑。</p><p>分歧传统：对 <span class="gk">λειτουργός</span> 的理解——有的解经家认为保罗只是在借用一个通俗词，有的认为他有意用圣殿语言；穆理与穆尔都倾向于后者：保罗有意把官吏说成神的供职者，好让纳税这件事带上神圣的色彩。</p></li>
+            <li><strong>7. 「凡人所当得的，就给他」：四重偿还与顺服的界限</strong>穆理指出，<span class="gk">ἀπόδοτε</span>（还给）表明这些都是「债」——不是恩惠，是当还的；惧怕与恭敬并列：惧怕是对外在权柄的敬畏，恭敬是对其神圣来源的尊重；两样都要给，缺一不可。<p>穆尔则细述 <span class="gk">φόβος</span> 与 <span class="gk">τιμή</span> 的区别：惧怕针对权柄的刑罚功能，恭敬针对其神所立的身份；两者都要给，但都不等于盲从。界限：两位学者都同意，13:1–7 讲的是一般原则，不是没有例外的铁律——徒 5:29「顺从神，不顺从人，是应当的」、但 3 章三友拒绝拜金像、启 13 章拒绝拜兽，都是圣经自己的界限：当权柄命令人犯罪、禁止人敬拜神时，顺服神优先；但这种不顺服是「不顺从那一条命令」，不是推翻整个秩序，也不是以暴力反抗（参耶 29:7「为那城求平安」）。</p><p>历代共识：宗教改革传统总结为「顺服掌权者，直到与神的命令冲突时为止」；奥古斯丁说，基督徒是天国的公民，也是地上城的居民——两重身份并不冲突，因为地上的权柄也是神所立的。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：把顺服当作信心的操练</strong>权柄不完美，但神的命定不改变。今天具体地做一次分辨：对一个你不认同的决定或规定，先不抱怨，问自己一句：这是神的命令与人的命令冲突，还是只是我的喜好与人的命令冲突？前者要站住，后者要顺服。顺服不是懦弱，是相信神在掌权——连不完美的权柄也在祂手里。</li>
+            <li><strong>应用二：把「当得的」一一还清</strong>纳税不作假、守法不取巧、对在上者存敬重——这些都是敬拜的一部分。本周检查一次：有没有一项「当得的」被我拖欠着——一笔税、一份尊重、一次配合？还清它，不要让「欠」成为习惯。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>13:1 说「没有权柄不是出于神的」，13:4 又说掌权者是「神的用人」；但历史上不乏逼迫教会的权柄（尼禄晚年、启示录里的兽）。当权柄命令你做神禁止的事，或禁止你做神命令的事时，13 章的顺服与使徒行传 5:29 的「顺从神，不顺从人」之间，界限应当划在哪里？请具体地想一想：你生活中有没有遇到过这样的张力？你当时是怎么分辨的？</p>
+          </div>
+</article>
+
+
+        <div class="daynav"><a href="day30.html">← 第 30 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
