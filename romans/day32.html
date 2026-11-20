@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 32 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 79.21%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day32-am">14:1–6</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+        <a href="day28.html">第 28 天</a>
+        <a href="day29.html">第 29 天</a>
+        <a href="day30.html">第 30 天</a>
+        <a href="day31.html">第 31 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 32 天</span>2026-11-20（周五） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day32-am">
+          <div class="entry-head">
+            <span class="entry-day">第 32 天 · 晨 — 2026-11-20（周五）</span>
+            <h3 class="entry-title">信心软弱的，你们要接纳 <span class="ref">· 罗马书 14:1–6</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">1</span>信心软弱的，你们要接纳，不要辩论所疑惑的事。<span class="vn">2</span>有人信百物都可吃，但那软弱的，只吃蔬菜。<span class="vn">3</span>吃的人不可轻看不吃的人；不吃的人不可论断吃的人，因为神已经收纳他了。<span class="vn">4</span>你是谁，竟论断别人的仆人呢？他或站住，或跌倒，自有他的主人在；而且他也必要站住，因为主能使他站住。<span class="vn">5</span>有人看这日比那日强；有人看日日都是一样。只是各人心里要意见坚定。<span class="vn">6</span>守日的人是为主守的；吃的人是为主吃的，因他感谢神；不吃的人是为主不吃的，也感谢神。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 从劝勉的总纲到教会的具体争论：第 14 章开篇</strong></p>
+          <p>12:1–13:14 是罗马书的劝勉大段（从「将身体献上」到「披戴基督」），14:1–15:13 则是这劝勉在教会内部具体争议中的应用。13 章讲完了信徒对掌权者、对邻舍、对时间，14 章把镜头收回教会里面：弟兄之间有了分歧——吃什么、守什么日子。14:1 是整段（14:1–15:13）的总纲句：「信心软弱的，你们要接纳。」接下来的十五章篇幅，讲的都是这一句。</p>
+          <p><strong>2. 罗马教会的构成：犹太基督徒与外邦基督徒混杂</strong></p>
+          <p>罗马教会由犹太基督徒与外邦基督徒组成（参 11:13「我对你们外邦人说这话」、16:3–16 的问安名单），争论的焦点是饮食与守日。饮食方面：有人「信百物都可吃」，有人「只吃蔬菜」——原因可能有三：怕吃到祭过偶像的肉、怕吃到不洁净的肉或不符合律法的屠宰方式、或出于犹太洁食传统（参 但 1:8–16，但以理只吃素菜）。守日方面：有人看某些日子（安息日、犹太节期、禁食日）比别的日子更神圣，有人看日日都是一样。这场争论与哥林多前书 8–10 章的「祭偶像之物」争论平行，但不完全相同：哥林多的问题是偶像，罗马的问题更可能是犹太律法的遗留。</p>
+          <p><strong>3. 「软弱」是什么意思：不是道德软弱，是信心应用上的不自由</strong></p>
+          <p>「信心软弱的」不是指信心本身是假的，而是指信心在应用上的自由程度不够——良心上仍受旧约规条或传统约束，在某些事上放不开。保罗自己站在「刚强者」一边（14:14「凡物本来没有不洁净的」、15:1「我们坚固的人」），但他命令刚强者接纳软弱者，而不是纠正了再接纳。这一章的次序很重要：先接纳，后讨论；接纳是命令，讨论是后话。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">ἀσθενής</span>（asthenēs，软弱）——1 节</strong>字面是「没有力量」（<span class="gk">ἀ-</span> 加 <span class="gk">σθένος</span>，力量）；在保罗书信中可指身体软弱（腓 2:26）、良心软弱（林前 8:7–12）。这里是现在分词 <span class="gk">τὸν</span> <span class="gk">ἀσθενοῦντα</span> <span class="gk">τῇ</span> <span class="gk">πίστει</span>（在信心上软弱的）——软弱的范围被 <span class="gk">τῇ</span> <span class="gk">πίστει</span>（在信心上，与格）限定：不是整个人软弱，是信心在某些事上还不够自由。</li>
+            <li><strong>2. <span class="gk">προσλαμβάνω</span>（proslambanō，接纳）——1、3 节</strong>由 <span class="gk">πρός</span>（向）加 <span class="gk">λαμβάνω</span>（拿、取）构成，字面是「接到自己身边来」。1 节 <span class="gk">προσλαμβάνεσθε</span> 是现在时中间态命令式（你们要接纳）——持续的接纳姿态。同一词在 15:7 出现两次：「彼此接纳，如同基督接纳你们一样。」</li>
+            <li><strong>3. <span class="gk">διάκρισις</span> <span class="gk">διαλογισμῶν</span>（diakrisis dialogismōn，辩论所疑惑的事）——1 节</strong><span class="gk">διάκρισις</span> 是「分辨、判断」，<span class="gk">διαλογισμός</span> 是「内心的议论、争论」。字面是「不要为了分辨议论而接纳」——接纳的目的不是把对方拉进辩论场。两种译法都成立：「不要辩论所疑惑的事」与「不要接纳人为要争论」。</li>
+            <li><strong>4. <span class="gk">πιστεύω</span>（pisteuō，信）——2 节</strong><span class="gk">ὃς</span> <span class="gk">μὲν</span> <span class="gk">πιστεύει</span> <span class="gk">φαγεῖν</span> <span class="gk">πάντα</span>（有人信百物都可吃）——这里的「信」不是指称义的信心，是指对食物的信念、良心上的确信：相信在基督里一切食物都是洁净的。</li>
+            <li><strong>5. <span class="gk">λάχανον</span>（lachanon，蔬菜）——2 节</strong>「只吃蔬菜」：<span class="gk">ἐσθίει</span> <span class="gk">λάχανα</span>。只吃素菜在犹太传统中有先例（但 1:8–16）；对罗马的软弱者而言，吃素是最稳妥的办法——既避开了祭偶像的肉，也避开了不洁净的肉。</li>
+            <li><strong>6. <span class="gk">ἐξουθενέω</span>（exoutheneō，轻看）——3 节</strong>由 <span class="gk">ἐξ</span>（出）加 <span class="gk">οὐθέν</span>（无）构成，字面是「看作无有、藐视」。现在时命令式带 <span class="gk">μή</span>（不可轻看）——刚强者的试探是轻看：看软弱者为愚昧、落后、不开化。</li>
+            <li><strong>7. <span class="gk">κρίνω</span>（krinō，论断）——3、4 节</strong>现在时命令式 <span class="gk">μὴ</span> <span class="gk">κρινέτω</span>（不可论断）——软弱者的试探是论断：看刚强者为不敬虔、犯罪、放纵。同一动词在 2:1 出现（「你这论断人的」）。</li>
+            <li><strong>8. <span class="gk">προσέλαβεν</span>（proselaben，收纳）——3 节</strong>不定过去时：「神已经收纳他了。」神的接纳是已经完成的事实，是教会接纳的根据——教会不是在创造接纳，是在回应神的接纳。</li>
+            <li><strong>9. <span class="gk">οἰκέτης</span>（oiketēs，仆人）——4 节</strong>与 <span class="gk">δοῦλος</span>（奴仆）不同，<span class="gk">οἰκέτης</span> 是「家仆」——属于某一家的人。论断别人的仆人，就是越权干涉别家主人的事。</li>
+            <li><strong>10. <span class="gk">στήκω</span>（stēkō，站住）与 <span class="gk">πίπτω</span>（piptō，跌倒）——4 节</strong><span class="gk">στῇ</span>（站住）与 <span class="gk">πέσῃ</span>（跌倒）都是不定过去时虚拟式，构成对照；<span class="gk">σταθήσεται</span>（必要站住）是将来时被动：神要使他站住。</li>
+            <li><strong>11. <span class="gk">δυνατέω</span>（dynateō，能）——4 节</strong><span class="gk">δυνατεῖ</span> <span class="gk">γὰρ</span> <span class="gk">ὁ</span> <span class="gk">κύριος</span> <span class="gk">στῆσαι</span> <span class="gk">αὐτόν</span>（因为主能使他站住）——<span class="gk">δυνατέω</span> 是「有能力」；<span class="gk">στῆσαι</span> 是不定过去时主动不定式（使他站立）。</li>
+            <li><strong>12. <span class="gk">κρίνω</span>（krinō，看、判断）——5 节</strong>同一动词第三次出现：「有人看这日比那日强」——<span class="gk">κρίνει</span> <span class="gk">ἡμέραν</span> <span class="gk">παρ᾽</span> <span class="gk">ἡμέραν</span>；此处是「判断、看待」，不是「论断」——保罗用同一个词，先讲论断的罪，再讲看法的不同。</li>
+            <li><strong>13. <span class="gk">πληροφορέω</span>（plērophoreō，意见坚定）——5 节</strong>现在时被动命令式 <span class="gk">πληροφορείσθω</span>（各人心里要意见坚定）：被动语态是「被充满、被说服」——各人要在自己的心里被充分说服。<span class="gk">ἐν</span> <span class="gk">τῷ</span> <span class="gk">ἰδίῳ</span> <span class="gk">νοΐ</span>（在自己的心里）——<span class="gk">ἴδιος</span>（自己的）强调各人自己的良心。</li>
+            <li><strong>14. <span class="gk">εὐχαριστέω</span>（eucharisteō，感谢）——6 节</strong>两次出现：吃的人感谢神，不吃的人也感谢神。现在时：持续地感谢。感谢是共同点——无论吃与不吃，都是向神感恩。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 1 节的带冠词分词 <span class="gk">τὸν</span> <span class="gk">ἀσθενοῦντα</span> <span class="gk">τῇ</span> <span class="gk">πίστει</span></strong>带冠词的分词作名词：「那在信心上软弱的人。」<span class="gk">τῇ</span> <span class="gk">πίστει</span> 是与格，限定软弱的范围——不是信心本身没有，是信心在某些事上还不够自由。</li>
+            <li><strong>2. 1 节的 <span class="gk">μή</span> <span class="gk">εἰς</span> <span class="gk">διακρίσεις</span> <span class="gk">διαλογισμῶν</span>（不要辩论所疑惑的事）</strong><span class="gk">εἰς</span> 表目的：「接纳的目的不是辩论。」命令式 <span class="gk">προσλαμβάνεσθε</span>（接纳）与否定目的短语并列：接纳，但不是为辩论而接纳。</li>
+            <li><strong>3. 2 节的 <span class="gk">μὲν</span>……<span class="gk">δὲ</span> 对照</strong><span class="gk">ὃς</span> <span class="gk">μὲν</span>……<span class="gk">ὁ</span> <span class="gk">δὲ</span>……（有人……但那……）——<span class="gk">μέν</span>……<span class="gk">δέ</span> 对照：信百物都可吃的，与只吃蔬菜的。两类人都用现在时：<span class="gk">πιστεύει</span>（信）与 <span class="gk">ἐσθίει</span>（吃）——持续的状态，不是一次的选择。</li>
+            <li><strong>4. 3 节的平行命令</strong><span class="gk">ὁ</span> <span class="gk">ἐσθίων</span> <span class="gk">μὴ</span> <span class="gk">ἐξουθενείτω</span>（吃的人不可轻看）与 <span class="gk">ὁ</span> <span class="gk">μὴ</span> <span class="gk">ἐσθίων</span> <span class="gk">μὴ</span> <span class="gk">κρινέτω</span>（不吃的人不可论断）——两个第三人称现在时命令式，完全对称。命令的对象互换：刚强者轻看，软弱者论断；保罗对两边都下命令，不偏袒任何一方。</li>
+            <li><strong>5. 3 节末尾的 <span class="gk">γὰρ</span> 从句（因为神已经收纳他了）</strong><span class="gk">προσέλαβεν</span> 是不定过去时：神的接纳是已经完成的事实，是教会接纳的根据。接纳的命令系于一个已经完成的动作。</li>
+            <li><strong>6. 4 节的修辞问句</strong><span class="gk">σὺ</span> <span class="gk">τίς</span> <span class="gk">εἶ</span> <span class="gk">ὁ</span> <span class="gk">κρίνων</span> <span class="gk">ἀλλότριον</span> <span class="gk">οἰκέτην</span>（你是谁，竟论断别人的仆人呢？）——<span class="gk">σὺ</span> <span class="gk">τίς</span> <span class="gk">εἶ</span>（你是谁）是直指身份的质问；<span class="gk">ὁ</span> <span class="gk">κρίνων</span> 是带冠词分词（「那论断的」），<span class="gk">ἀλλότριον</span>（别人的）强调越权。</li>
+            <li><strong>7. 4 节的 <span class="gk">τῷ</span> <span class="gk">ἰδίῳ</span> <span class="gk">κυρίῳ</span>（自有他的主人在）</strong>与格表所属：「在自己的主人面前」站住或跌倒。主格与属格的张力：他是别人的仆人，不是你的仆人——评断他的权柄在他的主人手里。</li>
+            <li><strong>8. 4 节的将来时 <span class="gk">σταθήσεται</span>（必要站住）与 <span class="gk">γὰρ</span> 从句</strong><span class="gk">δυνατεῖ</span> <span class="gk">ὁ</span> <span class="gk">κύριος</span>（因为主能使他站住）——站住的确据不在仆人的力量，在主的能力。<span class="gk">στῆσαι</span> 是不定过去时主动不定式（使他站立）。</li>
+            <li><strong>9. 5 节的 <span class="gk">κρίνει</span> <span class="gk">ἡμέραν</span> <span class="gk">παρ᾽</span> <span class="gk">ἡμέραν</span>（看这日比那日强）与 <span class="gk">κρίνει</span> <span class="gk">πᾶσαν</span> <span class="gk">ἡμέραν</span>（看日日都是一样）</strong><span class="gk">παρά</span> 加宾格表比较；<span class="gk">πᾶσαν</span> <span class="gk">ἡμέραν</span>（每一天）表全部日子。两种看法都用 <span class="gk">κρίνω</span>，但此处是「判断、看待」，不是「论断」。</li>
+            <li><strong>10. 5 节末尾的 <span class="gk">πληροφορείσθω</span>（要意见坚定）</strong>现在时被动命令式：持续地、被充分地说服。<span class="gk">ἐν</span> <span class="gk">τῷ</span> <span class="gk">ἰδίῳ</span> <span class="gk">νοΐ</span>（在自己的心里）——<span class="gk">ἴδιος</span>（自己的）强调各人自己的良心：不是别人的良心，是自己的。</li>
+            <li><strong>11. 6 节的三重「为主」</strong><span class="gk">ὁ</span> <span class="gk">φρονῶν</span> <span class="gk">τὴν</span> <span class="gk">ἡμέραν</span> <span class="gk">κυρίῳ</span> <span class="gk">φρονεῖ</span>（守日的人是为主守的）；<span class="gk">ὁ</span> <span class="gk">ἐσθίων</span> <span class="gk">κυρίῳ</span> <span class="gk">ἐσθίει</span>（吃的人是为主吃的）；<span class="gk">ὁ</span> <span class="gk">μὴ</span> <span class="gk">ἐσθίων</span> <span class="gk">κυρίῳ</span> <span class="gk">οὐκ</span> <span class="gk">ἐσθίει</span>（不吃的人是为主不吃的）——<span class="gk">κυρίῳ</span>（为主）是与格，三次重复，构成全段的高潮：两种做法的共同点是「为主」。</li>
+            <li><strong>12. 6 节的两个 <span class="gk">εὐχαριστεῖ</span>（感谢）</strong>现在时：吃的人感谢神，不吃的人也感谢神。感谢是验证「为主」的记号——向神感恩的人，表明他所做的真是为主做的。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「信心软弱的，你们要接纳」：软弱的定义</strong>穆理认为，软弱不是指信心本身的真伪，而是指信心在应用上的自由程度——软弱者真信基督，但在某些事上良心仍受旧约规条束缚。<p>穆尔指出，保罗在 14 章用「软弱」描述良心上仍有顾虑的人，与林前 8 章的「软弱的弟兄」（良心软弱）是同一概念；软弱不是罪，是成长中的阶段（参 15:1「我们坚固的人应当担代不坚固人的软弱」）。</p><p>分歧传统：软弱者是不是专指犹太基督徒？穆理认为主要是犹太基督徒（守安息日、饮食条例），但也包括受犹太影响的外邦人；穆尔认为不能简单按族群划分——罗马教会里既有犹太人也有外邦人，软弱与刚强跨越族群。历代共识：软弱者仍是真弟兄，教会接纳他的理由不是他的看法正确，而是神已经收纳了他。</p></li>
+            <li><strong>2. 「不要辩论所疑惑的事」：接纳的界限</strong>穆理认为，接纳不是无原则的包容——保罗在加拉太书对「别的福音」毫不让步（加 1:8–9）；14 章讲的是「可疑惑的事」（<span class="gk">διαλογισμοί</span>），即圣经没有明确定论的事；福音真理不在辩论之列。<p>穆尔梳理 <span class="gk">διακρίσεις</span> <span class="gk">διαλογισμῶν</span> 的两种译法——「不要辩论所疑惑的事」与「不要接纳人为要争论」，认为两者互补：接纳的目的不是把对方拉进辩论场；教会接纳人，是因为神接纳了人，不是因为对方先通过了神学考试。与 15:7「彼此接纳，如同基督接纳你们一样」互相印证。</p><p>历代共识：教会历史上把 14 章称为「基督徒自由」的宪章——在基要的事上合一，在非基要的事上自由，在一切的事上相爱（这句格言常被归于奥古斯丁，实为后世总结，却正是 14 章的精神）。</p></li>
+            <li><strong>3. 「吃的人不可轻看，不吃的人不可论断」：双向的罪</strong>穆理认为，刚强者的罪是轻看（<span class="gk">ἐξουθενέω</span>）——看软弱者为愚昧、落后；软弱者的罪是论断（<span class="gk">κρίνω</span>）——看刚强者为不敬虔、犯罪；两种态度都是否定对方的信心。<p>穆尔指出命令的对称性：保罗对两边都下命令，不偏袒任何一方；但命令的内容不同：轻看是态度上的藐视，论断是审判权上的僭越。与 2:1「你这论断人的」、太 7:1「你们不要论断人」互相印证。</p><p>分歧传统：对「只吃蔬菜」的具体原因——祭偶像之物说（林前 8–10）、犹太洁食说（利 11 章）、禁欲主义说（西 2:20–23「不可拿、不可尝」）；穆理倾向洁食与祭偶像的混合背景，穆尔认为最可能与犹太饮食条例有关（参 但 1:8–16 但以理只吃素菜的先例）。两位学者都同意：原因不影响结论——无论为什么吃素，软弱者都是弟兄。</p></li>
+            <li><strong>4. 「因为神已经收纳他了」：接纳的神学根据</strong>穆理认为，神的接纳先于教会的接纳；人若拒绝神所接纳的人，就是质疑神的判断——<span class="gk">προσέλαβεν</span>（已经收纳）是不定过去时，指向神在基督里接纳人的决定性行动。<p>穆尔补充说，教会的接纳是回应神的接纳，不是创造接纳；这节与罗 5:1「因信称义」互文：称义是接纳的根基——人被神接纳，不是因为他的饮食观正确，是因为他在基督里。</p><p>历代共识：加尔文说，神接纳人的标准是基督，不是人的规条——教会若以规条为接纳的标准，就是把基督的标准换成了自己的标准。</p></li>
+            <li><strong>5. 「你是谁，竟论断别人的仆人呢？」：仆人与主人的关系</strong>穆理认为，<span class="gk">οἰκέτης</span>（家仆）强调所属关系——弟兄是基督的仆人，不是你的仆人；论断他，就是越俎代庖，抢了主人的位置。<p>穆尔指出，这节与雅 4:12「设立律法和判断人的，只有一位，就是那能救人也能灭人的。你是谁，竟敢论断别人呢？」几乎同文；保罗用仆人比喻把审判权归还给基督——只有主人有权评断自己的仆人。与林前 4:3–5「判断我的乃是主」互相印证。</p><p>分歧传统：这里的「主人」是指基督还是父神？穆理认为是基督（与 3 节「神已经收纳」对照，4 节转向基督为主人）；穆尔指出抄本有分歧（有的作「神能使他站住」），但无论作「主」或「神」，意思一致——评断的权柄在神，不在人。</p></li>
+            <li><strong>6. 「他也必要站住，因为主能使他站住」：站住的确据</strong>穆理认为，<span class="gk">σταθήσεται</span>（必要站住）是将来时——保罗不是说软弱者「可能」站住，是说他「必要」站住；确据在主的能力（<span class="gk">δυνατεῖ</span>），不在人的刚强。<p>穆尔称这节是全段最安慰人的话：站住与跌倒的最终裁判是主，而且主的旨意是叫他站住。与犹 1:24「保守你们不失脚」、腓 1:6「那在你们心里动了善工的，必成全这工」互相印证。</p><p>历代共识：奥古斯丁说，神保守圣徒到底——站住不是人的功劳，是神的恩典；但这恩典不是叫人轻看软弱者，而是叫刚强者放心：你不必替主人操心，主自会扶持他的仆人。</p></li>
+            <li><strong>7. 「有人看这日比那日强，有人看日日都是一样」：守日的争论</strong>穆理认为，所指的日子很可能是安息日与犹太节期（逾越节、五旬节等），也可能包括禁食日；保罗的立场是：日子本身没有圣俗之分（参 西 2:16–17「不拘在饮食上，或节期、月朔、安息日」）。<p>穆尔则对照加 4:10「你们谨守日子、月份、节期、年份」——加拉太书中保罗严厉批评谨守日子，因为那里涉及靠律法称义；罗马书 14 章的语气完全不同，因为这里不涉及称义，只涉及良心自由；同一件事，在称义的语境里是福音问题，在良心的语境里是自由问题。</p><p>分歧传统：安息日是否仍有约束力？改革宗传统内部有分歧——有的认为安息日（主日）仍是道德律的一部分（参 出 20:8–11），有的认为安息日已在基督里成全（西 2:16–17）；穆理与穆尔都同意：14:5 不是在废除主日，而是在说教会不应在「哪一日更神圣」的问题上彼此论断。</p></li>
+            <li><strong>8. 「各人心里要意见坚定」与「为主」：良心的自由与主权的统一</strong>穆理认为，<span class="gk">πληροφορείσθω</span>（要意见坚定）的意思是：各人要在自己的良心里被充分说服，不要随波逐流，也不要勉强行事——勉强行事就是犯罪（14:23「凡不出于信心的都是罪」）。<p>穆尔指出 6 节三次「为主」（<span class="gk">κυρίῳ</span>）是全段的高潮：吃与不吃、守日与不守日，都可以是「为主」——关键不在行为本身，在行为的方向；感谢（<span class="gk">εὐχαριστεῖ</span>）是「为主」的验证：向神感恩的人，表明他所做的真是为主做的。与林前 10:31「无论做什么，都要为荣耀神而行」互相印证。</p><p>历代共识：良心自由不是「想做什么就做什么」，是「在主面前按自己的良心行事」——自由的边界是主权：凡是为主做的，都是自由；凡不是为主做的，再「正确」也是枉然。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：在「可疑惑的事」上，先接纳、后讨论</strong>教会里总有饮食、日子、着装、娱乐等见解不同的事。今天遇到与你看法不同的人，先问一句：这是福音真理，还是「可疑惑的事」？若是后者，先接纳他，再慢慢讨论；不要把接纳当作辩论的入场券。</li>
+            <li><strong>应用二：检查你的「轻看」与「论断」</strong>刚强者容易轻看软弱者「古板」，软弱者容易论断刚强者「随便」。本周留意一次：当你心里冒出「他怎么连这个都不懂」或「他怎么敢这样做」时，停下来想一想：神已经收纳他了，我是谁，竟论断别人的仆人呢？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>14:1 说「不要辩论所疑惑的事」，但保罗在别处却激烈辩论（加拉太书、使徒行传 17 章）。哪些事是「可疑惑的事」，可以彼此包容；哪些事是福音的基要真理，必须寸步不让？请结合 14:5「各人心里要意见坚定」与 14:23「凡不出于信心的都是罪」，想一想：你生活中有没有正在「勉强行事」的事——心里并不确信，却因为别人都在做而跟着做？</p>
+          </div>
+</article>
+        <div class="daynav"><a href="day31.html">← 第 31 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
