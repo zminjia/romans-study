@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 33 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 79.21%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day33-am">14:13–18</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+        <a href="day28.html">第 28 天</a>
+        <a href="day29.html">第 29 天</a>
+        <a href="day30.html">第 30 天</a>
+        <a href="day31.html">第 31 天</a>
+        <a href="day32.html">第 32 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 33 天</span>2026-11-21（周六） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day33-am">
+          <div class="entry-head">
+            <span class="entry-day">第 33 天 · 晨 — 2026-11-21（周六）</span>
+            <h3 class="entry-title">神的国不在乎吃喝 <span class="ref">· 罗马书 14:13–18</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">13</span>所以，我们不可再彼此论断，宁可定意谁也不给弟兄放下绊脚跌人之物。<span class="vn">14</span>我凭着主耶稣确知深信，凡物本来没有不洁净的；惟独人以为不洁净的，在他就不洁净了。<span class="vn">15</span>你若因食物叫弟兄忧愁，就不是按着爱人的道理行。基督已经替他死，你不可因你的食物叫他败坏。<span class="vn">16</span>不可叫你的善被人毁谤；<span class="vn">17</span>因为神的国不在乎吃喝，只在乎公义、和平，并圣灵中的喜乐。<span class="vn">18</span>在这几样上服事基督的，就为神所喜悦，又为人所称许。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 从「不可论断」到「不可绊倒」：14:13 是全章的转折点</strong></p>
+          <p>14:1–12 讲的是接纳的命令与它的神学根基：接纳，因为神已经收纳了他（3 节）；不可论断，因为我们都要站在神的审判台前（10–12 节）。14:13 以「所以」承接前文，把论证推向实际应用：既然审判的主权在神，论断的责任不在我们，那么刚强者当做的就不是继续争论谁对谁错，而是「定意」——下决心不给弟兄放下绊脚石。从 13 节起，保罗的焦点从「谁有道理」转向「谁会跌倒」；从 13 节到 23 节，整段讲的都是自由的界限：自由要服在爱之下。</p>
+          <p><strong>2. 与哥林多前书 8–10 章的平行：同一原则，不同处境</strong></p>
+          <p>这段与林前 8 章「祭偶像之物」的论证高度平行：林前 8:9「只是你们要谨慎，恐怕你们这自由竟成了软弱人的绊脚石」，8:11「基督为他死的那软弱弟兄，也就因你的知识沉沦了」，10:23「凡事都可行，但不都有益处」。两处共享同一结构：先肯定自由的真理（凡物都洁净、偶像算不得什么），再以爱限制自由的行使（不可叫弟兄跌倒）。不同的是：哥林多的问题是祭过偶像的肉，牵涉偶像崇拜；罗马的问题更可能是犹太饮食条例与守日传统，牵涉律法的遗留。但保罗的答案一致：真理要讲，爱更要行。</p>
+          <p><strong>3. 「神的国」在保罗书信中的位置</strong></p>
+          <p>17 节的「神的国」是保罗神学中较少直接使用的概念（在罗马书中仅出现于此与 14:17 之前无别处），但它浓缩了保罗对教会生活的理解：神的国不是一套饮食规条，而是一种新的存在状态——公义、和平、喜乐。与林前 4:20「神的国不在乎言语，乃在乎权能」互文：两处都用「不在乎……只在乎……」的句式，否定外在的、可夸口的东西，肯定内在的、圣灵所结的果子。</p>
+          <p><strong>4. 罗马读者的生活场景：共餐的桌子</strong></p>
+          <p>早期教会的团契生活围绕共餐展开（参 徒 2:46「在家中擘饼」），饮食争论不是抽象的神学问题，是每天坐在同一张桌子前面临的实际问题：刚强者夹起一块肉，软弱者心里就起了疙瘩。保罗的教导落在这张桌子上——自由不是「我有权吃」，是「我愿不愿为弟兄放下筷子」。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">κρίνω</span>（krinō，论断／定意）——13 节</strong>同一动词在本节出现两次，意思却翻转了：前一个 <span class="gk">μηκέτι</span> <span class="gk">ἀλλήλους</span> <span class="gk">κρίνωμεν</span>（我们不可再彼此论断）是「审判、定罪」；后一个 <span class="gk">κρίνατε</span>（宁可定意）是「判断、决定、立定心意」。保罗有意用同一个词：把「论断别人」的精力，转过来「定意」不绊倒别人——判断的对象从弟兄换成了自己。</li>
+            <li><strong>2. <span class="gk">πρόσκομμα</span>（proskomma，绊脚之物）与 <span class="gk">σκάνδαλον</span>（skandalon，跌人之物）——13 节</strong><span class="gk">πρόσκομμα</span> 由 <span class="gk">πρός</span>（向）加 <span class="gk">κόπτω</span>（撞击）构成，字面是「撞上的东西」；<span class="gk">σκάνδαλον</span> 原指捕兽器里的机关、绊索。两个词并列，覆盖从「绊一跤」到「掉进陷阱」的全过程：前者是叫人踉跄，后者是叫人跌倒犯罪。</li>
+            <li><strong>3. <span class="gk">τίθημι</span>（tithēmi，放下）——13 节</strong><span class="gk">μὴ</span> <span class="gk">τιθέναι</span>（不放下）是不定式：绊脚石不是天上掉下来的，是人「放下」的。保罗把责任放在行动者身上：你的自由行使，就是在弟兄面前放东西。</li>
+            <li><strong>4. <span class="gk">οἶδα</span> <span class="gk">καὶ</span> <span class="gk">πέπεισμαι</span>（oida kai pepeismai，确知深信）——14 节</strong><span class="gk">οἶδα</span>（我知道）加 <span class="gk">πέπεισμαι</span>（我深信，现在完成时被动：我已经被说服、并且仍然确信）——双重肯定，语气是全卷最坚定的个人确信之一。加上 <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span> <span class="gk">Ἰησοῦ</span>（凭着主耶稣）：这确信不是出于个人见解，是在主耶稣里得来的。</li>
+            <li><strong>5. <span class="gk">κοινός</span>（koinos，不洁净的）——14 节</strong>原意是「共有的、普通的」，在犹太用法中引申为「不洁净的」（参 徒 10:14–15 彼得说「俗物和不洁净的物，我从来没有吃过」，主说「神所洁净的，你不可当作俗物」；可 7:19「各样食物都是洁净的」）。「凡物本来没有不洁净的」——食物本身没有圣俗之分。</li>
+            <li><strong>6. <span class="gk">λογίζομαι</span>（logizomai，以为）——14 节</strong><span class="gk">τῷ</span> <span class="gk">λογιζομένῳ</span> <span class="gk">κοινὸν</span> <span class="gk">εἶναι</span>（人以为不洁净的）——现在时分词：「那一直认为它是不洁净的人。」关键在「以为」：洁净与否，在客观上由神定，在主观上由良心定——良心以为不洁，对他而言吃就是犯罪。</li>
+            <li><strong>7. <span class="gk">λυπέω</span>（lypeō，叫……忧愁）——15 节</strong>现在时：「你若因食物叫弟兄忧愁」——持续地、正在进行地使弟兄心里受伤。「忧愁」不只是情绪难受，是良心受压、信心受损。</li>
+            <li><strong>8. <span class="gk">περιπατέω</span> <span class="gk">κατὰ</span> <span class="gk">ἀγάπην</span>（peripateō kata agapēn，按着爱人的道理行）——15 节</strong><span class="gk">περιπατέω</span> 是「行走、为人处世」；<span class="gk">κατὰ</span> <span class="gk">ἀγάπην</span>（按照爱）——行事的准则。保罗把「行走」与 13:15 的「彼此接纳」、13:8 的「爱人如己」连成一条线：爱是行走的道路。</li>
+            <li><strong>9. <span class="gk">ἀπόλλυμι</span>（apollymi，败坏）——15 节</strong><span class="gk">μὴ</span> <span class="gk">ἀπόλλυε</span>（你不可叫他败坏）是现在时命令式带 <span class="gk">μή</span>：停止正在做的、会叫他败坏的事。<span class="gk">ἀπόλλυμι</span> 在新约中可指「灭亡」（太 10:28）、也可指「失丧、毁掉」（路 15:4「失去的羊」）。这里的分量是全段最重的词——为一口食物，竟至叫弟兄「败坏」。</li>
+            <li><strong>10. <span class="gk">βλασφημέω</span>（blasphēmeō，毁谤）——16 节</strong><span class="gk">μὴ</span> <span class="gk">βλασφημείσθω</span>（不可叫……被人毁谤）是现在时被动命令式：「你们的善」不可被说坏话。<span class="gk">τὸ</span> <span class="gk">ἀγαθὸν</span> <span class="gk">ὑμῶν</span>（你们的善）指刚强者的自由——本来是「善」（在基督里的自由），行得不当，就被人当作恶来毁谤。</li>
+            <li><strong>11. <span class="gk">βρῶσις</span> <span class="gk">καὶ</span> <span class="gk">πόσις</span>（brōsis kai posis，吃喝）——17 节</strong>「吃」与「喝」并列，指饮食这件事本身。神的国「不在乎」吃喝——<span class="gk">οὐ</span>……<span class="gk">ἐστιν</span>（不是）加上 <span class="gk">ἀλλ᾽</span>（乃是）：吃喝不在国度的定义里。</li>
+            <li><strong>12. <span class="gk">δικαιοσύνη</span>（dikaiosynē，公义）、<span class="gk">εἰρήνη</span>（eirēnē，和平）、<span class="gk">χαρά</span>（chara，喜乐）——17 节</strong>三个名词排比：公义是与神与人关系的正直，和平是关系的和好，喜乐是圣灵里的欢欣。<span class="gk">ἐν</span> <span class="gk">πνεύματι</span> <span class="gk">ἁγίῳ</span>（在圣灵里）只修饰「喜乐」——喜乐不是人的乐观，是圣灵所赐。</li>
+            <li><strong>13. <span class="gk">δουλεύω</span>（douleuō，服事）——18 节</strong><span class="gk">ὁ</span> <span class="gk">ἐν</span> <span class="gk">τούτοις</span> <span class="gk">δουλεύων</span> <span class="gk">τῷ</span> <span class="gk">Χριστῷ</span>（在这几样上服事基督的）——现在时分词：持续地服事。<span class="gk">ἐν</span> <span class="gk">τούτοις</span>（在这几样上）回指 17 节的公义、和平、喜乐。</li>
+            <li><strong>14. <span class="gk">εὐάρεστος</span>（euarestos，所喜悦的）与 <span class="gk">δόκιμος</span>（dokimos，所称许的）——18 节</strong><span class="gk">εὐάρεστος</span> <span class="gk">τῷ</span> <span class="gk">θεῷ</span>（为神所喜悦）；<span class="gk">δόκιμος</span> <span class="gk">τοῖς</span> <span class="gk">ἀνθρώποις</span>（为人所称许）——<span class="gk">δόκιμος</span> 原指金属经过试验合格、真金不怕火炼，引申为「经得起检验、为人所认可」。服事基督的人，同时得着神的喜悦与人的称许。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 13 节的 <span class="gk">μηκέτι</span>（不可再）与现在时虚拟式</strong><span class="gk">μηκέτι</span> <span class="gk">κρίνωμεν</span>（我们不可再彼此论断）——<span class="gk">μηκέτι</span> 是「不再、不要继续」：保罗不是假设他们还没开始论断，是叫他们停止正在做的事。现在时虚拟式表持续的动作：停止持续的论断。</li>
+            <li><strong>2. 13 节的 <span class="gk">μᾶλλον</span>（宁可）对照</strong><span class="gk">τοῦτο</span> <span class="gk">κρίνατε</span> <span class="gk">μᾶλλον</span>（宁可定意这个）——<span class="gk">μᾶλλον</span>（宁可、倒不如）把两件事摆在一起称量：论断弟兄，与定意不绊倒弟兄；保罗说，后者重得多。</li>
+            <li><strong>3. 13 节的 <span class="gk">τὸ</span> <span class="gk">μὴ</span> <span class="gk">τιθέναι</span>（不给……放下）</strong>带冠词的不定式作 <span class="gk">κρίνατε</span>（定意）的宾语：「定意这件事——不给弟兄放下绊脚跌人之物。」定意的内容是一个否定：定意「不」做什么。</li>
+            <li><strong>4. 14 节的 <span class="gk">οἶδα</span> <span class="gk">καὶ</span> <span class="gk">πέπεισμαι</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span> <span class="gk">Ἰησοῦ</span></strong>现在完成时 <span class="gk">πέπεισμαι</span> 是保罗书信中表达确信的最强时态之一（参 腓 1:6「我深信」、罗 8:38「我深信」）：确信已经形成，并且持续有效。<span class="gk">ἐν</span> <span class="gk">κυρίῳ</span> <span class="gk">Ἰησοῦ</span>（在主耶稣里）限定确信的来源：不是保罗个人的神学偏好，是主耶稣的教导（参 可 7:15「从外面进去的，不能污秽人」）。</li>
+            <li><strong>5. 14 节下半的 <span class="gk">εἰ</span> <span class="gk">μὴ</span>（惟独）例外从句</strong><span class="gk">εἰ</span> <span class="gk">μὴ</span> <span class="gk">τῷ</span> <span class="gk">λογιζομένῳ</span> <span class="gk">κοινὸν</span> <span class="gk">εἶναι</span>, <span class="gk">ἐκείνῳ</span> <span class="gk">κοινόν</span>（惟独人以为不洁净的，在他就不洁净了）——普遍原则（凡物都洁净）之后，立即跟一个例外：对那以为不洁的人，「在他」（<span class="gk">ἐκείνῳ</span>，与格，表「对他而言」）就是不洁的。客观真理与主观良心并存，不互相取消。</li>
+            <li><strong>6. 15 节的 <span class="gk">εἰ</span> <span class="gk">γὰρ</span>（你若）条件句</strong><span class="gk">εἰ</span> <span class="gk">γὰρ</span> <span class="gk">διὰ</span> <span class="gk">βρῶμα</span> <span class="gk">ὁ</span> <span class="gk">ἀδελφός</span> <span class="gk">σου</span> <span class="gk">λυπεῖται</span>（你若因食物叫弟兄忧愁）——<span class="gk">διὰ</span> <span class="gk">βρῶμα</span>（因食物）放在句首，强调原因的微小：为了一口食物。<span class="gk">οὐκέτι</span> <span class="gk">κατὰ</span> <span class="gk">ἀγάπην</span> <span class="gk">περιπατεῖς</span>（就不是按着爱人的道理行）——<span class="gk">οὐκέτι</span>（不再）暗示：你本来是按爱而行的，如今偏离了。</li>
+            <li><strong>7. 15 节末尾的 <span class="gk">ὑπὲρ</span> <span class="gk">οὗ</span> <span class="gk">Χριστὸς</span> <span class="gk">ἀπέθανεν</span>（基督已经替他死）</strong><span class="gk">ὑπέρ</span>（替、为）加属格：基督是「替他」死的——代赎的介词。<span class="gk">ἀπέθανεν</span>（已经死）是不定过去时：已经完成的历史事实。句法上，这个关系从句是「叫他败坏」的反衬：你为一口食物败坏他，基督却为他死了——两件事的重量天差地别。</li>
+            <li><strong>8. 16 节的被动命令式 <span class="gk">βλασφημείσθω</span>（不可叫……被人毁谤）</strong>第三人称现在时被动命令式：主语是「你们的善」，动作是「被毁谤」——保罗命令刚强者去阻止一种被动的结果：不要让你的善落到被人说坏话的地步。</li>
+            <li><strong>9. 17 节的 <span class="gk">γὰρ</span>（因为）与 <span class="gk">οὐ</span>……<span class="gk">ἀλλά</span>（不是……乃是）对照</strong><span class="gk">οὐ</span> <span class="gk">γάρ</span> <span class="gk">ἐστιν</span> <span class="gk">ἡ</span> <span class="gk">βασιλεία</span> <span class="gk">τοῦ</span> <span class="gk">θεοῦ</span> <span class="gk">βρῶσις</span> <span class="gk">καὶ</span> <span class="gk">πόσις</span>, <span class="gk">ἀλλὰ</span> <span class="gk">δικαιοσύνη</span> <span class="gk">καὶ</span> <span class="gk">εἰρήνη</span> <span class="gk">καὶ</span> <span class="gk">χαρὰ</span> <span class="gk">ἐν</span> <span class="gk">πνεύματι</span> <span class="gk">ἁγίῳ</span>（因为神的国不在乎吃喝，只在乎公义、和平，并圣灵中的喜乐）——否定与肯定并列，三个名词排比收束；<span class="gk">γὰρ</span> 给出 16 节的理由：你的善不可被毁谤，因为神的国根本不在乎吃喝。</li>
+            <li><strong>10. 18 节的 <span class="gk">ἐν</span> <span class="gk">τούτοις</span>（在这几样上）与双重结果</strong><span class="gk">ὁ</span> <span class="gk">ἐν</span> <span class="gk">τούτοις</span> <span class="gk">δουλεύων</span> <span class="gk">τῷ</span> <span class="gk">Χριστῷ</span>, <span class="gk">εὐάρεστος</span> <span class="gk">τῷ</span> <span class="gk">θεῷ</span> <span class="gk">καὶ</span> <span class="gk">δόκιμος</span> <span class="gk">τοῖς</span> <span class="gk">ἀνθρώποις</span>（在这几样上服事基督的，就为神所喜悦，又为人所称许）——带冠词分词作主语（「那……服事的人」），两个形容词并列作表语：神的喜悦与人的称许同时成立。注意次序：神在前，人在后——人的称许是结果，不是目标。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「不可再彼此论断，宁可定意」：判断的转向</strong>穆理指出，13 节是 14:3–4 的命令在实践层面的收束：3 节说「不可轻看、不可论断」，4 节问「你是谁，竟论断别人的仆人」，13 节则把「论断」一词翻转过来——判断的精力不应用在弟兄身上，要用在自己身上：「定意」不绊倒人。判断的对象一换，整个伦理的方向就换了。<p>穆尔补充说，<span class="gk">μηκέτι</span>（不可再）表明罗马教会论断的行为正在进行中，保罗不是在预防，是在叫停；与 14:10「你这个人，为什么论断弟兄呢」呼应，13 节是把审判台前的真理（10–12 节）落到当下的一步。与太 7:1–2「你们不要论断人，免得你们被论断」互相印证。</p><p>历代共识：奥古斯丁说，判断有两种——审判人的判断（属神），与分辨事的判断（属人）；保罗禁的是前者，要的是后者：分辨自己的行为会不会绊倒人。</p></li>
+            <li><strong>2. 「凡物本来没有不洁净的」：保罗的个人确信与耶稣的教导</strong>穆理认为，14 节是保罗全卷最明确的自由宣言之一：食物本身没有圣俗之分；这确信「在主耶稣里」，源头是主耶稣自己的教导（可 7:15、19「从外面进去的，不能污秽人……各样食物都是洁净的」），也与彼得在徒 10:15 的异象一致。穆理强调：保罗不是在讲个人偏好，是在陈述福音带来的客观事实——基督的死与复活废去了饮食条例的捆绑（参 西 2:16–17）。<p>穆尔则细究「确知深信」的修辞：<span class="gk">οἶδα</span> <span class="gk">καὶ</span> <span class="gk">πέπεισμαι</span> 的双重肯定，是保罗在书信中表达个人确信的最强句式之一（参 罗 8:38、腓 1:6）；但保罗紧接着就给这确信加上限制——客观的洁净不取消主观的良心。与提前 4:4「凡神所造的物，都是好的」互相印证。</p><p>分歧传统：14 节的「凡物」是否包括祭过偶像的肉？穆理认为包括——凡物即凡物；穆尔则提醒，哥林多前书 10:20–21 对祭偶像之物另有处理（「我乃是说，外邦人所献的祭，是祭鬼，不是祭神」），因此罗马书的「凡物」应理解为食物本身的洁净问题，不涉及偶像崇拜的场合。两位学者都同意：本节的重点不是给饮食开绿灯，是给良心留空间。</p></li>
+            <li><strong>3. 「惟独人以为不洁净的，在他就不洁净了」：良心的相对性与绝对性</strong>穆理认为，这半节是 14 章良心神学的关键：食物在客观上洁净，但在主观上——对那以为它不洁的人——吃它就是犯罪。原因不是食物变了，是良心变了：人若明知故犯地违背自己的良心，就是犯罪（参 14:23「凡不出于信心的都是罪」）。穆理称之为「良心的相对性」：同一行为，对一人是自由，对另一人是罪。<p>穆尔补充说，这里的「以为」（<span class="gk">λογίζομαι</span>）是现在时分词，表明软弱者的看法是持续的、根深蒂固的，不是三言两语能纠正的；因此保罗的策略不是先纠正看法，是先保护良心——等良心在真理中成长，看法自然会变。与林前 8:7「他们的良心既然软弱，也就污秽了」互相印证。</p><p>历代共识：加尔文说，良心是神放在人里面的法庭——人若违背自己的良心行事，就是在神面前认罪；但良心本身也需要被真理光照，否则「以为不洁」会永远捆绑人。真理与爱心的张力正在这里：真理说食物洁净，爱心说不要叫弟兄违背良心。</p></li>
+            <li><strong>4. 「你若因食物叫弟兄忧愁」：爱是自由的界限</strong>穆理认为，15 节是全段的伦理中心：自由的行使要受爱的检验——若你的自由叫弟兄忧愁，你就行得不在爱里了。「按着爱人的道理行」（<span class="gk">κατὰ</span> <span class="gk">ἀγάπην</span> <span class="gk">περιπατεῖς</span>）与 13:8–10「爱就完全了律法」直接相连：爱是律法的总纲，也是自由的边界。<p>穆尔指出「忧愁」（<span class="gk">λυπέω</span>）的分量：不只是情绪上的不舒服，是良心受压、信心动摇；保罗用现在时，表明这不是一次的意外，是持续的伤害。与林前 8:12「你们这样得罪弟兄们，伤了他们软弱的良心，就是得罪基督」互相印证——伤害弟兄的良心，就是得罪基督。</p><p>分歧传统：「忧愁」与「败坏」是同一回事吗？穆理认为「忧愁」是过程，「败坏」是结果——忧愁若不停止，就会走向败坏；穆尔认为两词是同义反复，保罗用加重语气的方式强调：小事（食物）可以造成大事（灵命的亏损）。</p></li>
+            <li><strong>5. 「基督已经替他死，你不可因你的食物叫他败坏」：败坏的分量与分歧</strong>穆理认为，「败坏」（<span class="gk">ἀπόλλυμι</span>）在这里不是指最终的灭亡、失去救恩——软弱弟兄仍是神的儿女、基督为他死了；保罗用的是强烈的修辞，形容灵命受重创、信心被摧毁。穆理的理由是：若刚强者的一口食物真能叫人永远灭亡，救恩就系于人的行为，不系于基督了；这与罗马书 8:38–39「什么都不能叫我们与神的爱隔绝」冲突。<p>穆尔则认为不可把 <span class="gk">ἀπόλλυμι</span> 轻易淡化：保罗在林前 8:11 用了同一个词——「基督为他死的那软弱弟兄，也就因你的知识沉沦了」；穆尔认为，保罗是在用末世性的语言警告刚强者：你正在做的事，在方向上是走向毁灭的事——虽然神必保守他的儿女到底（参 约 10:28），但人不可拿这个作放纵的借口。两位学者的分歧不在「会不会灭亡」的教义上，在修辞的分量上：穆理重神的保守，穆尔重人的责任；但结论一致——为一口食物叫弟兄败坏，是绝不可做的事。</p><p>历代共识：关键在「基督已经替他死」——弟兄的价值不是由他的看法决定的，是由基督的死决定的；你轻看他的代价，就是轻看基督为他付的代价。加尔文说：基督为他死，你却为一口食物毁他——这买卖的轻重，难道还看不出来吗？</p></li>
+            <li><strong>6. 「不可叫你的善被人毁谤」：自由的名声</strong>穆理认为，「你们的善」（<span class="gk">τὸ</span> <span class="gk">ἀγαθὸν</span> <span class="gk">ὑμῶν</span>）指刚强者在基督里的自由——自由本身是善，是福音的果子；但行使不当，善就被人当作恶来毁谤：外人会说「基督徒只顾自己吃喝」，软弱弟兄会说「他们根本不敬虔」。自由的名声，比自由本身更需要守护。<p>穆尔梳理「毁谤者」是谁的两种解释：一是指教会外的人——刚强者的行为若叫外人毁谤福音，就是羞辱主的名（参 2:24「神的名在外邦人中，因你们受了亵渎」）；二是指软弱弟兄——他们在心里毁谤刚强者的自由。穆尔认为两种都成立：保罗用被动语态（<span class="gk">βλασφημείσθω</span>）正是不指明毁谤者——无论谁毁谤，都是损失。与彼前 2:12「叫你们在外邦人中……因看见你们的好行为，便在鉴察的日子归荣耀给神」互相印证。</p><p>分歧传统：这里的「善」是否专指「吃喝的自由」？穆理认为就是指饮食自由；穆尔认为范围更广——凡是基督徒的善行（自由、恩赐、事奉），行得不当都会被人毁谤。两位学者都同意：本节的重点是见证——你的自由若成了别人的毁谤，就不是自由，是绊脚石。</p></li>
+            <li><strong>7. 「神的国不在乎吃喝」：国度的本质</strong>穆理认为，17 节是保罗对「神的国」最简洁的定义：国度的本质不是外在的规条（吃什么、喝什么），是内在的实际——公义、和平、喜乐。公义是人在神面前的地位与生活（参 5:1「因信称义」），和平是与神和好之后人与人的和好（参 5:1「与神相和」、12:18「与众人和睦」），喜乐是圣灵在人心里的工作（参加 5:22 圣灵的果子）。<p>穆尔补充说，三个名词的次序有深意：公义在先——没有与神和好的公义，就没有真正的和平；和平居中——和平是公义在人际关系中的果子；喜乐在后——喜乐是圣灵里的确据。穆尔还指出「圣灵中的喜乐」只修饰喜乐一词：公义与和平是国度的内容，喜乐是圣灵赐下的经历。与林前 4:20「神的国不在乎言语，乃在乎权能」互文：两处都用「不在乎……只在乎……」否定外在、肯定内在。</p><p>历代共识：教会历史上把 17 节称为「国度生活的宪章」——凡是叫教会争吵的事，若不在公义、和平、喜乐这三样里，就不值得争；凡是叫教会失去这三样的「自由」，就不是国度的自由。</p></li>
+            <li><strong>8. 「在这几样上服事基督的，就为神所喜悦，又为人所称许」：双重的印证</strong>穆理认为，18 节是全段的收束：服事基督的标准不是「我坚持了真理」，是「我活出了公义、和平、喜乐」；这样的人，神喜悦他，人也称许他——<span class="gk">δόκιμος</span>（经得起检验）表明他的生活是真实的，不是装出来的。<p>穆尔指出 18 节与 14:4「主能使他站住」的呼应：站住的确据在主的能力，站住的表现是这三样；又与 12:1–2「将身体献上当作活祭……心意更新而变化」相连——服事基督就是活祭的生活。与太 5:16「你们的光也当这样照在人前，叫他们看见你们的好行为，便将荣耀归给你们在天上的父」互相印证。</p><p>分歧传统：「为人所称许」是指教会内的人，还是教会外的人？穆理认为主要指教会内的弟兄——刚强者与软弱者都称许这样的人；穆尔认为包括外人——一个活出公义、和平、喜乐的人，在外人面前也是有见证的。两位学者都同意：神的喜悦在先，人的称许在后——称许是喜悦的回声，不是追求的目标。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：自由要问「会不会绊倒人」，不只问「我有没有权利」</strong>14:14 说凡物都洁净——你的自由在真理上可能是对的。但 15 节接着问：你的自由叫弟兄忧愁吗？今天找出一件你「有权利做、但有人因此受亏损」的事（说话的方式、饮食的习惯、娱乐的选择），练习为弟兄放下一次——不是因为你错了，是因为你爱他。</li>
+            <li><strong>应用二：用「公义、和平、喜乐」三样检查你的争论</strong>下一次你想为某件事争个对错时，先停下来问：这件事若争赢了，会带来公义、和平与喜乐吗？若答案是否定的——争赢了只会带来胜利感与对方的伤痕——那这场争论就不在神的国里。神的国不在乎吃喝，也不在乎「谁对谁错」的胜负。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>14:14 说「凡物本来没有不洁净的」，14:15 又说「你不可因你的食物叫他败坏」——真理说「可以吃」，爱心说「不要吃」。当真理与爱心看起来冲突时，保罗的答案是什么？结合 15:1–3「我们坚固的人，应当担代不坚固人的软弱……基督也不求自己的喜悦」，想一想：你生活中有没有一件「真理上站得住、爱心上行不通」的事？你愿意像基督一样，先放下自己的喜悦吗？</p>
+          </div>
+</article>
+<div class="daynav"><a href="day32.html">← 第 32 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
