@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 35 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 90.99%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day35-am">15:14–21</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+        <a href="day28.html">第 28 天</a>
+        <a href="day29.html">第 29 天</a>
+        <a href="day30.html">第 30 天</a>
+        <a href="day31.html">第 31 天</a>
+        <a href="day32.html">第 32 天</a>
+        <a href="day33.html">第 33 天</a>
+        <a href="day34.html">第 34 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 35 天</span>2026-11-23（周一） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day35-am">
+          <div class="entry-head">
+            <span class="entry-day">第 35 天 · 晨 — 2026-11-23（周一）</span>
+            <h3 class="entry-title">从耶路撒冷直到以利哩古 <span class="ref">· 罗马书 15:14–21</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">14</span>弟兄们，我自己也深信你们是满有良善，充足了诸般的知识，也能彼此劝戒。<span class="vn">15</span>但我稍微放胆写信给你们，是要提醒你们的记性，特因神所给我的恩典，<span class="vn">16</span>使我为外邦人作基督耶稣的仆役，作神福音的祭司，叫所献上的外邦人，因着圣灵成为圣洁，可蒙悦纳。<span class="vn">17</span>所以论到神的事，我在基督耶稣里有可夸的。<span class="vn">18</span>除了基督藉我做的那些事，我什么也不敢提，只提他藉我言语作为，在外邦人中使人顺服，<span class="vn">19</span>靠着神迹奇事的能力，并圣灵的能力，使我从耶路撒冷，直转到以利哩古，到处传了基督的福音。<span class="vn">20</span>我立了志向，不到基督的名被称过的地方去传福音，免得建造在别人的根基上。<span class="vn">21</span>就如经上所记：「未曾闻知他信息的，将要看见；未曾听过的，将要明白。」</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 教义与劝勉结束，结语开始：15:14 是一个转折点</strong></p>
+          <p>12:1–15:13 的实际教导已经收束（句点是 15:13 的祝福），15:14 起保罗转入结语。结语分三段：自己的职分（15:14–21）、西班牙之行的计划（15:22–29）、代祷请求（15:30–33），然后是 16 章的众问安与颂赞。读这一段，要听见语气的转换：从「你们应当怎样行」转到「我是谁、我做了什么、我要往哪里去」。</p>
+          <p><strong>2. 首尾呼应：回到 1:8–15 的开篇</strong></p>
+          <p>保罗在信的开头说过他「切切想见你们」（1:11）、「欠着福音的债」（1:14）、「立志到你们那里去」（1:13）。15:14–21 回到这个框架：他解释自己为什么写这封信（15:15–16），回顾自己已经做成的工（15:17–19），并说明自己传福音的志向（15:20–21）。全卷的个人框架在这里收拢——信的结尾，呼应信的开头。</p>
+          <p><strong>3. 「我深信你们」不是客套</strong></p>
+          <p>14 节的三重肯定——满有良善、充足了诸般的知识、也能彼此劝戒——是保罗对罗马教会真实的评估：他们不需要他来「管教」，他们有能力彼此劝戒。保罗写信的「放胆」（15 节）不是因为教会软弱，是因为他的职分要求他提醒他们。称赞在前，提醒在后——这是保罗劝勉的一贯次序。</p>
+          <p><strong>4. 从耶路撒冷到以利哩古：一条二十多年的弧线</strong></p>
+          <p>耶路撒冷在东，以利哩古（今巴尔干半岛西北沿海、亚得里亚海东岸一带）在西，中间隔着叙利亚、基利家、加拉太、马其顿、亚该亚——保罗二十多年宣教的全部版图。说「到处传了基督的福音」，不是说每个村庄都去过，是说这条弧线上的福音根基已经立定，可以向西推进了——下一站就是罗马与西班牙（15:22–28）。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">πέπεισμαι</span>（pepeismai，深信）——14 节</strong><span class="gk">πείθω</span> 的完成时被动：「我已经被说服、我深信」——不是一时的印象，是已经确立的信念。保罗的信任有根基。</li>
+            <li><strong>2. <span class="gk">ἀγαθωσύνη</span>（agathōsynē，良善）——14 节</strong>「良善、仁慈」，新约中这个词几乎只出现在保罗书信（罗 15:14；加 5:22 圣灵的果子；弗 5:9），指对人主动的善意。</li>
+            <li><strong>3. <span class="gk">γνῶσις</span>（gnōsis，知识）——14 节</strong>「充足了诸般的知识」：罗马信徒在真理上有根基，不是无知到需要从头教起。</li>
+            <li><strong>4. <span class="gk">νουθετέω</span>（noutheteō，劝戒）——14 节</strong>由 <span class="gk">νοῦς</span>（心思）加 <span class="gk">τίθημι</span>（放置）构成，字面是「把真理放进人的心思里」——不是责备，是带着真理的提醒；「彼此劝戒」强调教会内部彼此牧养的能力。</li>
+            <li><strong>5. <span class="gk">τολμηρότερον</span>（tolmēroteron，稍微放胆）——15 节</strong>比较级副词：「更大胆一些」——保罗承认自己这封信写得比「局外人」应有的分寸更大胆；<span class="gk">ἀπὸ</span> <span class="gk">μέρους</span>（稍微、在某种程度上）缓和了语气：只是在某些部分放胆。</li>
+            <li><strong>6. <span class="gk">ἐπαναμιμνῄσκω</span>（epanamimnēskō，提醒你们的记性）——15 节</strong>「再次提醒」：保罗不是在教新东西，是在唤醒他们已经知道的。</li>
+            <li><strong>7. <span class="gk">χάρις</span>（charis，恩典）——15 节</strong>「特因神所给我的恩典」：保罗放胆的依据不是他的资历，是神给他的恩典——外邦人使徒的职分（参 1:5、12:3）。</li>
+            <li><strong>8. <span class="gk">λειτουργός</span>（leitourgos，仆役）——16 节</strong>本是公共事务的执行者（参 13:6 称掌权者为「神的用人」，同词），在七十士译本中常指圣殿中供职的祭司。保罗把自己的外邦人事工说成一种祭司职分。</li>
+            <li><strong>9. <span class="gk">ἱερουργέω</span>（hierourgeō，作祭司）——16 节</strong>动词分词：「作祭司的事奉」——新约中只出现这一次。保罗以祭司自喻：他献上的不是牛羊，是外邦人自己。</li>
+            <li><strong>10. <span class="gk">προσφορά</span>（prosphora，所献上的）——16 节</strong>「祭物、供物」：外邦人本身就是献给神的祭物——呼应 12:1「将身体献上，当作活祭」。</li>
+            <li><strong>11. <span class="gk">εὐπρόσδεκτος</span>（euprosdektos，可蒙悦纳）——16 节</strong>「可蒙悦纳的」：祭物蒙神悦纳的标志，是「因着圣灵成为圣洁」——圣洁不是外邦人自己的功劳，是圣灵的工作。</li>
+            <li><strong>12. <span class="gk">καύχησις</span>（kauchēsis，可夸的）——17 节</strong>「夸口、夸耀」：与 3:27「夸口被排除」是同一个词根——这里的夸口是被允许的，因为它「在基督耶稣里」，夸的是神藉他做的事。</li>
+            <li><strong>13. <span class="gk">ὑπακοή</span>（hypakoē，顺服）——18 节</strong>「顺服、听从」：福音的目标不是「叫人知道」，是「叫人顺服」——与 1:5「使万国顺服真道」首尾呼应。</li>
+            <li><strong>14. <span class="gk">σημεῖον</span> / <span class="gk">τέρας</span>（sēmeion / teras，神迹 / 奇事）——19 节</strong>固定搭配「神迹奇事」：前者强调记号的意义（指向神），后者强调现象的惊人（令人惊异）。</li>
+            <li><strong>15. <span class="gk">πεπληρωκέναι</span>（peplērōkenai，到处传了）——19 节</strong><span class="gk">πληρόω</span> 的完成时不定式：「已经完全传遍了」——完成时强调已经成就的圆满：福音在东部的疆界已经传遍。</li>
+            <li><strong>16. <span class="gk">φιλοτιμέομαι</span>（philotimeomai，立了志向）——20 节</strong>由 <span class="gk">φίλος</span>（爱）加 <span class="gk">τιμή</span>（尊荣）构成，字面是「以……为荣、热爱尊荣」——保罗把「只在基督之名未被称过的地方传福音」当作自己的荣耀与志向。</li>
+            <li><strong>17. <span class="gk">ἀλλότριος</span>（allotrios，别人的）——20 节</strong>「属于别人的」：别人的根基——别人已经奠基的地方。</li>
+            <li><strong>18. <span class="gk">θεμέλιος</span>（themelios，根基）——20 节</strong>建筑术语：根基——保罗是奠基的人（林前 3:10「我照神所给我的恩，好像一个聪明的工头，立好了根基」）。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 14 节的 <span class="gk">πέπεισμαι</span> <span class="gk">δὲ</span>……<span class="gk">περὶ</span> <span class="gk">ὑμῶν</span>（我深信你们）</strong>完成时被动，表已经确立的状态；三个谓语并列——<span class="gk">μεστοί</span>（满有）、<span class="gk">πεπληρωμένοι</span>（充足了）、<span class="gk">δυνάμενοι</span>（也能），层层递进：良善 → 知识 → 劝戒的能力。</li>
+            <li><strong>2. 15 节的 <span class="gk">τολμηρότερον</span>……<span class="gk">ἔγραψα</span> <span class="gk">ὑμῖν</span> <span class="gk">ἀπὸ</span> <span class="gk">μέρους</span>（我稍微放胆写信给你们）</strong><span class="gk">ἔγραψα</span> 是不定过去时——书信体不定过去时，指「这封信」本身；<span class="gk">ἀπὸ</span> <span class="gk">μέρους</span>（在某种程度上）限定 <span class="gk">τολμηρότερον</span>（更放胆）：只是在某些地方放胆，不是整封信都僭越。</li>
+            <li><strong>3. 15 节的 <span class="gk">ὡς</span> <span class="gk">ἐπαναμιμνῄσκων</span> <span class="gk">ὑμᾶς</span>（是要提醒你们的记性）</strong><span class="gk">ὡς</span> 加分词表目的：写信的目的不是教导新知，是提醒——罗马信徒已经知道，保罗只是唤醒记忆。</li>
+            <li><strong>4. 15 节的 <span class="gk">διὰ</span> <span class="gk">τὴν</span> <span class="gk">χάριν</span> <span class="gk">τὴν</span> <span class="gk">δοθεῖσάν</span> <span class="gk">μοι</span>（特因神所给我的恩典）</strong><span class="gk">διά</span> 加宾格表原因；<span class="gk">δοθεῖσάν</span>（被赐予的）是不定过去时被动分词：恩典是被赐的，不是赚的——保罗的权柄来自赐予。</li>
+            <li><strong>5. 16 节的 <span class="gk">εἰς</span> <span class="gk">τὸ</span> <span class="gk">εἶναί</span> <span class="gk">με</span> <span class="gk">λειτουργὸν</span>……<span class="gk">ἱερουργοῦντα</span>（使我……作仆役，作祭司）</strong><span class="gk">εἰς</span> <span class="gk">τὸ</span> 加不定式表目的；<span class="gk">ἱερουργοῦντα</span> 是现在时主动分词，描绘持续的祭司事奉——保罗的事工本身就是献祭。</li>
+            <li><strong>6. 16 节的 <span class="gk">ἵνα</span> <span class="gk">γένηται</span> <span class="gk">ἡ</span> <span class="gk">προσφορὰ</span> <span class="gk">τῶν</span> <span class="gk">ἐθνῶν</span> <span class="gk">εὐπρόσδεκτος</span> <span class="gk">ἡγιασμένη</span> <span class="gk">ἐν</span> <span class="gk">πνεύματι</span> <span class="gk">ἁγίῳ</span>（叫所献上的外邦人……可蒙悦纳）</strong>目的从句；<span class="gk">ἡγιασμένη</span>（被分别为圣）是完成时被动分词：外邦人成为圣洁，是圣灵已经成就的工作；<span class="gk">εὐπρόσδεκτος</span>（可蒙悦纳）是结果——祭物蒙悦纳，因为圣灵使它圣洁。</li>
+            <li><strong>7. 17 节的 <span class="gk">ἔχω</span> <span class="gk">οὖν</span> <span class="gk">τὴν</span> <span class="gk">καύχησιν</span> <span class="gk">ἐν</span> <span class="gk">Χριστῷ</span> <span class="gk">Ἰησοῦ</span> <span class="gk">τὰ</span> <span class="gk">πρὸς</span> <span class="gk">τὸν</span> <span class="gk">θεόν</span>（所以论到神的事，我在基督耶稣里有可夸的）</strong><span class="gk">οὖν</span>（所以）承接 15–16 节的职分宣告；<span class="gk">ἐν</span> <span class="gk">Χριστῷ</span> <span class="gk">Ἰησοῦ</span>（在基督耶稣里）限定夸口的范围与根基；<span class="gk">τὰ</span> <span class="gk">πρὸς</span> <span class="gk">τὸν</span> <span class="gk">θεόν</span>（论到神的事）限定夸口的内容——只夸神的事，不夸自己的事。</li>
+            <li><strong>8. 18 节的 <span class="gk">οὐ</span> <span class="gk">γὰρ</span> <span class="gk">τολμήσω</span> <span class="gk">λαλεῖν</span> <span class="gk">τι</span> <span class="gk">ὧν</span> <span class="gk">οὐ</span> <span class="gk">κατειργάσατο</span> <span class="gk">Χριστὸς</span> <span class="gk">δι᾽</span> <span class="gk">ἐμοῦ</span>（除了基督藉我做的那些事，我什么也不敢提）</strong>双重否定加曲言法：「我不敢提任何基督没有藉我做的事」——反面说出正面：我只提基督藉我做的事。<span class="gk">δι᾽</span> <span class="gk">ἐμοῦ</span>（藉我）表明基督是主语、保罗是管道。</li>
+            <li><strong>9. 18 节的 <span class="gk">εἰς</span> <span class="gk">ὑπακοὴν</span> <span class="gk">ἐθνῶν</span>（在外邦人中使人顺服）</strong><span class="gk">εἰς</span> 加宾格表目的：言语与作为的目标，是外邦人的顺服——与 1:5 呼应。</li>
+            <li><strong>10. 19 节的 <span class="gk">ἐν</span> <span class="gk">δυνάμει</span> <span class="gk">σημείων</span> <span class="gk">καὶ</span> <span class="gk">τεράτων</span>, <span class="gk">ἐν</span> <span class="gk">δυνάμει</span> <span class="gk">πνεύματος</span>（靠着神迹奇事的能力，并圣灵的能力）</strong>两个 <span class="gk">ἐν</span> <span class="gk">δυνάμει</span>（靠着能力）并列：神迹奇事的能力与圣灵的能力是同一能力的两面——不是两个来源，是一个圣灵的能力，以神迹奇事显明出来。</li>
+            <li><strong>11. 19 节的 <span class="gk">ὥστε</span> <span class="gk">με</span>……<span class="gk">πεπληρωκέναι</span> <span class="gk">τὸ</span> <span class="gk">εὐαγγέλιον</span> <span class="gk">τοῦ</span> <span class="gk">Χριστοῦ</span>（使我……到处传了基督的福音）</strong><span class="gk">ὥστε</span> 加不定式表结果；<span class="gk">πεπληρωκέναι</span> 完成时：福音的传遍已经完成；<span class="gk">ἀπὸ</span> <span class="gk">Ἰερουσαλὴμ</span> <span class="gk">καὶ</span> <span class="gk">κύκλῳ</span> <span class="gk">μέχρι</span> <span class="gk">τοῦ</span> <span class="gk">Ἰλλυρικοῦ</span>（从耶路撒冷，直转到以利哩古）：<span class="gk">κύκλῳ</span>（绕着一圈）描绘弧线——保罗的宣教路线是一条从东向西的弧线。</li>
+            <li><strong>12. 20 节的 <span class="gk">οὕτως</span> <span class="gk">δὲ</span> <span class="gk">φιλοτιμούμενον</span> <span class="gk">κηρύσσειν</span>……（我立了志向……去传福音）</strong><span class="gk">φιλοτιμούμενον</span> 现在时分词：「以……为志向、为荣」——这不是一时的决定，是持续的志向；<span class="gk">οὕτως</span>（这样）回指 19 节的传遍：正因为东部已经传遍，他才立志向西。</li>
+            <li><strong>13. 20 节的 <span class="gk">ἵνα</span> <span class="gk">μὴ</span> <span class="gk">ἐπ᾽</span> <span class="gk">ἀλλοτρίῳ</span> <span class="gk">θεμελίῳ</span> <span class="gk">οἰκοδομῶ</span>（免得建造在别人的根基上）</strong><span class="gk">ἵνα</span> <span class="gk">μὴ</span> 加虚拟语气表否定的目的：保罗的志向有个边界——不建在别人的根基上；<span class="gk">οἰκοδομῶ</span> 现在时虚拟语气：持续的建造。</li>
+            <li><strong>14. 21 节的 <span class="gk">καθὼς</span> <span class="gk">γέγραπται</span>（就如经上所记）</strong>引用以赛亚书 52:15（七十士译本）：<span class="gk">οἷς</span> <span class="gk">οὐκ</span> <span class="gk">ἀνηγγέλη</span> <span class="gk">περὶ</span> <span class="gk">αὐτοῦ</span> <span class="gk">ὄψονται</span>（未曾闻知他信息的，将要看见）——两个将来时 <span class="gk">ὄψονται</span>（将要看见）、<span class="gk">συνήσουσιν</span>（将要明白）：预言的应验指向未来——保罗要去的地方，就是预言要应验的地方。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「我自己也深信你们」：称赞的真诚与功能</strong>穆理认为，14 节的称赞不是客套：保罗对罗马教会的三重评估——满有良善、充足知识、能彼此劝戒——是真实的，也是写信的前提。正因为他们有这样的光景，保罗才敢「提醒」而不必「教导」；正因为他们能彼此劝戒，保罗的提醒才不会落空。<p>穆尔补充说，这节在修辞上缓和了 15 节的「放胆」：先肯定，后提醒——保罗的「放胆」不是居高临下，是建立在对他们的信任之上。与帖前 1:2–10 保罗对帖撒罗尼迦教会的称赞互相印证：保罗称赞教会，总是为了随后的劝勉铺路。</p><p>历代共识：教会里的劝戒从来不是「强者管教弱者」，是「彼此」——满有良善与知识的教会，自己就能彼此劝戒；使徒的提醒，只是唤醒他们已经有的能力。</p></li>
+            <li><strong>2. 「但我稍微放胆写信给你们」：一个陌生使徒的谨慎</strong>穆理指出，15 节揭示了保罗写罗马书时的自我意识：他没有建立罗马教会，也从未到过罗马，却写了整卷最系统的神学论述与最具体的劝勉——这需要「放胆」。但保罗的放胆是有节制的（<span class="gk">ἀπὸ</span> <span class="gk">μέρους</span>，「在某种程度上」）、有依据的（「特因神所给我的恩典」）。<p>穆尔认为，这里道出了整封信的权柄问题：保罗凭什么对一个他没有建立的教会说话？答案是：凭神给他的恩典——外邦人使徒的职分（1:5「我们从他受了恩惠并使徒的职分」）。</p><p>分歧传统：有解经家认为「稍微放胆」只指全书的劝勉部分（12–15 章）；穆理与穆尔都认为范围更广——整封信，包括教义部分，都是保罗「放胆」写下的；但劝勉部分最需要这句解释，因为劝勉最容易被视为僭越。</p></li>
+            <li><strong>3. 「作神福音的祭司」：祭司语言的含义</strong>穆理认为，16 节的祭司比喻是保罗论外邦人事工最深刻的一句话：他不是在圣殿里献祭的祭司，他的「祭物」是外邦人自己——他把外邦人当作祭物献给神。这与 12:1「将身体献上，当作活祭」直接相连：保罗的宣教，就是把外邦人的身体当作活祭献上。<p>穆尔细究「所献上的外邦人」的属格：是「由外邦人构成的祭物」（同位属格），不是「外邦人献上的祭物」——外邦人不是献祭者，是祭物本身；而使祭物蒙悦纳的，是圣灵的分别为圣。</p><p>分歧传统：穆理倾向认为祭司比喻主要指向保罗职分的「分别为圣」性质——他的事工是神圣的；穆尔则强调「祭物蒙悦纳」的条件——圣灵的工作：外邦人之所以能成为蒙悦纳的祭物，不是因为他们守了律法，是因为圣灵使他们成圣。两位学者都同意：这节拆毁了「祭司」与「平信徒」的界限——在新约里，宣教本身就是祭司的事奉；教会不需要一个献祭的中介阶级，需要的是圣灵使人成圣的工作。</p></li>
+            <li><strong>4. 「我在基督耶稣里有可夸的」：合乎正道的夸口</strong>穆理认为，17 节的夸口与 3:27「夸口被排除」并不冲突：3:27 排除的是凭行为在神面前夸口；17 节允许的是「在基督耶稣里」、论到「神的事」的夸口——夸的不是自己的功劳，是基督藉他做的工。<p>穆尔补充说，17 节的「所以」（<span class="gk">οὖν</span>）很关键：夸口的依据是 15–16 节的职分宣告——保罗敢夸，是因为他的职分是神给的、他的祭物是圣灵使之成圣的；与林后 10:17「夸口的，当指着主夸口」互相印证。</p><p>历代共识：加尔文说，基督徒的夸口只有一个合法的对象——基督藉我们做的事；一旦夸口离开「在基督里」，就成了 3:27 所排除的那种夸口。</p></li>
+            <li><strong>5. 「除了基督藉我做的那些事，我什么也不敢提」：事工的界限</strong>穆理认为，18 节是保罗对自己使徒职分的「界限宣告」：他只提基督藉他做的事——言语与作为（<span class="gk">λόγῳ</span> <span class="gk">καὶ</span> <span class="gk">ἔργῳ</span>），即传道与神迹。保罗不提别人的工、不提自己的计划、不提与福音无关的成就。<p>穆尔指出，18 节的曲言法（「我什么也不敢提」）比正面宣告更有力：保罗用「不敢」划出一条线——线外的一切，他连提都不提。与林后 10:13–16「不愿意分外夸口」、加 2:7–9 使徒的分工互相印证。</p><p>分歧传统：18 节的「言语作为」是否包括神迹？穆理认为 19 节的「神迹奇事」就是 18 节「作为」的展开；穆尔同意，并指出保罗在这里把「言语」放在「作为」之前——福音首先是所传的道，神迹是印证，不是替代。</p></li>
+            <li><strong>6. 「从耶路撒冷，直转到以利哩古」：传遍的弧线与西班牙的伏笔</strong>穆理认为，19 节的「到处传了」（<span class="gk">πεπληρωκέναι</span>，完成时）是全段的转折点：东部疆界的福音已经「传遍、传满」，保罗的工作在那里已经完成——这就是他要去西班牙的理由（15:24、28）。「以利哩古」是以利哩古行省，位于马其顿西北、亚得里亚海东岸（今阿尔巴尼亚、克罗地亚一带）；「直转到」译自 <span class="gk">κύκλῳ</span>（绕着一圈），描绘保罗从耶路撒冷出发、经叙利亚、基利家、加拉太、马其顿、亚该亚一路向西的弧线。<p>穆尔讨论了一个历史问题：使徒行传没有记载保罗去过以利哩古——穆尔认为，保罗的意思是「一直到以利哩古的边界」，他在马其顿的宣教已经触及以利哩古的边境；穆理则认为保罗可能在某次未被使徒行传记载的行程中进入过以利哩古。两位学者都同意：关键不在地理细节，在「传遍」的宣告——福音在东部的根基已经立定，下一步是向西。</p><p>历代共识：教会历史学家指出，保罗的宣教策略始终是「弧线推进」：在一个地区奠基，然后向未得之地推进——这正是 20 节志向的由来。</p></li>
+            <li><strong>7. 「我立了志向……免得建造在别人的根基上」：开荒的志向与以赛亚的预言</strong>穆理认为，20 节的 <span class="gk">φιλοτιμέομαι</span>（以……为荣）是保罗宣教哲学的核心词：他的荣耀不在「接手别人的教会」，在「到基督之名未被称过的地方」。这与林前 3:10「立好了根基」和林后 10:15–16「不仗着别人所劳碌的夸口」互相印证——保罗是奠基者，不是接手者。<p>穆尔指出 21 节引用的以赛亚书 52:15（七十士译本）是 20 节志向的圣经依据：预言说「未曾闻知他信息的，将要看见；未曾听过的，将要明白」——保罗的开荒不是个人偏好，是预言的应验：他要去的地方，就是「未曾听过的人」所在的地方。</p><p>分歧传统：穆理倾向认为赛 52:15 在原文中指向列国的君王与仆人之歌的受苦仆人，保罗把它直接应用到自己的宣教使命上；穆尔倾向认为保罗的引用是「预表式应用」——以赛亚的预言指向弥赛亚时代的普世宣教，保罗是这预言的执行者。两位学者都同意：20–21 节合起来，构成了保罗西班牙之行的神学理由——福音必须传到「未曾听过」的地方，而西班牙就是当时已知世界的最西端。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：检查你的「夸口」</strong>17–18 节说，保罗只夸「基督藉我做的事」，其余的「什么也不敢提」。今天列出你最近向人提起的三件「成就」，逐一问：这是基督藉我做的，还是我自己做的？我提起它，是为了荣耀神，还是为了证明自己？练习一次「只提基督藉我做的事」的谈话。</li>
+            <li><strong>应用二：找到你的「以利哩古」——你尚未传到的地方</strong>19–20 节说，保罗传遍了东部，就立志向西——去基督之名未被称过的地方。今天想一想：在你的生活圈里，有没有一个「未曾听过」的人、一个你从未向他提过福音的角落？不一定是远方——可能就是你的同事、邻舍、家人。这周为他祷告一次，并找一个机会提起基督的名。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>15:16 说，保罗的职分是「作神福音的祭司」，献上的祭物是外邦人自己——而 12:1 说，你要「将身体献上，当作活祭」。如果宣教的本质是「把人当作祭物献给神」，那么你今天的生活——你的时间、你的金钱、你的人际关系——有没有哪一部分，是你还没有「献上」的？你愿意把那一部分也放在祭坛上吗？</p>
+          </div>
+</article>
+<div class="daynav"><a href="day34.html">← 第 34 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
