@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 36 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 93.76%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day36-am">15:30–33</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+        <a href="day28.html">第 28 天</a>
+        <a href="day29.html">第 29 天</a>
+        <a href="day30.html">第 30 天</a>
+        <a href="day31.html">第 31 天</a>
+        <a href="day32.html">第 32 天</a>
+        <a href="day33.html">第 33 天</a>
+        <a href="day34.html">第 34 天</a>
+        <a href="day35.html">第 35 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 36 天</span>2026-11-24（周二） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day36-am">
+          <div class="entry-head">
+            <span class="entry-day">第 36 天 · 晨 — 2026-11-24（周二）</span>
+            <h3 class="entry-title">与我一同竭力，为我祈求 <span class="ref">· 罗马书 15:30–33</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">30</span>弟兄们，我藉着我们主耶稣基督，又藉着圣灵的爱，劝你们与我一同竭力，为我祈求神，<span class="vn">31</span>叫我脱离在犹太地不顺从的人，也叫我为耶路撒冷所办的捐项可蒙圣徒悦纳，<span class="vn">32</span>并叫我顺着神的旨意，欢欢喜喜地到你们那里，与你们同得安息。<span class="vn">33</span>愿赐平安的神常和你们众人同在。阿们！</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 结语的第三段：代祷请求与祝福</strong></p>
+          <p>15:14–21 讲了保罗的职分——外邦人的使徒、福音的祭司；15:22–29 讲了他的行程——去西班牙，顺路见罗马；15:30–33 讲他的请求——请罗马信徒为他代祷，然后以一句祝福收束正文。结语三段层层推进：我是谁、我要去哪里、请你们为我做什么。30 节的「劝」（<span class="gk">παρακαλῶ</span>）与 12:1 的劝勉是同一个词——全书以劝勉开篇（12:1），也以劝勉收束（15:30）。</p>
+          <p><strong>2. 去耶路撒冷的风险：保罗明知山有虎</strong></p>
+          <p>保罗写这封信时正在哥林多，动身去耶路撒冷在即。他知道此行危险：先知亚迦布后来预言他在耶路撒冷将被捆绑、交给外邦人（徒 21:10–11），他自己在 31 节已经预见到「犹太地不顺从的人」的威胁。明知危险，他仍然要去——因为把捐款亲手交到耶路撒冷圣徒手中，是他当尽的职分（15:25–28）。</p>
+          <p><strong>3. 捐款为什么可能不被接纳</strong></p>
+          <p>耶路撒冷教会中有人怀疑保罗的外邦人事工与他对律法的态度（徒 21:20–21 记载了针对他的谣言）。这笔捐款不只是一笔钱，是外邦教会与犹太教会合一的有形记号——若被拒绝，合一的记号就失效了，保罗此行的意义也大打折扣。所以 31 节的第二项代祷与第一项同等重要。</p>
+          <p><strong>4. 33 节的祝福：正文的收束</strong></p>
+          <p>「愿赐平安的神常和你们众人同在。阿们！」为全书正文画上句号。「赐平安的神」与 15:13 的祝福呼应，也与 1:7 开篇的「愿恩惠、平安归与你们」首尾相连——平安贯穿全卷。16 章随后是众问安与颂赞，是附在正文之后的问安辞。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">παρακαλῶ</span>（parakalō，劝）——30 节</strong>现在时主动态：「我劝你们」——与 12:1 的「劝」是同一个词。不是命令，是恳切的请求；使徒向教会开口求代祷，用的也是「劝」的语气。</li>
+            <li><strong>2. <span class="gk">διά</span>（dia，藉着）——30 节</strong>介词加属格，表凭借、根据。30 节出现两次：「藉着我们主耶稣基督，又藉着圣灵的爱」——请求的权柄基础是双重的。</li>
+            <li><strong>3. <span class="gk">ἀγάπη</span> <span class="gk">τοῦ</span> <span class="gk">πνεύματος</span>（圣灵的爱）——30 节</strong>属格：圣灵所赐、所激发的爱（参 加 5:22，爱是圣灵的果子）。也有解经家解作「对圣灵的爱」，但多数认为是指圣灵在信徒心里所作的爱——保罗是凭这份爱来请求他们。</li>
+            <li><strong>4. <span class="gk">συναγωνίσασθαι</span>（synagōnizomai，一同竭力）——30 节</strong>不定过去时中间态不定式：<span class="gk">σύν</span>（一同）加 <span class="gk">ἀγωνίζομαι</span>（角力、奋斗、争战）。祷告在这里不是礼貌的祝福，是属灵的角力；参 西 4:12 以巴弗「竭力」为歌罗西信徒祈求，用的是同一个词根。</li>
+            <li><strong>5. <span class="gk">προσευχή</span>（proseuchē，祈求、祷告）——30 节</strong>复数「在祷告中」：保罗求的是持续的、在祷告里的同工。</li>
+            <li><strong>6. <span class="gk">ῥύομαι</span>（rhyomai，脱离、搭救）——31 节</strong><span class="gk">ῥυσθῶ</span> 是不定过去时被动虚拟语气：「叫我被搭救、脱离」——搭救者是神，保罗是被搭救的一方。</li>
+            <li><strong>7. <span class="gk">ἀπειθέω</span>（apeitheō，不顺从）——31 节</strong>现在时分词 <span class="gk">ἀπειθούντων</span>：「那些不顺从的人」——指犹太地不信福音、敌挡保罗的犹太人；「不顺从」不只是不信，是主动的抗拒。</li>
+            <li><strong>8. <span class="gk">διακονία</span>（diakonia，服事、捐项）——31 节</strong>「为耶路撒冷所办的捐项」，直译是「这服事」；与 25 节的 <span class="gk">διακονῶν</span>（供给、服事）同词根——送捐款本身就是一种服事，不是服事之外的杂务。</li>
+            <li><strong>9. <span class="gk">εὐπρόσδεκτος</span>（euprosdektos，可蒙悦纳）——31 节</strong>「可蒙悦纳的」：与 15:16 同词——祭物蒙悦纳的语言再次出现：捐款像祭物一样，需要被悦纳。</li>
+            <li><strong>10. <span class="gk">ἀναπαύομαι</span>（anapauomai，得安息）——32 节</strong><span class="gk">ἀναπαύσωμαι</span> 是不定过去时中间态虚拟语气：「与你们同得安息、得畅快」——与 15:24 的「同得安慰」互相呼应。</li>
+            <li><strong>11. <span class="gk">θέλημα</span> <span class="gk">θεοῦ</span>（神的旨意）——32 节</strong><span class="gk">διὰ</span> <span class="gk">θελήματος</span> <span class="gk">θεοῦ</span>（顺着神的旨意）：探访罗马以神的旨意为条件；参 1:10，保罗从头到尾都把罗马之行交在神的旨意手中。</li>
+            <li><strong>12. <span class="gk">θεὸς</span> <span class="gk">τῆς</span> <span class="gk">εἰρήνης</span>（赐平安的神）——33 节</strong>「平安的神」：参 16:20 同样的称呼。平安是福音的果子（5:1「我们既因信称义，就得与神相和」）。</li>
+            <li><strong>13. <span class="gk">ἀμήν</span>（阿们）——33 节</strong>希伯来语借词，意为「诚然如此、愿如此成就」——正文部分的结束标记。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 30 节的 <span class="gk">παρακαλῶ</span> <span class="gk">ὑμᾶς</span>……<span class="gk">συναγωνίσασθαί</span> <span class="gk">μοι</span> <span class="gk">ἐν</span> <span class="gk">ταῖς</span> <span class="gk">προσευχαῖς</span> <span class="gk">ὑπὲρ</span> <span class="gk">ἐμοῦ</span> <span class="gk">πρὸς</span> <span class="gk">τὸν</span> <span class="gk">θεόν</span>（劝你们与我一同竭力，为我祈求神）</strong><span class="gk">συναγωνίσασθαι</span> 是不定式，表所求的内容；<span class="gk">μοι</span>（与我）是与格——「与我一同」；<span class="gk">ὑπὲρ</span> <span class="gk">ἐμοῦ</span>（为我）标明代祷的对象；<span class="gk">πρὸς</span> <span class="gk">τὸν</span> <span class="gk">θεόν</span>（向神）标明祷告的方向——同工、对象、方向，一句俱全。</li>
+            <li><strong>2. 30 节的两个 <span class="gk">διὰ</span> 加属格（藉着……又藉着……）</strong>两个介词短语并列，构成请求的双重依据：基督的主权（<span class="gk">διὰ</span> <span class="gk">τοῦ</span> <span class="gk">κυρίου</span>）与圣灵的爱（<span class="gk">διὰ</span> <span class="gk">τῆς</span> <span class="gk">ἀγάπης</span> <span class="gk">τοῦ</span> <span class="gk">πνεύματος</span>）——三一神的两个位格共同为代祷的请求背书。</li>
+            <li><strong>3. 31–32 节的三个 <span class="gk">ἵνα</span> 从句</strong>三个目的从句并列：<span class="gk">ἵνα</span> <span class="gk">ῥυσθῶ</span>（叫我脱离）、<span class="gk">ἵνα</span>……<span class="gk">εὐπρόσδεκτος</span> <span class="gk">γένηται</span>（叫捐项蒙悦纳）、<span class="gk">ἵνα</span>……<span class="gk">ἐλθὼν</span>……<span class="gk">ἀναπαύσωμαι</span>（叫我……到你们那里，同得安息）——代祷的三项内容层层推进：脱离危险 → 捐款被接纳 → 欢喜探访罗马。</li>
+            <li><strong>4. 31 节的 <span class="gk">ἡ</span> <span class="gk">διακονία</span> <span class="gk">μου</span> <span class="gk">ἡ</span> <span class="gk">εἰς</span> <span class="gk">Ἰερουσαλὴμ</span>（我为耶路撒冷所办的捐项）</strong><span class="gk">εἰς</span> 加宾格表方向、目的：「为耶路撒冷的服事」——捐款的去向与性质都在这个短语里。</li>
+            <li><strong>5. 32 节的 <span class="gk">διὰ</span> <span class="gk">θελήματος</span> <span class="gk">θεοῦ</span>（顺着神的旨意）</strong>介词短语作条件状语：探访不是保罗说了算，是神的旨意说了算——盼望是有条件的盼望。</li>
+            <li><strong>6. 32 节的 <span class="gk">ἐλθὼν</span> <span class="gk">πρὸς</span> <span class="gk">ὑμᾶς</span> <span class="gk">ἐν</span> <span class="gk">χαρᾷ</span>（欢欢喜喜地到你们那里）</strong><span class="gk">ἐλθὼν</span> 是不定过去时分词，表伴随的动作；<span class="gk">ἐν</span> <span class="gk">χαρᾷ</span>（在喜乐中）描绘心情——与耶路撒冷之行的危险形成对照：前面是争战，后面是喜乐与安息。</li>
+            <li><strong>7. 33 节的 <span class="gk">ὁ</span> <span class="gk">θεὸς</span> <span class="gk">τῆς</span> <span class="gk">εἰρήνης</span> <span class="gk">μεθ᾽</span> <span class="gk">ὑμῶν</span> <span class="gk">πάντων</span>（愿赐平安的神常和你们众人同在）</strong><span class="gk">μεθ᾽</span> <span class="gk">ὑμῶν</span>（与你们同在）是祝福语的固定结构（参 林后 13:11、腓 4:9、帖后 3:16）；<span class="gk">πάντων</span>（众人）强调无一例外——祝福临到每一个人。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「我劝你们」：代祷请求的权柄与谦卑</strong>穆理认为，30 节的「劝」值得留意：保罗不是以使徒的权柄命令罗马教会为他祷告，而是「劝」——使徒也需要教会的代祷，而且他求代祷的姿态是恳求，不是吩咐。他求的依据也不是自己的功劳，是「藉着我们主耶稣基督，又藉着圣灵的爱」——基督的主权与圣灵的爱。<p>穆尔补充说，请求基础的双重结构很关键：基督（主）与圣灵（爱），三一神的两个位格共同构成代祷的依据。与帖后 3:1「请你们为我们祷告」互相印证：保罗一生多次求人代祷，从不以「使徒不需要代祷」自居。</p><p>历代共识：教会历来视此节为代祷神学的经典依据——使徒尚且求人代祷，何况我们；代祷不是软弱的记号，是肢体相连的记号。</p></li>
+            <li><strong>2. 「与我一同竭力」：祷告是争战</strong>穆理认为，<span class="gk">συναγωνίσασθαι</span>（一同竭力）是全节的关键词：祷告在这里不是礼貌的祝福，是属灵的角力——保罗请罗马信徒与他一同「上场」，在祷告里与他并肩争战。代祷者不是旁观者，是战友。<p>穆尔指出，与西 4:12 以巴弗「竭力」为歌罗西信徒祈求对照，保罗的祷告观是：祷告真实地参与神的作为——神藉着人的祷告成就祂的旨意。</p><p>分歧传统：祷告与神主权的关系，历来有不同侧重——穆理强调祷告是神命定的蒙应允之道：神预定结果，也预定祷告为达成结果的手段；穆尔则补充，保罗在此不是讲神学理论，是在实践中邀请教会同工：理论上的张力，不妨碍实践中的同心竭力。</p></li>
+            <li><strong>3. 「脱离犹太地不顺从的人」：保罗预见的危险</strong>穆理认为，31 节的第一项代祷出自保罗清醒的预见：他知道去耶路撒冷有危险，却仍然要去——因为这是他当尽的职分。危险不能取消使命，只能带到祷告里。<p>穆尔指出，使徒行传 21 章的记载印证了这个祷告的必要性：保罗一到耶路撒冷就被犹太人捉拿，险遭杀害（徒 21:27–36），是罗马兵丁把他从众人手中夺了出来。</p><p>分歧传统：这项代祷是否「蒙了应允」？保罗确实脱离了被杀的危险，却随即被囚禁——穆理指出，神的搭救不一定照我们所想的方式：脱离杀害是搭救，被囚也是神的手；穆尔同意，并指出保罗后来以囚犯的身份到了罗马（徒 28:16），正是 32 节所盼望的探访，只是方式出乎意料。</p></li>
+            <li><strong>4. 「捐项可蒙圣徒悦纳」：一笔钱背后的合一</strong>穆理认为，31 节的第二项代祷与第一项同等重要：保罗担心捐款被拒——耶路撒冷教会中有人视他的外邦人事工为妥协（徒 21:20–21 的谣言），若捐款被拒，等于宣告他的外邦人事工不被接纳。<p>穆尔细究这笔捐款的意义：它不只是救济，是外邦教会与犹太教会合一的有形记号（参 加 2:10 的嘱托、林后 8–9 章马其顿教会的乐捐）——捐款被接纳，合一就被印证；捐款被拒绝，合一就落了空。</p><p>两位学者都同意：使徒行传 21:17 记载「弟兄们欢欢喜喜地接待我们」，捐款被接纳了——这项代祷蒙了应允，也印证了外邦教会与耶路撒冷教会的合一是真实的。</p></li>
+            <li><strong>5. 「顺着神的旨意，欢欢喜喜地到你们那里，与你们同得安息」：有条件的盼望</strong>穆理认为，32 节有三重限定：神的旨意（<span class="gk">διὰ</span> <span class="gk">θελήματος</span> <span class="gk">θεοῦ</span>）、喜乐（<span class="gk">ἐν</span> <span class="gk">χαρᾷ</span>）、同得安息（<span class="gk">συναναπαύσωμαι</span>）——盼望是有条件的、是喜乐的、是共享的。保罗把最渴望的事也交在神的旨意手中。<p>穆尔指出，与 1:10 对照，保罗从头到尾都把罗马之行交在神的旨意手中；「同得安息」与 15:24 的「同得安慰」形成收束——保罗盼望的不是单方面的给予，是彼此的得着：他去罗马，既要给，也要得。</p><p>历代共识：奥古斯丁指出，保罗的「知道」（15:29「我也知道，我去见你们的时候」）与这里的「顺着神的旨意」并不矛盾——确信的是神的信实，不确定的是方式与时间。确信与交托，可以同在一句话里。</p></li>
+            <li><strong>6. 「愿赐平安的神常和你们众人同在。阿们」：正文的收束</strong>穆理认为，33 节的祝福为全书正文画上句号：「平安的神」是对全书主题的收束——从 1:7 的「愿恩惠、平安归与你们」开始，到 15:33 的「赐平安的神」结束，平安贯穿全卷；平安是福音的果子（5:1「我们既因信称义，就得与神相和」）。<p>穆尔讨论了 15:33 与 16 章的关系：有学者认为 15:33 原是全信的结尾，16 章是另一封附信；但穆尔认为，16:25–27 的颂赞才是真正的结尾，15:33 只是正文部分的祝福，16 章的问安是信的自然延续（16:1–2 介绍送信人非比，说明信要由她带去罗马）。</p><p>两位学者都同意：不论 16 章的来源如何，「赐平安的神」作为正文的收束，指向全书的核心——神藉基督使仇敌与祂和好，平安是这和好的果子，也是信徒彼此和好的根基。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：为别人「竭力」祷告一次</strong>30 节说，代祷是「一同竭力」——是争战，不是客套。今天选一位正在面对具体难处（疾病、抉择、危险、服事重担）的弟兄姊妹或牧者，像保罗请罗马信徒为他祷告那样，为他作一次具体的、有内容的代祷——不是「愿神祝福他」一句带过，而是按他的处境列出两三项具体的祈求，并告诉他：我在为你祷告。</li>
+            <li><strong>应用二：检查你的「顺着神的旨意」</strong>32 节说，保罗把最渴望的事——去罗马——也放在「顺着神的旨意」的条件之下。今天想一想：你最渴望的一件事，你有没有把它交在神的旨意手中？还是你已经替神定了时间表与方式？写下一句祷告：「主啊，若这是你的旨意，就成就；若不是，求你拦阻我。」</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>15:31–32 说，保罗求神叫他脱离不顺从的人、叫捐项蒙悦纳、叫他欢欢喜喜到罗马——结果他确实到了罗马，却是戴着锁链去的；捐项被接纳了，他自己却被囚禁了。如果神应允祷告的方式与你所求的「方式」不同，你还认得出那是应允吗？回想一次你以为神「没有听」祷告的经历，如今回头看，神是不是用另一种方式成就了那祷告的实质？</p>
+          </div>
+</article>
+
+<div class="daynav"><a href="day35.html">← 第 35 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
