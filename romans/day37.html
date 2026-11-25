@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 37 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 93.76%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day37-am">16:8–13</a>
+        <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+        <a href="day28.html">第 28 天</a>
+        <a href="day29.html">第 29 天</a>
+        <a href="day30.html">第 30 天</a>
+        <a href="day31.html">第 31 天</a>
+        <a href="day32.html">第 32 天</a>
+        <a href="day33.html">第 33 天</a>
+        <a href="day34.html">第 34 天</a>
+        <a href="day35.html">第 35 天</a>
+        <a href="day36.html">第 36 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 37 天</span>2026-11-25（周三） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day37-am">
+          <div class="entry-head">
+            <span class="entry-day">第 37 天 · 晨 — 2026-11-25（周三）</span>
+            <h3 class="entry-title">问暗伯里安等众人安 <span class="ref">· 罗马书 16:8–13</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">8</span>又问在主里亲爱的暗伯里安。<span class="vn">9</span>又问在基督里与我们同工的耳巴奴，并我所亲爱的士大古安。<span class="vn">10</span>又问在基督里经过试验的亚比利安。问亚利多布家里的人安。<span class="vn">11</span>又问我亲属希罗天安。问拿其数家里在主里的人安。<span class="vn">12</span>又问为主劳苦的土非拿氏和土富撒氏安。又问可亲爱、为主多受劳苦的彼息氏安。<span class="vn">13</span>又问在主蒙拣选的鲁孚和他母亲安，他的母亲就是我的母亲。</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 问安第二组：名单继续</strong></p>
+          <p>16:1–7 是问安第一组（非比、百基拉与亚居拉、以拜尼土、马利亚、安多尼古与犹尼亚），16:8–13 是第二组，名单继续——暗伯里安、耳巴奴、士大古、亚比利安、亚利多布家里的人、希罗天、拿其数家里在主里的人、土非拿氏、土富撒氏、彼息氏、鲁孚和他母亲。保罗的问安要到 16 节才收束，名单一共约二十六人。</p>
+          <p><strong>2. 两个「家里的人」：亚利多布与拿其数</strong></p>
+          <p>亚利多布（Aristobulus）很可能是希律大帝的孙子，约公元 48 年去世；拿其数（Narcissus）是革老丢皇帝手下权势极大的被释奴，公元 54 年被处死。两人都不是基督徒——保罗问候的只是「他们家里的人」：大户人家的奴仆、被释奴中信了主的人。福音已经进入罗马上层家庭的内部，从仆人开始生根（参 腓 4:22「在该撒家里的人」）。</p>
+          <p><strong>3. 名单的社会面貌：罗马教会的中坚是底层信徒</strong></p>
+          <p>这些名字多半属于奴仆与被释奴阶层。暗伯里安是奴隶常用的名字；土非拿与土富撒的名字源于「奢华」；鲁孚可能是古利奈人西门（背耶稣十字架的那位）的儿子（可 15:21）。罗马教会的中坚，不是罗马的贵族元老，而是社会底层信了主的仆人、妇人与外邦人。</p>
+          <p><strong>4. 「在主里」反复出现</strong></p>
+          <p>暗伯里安是「在主里亲爱的」，拿其数家里的人是「在主里的人」，鲁孚是「在主蒙拣选的」——问安名单上每一个人的身份，都以「在主里」来界定。保罗记住的不是人的社会地位，是人在基督里的身份。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">ἀσπάσασθε</span>（aspasasthe，问安）——全段</strong>不定过去时中间态命令语气，全章问安的动词（参 16:3）；8–13 节重复出现九次「问……安」——保罗不是泛泛地问候罗马教会，是点名问候。</li>
+            <li><strong>2. <span class="gk">Ἀμπλιάτος</span>（Ampliatos，暗伯里安）——8 节</strong>奴隶与被释奴中常见的名字，罗马城地下墓穴中也出现过这个名字。</li>
+            <li><strong>3. <span class="gk">ἀγαπητός</span>（agapētos，亲爱的）——8、9 节</strong>「在主里亲爱的」——保罗用同一个词称呼暗伯里安与士大古，也用它称呼以拜尼土（5 节）与彼息氏（12 节，「可亲爱」）。</li>
+            <li><strong>4. <span class="gk">Οὐρβανός</span>（Ourbanos，耳巴奴）——9 节</strong>拉丁名字，意为「城市人」；保罗称他为「在基督里与我们同工的」——<span class="gk">συνεργός</span>（synergos，同工），与百基拉夫妇（3 节）同一称号。</li>
+            <li><strong>5. <span class="gk">Στάχυς</span>（Stachys，士大古）——9 节</strong>希腊名字，意为「麦穗」。</li>
+            <li><strong>6. <span class="gk">Ἀπελλῆς</span>（Apellēs，亚比利安）——10 节</strong><span class="gk">δόκιμος</span> <span class="gk">ἐν</span> <span class="gk">Χριστῷ</span>（dokimos，「在基督里经过试验的」）——见解经。</li>
+            <li><strong>7. <span class="gk">Ἀριστόβουλος</span>（Aristoboulos，亚利多布）——10 节</strong><span class="gk">οἱ</span> <span class="gk">ἐκ</span> <span class="gk">τῶν</span> <span class="gk">Ἀριστοβούλου</span>——「亚利多布家里的人」，见句法。</li>
+            <li><strong>8. <span class="gk">Ἡρῳδίων</span>（Hērōidiōn，希罗天）——11 节</strong><span class="gk">συγγενής</span>（syngenēs，亲属），与安多尼古、犹尼亚（7 节）同一称呼——同族的犹太人。</li>
+            <li><strong>9. <span class="gk">Νάρκισσος</span>（Narkissos，拿其数）——11 节</strong><span class="gk">τοὺς</span> <span class="gk">ἐκ</span> <span class="gk">τῶν</span> <span class="gk">Ναρκίσσου</span> <span class="gk">τοὺς</span> <span class="gk">ὄντας</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>——「拿其数家里在主里的人」。</li>
+            <li><strong>10. <span class="gk">Τρύφαινα</span>（Tryphaina，土非拿氏）与 <span class="gk">Τρυφῶσα</span>（Tryphōsa，土富撒氏）——12 节</strong>两名都源于 <span class="gk">τρυφή</span>（tryphē，奢华、娇养），见解经。</li>
+            <li><strong>11. <span class="gk">κοπιάω</span>（kopiaō，劳苦）——12 节</strong><span class="gk">τὰς</span> <span class="gk">κοπιώσας</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>——「为主劳苦的」；劳累到筋疲力尽的劳作（参 6 节马利亚）。彼息氏：<span class="gk">ἥτις</span> <span class="gk">πολλὰ</span> <span class="gk">ἐκοπίασεν</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>——「为主多受劳苦」。</li>
+            <li><strong>12. <span class="gk">Περσίς</span>（Persis，彼息氏）——12 节</strong><span class="gk">ἀγαπητή</span>（agapētē，「可亲爱的」）——阴性「亲爱的」。</li>
+            <li><strong>13. <span class="gk">Ῥοῦφος</span>（Roufos，鲁孚）——13 节</strong><span class="gk">ἐκλεκτὸς</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>（eklektos，「在主蒙拣选的」）——见解经。</li>
+            <li><strong>14. <span class="gk">μήτηρ</span>（mētēr，母亲）——13 节</strong>「他的母亲就是我的母亲」——<span class="gk">ἡ</span> <span class="gk">μήτηρ</span> <span class="gk">αὐτοῦ</span> <span class="gk">καὶ</span> <span class="gk">ἐμοῦ</span>——直译「他的母亲，也是我的母亲」。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 8–13 节的九次 <span class="gk">ἀσπάσασθε</span> 加宾格</strong>每一句问安都是同一结构——动词加受问候者加一句身份说明（「在主里亲爱的」「在基督里与我们同工的」「在基督里经过试验的」……）。名单不是干巴巴的点名，每一个名字后面都跟一句具体的记念——保罗记得每一个人为什么值得被记念。</li>
+            <li><strong>2. 10 节的 <span class="gk">οἱ</span> <span class="gk">ἐκ</span> <span class="gk">τῶν</span> <span class="gk">Ἀριστοβούλου</span>（亚利多布家里的人）</strong><span class="gk">ἐκ</span> 加属格，表所属、来源——「属于亚利多布家的人」。保罗不问亚利多布本人安，只问他家里的人——暗示亚利多布本人不是信徒。</li>
+            <li><strong>3. 11 节的 <span class="gk">τοὺς</span> <span class="gk">ἐκ</span> <span class="gk">τῶν</span> <span class="gk">Ναρκίσσου</span> <span class="gk">τοὺς</span> <span class="gk">ὄντας</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>（拿其数家里在主里的人）</strong>加上现在时分词 <span class="gk">ὄντας</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>（「在主里的」）作限定——拿其数家里人多，保罗问候的只是其中「在主里」的那些。分词短语缩小了范围：不是整户人家，是户中信主的人。</li>
+            <li><strong>4. 12 节的 <span class="gk">τὰς</span> <span class="gk">κοπιώσας</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>（为主劳苦的）与 <span class="gk">ἥτις</span> <span class="gk">πολλὰ</span> <span class="gk">ἐκοπίασεν</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>（为主多受劳苦的）</strong>前者是不定过去时分词「劳苦的」，后者是关系代词加不定过去时直陈式「她多受劳苦」——彼息氏的劳苦用直陈语气、加副词 <span class="gk">πολλά</span>（「多」）单独强调：她的劳苦格外多。</li>
+            <li><strong>5. 13 节的 <span class="gk">τὸν</span> <span class="gk">ἐκλεκτὸν</span> <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>（在主蒙拣选的）</strong><span class="gk">ἐκλεκτός</span> 加 <span class="gk">ἐν</span> <span class="gk">κυρίῳ</span>——「拣选」本是神在基督里永恒的拣选（参 8:33、弗 1:4），保罗用它作鲁孚的称号。</li>
+            <li><strong>6. 13 节的 <span class="gk">καὶ</span> <span class="gk">τὴν</span> <span class="gk">μητέρα</span> <span class="gk">αὐτοῦ</span> <span class="gk">καὶ</span> <span class="gk">ἐμοῦ</span>（和他母亲安，他的母亲就是我的母亲）</strong>两个 <span class="gk">καί</span> 并列——「他的母亲，也就是我的母亲」——保罗把鲁孚的母亲认作自己的母亲：信仰里的母子关系。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 「在主里亲爱的」：问安名单的共同标记</strong>穆理认为，8–13 节的问安有一个共同点：每一个人的身份都以「在主里」「在基督里」来界定——暗伯里安是「在主里亲爱的」，耳巴奴是「在基督里与我们同工的」，亚比利安是「在基督里经过试验的」，鲁孚是「在主蒙拣选的」。保罗记住的不是人的社会地位，是人在基督里的身份。<p>穆尔补充：名单上的人社会地位普遍不高——奴仆、被释奴、妇人——但保罗的问候毫不吝啬：他在基督里的身份认同，取代了罗马社会的等级秩序（参 加 3:28）。</p><p>历代共识：从奥古斯丁到改教家，都把 16 章的名单看作教会论的活见证——教会不是理念，是一个一个有名有姓的人。</p></li>
+            <li><strong>2. 亚比利安「在基督里经过试验的」：<span class="gk">δόκιμος</span> 的含义</strong>穆理认为，<span class="gk">δόκιμος</span>（dokimos）是「经过试验、证明是真」的成色（参 罗 14:18；林后 13:7；雅 1:12「忍受试探的人是有福的，因为他经过试验以后，必得生命的冠冕」）：亚比利安很可能在逼迫或患难中受过考验，证明了他的信心是真的。<p>穆尔指出，这个词在保罗书信里常与「被弃绝的」（<span class="gk">ἀδόκιμος</span>）对照（林前 9:27；提后 3:8）：亚比利安是「经过试验而站立得住的」，不是「未经考验的」。他没有显赫的头衔，只有一句评语——「经过试验」——而这句评语的分量，比任何头衔都重。</p><p>分歧传统：试验具体指什么，历来无确证——逼迫、患难，还是日常的忠心？穆理倾向于逼迫中的考验；穆尔则认为不必限定：重要的是「被证明」的结果，而不是试验的形式。</p></li>
+            <li><strong>3. 亚利多布与拿其数「家里的人」：福音进入大户人家</strong>穆尔考证：亚利多布很可能是希律大帝的孙子、亚基帕一世的兄弟，约公元 48 年去世；拿其数是革老丢皇帝手下权势极大的被释奴，公元 54 年被处死。两人都不是基督徒——保罗问候的只是他们「家里的人」。这说明：福音已经进入罗马上层家庭的内部，从奴仆与被释奴开始生根（参 腓 4:22「在该撒家里的人」）。<p>穆理补充：这个现象与使徒行传的记载一致——福音往往先在社会底层与边缘人中间生根，再向上渗透；神拣选了世上软弱的、卑贱的（林前 1:26–29）。</p><p>两位学者都同意：保罗问候「家里的人」而不问主人本人，恰恰说明他问安的精确——他不作无谓的客套，只问候真实的弟兄姊妹。</p><p>分歧传统：亚利多布与拿其数的身份认定只是学者的推测（依据名字与历史背景），不能完全确证；但「家里的人」是信徒、主人不是信徒，这一点是经文本身的暗示，学者大体一致。</p></li>
+            <li><strong>4. 土非拿氏、土富撒氏与彼息氏：名字与劳苦的反差</strong>穆尔指出一个耐人寻味的细节：<span class="gk">Τρύφαινα</span> 与 <span class="gk">Τρυφῶσα</span> 都源于 <span class="gk">τρυφή</span>（tryphē），意思是「奢华、娇养、享乐」——两个名字都带着「娇生惯养」的味道，但保罗记念她们的，却是「为主劳苦」——名字说「奢华」，生活却是劳苦。这是福音改变了人生的方向：从前为奢华而生的人，如今为福音劳苦。<p>穆理认为，12 节三位姊妹的劳苦值得留意：保罗用同一个词 <span class="gk">κοπιάω</span> 形容她们（参 6 节马利亚）：「劳苦」在保罗的词汇里不是泛泛的辛苦，是流汗、筋疲力尽的劳作（参 林前 15:10）。罗马教会里劳苦的姊妹，是公开被点名感谢的。</p><p>分歧传统：土非拿与土富撒是否姐妹？名字相似、并列出现，学者多认为她们是姐妹（甚至可能是孪生姐妹），但经文本身没有明说；穆尔提醒：不要把推测当作定论。</p><p>历代共识：屈梭多模讲道时特别提到这两位姊妹，说她们的名字与生活形成对照——福音使「奢华」的名字变成了「劳苦」的见证。</p></li>
+            <li><strong>5. 鲁孚「在主蒙拣选的」与他的母亲</strong>穆理认为，<span class="gk">ἐκλεκτός</span>（eklektos，「蒙拣选的」）是拣选的语言（参 8:33「神所拣选的人」）：保罗用拣选的称号称呼鲁孚，暗示他在神永恒的拣选里有份——这不是随口的赞美，是神学性的称呼。<p>穆尔考证：鲁孚很可能是古利奈人西门的儿子——马可福音 15:21 提到「古利奈人西门，就是亚历山大和鲁孚的父亲」；马可特意点出西门两个儿子的名字，说明在马可写福音书的时候，鲁孚在教会中已经是知名人物。保罗在这里问候的，很可能就是同一个人。</p><p>「他的母亲就是我的母亲」：穆理认为，这句话说明保罗与鲁孚一家有极亲密的关系——鲁孚的母亲曾像母亲一样照顾过保罗（可能在他患病或旅途中）。穆尔同意：保罗不是在客套，是在认亲——信仰里的母子关系。</p><p>分歧传统：鲁孚是否西门之子，历来是「很可能」而非「确证」——名字相同、时间吻合，但没有直接证据；穆理与穆尔都持谨慎肯定的态度。</p></li>
+            <li><strong>6. 名单的神学：被记念的名字</strong>穆理认为，16 章的名单有一个神学含义：神的教会是由一个一个有名有姓的人组成的——神记得每一个人的名字（参 出 33:17「我按你的名认识你」；路 10:20「你们的名字记录在天上」）。<p>穆尔指出，保罗的问安方式本身就是教导：他不是笼统地说「问罗马教会安」，而是逐一点名——因为教会不是抽象的概念，是具体的人；牧养不是对群体的泛泛关怀，是对每一个人的记念。</p><p>历代共识：教会历来从这份名单学到功课——被记念，是信徒在教会里最基本的需要之一；一个教会若不记得弟兄姊妹的名字，就还没有学会爱。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：点名记念一位「无名」的同工</strong>今天想一想：你的教会或小组里，有没有一位像土非拿、土富撒、彼息氏那样「多受劳苦」却从未被公开点名感谢的人？今天就去告诉他或她：我看见了你的劳苦，谢谢你。被记念，是服事者最需要的鼓励。</li>
+            <li><strong>应用二：检查你的「在主里」的身份</strong>今天的名单上，每一个人的身份都是「在主里」的：亲爱的、同工的、经过试验的、蒙拣选的。问问自己：别人介绍你的时候，会用什么词？是你的职业、你的成就，还是你在基督里的身份？写下一句：我在主里是______，然后为这个身份感谢神。</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>罗马书 16 章 8 到 13 节的名单上，有奴仆、被释奴、妇人、外邦人——在罗马社会里，这些人是没有名字、没有地位的人；但在保罗的信里，每一个人都有名字、都有称号、都被记念。你的教会里，有没有这样「没有名字」的人——新来的、边缘的、默默服事的？你能像保罗一样，叫出他的名字，并说出他值得被记念的一件事吗？</p>
+          </div>
+</article>
+
+<div class="daynav"><a href="day36.html">← 第 36 天</a><a href="index.html#daily">全部天数</a><span class="disabled">下一篇敬请期待</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 持续更新中</p>
+        <p>本页持续更新：每天早上 8 点、晚上 8 点各新增一篇研读，全书 433 节读完为止。</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
