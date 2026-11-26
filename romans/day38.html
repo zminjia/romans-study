@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>罗马书研读 · 第 38 天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f7f3ec;
+        --bg-raise: #fffdf8;
+        --ink: #2e2a24;
+        --ink-soft: #5c554a;
+        --ink-faint: #8a8172;
+        --accent: #9c3427;
+        --accent-soft: #f3e3dd;
+        --line: #ddd3c2;
+        --scripture-bg: #f1e9da;
+        --scripture-line: #c9b896;
+        --track: #e4dac8;
+        --shadow: 0 1px 3px rgba(60, 45, 25, .08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #191613;
+          --bg-raise: #221e1a;
+          --ink: #e9e2d4;
+          --ink-soft: #b8ae9c;
+          --ink-faint: #8d8474;
+          --accent: #d98a76;
+          --accent-soft: #3a2620;
+          --line: #3a342c;
+          --scripture-bg: #262019;
+          --scripture-line: #57482f;
+          --track: #332e27;
+          --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        font-size: 17px;
+        line-height: 1.95;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- header ---------- */
+      header.site {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .site-inner { padding: 52px 0 40px; text-align: center; }
+      .site-inner .rule {
+        width: 44px; height: 3px; background: var(--accent);
+        margin: 0 auto 22px; border-radius: 2px;
+      }
+      h1.site-title {
+        margin: 0 0 14px; font-size: 42px; font-weight: 900;
+        letter-spacing: .18em; line-height: 1.3;
+      }
+      .site-sub {
+        margin: 0 auto; max-width: 560px; color: var(--ink-soft);
+        font-size: 16px; line-height: 1.9;
+      }
+      .site-meta {
+        margin-top: 20px; color: var(--ink-faint); font-size: 13.5px;
+        letter-spacing: .08em;
+      }
+      .site-meta span + span::before { content: "·"; margin: 0 8px; }
+
+      /* ---------- nav ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .toc-inner {
+        display: flex; flex-wrap: wrap; gap: 4px 6px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .toc a {
+        color: var(--ink-soft); text-decoration: none; font-size: 14px;
+        padding: 4px 10px; border-radius: 999px; line-height: 1.6;
+        white-space: nowrap;
+      }
+      .toc a:hover { color: var(--accent); background: var(--accent-soft); }
+      .toc a.toc-main { font-weight: 700; color: var(--ink); }
+
+      /* ---------- sections ---------- */
+      section { padding: 44px 0 8px; scroll-margin-top: 64px; }
+      h2.sec-title {
+        font-size: 26px; font-weight: 900; margin: 0 0 6px;
+        letter-spacing: .06em; display: flex; align-items: baseline; gap: 12px;
+      }
+      h2.sec-title .no {
+        font-size: 15px; color: var(--accent); font-weight: 700;
+        letter-spacing: .2em;
+      }
+      .sec-lead { color: var(--ink-soft); margin: 0 0 26px; font-size: 15.5px; }
+      h3.sub {
+        font-size: 20px; font-weight: 700; margin: 34px 0 10px;
+        letter-spacing: .04em;
+      }
+      h3.sub:first-of-type { margin-top: 8px; }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--accent); }
+      strong { font-weight: 700; }
+      .gk { font-family: "Noto Serif SC", "Times New Roman", serif; }
+
+      table.struct {
+        width: 100%; border-collapse: collapse; margin: 6px 0 22px;
+        font-size: 15.5px; line-height: 1.8;
+        background: var(--bg-raise); box-shadow: var(--shadow);
+      }
+      table.struct th, table.struct td {
+        border: 1px solid var(--line); padding: 10px 14px;
+        text-align: left; vertical-align: top;
+      }
+      table.struct th {
+        background: var(--accent-soft); font-weight: 700; white-space: nowrap;
+        width: 118px;
+      }
+
+      blockquote.keyline {
+        margin: 20px 0; padding: 18px 22px;
+        background: var(--scripture-bg);
+        border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line);
+        font-size: 17.5px;
+      }
+      blockquote.keyline p { margin: 0; }
+
+      /* ---------- progress ---------- */
+      .progress-card {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 10px; padding: 24px 26px; box-shadow: var(--shadow);
+      }
+      .progress-nums {
+        display: flex; flex-wrap: wrap; gap: 10px 34px; margin-bottom: 18px;
+      }
+      .progress-nums .stat b {
+        display: block; font-size: 26px; font-weight: 900; line-height: 1.3;
+      }
+      .progress-nums .stat span { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .06em; }
+      .bar {
+        height: 10px; border-radius: 999px; background: var(--track);
+        overflow: hidden; margin-bottom: 8px;
+      }
+      .bar i {
+        display: block; height: 100%; width: 93.76%;
+        background: var(--accent); border-radius: 999px;
+      }
+      .bar-note { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 18px; }
+      .done-list { list-style: none; padding: 0; margin: 0; }
+      .done-list li {
+        display: flex; gap: 12px; align-items: baseline;
+        padding: 9px 0; border-top: 1px dashed var(--line); margin: 0;
+      }
+      .done-list li:first-child { border-top: none; }
+      .done-list .tick { color: var(--accent); font-weight: 900; flex: none; }
+      .done-list a { color: var(--ink); text-decoration: none; }
+      .done-list a:hover { color: var(--accent); text-decoration: underline; }
+      .done-list .ref { color: var(--ink-faint); font-size: 14px; margin-left: auto; flex: none; }
+      .next-up {
+        margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+        color: var(--ink-soft); font-size: 15px;
+      }
+      .next-up b { color: var(--accent); }
+
+      /* ---------- daily entries ---------- */
+      article.entry {
+        padding: 40px 0 10px; scroll-margin-top: 64px;
+        border-top: 1px solid var(--line); margin-top: 34px;
+      }
+      article.entry:first-of-type { border-top: none; margin-top: 6px; }
+      .entry-head { margin-bottom: 20px; }
+      .entry-day {
+        display: inline-block; font-size: 13px; letter-spacing: .14em;
+        color: var(--accent); font-weight: 700; margin-bottom: 6px;
+      }
+      h3.entry-title { font-size: 24px; font-weight: 900; margin: 0; line-height: 1.5; }
+      .entry-title .ref { color: var(--ink-soft); font-weight: 700; }
+      h4.part {
+        font-size: 17.5px; font-weight: 900; margin: 30px 0 12px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--line);
+        letter-spacing: .05em;
+      }
+      h4.part:first-of-type { margin-top: 6px; }
+      h5.mini { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: var(--ink-soft); }
+
+      .scripture {
+        background: var(--scripture-bg);
+        border: 1px solid var(--scripture-line);
+        border-radius: 8px; padding: 20px 24px 8px; margin: 0 0 20px;
+        font-size: 17.5px; line-height: 2.05;
+      }
+      .scripture p { margin-bottom: 12px; }
+      .scripture .vn {
+        font-weight: 900; color: var(--accent); font-size: .82em;
+        margin-right: 2px;
+      }
+      .think {
+        background: var(--bg-raise); border: 1px solid var(--line);
+        border-radius: 8px; padding: 16px 20px 4px; margin: 18px 0 8px;
+      }
+      .think .think-label {
+        font-size: 13px; font-weight: 900; letter-spacing: .2em;
+        color: var(--accent); margin-bottom: 6px;
+      }
+
+      footer.site {
+        margin-top: 56px; border-top: 1px solid var(--line);
+        background: var(--bg-raise);
+      }
+      .foot-inner { padding: 30px 0 42px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.9; }
+      .foot-inner p { margin: 0 0 8px; }
+      .foot-inner .foot-title { font-weight: 900; color: var(--ink); letter-spacing: .1em; }
+
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        h1.site-title { font-size: 32px; }
+        .site-inner { padding: 38px 0 30px; }
+        h2.sec-title { font-size: 22px; }
+        h3.entry-title { font-size: 21px; }
+        .scripture { padding: 16px 16px 4px; font-size: 16.5px; }
+        table.struct th { width: 92px; }
+        .progress-card { padding: 20px 18px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .daynav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 30px 0 4px; font-size: 15px; }
+      .daynav a { color: var(--accent); text-decoration: none; }
+      .daynav a:hover { text-decoration: underline; }
+      .daynav .disabled { color: var(--ink-faint); }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="site-title">罗马书研读</h1>
+        <p class="site-sub">每天早晚各研读一段，含经文、上下文、希腊文原文解析与正统解经。经文采用和合本。</p>
+        <p class="site-meta"><span>全书 16 章 · 433 节</span><span>解经依据：穆理 · 穆尔《罗马书注释》（NICNT）</span></p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="页面目录">
+      <div class="wrap toc-inner">
+        <a class="toc-main" href="index.html">首页</a>
+        <a class="toc-main" href="index.html#overview">总览</a>
+        <a class="toc-main" href="index.html#progress">研读进度</a>
+        <a href="#day38-am">16:21–27</a>
+                <a href="day1.html">第 1 天</a>
+        <a href="day2.html">第 2 天</a>
+        <a href="day3.html">第 3 天</a>
+        <a href="day4.html">第 4 天</a>
+        <a href="day5.html">第 5 天</a>
+        <a href="day6.html">第 6 天</a>
+        <a href="day7.html">第 7 天</a>
+        <a href="day8.html">第 8 天</a>
+        <a href="day9.html">第 9 天</a>
+        <a href="day10.html">第 10 天</a>
+        <a href="day11.html">第 11 天</a>
+        <a href="day12.html">第 12 天</a>
+        <a href="day13.html">第 13 天</a>
+        <a href="day14.html">第 14 天</a>
+        <a href="day15.html">第 15 天</a>
+        <a href="day16.html">第 16 天</a>
+        <a href="day17.html">第 17 天</a>
+        <a href="day18.html">第 18 天</a>
+        <a href="day19.html">第 19 天</a>
+        <a href="day20.html">第 20 天</a>
+        <a href="day21.html">第 21 天</a>
+        <a href="day22.html">第 22 天</a>
+        <a href="day23.html">第 23 天</a>
+        <a href="day24.html">第 24 天</a>
+        <a href="day25.html">第 25 天</a>
+        <a href="day26.html">第 26 天</a>
+        <a href="day27.html">第 27 天</a>
+        <a href="day28.html">第 28 天</a>
+        <a href="day29.html">第 29 天</a>
+        <a href="day30.html">第 30 天</a>
+        <a href="day31.html">第 31 天</a>
+        <a href="day32.html">第 32 天</a>
+        <a href="day33.html">第 33 天</a>
+        <a href="day34.html">第 34 天</a>
+        <a href="day35.html">第 35 天</a>
+        <a href="day36.html">第 36 天</a>
+        <a href="day37.html">第 37 天</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <section id="daily">
+        <h2 class="sec-title"><span class="no">第 38 天</span>2026-11-26（周四） 研读</h2>
+        <p class="sec-lead">当天研读，每篇依次包含：经文（和合本）、上下文与背景、原文解析（词汇＋句法）、正统解经（穆理＋穆尔）、应用与默想。</p>
+
+          <article class="entry" id="day38-am">
+          <div class="entry-head">
+            <span class="entry-day">第 38 天 · 晨 — 2026-11-26（周四）</span>
+            <h3 class="entry-title">同工问安，颂赞归与独一全智的神 <span class="ref">· 罗马书 16:21–27</span></h3>
+          </div>
+
+          <h4 class="part">经文（和合本）</h4>
+          <div class="scripture">
+            <p><span class="vn">21</span>提摩太与我同工，问你们安。路求、耶孙、所西巴德，我的亲属，也问你们安。<span class="vn">22</span>我这代笔写信的德丢，也在主里问你们安。<span class="vn">23</span>那接待我，也接待全教会的该犹，问你们安。城内管银库的以拉都，和弟兄括土，问你们安。<span class="vn">24</span>愿我主耶稣基督的恩常和你们同在。阿们。<span class="vn">25</span>惟有神能照我所传的福音和所讲的耶稣基督，并照永古隐藏不言的奥秘，坚固你们的心。<span class="vn">26</span>这奥秘如今显明出来，而且按着永生神的命，藉众先知的书指示万国的民，使他们信服真道。<span class="vn">27</span>愿荣耀因耶稣基督归与独一全智的神，直到永远。阿们！</p>
+          </div>
+
+          <h4 class="part">上下文与背景</h4>
+          <p><strong>1. 从罗马教会的问安，转向保罗同工的问安（21–23 节）</strong></p>
+          <p>16:1–16 是保罗向罗马教会众人的问安，16:21–23 是保罗身边同工向罗马教会的问安——写信的人反过来问候收信的人。保罗写这封信时人在哥林多：该犹接待他住在哥林多（参 林前 1:14，保罗在哥林多亲自施洗的人之一就是该犹），以拉都是哥林多城的官员，提摩太也在保罗身边（参 徒 19:22；20:4）。这三节是这封信「写信现场」的快照。</p>
+          <p><strong>2. 德丢代笔：新约唯一一次代笔者发声（22 节）</strong></p>
+          <p>古代书信多由人口述、书记代笔写成，写信人最后亲笔加上一句问安作为签名（参 林前 16:21；加 6:11；帖后 3:17）。德丢就是这封罗马书的代笔者。特别的是，他没有隐身在保罗背后，而是以第一人称、自己的声音向罗马教会问安——这是新约书信中唯一一次代笔者开口说话。两千年后我们读到的罗马书，仍保留着写信那一天房间里的声音。</p>
+          <p><strong>3. 16:24 的文本问题</strong></p>
+          <p>和合本保留了 24 节「愿我主耶稣基督的恩常和你们同在。阿们」，但最早、最可靠的抄本（包括约公元 200 年的蒲草纸抄本 P46）都没有这一节，它与 20 节下半句完全相同，很可能是后来的抄写者从 20 节重复抄入。现代译本多把它删去或放在脚注里。无论有无此节，全卷的正式结尾都是 25–27 节的颂赞。</p>
+          <p><strong>4. 颂赞：全卷的收束（25–27 节）</strong></p>
+          <p>25–27 节是整卷罗马书最后的颂赞，也是全卷主题的再一次奏鸣：「福音」「耶稣基督」「奥秘」「万国」「信服真道」——这些词全卷一路走来，到这里汇成一句话。特别值得注意的是，26 节「使他们信服真道」与 1:5「使万国信服真道」用的是同一个希腊词组：全卷从「信服真道」开始，到「信服真道」结束，是一个完整的圆环。</p>
+
+          <h4 class="part">原文解析</h4>
+          <h5 class="mini">词汇</h5>
+          <ul>
+            <li><strong>1. <span class="gk">συνεργός</span>（synergos，同工）——21 节</strong>提摩太是保罗的「同工」——保罗用同一个词称呼百基拉夫妇（16:3）与耳巴奴（16:9）。</li>
+            <li><strong>2. <span class="gk">συγγενής</span>（syngenēs，亲属）——21 节</strong>路求、耶孙、所西巴德是保罗的「亲属」——不是血缘亲属，是同族的犹太同胞（参 16:7、11）。</li>
+            <li><strong>3. <span class="gk">Τέρτιος</span>（Tertios，德丢）——22 节</strong><span class="gk">ὁ γράψας τὴν ἐπιστολήν</span>（「写了这封信的人」）——「我这代笔写信的德丢」。</li>
+            <li><strong>4. <span class="gk">ξένος</span>（xenos，接待者、主人）——23 节</strong>该犹「接待我，也接待全教会的」——<span class="gk">ὁ ξένος μου καὶ τῆς ἐκκλησίας ὅλης</span>：他是保罗的房东，也是哥林多教会的聚会地点。</li>
+            <li><strong>5. <span class="gk">οἰκονόμος τῆς πόλεως</span>（oikonomos tēs poleōs，城内管银库的）——23 节</strong><span class="gk">οἰκονόμος</span> 是「管家、司库」——以拉都是哥林多城的财政官员。</li>
+            <li><strong>6. <span class="gk">χάρις</span>（charis，恩）——24 节</strong>「愿我主耶稣基督的恩常和你们同在」。</li>
+            <li><strong>7. <span class="gk">δυναμένῳ… στηρίξαι</span>（dynamenō… stērixai，能……坚固）——25 节</strong>「惟有神能……坚固你们的心」：<span class="gk">στηρίζω</span> 是「使站稳、坚固」（参 1:11「坚固你们」）。</li>
+            <li><strong>8. <span class="gk">μυστήριον</span>（mystērion，奥秘）——25 节</strong><span class="gk">χρόνοις αἰωνίοις σεσιγημένου</span>（「永古隐藏不言的」）：<span class="gk">σιγάω</span> 是「沉默、不言」。</li>
+            <li><strong>9. <span class="gk">φανερωθέντος</span>（phanerōthentos，如今显明出来）——26 节</strong><span class="gk">κατ᾽ ἐπιταγὴν τοῦ αἰωνίου θεοῦ</span>（「按着永生神的命」）；<span class="gk">εἰς ὑπακοὴν πίστεως</span>（「信服真道」）。</li>
+            <li><strong>10. <span class="gk">μόνῳ σοφῷ θεῷ</span>（monō sophō theō，独一全智的神）——27 节</strong><span class="gk">δόξα</span>（doxa，荣耀）；<span class="gk">εἰς τοὺς αἰῶνας</span>（「直到永远」）。</li>
+          </ul>
+          <h5 class="mini">句法</h5>
+          <ul>
+            <li><strong>1. 21 节的三个人名共享一个称呼</strong>路求、耶孙、所西巴德之后只跟一句 <span class="gk">οἱ συγγενεῖς μου</span>（「我的亲属」）——三个人，一句身份说明。</li>
+            <li><strong>2. 22 节的插入语 <span class="gk">ἐγὼ Τέρτιος ὁ γράψας τὴν ἐπιστολήν</span>（我，德丢，写这封信的人）</strong>第一人称单数「我」，加上定冠词短语「写这封信的人」。整个问安段落里，只有德丢用「我」说话——代笔者从幕后走到台前。</li>
+            <li><strong>3. 23 节该犹的定语 <span class="gk">ὁ ξένος μου καὶ τῆς ἐκκλησίας ὅλης</span>（接待我，也接待全教会的）</strong>两个属格并列——「我的接待者，也是全教会的接待者」。一个人的家，同时是使徒的住处和全教会的聚会点。</li>
+            <li><strong>4. 25–27 节在希腊文里是一个完整的长句</strong>主句在 27 节（「愿荣耀……归与独一全智的神」），25–26 节是长长的铺垫——三个 <span class="gk">κατά</span>（「照……」）短语层层推进：照我所传的福音、照奥秘的启示、按着永生神的命。</li>
+            <li><strong>5. 25 节的 <span class="gk">τὸ εὐαγγέλιόν μου</span>（「我所传的福音」）与 <span class="gk">τὸ κήρυγμα Ἰησοῦ Χριστοῦ</span>（「所讲的耶稣基督」）并列</strong>保罗的福音，就是关于耶稣基督的宣讲（参 2:16「照我所传的福音」）。</li>
+            <li><strong>6. 26 节的对照：<span class="gk">χρόνοις αἰωνίοις σεσιγημένου</span>（「永古隐藏不言」）与 <span class="gk">νυνὶ δὲ φανερωθέντος</span>（「如今显明出来」）</strong>「隐藏」与「显明」、「永古」与「如今」——时间上的张力，就是救赎历史的张力。</li>
+            <li><strong>7. 27 节的 <span class="gk">διὰ Ἰησοῦ Χριστοῦ</span>（「因耶稣基督」）</strong>荣耀归与神，是「藉着耶稣基督」归与神——基督是荣耀归与神的中保，全卷的基督中心在这里收束。</li>
+          </ul>
+
+          <h4 class="part">正统解经（穆理＋穆尔）</h4>
+          <ol>
+            <li><strong>1. 提摩太与三位亲属：保罗身边是一个多民族的团队</strong>穆理认为，提摩太是保罗最亲密的同工（参 腓 2:19–22「他与我同工」；林前 4:17），保罗把他放在问安的第一位，是合宜的。<p>穆尔考证：路求很可能是使徒行传 13:1 提到的古利奈人路求——安提阿教会的先知和教师之一；耶孙很可能是帖撒罗尼迦的耶孙（徒 17:5–9，曾因接待保罗而被拖到官府）；所西巴德很可能是庇哩亚的所巴特（徒 20:4，与保罗同行往耶路撒冷送捐项的人）。穆尔提醒：这些身份认定是「很可能」而非确证——名字相同、时间吻合，但没有直接证据。</p><p>两位学者都同意：保罗身边站着的，是一个犹太人与外邦人同工的团队——这正是罗马书所传的福音结出的果子：一个多民族的同工团队，正在写信给一个多民族的教会。</p></li>
+            <li><strong>2. 德丢代笔：写信现场被保留下来</strong>穆理与穆尔都指出，古代书信口述、代笔是常态，保罗通常在结尾亲笔加签（参 林前 16:21「我保罗亲笔问你们安」；加 6:11「请看我亲手写给你们的字是何等的大」）。但罗马书的结尾没有保罗的亲笔签名，取而代之的是代笔者德丢自己的一句问安——这是新约书信中唯一的一次。<p>穆尔认为，这节经文的价值正在于它的「不经意」：它证明罗马书是一封真实的历史书信，写信的现场——口述的人、执笔的人、房间里的人——都被如实保留下来。穆理补充：一个代笔者的名字能被记在圣经里，说明在神眼中没有「幕后」与「台前」之分——忠心执笔的人，与口述的人一样被记念。</p></li>
+            <li><strong>3. 该犹与以拉都：福音进入了哥林多城的客厅与市政厅</strong>穆尔指出，该犹是保罗在哥林多亲自施洗的少数几个人之一（林前 1:14），「接待全教会」说明哥林多教会就在他家里聚会——一间家庭教会。至于以拉都，1929 年哥林多出土了一块铭文：「以拉都为回报他的市政官职位，自费铺设了这条人行道」——学者普遍认为这就是罗马书 16:23 的以拉都：哥林多城的财政官员信了主。<p>穆理认为，这节经文与 16:10–11 的「亚利多布家里的人」「拿其数家里的人」前后呼应：福音从社会底层向上渗透，也进入了城市的官府与大户人家的客厅。</p><p>分歧传统：约翰三书的该犹是否同一人，历来没有定论；穆尔认为名字常见，不必强行认定。</p></li>
+            <li><strong>4. 16:24 的文本问题：不影响教义的抄本差异</strong>穆尔详细说明：16:24 不见于最早的抄本（P46、梵蒂冈抄本、西奈抄本），它与 16:20 下半句逐字相同，是抄写者重复抄入的旁注；现代校勘本（NA28、UBS）都把它删去。和合本保留了它，但这不影响任何教义——恩典的祝愿在 20 节已经出现过。<p>穆理同意：全卷正式的结尾是 25–27 节的颂赞，不是 24 节的祝愿。历代共识：教会从不为此节争论，因为它不改变任何神学内容；它提醒我们的是：圣经的文本传承有抄本差异，但核心信息稳固。</p></li>
+            <li><strong>5. 颂赞的神学（25–26 节）：奥秘如今显明出来</strong>穆理认为，25–26 节是全卷福音主题的最后一次奏鸣：「我所传的福音」（参 1:1、2:16）、「所讲的耶稣基督」、「永古隐藏不言的奥秘」、「如今显明出来」、「指示万国的民」、「使他们信服真道」——每一点都在全卷出现过。奥秘不是神秘莫测的东西，是「从前隐藏、如今显明」的神的计划（参 弗 3:3–6；西 1:26–27）：外邦人与犹太人同为后嗣、同为一体、同蒙应许。<p>穆尔补充：颂赞中「照……照……按着……」三个介词短语，说明这奥秘的显明有三重根据：福音的宣讲、先知的书（旧约圣经）、永生神的命令——新约的福音不是新发明，是旧约应许的成就。</p><p>两位学者都指出：26 节的「信服真道」与 1:5 完全相同——全卷从「信服真道」开始，到「信服真道」结束，是一个首尾相接的圆环：保罗写这封信的目的，就是要万国的人信服真道；写到结尾，他把这个目的交托给那位能坚固人的神。</p></li>
+            <li><strong>6. 「愿荣耀归与独一全智的神」（27 节）：从神的义开始，以神的荣耀结束</strong>穆理认为，罗马书从 1:17「神的义」开始，到 16:27「神的荣耀」结束——人的回应不是争辩，是颂赞；神学的终点是敬拜。「独一全智的神」：神的智慧在十字架与外邦人蒙召的计划上显明出来（参 11:33–36 那段著名的颂赞「深哉，神丰富的智慧和知识」）。<p>穆尔指出，27 节的「因耶稣基督」是关键：荣耀归与神，是藉着基督归与神——基督是神荣耀的中保，全卷的基督中心在这里收束。</p><p>历代共识：从奥古斯丁到加尔文，都把 16:25–27 看作全卷最合适的结尾——一封讲「因信称义」的信，最后不是落在人的信心上，是落在神的荣耀上。</p></li>
+          </ol>
+
+          <h4 class="part">应用与默想</h4>
+          <ul>
+            <li><strong>应用一：甘心作「代笔者」</strong>德丢的名字能留在圣经里，不是因为他口述了罗马书，而是因为他忠心地执笔。你的教会或小组里，有没有这样「执笔」的工作——记录、接待、预备、善后？今天就去做一件不露脸却不可少的事，并且知道神记念它。</li>
+            <li><strong>应用二：像该犹一样把家打开</strong>该犹的家同时是使徒的住处和全教会的聚会点。今天想一想：你的家、你的时间、你的饭桌，有没有一个「接待」的缺口，可以为一位弟兄姊妹或一位慕道朋友打开？</li>
+          </ul>
+          <div class="think">
+            <div class="think-label">思考题</div>
+            <p>全卷从罗马书 1 章 5 节的「信服真道」开始，到 16 章 26 节的「信服真道」结束——38 天、75 篇、433 节，罗马书读完了。哪一句话是你这 38 天里印象最深的？它怎样改变了你对神、对自己、对教会的认识？接下来，你想先复习整卷，还是直接开始下一卷？</p>
+          </div>
+</article>
+
+
+<div class="daynav"><a href="day37.html">← 第 37 天</a><a href="index.html#daily">全部天数</a><span class="disabled">全卷读完 · 荣耀归与神</span></div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <p class="foot-title">罗马书研读 · 全卷读完</p>
+        <p>全书 433 节已于 2026 年 11 月 26 日读完，共 75 篇；愿荣耀归与独一全智的神，直到永远。阿们！</p>
+        <p>经文采用和合本；解经依据为约翰·穆理（John Murray）与道格拉斯·穆尔（Douglas J. Moo）《罗马书注释》（NICNT）。</p>
+      </div>
+    </footer>
+  </body>
+</html>
